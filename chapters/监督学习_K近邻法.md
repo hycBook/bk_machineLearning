@@ -1,4 +1,4 @@
-![异世界.png](https://upload-images.jianshu.io/upload_images/15675864-e39212ac990782cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![异世界.png](https://upload-images.jianshu.io/upload_images/15675864-e39212ac990782cf.png)
 
 [TOC]
 
@@ -29,9 +29,9 @@
 >1. 根据给定距离度量，在训练集$$T$$中找出与$$x$$最邻近的$$k$$个点，涵盖这$$k$$个点的$$x$$的邻域记作$$N_{k}(x)$$；
 >
 >2. 在$$N_{k}(x)$$中根据分类决策规则(如多数表决)决定$$x$$的类别$$y$$：
->   $$
+> $$
 >   y=\arg \max_{c_j}\sum_{x_i \in N_k(x)}{I(y_i=c_j)},i=1,2,...,N;j=1,2,...,K
->   $$
+> $$
 >
 >3. 式（3.1）中，I为指示函数，即当y i ＝c j 时I为1，否则I为0。k近邻法的特殊情况是k＝1的情形，称为最近邻算法。对于输入的实例点（特征向量）x，最近邻法将训练数据集中与x最邻近点的类作为x的类。
 >

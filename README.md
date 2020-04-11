@@ -1,6 +1,6 @@
 # bk_python
 
- ![img]( https://upload-images.jianshu.io/upload_images/15675864-952291e89189c8a8.jpg ) 
+ ![img](https://upload-images.jianshu.io/upload_images/15675864-952291e89189c8a8.jpg) 
 
 > 机器学习的学习记录电子书
 >
