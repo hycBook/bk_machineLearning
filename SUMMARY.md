@@ -29,6 +29,7 @@
 	* [监督学习_决策树](chapters/监督学习_决策树.md)
 	* [监督学习_K近邻法](chapters/监督学习_K近邻法.md)
 	* [监督学习_支持向量机](chapters/监督学习_支持向量机.md)
+	* [监督学习_CRF](chapters/监督学习_CRF.md)
 * [非监督学习](chapters/非监督学习.md)
 	* [非监督学习_K均值](chapters/非监督学习_K均值.md)
 	* [非监督学习_Mean Shift均值漂移聚类](chapters/非监督学习_Mean Shift均值漂移聚类.md)
