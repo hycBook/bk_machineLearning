@@ -1,11 +1,10 @@
-![异世界.png](https://upload-images.jianshu.io/upload_images/15675864-e39212ac990782cf.png)
+![异世界.png](./res/other/异世界蕾姆_1.png)
 
 # 主成分分析(PCA)
 
 >
 >
 >
-
 
 
 
