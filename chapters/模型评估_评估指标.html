@@ -1,1003 +1,550 @@
-
 <!DOCTYPE HTML>
-<html lang="zh-hans" >
-    <head>
-        <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>模型评估_评估指标 · 机器学习相关学习记录</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        <meta name="author" content="narutohyc">
-        
-        
-    
-    
-    <link rel="stylesheet" href="../gitbook/style.css">
-
-    
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-lightbox/css/lightbox.min.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-change_girls/girls.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
-                
-            
-        
-
-    
-
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-
-    
-
-        
-    
-    
-    
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="模型评估_AB测试.html" />
-    
-    
-    <link rel="prev" href="模型评估.html" />
-    
-
-    
-        <link rel="shortcut icon" href="./chapters/res/other/favicon.ico" type="image/x-icon">
-    
-    
-    
-    
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./chapters/res/other/favicon.ico">
-    
-    
-        
-    
-    
-        
-    
-
-    
-        <link rel="shortcut icon" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png' type="image/x-icon">
-    
-    
-        <link rel="bookmark" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png' type="image/x-icon">
-    
-    
-        <link rel="apple-touch-icon" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png'>
-    
-    
-        
-        <link rel="apple-touch-icon" sizes="120x120" href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png">
-        
-        <link rel="apple-touch-icon" sizes="180x180" href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png">
-        
-    
-
-    <style>
+<html lang="zh-hans">
+<head>
+<meta charset="utf-8"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>模型评估_评估指标 · 机器学习相关学习记录</title>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="" name="description"/>
+<meta content="GitBook 3.2.3" name="generator"/>
+<meta content="narutohyc" name="author"/>
+<link href="../gitbook/style.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-splitter/splitter.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-anchors/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-donate/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-code/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-search-plus/search.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-lightbox/css/lightbox.min.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-change_girls/girls.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-pageview-count/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-theme-comscore/test.css" rel="stylesheet"/>
+<meta content="true" name="HandheldFriendly"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<link href="../gitbook/images/apple-touch-icon-precomposed-152.png" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="../gitbook/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="模型评估_AB测试.html" rel="next"/>
+<link href="模型评估.html" rel="prev"/>
+<link href="./chapters/res/other/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="./chapters/res/other/favicon.ico" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="bookmark" type="image/x-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon" sizes="120x120"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon" sizes="180x180"/>
+<style>
     @media only screen and (max-width: 640px) {
         .book-header .hidden-mobile {
             display: none;
         }
     }
     </style>
-    <script>
+<script>
         window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]};
     </script>
-
-    </head>
-    <body>
-        
+</head>
+<body>
 <div class="book">
-    <div class="book-summary">
-        
-            
+<div class="book-summary">
 <div id="book-search-input" role="search">
-    <input type="text" placeholder="输入并搜索" />
+<input placeholder="输入并搜索" type="text"/>
 </div>
-
-            
-                <nav role="navigation">
-                
-
-
+<nav role="navigation">
 <ul class="summary">
-    
-    
-    
-        
-        <li>
-            <a href="https://github.com/narutohyc" target="_blank" class="custom-link">我的狗窝</a>
-        </li>
-    
-    
-
-    
-    <li class="divider"></li>
-    
-
-    
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="../">
-            
-                <a href="../">
-            
-                    
-                        <b>1.1.</b>
+<li>
+<a class="custom-link" href="https://github.com/narutohyc" target="_blank">我的狗窝</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-level="1.1" data-path="../">
+<a href="../">
+<b>1.1.</b>
                     
                     Introduction
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2" data-path="机器学习基础.html">
-            
-                <a href="机器学习基础.html">
-            
-                    
-                        <b>1.2.</b>
+</li>
+<li class="chapter" data-level="1.2" data-path="机器学习基础.html">
+<a href="机器学习基础.html">
+<b>1.2.</b>
                     
                     机器学习基础
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.2.1" data-path="机器学习基础_距离.html">
-            
-                <a href="机器学习基础_距离.html">
-            
-                    
-                        <b>1.2.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.2.1" data-path="机器学习基础_距离.html">
+<a href="机器学习基础_距离.html">
+<b>1.2.1.</b>
                     
                     机器学习基础_距离
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.2" data-path="机器学习基础_概率论基础.html">
-            
-                <a href="机器学习基础_概率论基础.html">
-            
-                    
-                        <b>1.2.2.</b>
+</li>
+<li class="chapter" data-level="1.2.2" data-path="机器学习基础_概率论基础.html">
+<a href="机器学习基础_概率论基础.html">
+<b>1.2.2.</b>
                     
                     机器学习基础_概率论基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.3" data-path="机器学习基础_线性代数基础.html">
-            
-                <a href="机器学习基础_线性代数基础.html">
-            
-                    
-                        <b>1.2.3.</b>
+</li>
+<li class="chapter" data-level="1.2.3" data-path="机器学习基础_线性代数基础.html">
+<a href="机器学习基础_线性代数基础.html">
+<b>1.2.3.</b>
                     
                     机器学习基础_线性代数基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.4" data-path="机器学习基础_微积分基础.html">
-            
-                <a href="机器学习基础_微积分基础.html">
-            
-                    
-                        <b>1.2.4.</b>
+</li>
+<li class="chapter" data-level="1.2.4" data-path="机器学习基础_微积分基础.html">
+<a href="机器学习基础_微积分基础.html">
+<b>1.2.4.</b>
                     
                     机器学习基础_微积分基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.5" data-path="机器学习基础_最优化理论.html">
-            
-                <a href="机器学习基础_最优化理论.html">
-            
-                    
-                        <b>1.2.5.</b>
+</li>
+<li class="chapter" data-level="1.2.5" data-path="机器学习基础_最优化理论.html">
+<a href="机器学习基础_最优化理论.html">
+<b>1.2.5.</b>
                     
                     机器学习基础_最优化理论
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.6" data-path="机器学习基础_损失函数.html">
-            
-                <a href="机器学习基础_损失函数.html">
-            
-                    
-                        <b>1.2.6.</b>
+</li>
+<li class="chapter" data-level="1.2.6" data-path="机器学习基础_损失函数.html">
+<a href="机器学习基础_损失函数.html">
+<b>1.2.6.</b>
                     
                     机器学习基础_损失函数
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3" data-path="特征工程.html">
-            
-                <a href="特征工程.html">
-            
-                    
-                        <b>1.3.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.3" data-path="特征工程.html">
+<a href="特征工程.html">
+<b>1.3.</b>
                     
                     特征工程
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.3.1" data-path="特征工程_归一化.html">
-            
-                <a href="特征工程_归一化.html">
-            
-                    
-                        <b>1.3.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.3.1" data-path="特征工程_归一化.html">
+<a href="特征工程_归一化.html">
+<b>1.3.1.</b>
                     
                     特征工程_归一化
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.2" data-path="特征工程_编码.html">
-            
-                <a href="特征工程_编码.html">
-            
-                    
-                        <b>1.3.2.</b>
+</li>
+<li class="chapter" data-level="1.3.2" data-path="特征工程_编码.html">
+<a href="特征工程_编码.html">
+<b>1.3.2.</b>
                     
                     特征工程_编码
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.3" data-path="特征工程_特征组合.html">
-            
-                <a href="特征工程_特征组合.html">
-            
-                    
-                        <b>1.3.3.</b>
+</li>
+<li class="chapter" data-level="1.3.3" data-path="特征工程_特征组合.html">
+<a href="特征工程_特征组合.html">
+<b>1.3.3.</b>
                     
                     特征工程_特征组合
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.4" data-path="特征工程_特征选择.html">
-            
-                <a href="特征工程_特征选择.html">
-            
-                    
-                        <b>1.3.4.</b>
+</li>
+<li class="chapter" data-level="1.3.4" data-path="特征工程_特征选择.html">
+<a href="特征工程_特征选择.html">
+<b>1.3.4.</b>
                     
                     特征工程_特征选择
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="特征工程_文本表示模型.html">
-            
-                <a href="特征工程_文本表示模型.html">
-            
-                    
-                        <b>1.3.5.</b>
+</li>
+<li class="chapter" data-level="1.3.5" data-path="特征工程_文本表示模型.html">
+<a href="特征工程_文本表示模型.html">
+<b>1.3.5.</b>
                     
                     特征工程_文本表示模型
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.6" data-path="特征工程_图像增强.html">
-            
-                <a href="特征工程_图像增强.html">
-            
-                    
-                        <b>1.3.6.</b>
+</li>
+<li class="chapter" data-level="1.3.6" data-path="特征工程_图像增强.html">
+<a href="特征工程_图像增强.html">
+<b>1.3.6.</b>
                     
                     特征工程_图像增强
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4" data-path="模型评估.html">
-            
-                <a href="模型评估.html">
-            
-                    
-                        <b>1.4.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.4" data-path="模型评估.html">
+<a href="模型评估.html">
+<b>1.4.</b>
                     
                     模型评估
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter active" data-level="1.4.1" data-path="模型评估_评估指标.html">
-            
-                <a href="模型评估_评估指标.html">
-            
-                    
-                        <b>1.4.1.</b>
+<ul class="articles">
+<li class="chapter active" data-level="1.4.1" data-path="模型评估_评估指标.html">
+<a href="模型评估_评估指标.html">
+<b>1.4.1.</b>
                     
                     模型评估_评估指标
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="模型评估_AB测试.html">
-            
-                <a href="模型评估_AB测试.html">
-            
-                    
-                        <b>1.4.2.</b>
+</li>
+<li class="chapter" data-level="1.4.2" data-path="模型评估_AB测试.html">
+<a href="模型评估_AB测试.html">
+<b>1.4.2.</b>
                     
                     模型评估_AB测试
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.3" data-path="模型评估_过拟合和欠拟合.html">
-            
-                <a href="模型评估_过拟合和欠拟合.html">
-            
-                    
-                        <b>1.4.3.</b>
+</li>
+<li class="chapter" data-level="1.4.3" data-path="模型评估_过拟合和欠拟合.html">
+<a href="模型评估_过拟合和欠拟合.html">
+<b>1.4.3.</b>
                     
                     模型评估_过拟合和欠拟合
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.4" data-path="模型评估_超参数选择.html">
-            
-                <a href="模型评估_超参数选择.html">
-            
-                    
-                        <b>1.4.4.</b>
+</li>
+<li class="chapter" data-level="1.4.4" data-path="模型评估_超参数选择.html">
+<a href="模型评估_超参数选择.html">
+<b>1.4.4.</b>
                     
                     模型评估_超参数选择
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.5" data-path="模型评估_模型评估方法.html">
-            
-                <a href="模型评估_模型评估方法.html">
-            
-                    
-                        <b>1.4.5.</b>
+</li>
+<li class="chapter" data-level="1.4.5" data-path="模型评估_模型评估方法.html">
+<a href="模型评估_模型评估方法.html">
+<b>1.4.5.</b>
                     
                     模型评估_模型评估方法
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5" data-path="降维.html">
-            
-                <a href="降维.html">
-            
-                    
-                        <b>1.5.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.5" data-path="降维.html">
+<a href="降维.html">
+<b>1.5.</b>
                     
                     降维
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.5.1" data-path="降维_PCA主成分分析.html">
-            
-                <a href="降维_PCA主成分分析.html">
-            
-                    
-                        <b>1.5.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.5.1" data-path="降维_PCA主成分分析.html">
+<a href="降维_PCA主成分分析.html">
+<b>1.5.1.</b>
                     
                     降维_PCA主成分分析
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.2" data-path="降维_LDA线性判别分析.html">
-            
-                <a href="降维_LDA线性判别分析.html">
-            
-                    
-                        <b>1.5.2.</b>
+</li>
+<li class="chapter" data-level="1.5.2" data-path="降维_LDA线性判别分析.html">
+<a href="降维_LDA线性判别分析.html">
+<b>1.5.2.</b>
                     
                     降维_LDA线性判别分析
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6" data-path="监督学习.html">
-            
-                <a href="监督学习.html">
-            
-                    
-                        <b>1.6.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.6" data-path="监督学习.html">
+<a href="监督学习.html">
+<b>1.6.</b>
                     
                     监督学习
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.6.1" data-path="监督学习_朴素贝叶斯分类.html">
-            
-                <a href="监督学习_朴素贝叶斯分类.html">
-            
-                    
-                        <b>1.6.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.6.1" data-path="监督学习_朴素贝叶斯分类.html">
+<a href="监督学习_朴素贝叶斯分类.html">
+<b>1.6.1.</b>
                     
                     监督学习_朴素贝叶斯分类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.2" data-path="监督学习_决策树.html">
-            
-                <a href="监督学习_决策树.html">
-            
-                    
-                        <b>1.6.2.</b>
+</li>
+<li class="chapter" data-level="1.6.2" data-path="监督学习_决策树.html">
+<a href="监督学习_决策树.html">
+<b>1.6.2.</b>
                     
                     监督学习_决策树
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.3" data-path="监督学习_K近邻法.html">
-            
-                <a href="监督学习_K近邻法.html">
-            
-                    
-                        <b>1.6.3.</b>
+</li>
+<li class="chapter" data-level="1.6.3" data-path="监督学习_K近邻法.html">
+<a href="监督学习_K近邻法.html">
+<b>1.6.3.</b>
                     
                     监督学习_K近邻法
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.4" data-path="监督学习_支持向量机.html">
-            
-                <a href="监督学习_支持向量机.html">
-            
-                    
-                        <b>1.6.4.</b>
+</li>
+<li class="chapter" data-level="1.6.4" data-path="监督学习_支持向量机.html">
+<a href="监督学习_支持向量机.html">
+<b>1.6.4.</b>
                     
                     监督学习_支持向量机
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.5" data-path="监督学习_CRF.html">
-            
-                <a href="监督学习_CRF.html">
-            
-                    
-                        <b>1.6.5.</b>
+</li>
+<li class="chapter" data-level="1.6.5" data-path="监督学习_CRF.html">
+<a href="监督学习_CRF.html">
+<b>1.6.5.</b>
                     
                     监督学习_CRF
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7" data-path="非监督学习.html">
-            
-                <a href="非监督学习.html">
-            
-                    
-                        <b>1.7.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.7" data-path="非监督学习.html">
+<a href="非监督学习.html">
+<b>1.7.</b>
                     
                     非监督学习
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.7.1" data-path="非监督学习_K均值.html">
-            
-                <a href="非监督学习_K均值.html">
-            
-                    
-                        <b>1.7.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.7.1" data-path="非监督学习_K均值.html">
+<a href="非监督学习_K均值.html">
+<b>1.7.1.</b>
                     
                     非监督学习_K均值
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.2" data-path="非监督学习_Mean Shift均值漂移聚类.html">
-            
-                <a href="非监督学习_Mean Shift均值漂移聚类.html">
-            
-                    
-                        <b>1.7.2.</b>
+</li>
+<li class="chapter" data-level="1.7.2" data-path="非监督学习_Mean Shift均值漂移聚类.html">
+<a href="非监督学习_Mean Shift均值漂移聚类.html">
+<b>1.7.2.</b>
                     
                     非监督学习_Mean Shift均值漂移聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.3" data-path="非监督学习_DBSCAN基于密度的聚类方法.html">
-            
-                <a href="非监督学习_DBSCAN基于密度的聚类方法.html">
-            
-                    
-                        <b>1.7.3.</b>
+</li>
+<li class="chapter" data-level="1.7.3" data-path="非监督学习_DBSCAN基于密度的聚类方法.html">
+<a href="非监督学习_DBSCAN基于密度的聚类方法.html">
+<b>1.7.3.</b>
                     
                     非监督学习_DBSCAN基于密度的聚类方法
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.4" data-path="非监督学习_Hierarchical Clustering层次聚类.html">
-            
-                <a href="非监督学习_Hierarchical Clustering层次聚类.html">
-            
-                    
-                        <b>1.7.4.</b>
+</li>
+<li class="chapter" data-level="1.7.4" data-path="非监督学习_Hierarchical Clustering层次聚类.html">
+<a href="非监督学习_Hierarchical Clustering层次聚类.html">
+<b>1.7.4.</b>
                     
                     非监督学习_Hierarchical Clustering层次聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.5" data-path="非监督学习_Spectral Clustering谱聚类.html">
-            
-                <a href="非监督学习_Spectral Clustering谱聚类.html">
-            
-                    
-                        <b>1.7.5.</b>
+</li>
+<li class="chapter" data-level="1.7.5" data-path="非监督学习_Spectral Clustering谱聚类.html">
+<a href="非监督学习_Spectral Clustering谱聚类.html">
+<b>1.7.5.</b>
                     
                     非监督学习_Spectral Clustering谱聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.8" data-path="半监督学习.html">
-            
-                <a href="半监督学习.html">
-            
-                    
-                        <b>1.8.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.8" data-path="半监督学习.html">
+<a href="半监督学习.html">
+<b>1.8.</b>
                     
                     半监督学习
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9" data-path="集成学习.html">
-            
-                <a href="集成学习.html">
-            
-                    
-                        <b>1.9.</b>
+</li>
+<li class="chapter" data-level="1.9" data-path="集成学习.html">
+<a href="集成学习.html">
+<b>1.9.</b>
                     
                     集成学习
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.10" data-path="强化学习.html">
-            
-                <a href="强化学习.html">
-            
-                    
-                        <b>1.10.</b>
+</li>
+<li class="chapter" data-level="1.10" data-path="强化学习.html">
+<a href="强化学习.html">
+<b>1.10.</b>
                     
                     强化学习
             
                 </a>
-            
-
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+</li>
+<li class="divider"></li>
+<li>
+<a class="gitbook-link" href="https://www.gitbook.com" target="blank">
             本书使用 GitBook 发布
         </a>
-    </li>
+</li>
 </ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >模型评估_评估指标</a>
-    </h1>
+</nav>
 </div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="..">模型评估_评估指标</a>
+</h1>
+</div>
+<div class="page-wrapper" role="main" tabindex="-1">
+<div class="page-inner">
 <div class="search-plus" id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x8BC4;&#x4F30;&#x6307;&#x6807;"><b></b>&#x8BC4;&#x4F30;&#x6307;&#x6807;</a></li><li><span class="title-icon "></span><a href="#&#x51C6;&#x786E;&#x7387;accuracy"><b></b>&#x51C6;&#x786E;&#x7387;(Accuracy)</a></li><li><span class="title-icon "></span><a href="#&#x7CBE;&#x786E;&#x5EA6;precision"><b></b>&#x7CBE;&#x786E;&#x5EA6;(Precision)</a></li><li><span class="title-icon "></span><a href="#&#x53EC;&#x56DE;&#x7387;recall"><b></b>&#x53EC;&#x56DE;&#x7387;(Recall)</a></li><li><span class="title-icon "></span><a href="#&#x5747;&#x65B9;&#x6839;&#x8BEF;&#x5DEE;rmse"><b></b>&#x5747;&#x65B9;&#x6839;&#x8BEF;&#x5DEE;(RMSE)</a></li><li><span class="title-icon "></span><a href="#f1&#x5F97;&#x5206;"><b></b>F1&#x5F97;&#x5206;</a></li><li><span class="title-icon "></span><a href="#p-r&#x66F2;&#x7EBF;"><b></b>P-R&#x66F2;&#x7EBF;</a></li><li><span class="title-icon "></span><a href="#roc&#x66F2;&#x7EBF;"><b></b>ROC&#x66F2;&#x7EBF;</a></li><ul><li><span class="title-icon "></span><a href="#roc&#x66F2;&#x7EBF;&#x6982;&#x5FF5;"><b></b>ROC&#x66F2;&#x7EBF;&#x6982;&#x5FF5;</a></li><li><span class="title-icon "></span><a href="#&#x7ED8;&#x5236;roc&#x66F2;&#x7EBF;"><b></b>&#x7ED8;&#x5236;ROC&#x66F2;&#x7EBF;</a></li><li><span class="title-icon "></span><a href="#roc&#x548C;p-r&#x66F2;&#x7EBF;"><b></b>ROC&#x548C;P-R&#x66F2;&#x7EBF;</a></li></ul><li><span class="title-icon "></span><a href="#auc&#x66F2;&#x7EBF;"><b></b>AUC&#x66F2;&#x7EBF;</a></li><li><span class="title-icon "></span><a href="#&#x805A;&#x7C7B;&#x6307;&#x6807;"><b></b>&#x805A;&#x7C7B;&#x6307;&#x6807;</a></li><li><span class="title-icon "></span><a href="#&#x56DE;&#x5F52;&#x6307;&#x6807;"><b></b>&#x56DE;&#x5F52;&#x6307;&#x6807;</a></li></ul></div><a href="#&#x8BC4;&#x4F30;&#x6307;&#x6807;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a href="res/other/&#x5F02;&#x4E16;&#x754C;&#x857E;&#x59C6;_1.png" data-lightbox="13833eff-dad2-46bd-96b8-e931ffdda4fa" data-title="&#x5F02;&#x4E16;&#x754C;.png"><img src="res/other/&#x5F02;&#x4E16;&#x754C;&#x857E;&#x59C6;_1.png" alt="&#x5F02;&#x4E16;&#x754C;.png"></a></p>
+<div class="search-noresults">
+<section class="normal markdown-section">
+<div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon"></span><a href="#评估指标">1 评估指标</a></li><li><span class="title-icon"></span><a href="#准确率accuracy">2 准确率(Accuracy)</a></li><li><span class="title-icon"></span><a href="#精确度precision">3 精确度(Precision)</a></li><li><span class="title-icon"></span><a href="#召回率recall">4 召回率(Recall)</a></li><li><span class="title-icon"></span><a href="#均方根误差rmse">5 均方根误差(RMSE)</a></li><li><span class="title-icon"></span><a href="#f1得分">6 F1得分</a></li><li><span class="title-icon"></span><a href="#p-r曲线">7 P-R曲线</a></li><li><span class="title-icon"></span><a href="#roc曲线">8 ROC曲线</a></li><ul><li><span class="title-icon"></span><a href="#roc曲线概念">8.1 ROC曲线概念</a></li><li><span class="title-icon"></span><a href="#绘制roc曲线">8.2 绘制ROC曲线</a></li><li><span class="title-icon"></span><a href="#roc和p-r曲线">8.3 ROC和P-R曲线</a></li></ul><li><span class="title-icon"></span><a href="#auc曲线">9 AUC曲线</a></li><li><span class="title-icon"></span><a href="#聚类指标">10 聚类指标</a></li><li><span class="title-icon"></span><a href="#回归指标">11 回归指标</a></li></ul></div><a href="#评估指标" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a data-lightbox="f40b5c05-ab3c-4077-91df-73d282108a39" data-title="异世界.png" href="res/other/异世界蕾姆_1.png"><img alt="异世界.png" src="res/other/异世界蕾姆_1.png"/></a></p>
 <p>[TOC]</p>
-<h1 id="&#x8BC4;&#x4F30;&#x6307;&#x6807;"><a name="&#x8BC4;&#x4F30;&#x6307;&#x6807;" class="anchor-navigation-ex-anchor" href="#&#x8BC4;&#x4F30;&#x6307;&#x6807;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8BC4;&#x4F30;&#x6307;&#x6807;" class="plugin-anchor" href="#&#x8BC4;&#x4F30;&#x6307;&#x6807;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BC4;&#x4F30;&#x6307;&#x6807;</h1>
+<h1 id="评估指标">1 评估指标</h1>
 <blockquote>
-<p><a href="&#x4E0D;&#x53EF;&#x4E0D;&#x77E5;&#x7684;11&#x4E2A;&#x91CD;&#x8981;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x6A21;&#x578B;&#x8BC4;&#x4F30;&#x6307;&#x6807;">&#x4E0D;&#x53EF;&#x4E0D;&#x77E5;&#x7684;11&#x4E2A;&#x91CD;&#x8981;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x6A21;&#x578B;&#x8BC4;&#x4F30;&#x6307;&#x6807;</a></p>
+<p><a href="不可不知的11个重要机器学习模型评估指标">不可不知的11个重要机器学习模型评估指标</a></p>
 </blockquote>
-<h1 id="&#x51C6;&#x786E;&#x7387;accuracy"><a name="&#x51C6;&#x786E;&#x7387;accuracy" class="anchor-navigation-ex-anchor" href="#&#x51C6;&#x786E;&#x7387;accuracy"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x51C6;&#x786E;&#x7387;accuracy" class="plugin-anchor" href="#&#x51C6;&#x786E;&#x7387;accuracy"><i class="fa fa-link" aria-hidden="true"></i></a>&#x51C6;&#x786E;&#x7387;(Accuracy)</h1>
+<h1 id="准确率accuracy">2 准确率(Accuracy)</h1>
 <blockquote>
-<p><code>&#x51C6;&#x786E;&#x7387;</code>&#x662F;&#x6307;&#x5206;&#x7C7B;&#x6B63;&#x786E;&#x7684;&#x6837;&#x672C;&#x5360;&#x603B;&#x6837;&#x672C;&#x4E2A;&#x6570;&#x7684;&#x6BD4;&#x4F8B;&#xFF0C;&#x5373;
+<p><code>准确率</code>是指分类正确的样本占总样本个数的比例，即
 <script type="math/tex; mode=display">
 >Accurcy=\frac{n_{correct}}{n_{total}}=\frac{TP+TN}{TP+TN+FP+FN}
 ></script>
-&#x5176;&#x4E2D;<script type="math/tex; ">n_{correct}</script>&#x4E3A;&#x88AB;&#x6B63;&#x786E;&#x5206;&#x7C7B;&#x7684;&#x6837;&#x672C;&#x4E2A;&#x6570;&#xFF0C;<script type="math/tex; ">n_{total}</script>&#x4E3A;&#x603B;&#x6837;&#x672C;&#x7684;&#x4E2A;&#x6570;&#x3002;
-&#x51C6;&#x786E;&#x7387;&#x662F;&#x5206;&#x7C7B;&#x95EE;&#x9898;&#x4E2D;&#x6700;&#x7B80;&#x5355;&#x4E5F;&#x662F;&#x6700;&#x76F4;&#x89C2;&#x7684;&#x8BC4;&#x4EF7;&#x6307;&#x6807;&#xFF0C;&#x4F46;&#x5B58;&#x5728;&#x660E;&#x663E;&#x7684;&#x7F3A;&#x9677;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x5F53;&#x8D1F;&#x6837;&#x672C;&#x5360;99%&#x65F6;&#xFF0C;&#x5206;&#x7C7B;&#x5668;&#x628A;&#x6240;&#x6709;&#x6837;&#x672C;&#x90FD;&#x9884;&#x6D4B;&#x4E3A;&#x8D1F;&#x6837;&#x672C;&#x4E5F;&#x53EF;&#x4EE5;&#x83B7;&#x5F97;99%&#x7684;&#x51C6;&#x786E;&#x7387;&#x3002;
-&#x6240;&#x4EE5;&#xFF0C;&#x5F53;&#x4E0D;&#x540C;&#x7C7B;&#x522B;&#x7684;&#x6837;&#x672C;&#x6BD4;&#x4F8B;&#x975E;&#x5E38;&#x4E0D;&#x5747;&#x8861;&#x65F6;&#xFF0C; &#x5360;&#x6BD4;&#x5927;&#x7684;&#x7C7B;&#x522B;&#x5F80;&#x5F80;&#x6210;&#x4E3A;&#x5F71;&#x54CD;&#x51C6;&#x786E;&#x7387;&#x7684;&#x6700;&#x4E3B;&#x8981;&#x56E0;&#x7D20;&#x3002;</p>
-<p><code>&#x9519;&#x8BEF;&#x7387;</code>&#x662F;&#x6307;&#x5206;&#x7C7B;&#x9519;&#x8BEF;&#x7684;&#x6837;&#x672C;&#x6570;&#x5360;&#x6837;&#x672C;&#x603B;&#x6570;&#x7684;&#x6BD4;&#x4F8B;&#xFF0C;&#x5373;
+其中<script type="math/tex; ">n_{correct}</script>为被正确分类的样本个数，<script type="math/tex; ">n_{total}</script>为总样本的个数。
+准确率是分类问题中最简单也是最直观的评价指标，但存在明显的缺陷。比如，当负样本占99%时，分类器把所有样本都预测为负样本也可以获得99%的准确率。
+所以，当不同类别的样本比例非常不均衡时， 占比大的类别往往成为影响准确率的最主要因素。</p>
+<p><code>错误率</code>是指分类错误的样本数占样本总数的比例，即
 <script type="math/tex; mode=display">
 >ErrorRate=1-Accurcy=\frac{FP+FN}{TP+TN+FP+FN}
 ></script></p>
 </blockquote>
-<h1 id="&#x7CBE;&#x786E;&#x5EA6;precision"><a name="&#x7CBE;&#x786E;&#x5EA6;precision" class="anchor-navigation-ex-anchor" href="#&#x7CBE;&#x786E;&#x5EA6;precision"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7CBE;&#x786E;&#x5EA6;precision" class="plugin-anchor" href="#&#x7CBE;&#x786E;&#x5EA6;precision"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7CBE;&#x786E;&#x5EA6;(Precision)</h1>
+<h1 id="精确度precision">3 精确度(Precision)</h1>
 <blockquote>
-<p><code>&#x7CBE;&#x786E;&#x7387;</code>&#x662F;&#x6307;&#x5206;&#x7C7B;&#x6B63;&#x786E;&#x7684;&#x6B63;&#x6837;&#x672C;&#x4E2A;&#x6570;&#x5360;&#x5206;&#x7C7B;&#x5668;&#x5224;&#x5B9A;&#x4E3A;&#x6B63;&#x6837;&#x672C;&#x7684;&#x6837;&#x672C;&#x4E2A;&#x6570;&#x7684;&#x6BD4;&#x4F8B;&#x3002;
-<code>&#x53EC;&#x56DE;&#x7387;</code>&#x662F;&#x6307;&#x5206;&#x7C7B;&#x6B63;&#x786E;&#x7684;&#x6B63;&#x6837;&#x672C;&#x4E2A;&#x6570;&#x5360;&#x771F;&#x6B63;&#x7684;&#x6B63;&#x6837;&#x672C;&#x4E2A;&#x6570;&#x7684;&#x6BD4;&#x4F8B;&#x3002;
-&#x5728;&#x6392;&#x5E8F;&#x95EE;&#x9898;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x6CA1;&#x6709;&#x4E00;&#x4E2A;&#x786E;&#x5B9A;&#x7684;&#x95FD;&#x503C;&#x628A;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x76F4;&#x63A5;&#x5224;&#x5B9A;&#x4E3A;&#x6B63;&#x6837;&#x672C;&#x6216;&#x8D1F;&#x6837;&#x672C;&#xFF0C;&#x800C;&#x662F;&#x91C7;&#x7528;<script type="math/tex; ">TopN</script>&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x7684;<script type="math/tex; ">Precision</script>&#x503C;&#x548C;<script type="math/tex; ">Recall</script>&#x503C;&#x6765;&#x8861;&#x91CF;&#x6392;&#x5E8F;&#x6A21;&#x578B;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x5373;&#x8BA4;&#x4E3A;&#x6A21;&#x578B;&#x8FD4;&#x56DE;&#x7684;<script type="math/tex; ">Top N</script>&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x662F;&#x6A21;&#x578B;&#x5224;&#x5B9A;&#x7684;&#x6B63;&#x6837;&#x672C;&#xFF0C;&#x7136;&#x540E;&#x8BA1;&#x7B97;&#x524D;<script type="math/tex; ">N</script>&#x4E2A;&#x4F4D;&#x7F6E;&#x4E0A;&#x7684;&#x51C6;&#x786E;&#x7387;<script type="math/tex; ">Precision@N</script>&#x548C;&#x524D;<script type="math/tex; ">N</script>&#x4E2A;&#x4F4D;&#x7F6E;&#x4E0A;&#x7684;&#x53EC;&#x56DE;&#x7387;<script type="math/tex; ">Recall@N</script>&#x3002;</p>
+<p><code>精确率</code>是指分类正确的正样本个数占分类器判定为正样本的样本个数的比例。
+<code>召回率</code>是指分类正确的正样本个数占真正的正样本个数的比例。
+在排序问题中，通常没有一个确定的闽值把得到的结果直接判定为正样本或负样本，而是采用<script type="math/tex; ">TopN</script>返回结果的<script type="math/tex; ">Precision</script>值和<script type="math/tex; ">Recall</script>值来衡量排序模型的性能，即认为模型返回的<script type="math/tex; ">Top N</script>的结果就是模型判定的正样本，然后计算前<script type="math/tex; ">N</script>个位置上的准确率<script type="math/tex; ">Precision@N</script>和前<script type="math/tex; ">N</script>个位置上的召回率<script type="math/tex; ">Recall@N</script>。</p>
 <table>
 <thead>
 <tr>
 <th></th>
-<th>&#x76F8;&#x5173;(Relevant)&#xFF0C;&#x6B63;&#x7C7B;</th>
-<th>&#x65E0;&#x5173;(NonRelevant)&#xFF0C;&#x8D1F;&#x7C7B;</th>
+<th>相关(Relevant)，正类</th>
+<th>无关(NonRelevant)，负类</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>&#x88AB;&#x68C0;&#x7D22;&#x5230;<br>(Retrieved&#xFF09;</td>
-<td>true positives(<code>TP</code>&#x6B63;&#x7C7B;&#x5224;&#x5B9A;&#x4E3A;&#x6B63;&#x7C7B;&#xFF0C;&#x4F8B;&#x5B50;&#x4E2D;&#x5C31;&#x662F;&#x6B63;&#x786E;&#x7684;&#x5224;&#x5B9A;&#x201C;&#x8FD9;&#x4F4D;&#x662F;&#x5973;&#x751F;&quot;)</td>
-<td>false positives(<code>FP</code>&#x8D1F;&#x7C7B;&#x5224;&#x5B9A;&#x4E3A;&#x6B63;&#x7C7B;&#xFF0C;&#x201C;&#x5B58;&#x4F2A;&quot;&#xFF0C;&#x4F8B;&#x5B50;&#x4E2D;&#x5C31;&#x662F;&#x5206;&#x660E;&#x662F;&#x7537;&#x751F;&#x5374;&#x5224;&#x65AD;&#x4E3A;&#x5973;&#x751F;&#xFF0C;&#x5F53;&#x4E0B;&#x4F2A;&#x5A18;&#x6A2A;&#x884C;&#xFF0C;&#x8FD9;&#x4E2A;&#x9519;&#x5E38;&#x6709;&#x4EBA;&#x72AF;)</td>
+<td>被检索到<br/>(Retrieved）</td>
+<td>true positives(<code>TP</code>正类判定为正类，例子中就是正确的判定“这位是女生")</td>
+<td>false positives(<code>FP</code>负类判定为正类，“存伪"，例子中就是分明是男生却判断为女生，当下伪娘横行，这个错常有人犯)</td>
 </tr>
 <tr>
-<td>&#x672A;&#x88AB;&#x68C0;&#x7D22;&#x5230;<br>(not Retrieved)</td>
-<td>false negatives(<code>FN</code>&#x6B63;&#x7C7B;&#x5224;&#x5B9A;&#x4E3A;&#x8D1F;&#x7C7B;&#xFF0C;&#x201C;&#x53BB;&#x771F;&#x201D;&#xFF0C;&#x4F8B;&#x5B50;&#x4E2D;&#x5C31;&#x662F;&#xFF0C;&#x5206;&#x660E;&#x662F;&#x5973;&#x751F;&#xFF0C;&#x8FD9;&#x54E5;&#x4EEC;&#x5374;&#x5224;&#x65AD;&#x4E3A;&#x7537;&#x751F;--&#x6881;&#x5C71;&#x4F2F;&#x540C;&#x5B66;&#x72AF;&#x7684;&#x9519;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#xFF09;</td>
-<td>true negatives(<code>TN</code>&#x8D1F;&#x7C7B;&#x5224;&#x5B9A;&#x4E3A;&#x8D1F;&#x7C7B;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x7537;&#x751F;&#x88AB;&#x5224;&#x65AD;&#x4E3A;&#x7537;&#x751F;&#xFF0C; &#x50CF;&#x6211;&#x8FD9;&#x6837;&#x7684;&#x7EAF;&#x7237;&#x4EEC;&#x4E00;&#x51C6;&#x513F;&#x5C31;&#x4F1A;&#x5728;&#x6B64;&#x5904;&#xFF09;</td>
+<td>未被检索到<br/>(not Retrieved)</td>
+<td>false negatives(<code>FN</code>正类判定为负类，“去真”，例子中就是，分明是女生，这哥们却判断为男生--梁山伯同学犯的错就是这个）</td>
+<td>true negatives(<code>TN</code>负类判定为负类，也就是一个男生被判断为男生， 像我这样的纯爷们一准儿就会在此处）</td>
 </tr>
 </tbody>
 </table>
-<p>&#x6839;&#x636E;&#x8FD9;&#x56DB;&#x79CD;&#x6570;&#x636E;&#xFF0C;&#x6709;&#x56DB;&#x4E2A;&#x6BD4;&#x8F83;&#x91CD;&#x8981;&#x7684;&#x6BD4;&#x7387;&#xFF1A;
+<p>根据这四种数据，有四个比较重要的比率：
 <script type="math/tex; mode=display">
 >True Positive Rate(真正率TPR或灵敏度sensitivity)=TPR=\frac{TP}{TP+FN}=\frac{正样本预测结果数}{正样本实际数} \\
 >True Negative Rate(真负率TNR或特指度specificity)=TNR=\frac{TN}{TN+FP}=\frac{负样本预测结果数}{负样本实际数} \\
 >False Positive Rate(假正率FPR)=FPR=\frac{FP}{FP+TN}=\frac{被预测为正的负样本结果数}{负样本实际数} \\
 >False Negative Rate(假负率FNR)=FNR=\frac{FN}{TP+FN}=\frac{被预测为负的正样本结果数}{正样本实际数} \\
 ></script>
-<code>&#x7075;&#x654F;&#x5EA6;</code>&#x8868;&#x793A;&#x7684;&#x662F;&#x6240;&#x6709;&#x6B63;&#x4F8B;&#x4E2D;&#x88AB;&#x5206;&#x5BF9;&#x7684;&#x6BD4;&#x4F8B;&#xFF0C;&#x8861;&#x91CF;&#x4E86;&#x5206;&#x7C7B;&#x5668;&#x5BF9;&#x6B63;&#x4F8B;&#x7684;&#x8BC6;&#x522B;&#x80FD;&#x529B;&#xFF1A;
+<code>灵敏度</code>表示的是所有正例中被分对的比例，衡量了分类器对正例的识别能力：
 <script type="math/tex; mode=display">
 >Sensitive = \frac{TP}{P}
 ></script>
-<code>&#x7279;&#x6548;&#x5EA6;</code>&#x8868;&#x793A;&#x7684;&#x662F;&#x6240;&#x6709;&#x8D1F;&#x4F8B;&#x4E2D;&#x88AB;&#x5206;&#x5BF9;&#x7684;&#x6BD4;&#x4F8B;&#xFF0C;&#x8861;&#x91CF;&#x4E86;&#x5206;&#x7C7B;&#x5668;&#x5BF9;&#x8D1F;&#x4F8B;&#x7684;&#x8BC6;&#x522B;&#x80FD;&#x529B;&#xFF1A;
+<code>特效度</code>表示的是所有负例中被分对的比例，衡量了分类器对负例的识别能力：
 <script type="math/tex; mode=display">
 >specificity = \frac{TN}{N}
 ></script>
-<code>&#x7CBE;&#x786E;&#x7387;</code>(precision)&#x8BA1;&#x7B97;&#x7684;&#x662F;&#x6240;&#x6709;&#x201C;&#x6B63;&#x786E;&#x88AB;&#x68C0;&#x7D22;&#x7684;&#x7ED3;&#x679C;&#xFF08;TP&#xFF09;&#x201C;&#x5360;&#x6240;&#x6709;&#x201C;&#x5B9E;&#x9645;&#x88AB;&#x68C0;&#x7D22;&#x5230;&#x7684;<script type="math/tex; ">(TP+FP)</script>&quot;&#x7684;&#x6BD4;&#x4F8B;&#xFF1A;
+<code>精确率</code>(precision)计算的是所有“正确被检索的结果（TP）“占所有“实际被检索到的<script type="math/tex; ">(TP+FP)</script>"的比例：
 <script type="math/tex; mode=display">
 >P=\frac{TP}{TP+FP}
 ></script>
-&#x5728;&#x4F8B;&#x5B50;&#x4E2D;&#x5C31;&#x662F;&#x5E0C;&#x671B;&#x77E5;&#x9053;&#x6B64;&#x541B;&#x5F97;&#x5230;&#x7684;&#x6240;&#x6709;&#x4EBA;&#x4E2D;&#xFF0C;&#x6B63;&#x786E;&#x7684;&#x4EBA;(&#x4E5F;&#x5C31;&#x662F;&#x5973;&#x751F;)&#x5360;&#x6709;&#x7684;&#x6BD4;&#x4F8B;&#xFF0C;&#x6240;&#x4EE5;&#x5176;<script type="math/tex; ">precision</script>&#x4E5F;&#x5C31;&#x662F;40%(<script type="math/tex; ">\frac{20女生}{(20女生+30误判为女生的男生)}</script>).</p>
+在例子中就是希望知道此君得到的所有人中，正确的人(也就是女生)占有的比例，所以其<script type="math/tex; ">precision</script>也就是40%(<script type="math/tex; ">\frac{20女生}{(20女生+30误判为女生的男生)}</script>).</p>
 </blockquote>
-<h1 id="&#x53EC;&#x56DE;&#x7387;recall"><a name="&#x53EC;&#x56DE;&#x7387;recall" class="anchor-navigation-ex-anchor" href="#&#x53EC;&#x56DE;&#x7387;recall"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x53EC;&#x56DE;&#x7387;recall" class="plugin-anchor" href="#&#x53EC;&#x56DE;&#x7387;recall"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53EC;&#x56DE;&#x7387;(Recall)</h1>
+<h1 id="召回率recall">4 召回率(Recall)</h1>
 <blockquote>
-<p><code>&#x53EC;&#x56DE;&#x7387;</code>(recall)&#x7684;&#x516C;&#x5F0F;&#x662F;<script type="math/tex; ">R=\frac{TP}{TP+FN}</script>&#xFF0C;&#x5B83;&#x8BA1;&#x7B97;&#x7684;&#x662F;&#x6240;&#x6709;&#x201C;&#x6B63;&#x786E;&#x88AB;&#x68C0;&#x7D22;&#x7684;&#x7ED3;&#x679C;(TP)&#x201C;&#x5360;&#x6240;&#x6709;&#x201C;&#x5E94;&#x8BE5;&#x68C0;&#x7D22;&#x5230;&#x7684;&#x7ED3;&#x679C;<script type="math/tex; ">(TP+FN)</script>&quot;&#x7684;&#x6BD4;&#x4F8B;.
-&#x5728;&#x4F8B;&#x5B50;&#x4E2D;&#x5C31;&#x662F;&#x5E0C;&#x671B;&#x77E5;&#x9053;&#x6B64;&#x541B;&#x5F97;&#x5230;&#x7684;&#x5973;&#x751F;&#x5360;&#x672C;&#x73ED;&#x4E2D;&#x6240;&#x6709;&#x5973;&#x751F;&#x7684;&#x6BD4;&#x4F8B;&#xFF0C;&#x6240;&#x4EE5;&#x5176;<script type="math/tex; ">recall</script>&#x4E5F;&#x5C31;&#x662F;100%(<script type="math/tex; ">\frac{20女生}{(20女生+0误判为男生的女生)}</script>&#xFF09;</p>
+<p><code>召回率</code>(recall)的公式是<script type="math/tex; ">R=\frac{TP}{TP+FN}</script>，它计算的是所有“正确被检索的结果(TP)“占所有“应该检索到的结果<script type="math/tex; ">(TP+FN)</script>"的比例.
+在例子中就是希望知道此君得到的女生占本班中所有女生的比例，所以其<script type="math/tex; ">recall</script>也就是100%(<script type="math/tex; ">\frac{20女生}{(20女生+0误判为男生的女生)}</script>）</p>
 </blockquote>
-<h1 id="&#x5747;&#x65B9;&#x6839;&#x8BEF;&#x5DEE;rmse"><a name="&#x5747;&#x65B9;&#x6839;&#x8BEF;&#x5DEE;rmse" class="anchor-navigation-ex-anchor" href="#&#x5747;&#x65B9;&#x6839;&#x8BEF;&#x5DEE;rmse"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5747;&#x65B9;&#x6839;&#x8BEF;&#x5DEE;rmse" class="plugin-anchor" href="#&#x5747;&#x65B9;&#x6839;&#x8BEF;&#x5DEE;rmse"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5747;&#x65B9;&#x6839;&#x8BEF;&#x5DEE;(RMSE)</h1>
+<h1 id="均方根误差rmse">5 均方根误差(RMSE)</h1>
 <blockquote>
-<p><code>&#x6982;&#x5FF5;</code>: RMSE&#x7ECF;&#x5E38;&#x88AB;&#x7528;&#x6765;&#x8861;&#x91CF;&#x56DE;&#x5F52;&#x6A21;&#x578B;&#x7684;&#x597D;&#x574F;&#xFF0C;&#x8BA1;&#x7B97;&#x516C;&#x5F0F;&#x4E3A;
+<p><code>概念</code>: RMSE经常被用来衡量回归模型的好坏，计算公式为
 <script type="math/tex; mode=display">
 >RMSE=\sqrt{\frac{\sum_{i=1}^{n}{(y_i-\hat y)^2}}{n}}
 ></script>
-&#x5176;&#x4E2D;&#xFF0C;<script type="math/tex; ">y_i</script> &#x662F;&#x7B2C;<script type="math/tex; ">i</script>&#x4E2A;&#x6837;&#x672C;&#x70B9;&#x7684;&#x771F;&#x5B9E;&#x503C;&#xFF0C;<script type="math/tex; ">\hat y</script> &#x662F;&#x7B2C;<script type="math/tex; ">i</script>&#x4E2A;&#x6837;&#x672C;&#x70B9;&#x7684;&#x9884;&#x6D4B;&#x503C;&#xFF0C;<script type="math/tex; ">n</script>&#x662F;&#x6837;&#x672C;&#x70B9;&#x7684;&#x4E2A;&#x6570;&#x3002;</p>
-<p>&#x200B;    &#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;<script type="math/tex; ">RMS</script>E&#x80FD;&#x591F;&#x5F88;&#x597D;&#x5730;&#x53CD;&#x6620;&#x56DE;&#x5F52;&#x6A21;&#x578B;&#x9884;&#x6D4B;&#x503C;&#x4E0E;&#x771F;&#x5B9E;&#x503C;&#x7684;&#x6982;&#x5FF5;&#x504F;&#x79BB;&#x7A0B;&#x5EA6;&#x3002;</p>
-<p><code>&#x7F3A;&#x70B9;</code>: &#x4F46;&#x5728;&#x5B9E;&#x9645;&#x95EE;&#x9898;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x5B58;&#x5728;&#x4E2A;&#x522B;&#x504F;&#x79BB;&#x7A0B;&#x5EA6;&#x975E;&#x5E38;&#x5927;&#x7684;&#x79BB;&#x7FA4;&#x70B9;(Outlier)&#x65F6;&#xFF0C;&#x5373;&#x4F7F;&#x79BB;&#x7FA4;&#x70B9;&#x6570;&#x91CF;&#x975E;&#x5E38;&#x5C11;&#xFF0C;&#x4E5F;&#x4F1A;&#x8BA9;<script type="math/tex; ">RMSE</script>&#x6307;&#x6807;&#x53D8;&#x5F97;&#x5F88;&#x5DEE;&#x3002;
-   &#x56DE;&#x5230;&#x95EE;&#x9898;&#x4E2D;&#x6765;&#xFF0C;&#x6A21;&#x578B;&#x5728;95%&#x7684;&#x65F6;&#x95F4;&#x533A;&#x95F4;&#x5185;&#x7684;&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;&#x90FD;&#x5C0F;&#x4E8E;1%&#xFF0C; &#x8FD9;&#x8BF4;&#x660E;&#x5728;&#x5927;&#x90E8;&#x5206;&#x65F6;&#x95F4;&#x533A;&#x95F4;&#x5185;&#xFF0C;&#x6A21;&#x578B;&#x7684;&#x9884;&#x6D4B;&#x6548;&#x679C;&#x90FD;&#x662F;&#x975E;&#x5E38;&#x4F18;&#x79C0;&#x7684;&#x3002;&#x7136;&#x800C;<script type="math/tex; ">RMSE</script>&#x5374;&#x4E00;&#x76F4;&#x5F88;&#x5DEE;&#xFF0C;&#x8FD9;&#x5F88;&#x53EF;&#x80FD;&#x662F;&#x7531;&#x4E8E;&#x5728;&#x5176;&#x4ED6;&#x7684;5%&#x65F6;&#x95F4;&#x533A;&#x95F4;&#x5185;&#x5B58;&#x5728;&#x975E;&#x5E38;&#x4E25;&#x91CD;&#x7684;&#x79BB;&#x7FA4;&#x70B9;&#x3002;</p>
-<p>&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x5728;&#x6D41;&#x91CF;&#x9884;&#x4F30;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x4E2D;&#xFF0C;&#x566A;&#x58F0;&#x70B9;&#x786E;&#x5B9E;&#x662F;&#x5F88;&#x5BB9;&#x6613;&#x4EA7;&#x751F;&#x7684;&#xFF0C;&#x6BD4;&#x5982;&#x6D41;&#x91CF;&#x7279;&#x522B;&#x5C0F;&#x7684;&#x7F8E;&#x5267;&#x3001;&#x521A;&#x4E0A;&#x6620;&#x7684;&#x7F8E;&#x5267;&#x6216;&#x8005;&#x521A;&#x83B7;&#x5956;&#x7684;&#x7F8E;&#x5267;&#xFF0C;&#x751A;&#x81F3;&#x4E00;&#x4E9B;&#x76F8;&#x5173;&#x793E;&#x4EA4;&#x5A92;&#x4F53;&#x7A81;&#x53D1;&#x4E8B;&#x4EF6;&#x5E26;&#x6765;&#x7684;&#x6D41;&#x91CF;&#xFF0C;&#x90FD;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x79BB;&#x7FA4;&#x70B9;&#x3002;</p>
-<p><code>&#x89E3;&#x51B3;</code>: &#x53EF;&#x4EE5;&#x4ECE;&#x4E09;&#x4E2A;&#x89D2;&#x5EA6;&#x6765;&#x601D;&#x8003;&#x3002;</p>
-<p>&#x7B2C;&#x4E00;&#xFF0C; &#x5982;&#x679C;&#x6211;&#x4EEC;&#x8BA4;&#x5B9A;&#x8FD9;&#x4E9B;&#x79BB;&#x7FA4;&#x70B9;&#x662F;&#x201C;&#x566A;&#x58F0;&#x70B9;&#x201D;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x5728;&#x6570;&#x636E;&#x9884;&#x5904;&#x7406;&#x7684;&#x9636;&#x6BB5;&#x628A;&#x8FD9;&#x4E9B;&#x566A;&#x58F0;&#x70B9;&#x8FC7;&#x6EE4;&#x6389;&#x3002;</p>
-<p>&#x7B2C;&#x4E8C;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x8BA4;&#x4E3A;&#x8FD9;&#x4E9B;&#x79BB;&#x7FA4;&#x70B9;&#x662F;&#x201C;&#x566A;&#x58F0;&#x70B9;&#x201D;&#x7684; &#x8BDD;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x8FDB;&#x4E00;&#x6B65;&#x63D0;&#x9AD8;&#x6A21;&#x578B;&#x7684;&#x9884;&#x6D4B;&#x80FD;&#x529B;&#xFF0C;&#x5C06;&#x79BB;&#x7FA4;&#x70B9;&#x4EA7;&#x751F;&#x7684;&#x673A;&#x5236;&#x5EFA;&#x6A21;&#x8FDB;&#x53BB;(&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5B8F;&#x5927;&#x7684;&#x8BDD;&#x9898;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x4E0D;&#x5C55;&#x5F00;&#x8BA8;&#x8BBA;&#x4E86;)&#x3002;</p>
-<p>&#x7B2C;&#x4E09;&#xFF0C;&#x53EF;&#x4EE5;&#x627E;&#x4E00;&#x4E2A;&#x66F4;&#x5408;&#x9002;&#x7684;&#x6307;&#x6807;&#x6765;&#x8BC4;&#x4F30;&#x8BE5;&#x6A21;&#x578B;&#x3002;</p>
-<p>&#x5173;&#x4E8E;&#x8BC4;&#x4F30;&#x6307;&#x6807;&#xFF0C;&#x5176;&#x5B9E;&#x662F;&#x5B58;&#x5728;&#x6BD4;<script type="math/tex; ">RMSE</script>&#x7684;&#x9C81;&#x68D2;&#x6027;&#x66F4;&#x597D;&#x7684;&#x6307;&#x6807;&#xFF0C;&#x6BD4;&#x5982;<code>&#x5E73;&#x5747;&#x7EDD;&#x5BF9;&#x767E;&#x5206;&#x6BD4;&#x8BEF;&#x5DEE;</code>(Mean Absolute Percent Error&#xFF0C;MAPE)&#xFF0C;&#x5B83;&#x5B9A;&#x4E49;&#x4E3A; 
+其中，<script type="math/tex; ">y_i</script> 是第<script type="math/tex; ">i</script>个样本点的真实值，<script type="math/tex; ">\hat y</script> 是第<script type="math/tex; ">i</script>个样本点的预测值，<script type="math/tex; ">n</script>是样本点的个数。</p>
+<p>​    一般情况下，<script type="math/tex; ">RMS</script>E能够很好地反映回归模型预测值与真实值的概念偏离程度。</p>
+<p><code>缺点</code>: 但在实际问题中，如果存在个别偏离程度非常大的离群点(Outlier)时，即使离群点数量非常少，也会让<script type="math/tex; ">RMSE</script>指标变得很差。
+   回到问题中来，模型在95%的时间区间内的预测误差都小于1%， 这说明在大部分时间区间内，模型的预测效果都是非常优秀的。然而<script type="math/tex; ">RMSE</script>却一直很差，这很可能是由于在其他的5%时间区间内存在非常严重的离群点。</p>
+<p>事实上，在流量预估这个问题中，噪声点确实是很容易产生的，比如流量特别小的美剧、刚上映的美剧或者刚获奖的美剧，甚至一些相关社交媒体突发事件带来的流量，都可能会造成离群点。</p>
+<p><code>解决</code>: 可以从三个角度来思考。</p>
+<p>第一， 如果我们认定这些离群点是“噪声点”的话，就需要在数据预处理的阶段把这些噪声点过滤掉。</p>
+<p>第二，如果不认为这些离群点是“噪声点”的 话，就需要进一步提高模型的预测能力，将离群点产生的机制建模进去(这是一个宏大的话题，这里就不展开讨论了)。</p>
+<p>第三，可以找一个更合适的指标来评估该模型。</p>
+<p>关于评估指标，其实是存在比<script type="math/tex; ">RMSE</script>的鲁棒性更好的指标，比如<code>平均绝对百分比误差</code>(Mean Absolute Percent Error，MAPE)，它定义为 
 <script type="math/tex; mode=display">
 >MAPE=\sum_{i=1}{n}{|\frac{y_i-\hat y}{y_i}|}\times \frac{100}{n}
 ></script>
-&#x76F8;&#x6BD4;<script type="math/tex; ">RMSE</script>&#xFF0C;<script type="math/tex; ">MAPE</script>&#x76F8;&#x5F53;&#x4E8E;&#x628A;&#x6BCF;&#x4E2A;&#x70B9;&#x7684;&#x8BEF;&#x5DEE;&#x8FDB;&#x884C;&#x4E86;&#x5F52;&#x4E00;&#x5316;&#xFF0C;&#x964D;&#x4F4E;&#x4E86;&#x4E2A;&#x522B;&#x79BB;&#x7FA4;&#x70B9;&#x5E26;&#x6765;&#x7684;&#x7EDD;&#x5BF9;&#x8BEF;&#x5DEE;&#x7684;&#x5F71;&#x54CD;&#x3002;</p>
+相比<script type="math/tex; ">RMSE</script>，<script type="math/tex; ">MAPE</script>相当于把每个点的误差进行了归一化，降低了个别离群点带来的绝对误差的影响。</p>
 </blockquote>
-<h1 id="f1&#x5F97;&#x5206;"><a name="f1&#x5F97;&#x5206;" class="anchor-navigation-ex-anchor" href="#f1&#x5F97;&#x5206;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="f1&#x5F97;&#x5206;" class="plugin-anchor" href="#f1&#x5F97;&#x5206;"><i class="fa fa-link" aria-hidden="true"></i></a>F1&#x5F97;&#x5206;</h1>
+<h1 id="f1得分">6 F1得分</h1>
 <blockquote>
-<p>&#x9664;&#x6B64;&#x4E4B;&#x5916;&#xFF0C;<script type="math/tex; ">F1score</script>&#x548C;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x4E5F;&#x80FD;&#x7EFC;&#x5408;&#x5730;&#x53CD;&#x6620;&#x4E00;&#x4E2A;&#x6392;&#x5E8F;&#x6A21;&#x578B;&#x7684;&#x6027;&#x80FD;&#x3002;</p>
-<p><script type="math/tex; ">F1score</script>&#x662F;&#x7CBE;&#x51C6;&#x7387;&#x548C;&#x53EC;&#x56DE;&#x7387;&#x7684;&#x8C03;&#x548C;&#x5E73;&#x5747;&#x503C;&#xFF0C;&#x5B83;&#x5B9A;&#x4E49;&#x4E3A;
+<p>除此之外，<script type="math/tex; ">F1score</script>和<script type="math/tex; ">ROC</script>曲线也能综合地反映一个排序模型的性能。</p>
+<p><script type="math/tex; ">F1score</script>是精准率和召回率的调和平均值，它定义为
 <script type="math/tex; mode=display">
 >F1=\frac{2 \times precision \times recall}{precision + recall}
 ></script></p>
 </blockquote>
-<h1 id="p-r&#x66F2;&#x7EBF;"><a name="p-r&#x66F2;&#x7EBF;" class="anchor-navigation-ex-anchor" href="#p-r&#x66F2;&#x7EBF;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="p-r&#x66F2;&#x7EBF;" class="plugin-anchor" href="#p-r&#x66F2;&#x7EBF;"><i class="fa fa-link" aria-hidden="true"></i></a>P-R&#x66F2;&#x7EBF;</h1>
+<h1 id="p-r曲线">7 P-R曲线</h1>
 <blockquote>
-<p>&#x4E3A;&#x4E86;&#x7EFC;&#x5408;&#x8BC4;&#x4F30;&#x4E00;&#x4E2A;&#x6392;&#x5E8F;&#x6A21;&#x578B;&#x7684;&#x597D;&#x574F;&#xFF0C;&#x4E0D;&#x4EC5;&#x8981;&#x770B;&#x6A21;&#x578B;&#x5728;&#x4E0D;&#x540C;<script type="math/tex; ">TopN</script>&#x4E0B;&#x7684;<script type="math/tex; ">Precision@N</script>&#x548C;<script type="math/tex; ">Recall@N</script>&#xFF0C;&#x800C;&#x4E14;&#x6700;&#x597D;&#x7ED8;&#x5236;&#x51FA;&#x6A21;&#x578B;&#x7684;<script type="math/tex; ">P-R</script>(Precision-Recall)&#x66F2;&#x7EBF;&#x3002;</p>
-<p><script type="math/tex; ">P-R</script>&#x66F2;&#x7EBF;&#x7684;<code>&#x6A2A;&#x8F74;&#x662F;&#x53EC;&#x56DE;&#x7387;&#xFF0C;&#x7EB5;&#x8F74;&#x662F;&#x7CBE;&#x786E;&#x7387;</code>&#x3002;</p>
-<p>&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x6392;&#x5E8F;&#x6A21;&#x578B;&#x6765;&#x8BF4;&#xFF0C; &#x5176;<script type="math/tex; ">P-R</script>&#x66F2;&#x7EBF;&#x4E0A;&#x7684;&#x4E00;&#x4E2A;&#x70B9;&#x4EE3;&#x8868;&#x7740;&#xFF0C;&#x5728;&#x67D0;&#x4E00;&#x9608;&#x503C;&#x4E0B;&#xFF0C;&#x6A21;&#x578B;&#x5C06;&#x5927;&#x4E8E;&#x8BE5;&#x9608;&#x503C;&#x7684;&#x7ED3;&#x679C;&#x5224;&#x5B9A;&#x4E3A;&#x6B63;&#x6837;&#x672C;&#xFF0C;&#x5C0F;&#x4E8E;&#x8BE5;&#x9608;&#x503C;&#x7684;&#x7ED3;&#x679C;&#x5224;&#x5B9A;&#x4E3A;&#x8D1F;&#x6837;&#x672C;&#xFF0C;&#x6B64;&#x65F6;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x5BF9;&#x5E94;&#x7684;&#x53EC;&#x56DE;&#x7387;&#x548C;&#x7CBE;&#x786E;&#x7387;&#x3002;</p>
-<p>&#x6574;&#x6761;<script type="math/tex; ">P-R</script>&#x66F2;&#x7EBF;&#x662F;&#x901A;&#x8FC7;&#x5C06;&#x9608;&#x503C;&#x4ECE;&#x9AD8;&#x5230;&#x4F4E;&#x79FB;&#x52A8;&#x800C;&#x751F;&#x6210;&#x7684;&#x3002;</p>
-<p>&#x56FE;&#x662F;<script type="math/tex; ">P-R</script>&#x66F2;&#x7EBF;&#x6837;&#x4F8B;&#x56FE;&#xFF0C;&#x5176;&#x4E2D;&#x5B9E;&#x7EBF;&#x4EE3;&#x8868;&#x6A21;&#x578B;<script type="math/tex; ">A</script>&#x7684;<script type="math/tex; ">P-R</script>&#x66F2;&#x7EBF;&#xFF0C;&#x865A;&#x7EBF;&#x4EE3;&#x8868;&#x6A21;&#x578B;<script type="math/tex; ">B</script>&#x7684;<script type="math/tex; ">P-R</script>&#x66F2;&#x7EBF;&#x3002;</p>
-<p><a href="res/Machine%20Learning%20Base/1569979463652.png" data-lightbox="d387055e-5951-409c-aeb7-508386156706" data-title="1569979463652"><img src="res/Machine%20Learning%20Base/1569979463652.png" alt="1569979463652"></a></p>
-<p>&#x539F;&#x70B9;&#x9644;&#x8FD1;&#x4EE3;&#x8868;&#x5F53;&#x9600;&#x503C;&#x6700;&#x5927;&#x65F6;&#x6A21;&#x578B;&#x7684;&#x7CBE;&#x786E;&#x7387;&#x548C;&#x53EC;&#x56DE;&#x7387;&#x3002;</p>
+<p>为了综合评估一个排序模型的好坏，不仅要看模型在不同<script type="math/tex; ">TopN</script>下的<script type="math/tex; ">Precision@N</script>和<script type="math/tex; ">Recall@N</script>，而且最好绘制出模型的<script type="math/tex; ">P-R</script>(Precision-Recall)曲线。</p>
+<p><script type="math/tex; ">P-R</script>曲线的<code>横轴是召回率，纵轴是精确率</code>。</p>
+<p>对于一个排序模型来说， 其<script type="math/tex; ">P-R</script>曲线上的一个点代表着，在某一阈值下，模型将大于该阈值的结果判定为正样本，小于该阈值的结果判定为负样本，此时返回结果对应的召回率和精确率。</p>
+<p>整条<script type="math/tex; ">P-R</script>曲线是通过将阈值从高到低移动而生成的。</p>
+<p>图是<script type="math/tex; ">P-R</script>曲线样例图，其中实线代表模型<script type="math/tex; ">A</script>的<script type="math/tex; ">P-R</script>曲线，虚线代表模型<script type="math/tex; ">B</script>的<script type="math/tex; ">P-R</script>曲线。</p>
+<p><a data-lightbox="89ef5cbf-a31a-4baa-a12e-1a831aad116b" data-title="1569979463652" href="res/Machine%20Learning%20Base/1569979463652.png"><img alt="1569979463652" src="res/Machine%20Learning%20Base/1569979463652.png"/></a></p>
+<p>原点附近代表当阀值最大时模型的精确率和召回率。</p>
 </blockquote>
-<h1 id="roc&#x66F2;&#x7EBF;"><a name="roc&#x66F2;&#x7EBF;" class="anchor-navigation-ex-anchor" href="#roc&#x66F2;&#x7EBF;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="roc&#x66F2;&#x7EBF;" class="plugin-anchor" href="#roc&#x66F2;&#x7EBF;"><i class="fa fa-link" aria-hidden="true"></i></a>ROC&#x66F2;&#x7EBF;</h1>
-<h2 id="roc&#x66F2;&#x7EBF;&#x6982;&#x5FF5;"><a name="roc&#x66F2;&#x7EBF;&#x6982;&#x5FF5;" class="anchor-navigation-ex-anchor" href="#roc&#x66F2;&#x7EBF;&#x6982;&#x5FF5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="roc&#x66F2;&#x7EBF;&#x6982;&#x5FF5;" class="plugin-anchor" href="#roc&#x66F2;&#x7EBF;&#x6982;&#x5FF5;"><i class="fa fa-link" aria-hidden="true"></i></a>ROC&#x66F2;&#x7EBF;&#x6982;&#x5FF5;</h2>
+<h1 id="roc曲线">8 ROC曲线</h1>
+<h2 id="roc曲线概念">8.1 ROC曲线概念</h2>
 <blockquote>
-<p><code>ROC&#x66F2;&#x7EBF;</code>&#x662F;Receiver Operating Characteristic Curve&#x7684;&#x7B80;&#x79F0;&#xFF0C; &#x4E2D;&#x6587;&#x540D;&#x4E3A;&#x201C;&#x53D7;&#x8BD5;&#x8005;&#x5DE5;&#x4F5C;&#x7279;&#x5F81;&#x66F2;&#x7EBF;&#x201D;&#x3002;</p>
-<p><script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x6E90;&#x4E8E;&#x519B;&#x4E8B;&#x9886;&#x57DF;&#xFF0C;&#x800C;&#x540E;&#x5728;&#x533B;&#x5B66;&#x9886;&#x57DF;&#x5E94;&#x7528;&#x751A;&#x5E7F;&#xFF0C;&#x201C;&#x53D7;&#x8BD5;&#x8005;&#x5DE5;&#x4F5C;&#x7279;&#x5F81;&#x66F2;&#x7EBF;&#x201D;&#x8FD9;&#x4E00;&#x540D;&#x79F0;&#x4E5F;&#x6B63;&#x662F;&#x6765;&#x81EA;&#x533B;&#x5B66;&#x9886;&#x57DF;&#x3002;</p>
-<p><script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x7684;<code>&#x6A2A;&#x5750;&#x6807;&#x4E3A;&#x5047;&#x9633;&#x6027;&#x7387;</code>(False Positive Rate, <script type="math/tex; ">FPR</script>)&#xFF1B;<code>&#x7EB5;&#x5750;&#x6807;&#x4E3A;&#x771F;&#x9633;&#x6027;&#x7387;</code>(True Positive Rate, <script type="math/tex; ">TPR</script>)&#x3002;<script type="math/tex; ">FPR</script>&#x548C;<script type="math/tex; ">TPR</script>&#x7684;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;&#x5206;&#x522B;&#x4E3A;
+<p><code>ROC曲线</code>是Receiver Operating Characteristic Curve的简称， 中文名为“受试者工作特征曲线”。</p>
+<p><script type="math/tex; ">ROC</script>曲线源于军事领域，而后在医学领域应用甚广，“受试者工作特征曲线”这一名称也正是来自医学领域。</p>
+<p><script type="math/tex; ">ROC</script>曲线的<code>横坐标为假阳性率</code>(False Positive Rate, <script type="math/tex; ">FPR</script>)；<code>纵坐标为真阳性率</code>(True Positive Rate, <script type="math/tex; ">TPR</script>)。<script type="math/tex; ">FPR</script>和<script type="math/tex; ">TPR</script>的计算方法分别为
 <script type="math/tex; mode=display">
 >FPR=\frac{FP}{N} ,TPR=\frac{TP}{P}
 ></script>
-&#x5F0F;&#x4E2D;&#xFF0C;<script type="math/tex; ">P</script>&#x662F;&#x771F;&#x5B9E;&#x7684;&#x6B63;&#x6837;&#x672C;&#x7684;&#x6570;&#x91CF;&#xFF0C;<script type="math/tex; ">N</script>&#x662F;&#x771F;&#x5B9E;&#x7684;&#x8D1F;&#x6837;&#x672C;&#x7684;&#x6570;&#x91CF;&#xFF0C;<script type="math/tex; ">TP</script>&#x662F;<script type="math/tex; ">P</script>&#x4E2A;&#x6B63;&#x6837;&#x672C;&#x4E2D;&#x88AB;&#x5206;&#x7C7B;&#x5668;&#x9884;&#x6D4B;&#x4E3A;&#x6B63;&#x6837;&#x672C;&#x7684;&#x4E2A;&#x6570;&#xFF0C;<script type="math/tex; ">FP</script>&#x662F;<script type="math/tex; ">N</script>&#x4E2A;&#x8D1F;&#x6837;&#x672C;&#x4E2D;&#x88AB;&#x5206;&#x7C7B;&#x5668;&#x9884;&#x6D4B;&#x4E3A;&#x6B63;&#x6837;&#x672C;&#x7684;&#x4E2A;&#x6570;&#x3002;</p>
-<p>&#x5047;&#x8BBE;&#x6709;10&#x4F4D;&#x7591;&#x4F3C;&#x764C;&#x75C7;&#x60A3;&#x8005;&#xFF0C;&#x5176;&#x4E2D;&#x6709;3&#x4F4D;&#x5F88;&#x4E0D;&#x5E78;&#x786E;&#x5B9E;&#x60A3;&#x4E86;&#x764C;&#x75C7;(<script type="math/tex; ">P=3</script>)&#xFF0C;&#x53E6;&#x5916;7&#x4F4D;&#x4E0D;&#x662F;&#x764C;&#x75C7;&#x60A3;&#x8005;(<script type="math/tex; ">N=7</script>)&#x3002;&#x533B;&#x9662;&#x5BF9;&#x8FD9;10&#x4F4D;&#x7591;&#x4F3C;&#x60A3;&#x8005;&#x505A;&#x4E86;&#x8BCA;&#x65AD;&#xFF0C;&#x8BCA;&#x65AD;&#x51FA;3&#x4F4D;&#x764C;&#x75C7;&#x60A3;&#x8005;&#xFF0C;&#x5176;&#x4E2D;&#x6709;2&#x4F4D;&#x786E;&#x5B9E;&#x662F;&#x771F;&#x6B63;&#x7684;&#x60A3;&#x8005;(<script type="math/tex; ">TP=2</script>)&#x3002;</p>
-<p>&#x90A3;&#x4E48;&#x771F;&#x9633;&#x6027;&#x7387;<script type="math/tex; ">TPR=\frac{TP}{P}=\frac{2}{3}</script>&#x3002;&#x5BF9;&#x4E8E;7&#x4F4D;&#x975E;&#x764C;&#x75C7;&#x60A3;&#x8005;&#x6765;&#x8BF4;&#xFF0C;&#x6709;&#x4E00;&#x4F4D;&#x5F88;&#x4E0D;&#x5E78;&#x88AB;&#x8BEF;&#x8BCA;&#x4E3A;&#x764C;&#x75C7;&#x60A3;&#x8005;(<script type="math/tex; ">FP=1</script>)&#xFF0C;&#x90A3;&#x4E48;&#x5047;&#x9633;&#x6027;&#x7387;<script type="math/tex; ">FPR=\frac{FP}{N}=\frac{1}{7}</script>&#x3002;</p>
-<p>&#x5BF9;&#x4E8E;&#x201C;&#x8BE5;&#x533B;&#x9662;&#x201D;&#x8FD9;&#x4E2A;&#x5206;&#x7C7B;&#x5668;&#x6765;&#x8BF4;&#xFF0C;&#x8FD9;&#x7EC4;&#x5206;&#x7C7B;&#x7ED3;&#x679C;&#x5C31;&#x5BF9;&#x5E94;ROC&#x66F2;&#x7EBF;&#x4E0A;&#x7684;&#x4E00;&#x4E2A;&#x70B9;(<script type="math/tex; ">\frac{1}{7}, \frac{2}{3}</script>&#xFF09;&#x3002;
-&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;ROC&#x66F2;&#x7EBF;&#x662F;&#x901A;&#x8FC7;<code>&#x4E0D;&#x65AD;&#x79FB;&#x52A8;&#x5206;&#x7C7B;&#x5668;&#x7684;&#x201C;&#x622A;&#x65AD;&#x70B9;&#x201D;&#x6765;&#x751F;&#x6210;&#x66F2;&#x7EBF;&#x4E0A;&#x7684;&#x4E00;&#x7EC4;&#x5173;&#x952E;&#x70B9;</code>&#x7684;&#x3002;</p>
-<p>&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x8FDB;&#x4E00;&#x6B65;&#x6765;&#x89E3;&#x91CA;&#x201C;&#x622A;&#x65AD;&#x70B9;&#x201D;&#x7684; &#x6982;&#x5FF5;&#x3002;
-&#x5728;&#x4E8C;&#x503C;&#x5206;&#x7C7B;&#x95EE;&#x9898;&#x4E2D;&#xFF0C;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x51FA;&#x4E00;&#x822C;&#x90FD;&#x662F;&#x9884;&#x6D4B;&#x6837;&#x672C;&#x4E3A;&#x6B63;&#x4F8B;&#x7684;&#x6982;&#x7387;&#x3002;</p>
+式中，<script type="math/tex; ">P</script>是真实的正样本的数量，<script type="math/tex; ">N</script>是真实的负样本的数量，<script type="math/tex; ">TP</script>是<script type="math/tex; ">P</script>个正样本中被分类器预测为正样本的个数，<script type="math/tex; ">FP</script>是<script type="math/tex; ">N</script>个负样本中被分类器预测为正样本的个数。</p>
+<p>假设有10位疑似癌症患者，其中有3位很不幸确实患了癌症(<script type="math/tex; ">P=3</script>)，另外7位不是癌症患者(<script type="math/tex; ">N=7</script>)。医院对这10位疑似患者做了诊断，诊断出3位癌症患者，其中有2位确实是真正的患者(<script type="math/tex; ">TP=2</script>)。</p>
+<p>那么真阳性率<script type="math/tex; ">TPR=\frac{TP}{P}=\frac{2}{3}</script>。对于7位非癌症患者来说，有一位很不幸被误诊为癌症患者(<script type="math/tex; ">FP=1</script>)，那么假阳性率<script type="math/tex; ">FPR=\frac{FP}{N}=\frac{1}{7}</script>。</p>
+<p>对于“该医院”这个分类器来说，这组分类结果就对应ROC曲线上的一个点(<script type="math/tex; ">\frac{1}{7}, \frac{2}{3}</script>）。
+事实上，ROC曲线是通过<code>不断移动分类器的“截断点”来生成曲线上的一组关键点</code>的。</p>
+<p>通过下面的例子进一步来解释“截断点”的 概念。
+在二值分类问题中，模型的输出一般都是预测样本为正例的概率。</p>
 <table>
 <thead>
 <tr>
-<th>&#x6837;&#x672C;&#x5E8F;&#x53F7;</th>
-<th>&#x771F;&#x5B9E;&#x6807;&#x7B7E;</th>
-<th>&#x6A21;&#x578B;&#x8F93;&#x51FA;&#x6982;&#x7387;</th>
-<th>&#x6837;&#x672C;&#x5E8F;&#x53F7;</th>
-<th>&#x771F;&#x5B9E;&#x6807;&#x7B7E;</th>
-<th>&#x6A21;&#x578B;&#x8F93;&#x51FA;&#x6982;&#x7387;</th>
+<th>样本序号</th>
+<th>真实标签</th>
+<th>模型输出概率</th>
+<th>样本序号</th>
+<th>真实标签</th>
+<th>模型输出概率</th>
 </tr>
 </thead>
 <tbody>
@@ -1083,250 +630,174 @@
 </tr>
 </tbody>
 </table>
-<p>&#x5047;&#x8BBE;&#x6D4B;&#x8BD5;&#x96C6;&#x4E2D;&#x6709;20&#x4E2A;&#x6837;&#x672C;&#xFF0C;&#x8868;2.1&#x662F;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x3002;&#x6837;&#x672C;&#x6309;&#x7167;&#x9884;&#x6D4B;&#x6982;&#x7387;&#x4ECE;&#x9AD8;&#x5230;&#x4F4E;&#x6392;&#x5E8F;&#x3002;&#x5728;&#x8F93;&#x51FA;&#x6700;&#x7EC8;&#x7684;&#x6B63;&#x4F8B;&#x3001;&#x8D1F;&#x4F8B;&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x4E00;&#x4E2A; &#x9608;&#x503C;&#xFF0C;&#x9884;&#x6D4B;&#x6982;&#x7387;&#x5927;&#x4E8E;&#x8BE5;&#x9600;&#x503C;&#x7684;&#x6837;&#x672C;&#x4F1A;&#x88AB;&#x5224;&#x4E3A;&#x6B63;&#x4F8B;&#xFF0C;&#x5C0F;&#x4E8E;&#x8BE5;&#x9608;&#x503C;&#x7684;&#x6837;&#x672C;&#x5219;&#x4F1A;&#x88AB;&#x5224;&#x4E3A;&#x8D1F;&#x4F8B;&#x3002;</p>
-<p>&#x6BD4;&#x5982;&#xFF0C;&#x6307;&#x5B9A;&#x9600;&#x503C;&#x4E3A;0.9&#xFF0C;&#x90A3;&#x4E48;&#x53EA;&#x6709;&#x7B2C;&#x4E00;&#x4E2A;&#x6837;&#x672C;&#x4F1A;&#x88AB;&#x9884;&#x6D4B;&#x4E3A;&#x6B63;&#x4F8B;&#xFF0C;&#x5176;&#x4ED6;&#x5168;&#x90E8;&#x90FD;&#x662F;&#x8D1F;&#x4F8B;&#x3002;</p>
-<p>&#x4E0A;&#x9762;&#x6240;&#x8BF4;&#x7684;&#x201C;&#x622A;&#x65AD;&#x70B9;&#x201D;&#x6307;&#x7684;&#x5C31;&#x662F;&#x533A;&#x5206;&#x6B63; &#x9884;&#x6D4B;&#x7ED3;&#x679C;&#x7684;&#x9608;&#x503C;&#x3002;
-&#x901A;&#x8FC7;&#x52A8;&#x6001;&#x5730;&#x8C03;&#x6574;&#x622A;&#x65AD;&#x70B9;&#xFF0C;&#x4ECE;&#x6700;&#x9AD8;&#x7684;&#x5F97;&#x5206;&#x5F00;&#x59CB;(&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x4ECE;&#x6B63;&#x65E0;&#x7A77;&#x5F00;&#x59CB;&#xFF0C;&#x5BF9;&#x5E94;&#x7740;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x7684;&#x96F6;&#x70B9;)&#xFF0C;&#x9010;&#x6E10;&#x8C03;&#x6574;&#x5230;&#x6700;&#x4F4E;&#x5F97;&#x5206;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x622A;&#x65AD;&#x70B9;&#x90FD;&#x4F1A;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;<script type="math/tex; ">FPR</script>&#x548C;<script type="math/tex; ">TPR</script>&#xFF0C;&#x5728;<script type="math/tex; ">ROC</script>&#x56FE;&#x4E0A;&#x7ED8;&#x5236;&#x51FA;&#x6BCF;&#x4E2A;&#x622A;&#x65AD;&#x70B9;&#x5BF9;&#x5E94;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C; &#x518D;&#x8FDE;&#x63A5;&#x6240;&#x6709;&#x70B9;&#x5C31;&#x5F97;&#x5230;&#x6700;&#x7EC8;&#x7684;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x3002;</p>
+<p>假设测试集中有20个样本，表2.1是模型的输出结果。样本按照预测概率从高到低排序。在输出最终的正例、负例之前，我们需要指定一个 阈值，预测概率大于该阀值的样本会被判为正例，小于该阈值的样本则会被判为负例。</p>
+<p>比如，指定阀值为0.9，那么只有第一个样本会被预测为正例，其他全部都是负例。</p>
+<p>上面所说的“截断点”指的就是区分正 预测结果的阈值。
+通过动态地调整截断点，从最高的得分开始(实际上是从正无穷开始，对应着<script type="math/tex; ">ROC</script>曲线的零点)，逐渐调整到最低得分，每一个截断点都会对应一个<script type="math/tex; ">FPR</script>和<script type="math/tex; ">TPR</script>，在<script type="math/tex; ">ROC</script>图上绘制出每个截断点对应的位置， 再连接所有点就得到最终的<script type="math/tex; ">ROC</script>曲线。</p>
 </blockquote>
-<h2 id="&#x7ED8;&#x5236;roc&#x66F2;&#x7EBF;"><a name="&#x7ED8;&#x5236;roc&#x66F2;&#x7EBF;" class="anchor-navigation-ex-anchor" href="#&#x7ED8;&#x5236;roc&#x66F2;&#x7EBF;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7ED8;&#x5236;roc&#x66F2;&#x7EBF;" class="plugin-anchor" href="#&#x7ED8;&#x5236;roc&#x66F2;&#x7EBF;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7ED8;&#x5236;ROC&#x66F2;&#x7EBF;</h2>
+<h2 id="绘制roc曲线">8.2 绘制ROC曲线</h2>
 <blockquote>
-<p>&#x5C31;&#x672C;&#x4F8B;&#x6765;&#x8BF4;&#xFF0C;&#x5F53;&#x622A;&#x65AD;&#x70B9;&#x9009;&#x62E9;&#x4E3A;&#x6B63;&#x65E0;&#x7A77;&#x65F6;&#xFF0C;&#x6A21;&#x578B;&#x628A;&#x5168;&#x90E8;&#x6837;&#x672C;&#x9884;&#x6D4B;&#x4E3A;&#x8D1F;&#x4F8B;&#xFF0C;&#x90A3;&#x4E48;<script type="math/tex; ">FP</script>&#x548C;<script type="math/tex; ">TP</script>&#x5FC5;&#x7136;&#x90FD;&#x4E3A;0&#xFF0C;<script type="math/tex; ">FPR</script>&#x548C;<script type="math/tex; ">TPR</script>&#x4E5F;&#x90FD;&#x4E3A;0&#xFF0C;&#x56E0;&#x6B64;&#x66F2;&#x7EBF;&#x7684;&#x7B2C; &#x4E00;&#x4E2A;&#x70B9;&#x7684;&#x5750;&#x6807;&#x5C31;&#x662F;<script type="math/tex; ">(0,0)</script>&#x3002;</p>
-<p>&#x5F53;&#x628A;&#x622A;&#x65AD;&#x70B9;&#x8C03;&#x6574;&#x4E3A;0.9&#x65F6;&#xFF0C;&#x6A21;&#x578B;&#x9884;&#x6D4B;1&#x53F7;&#x6837;&#x672C;&#x4E3A;&#x6B63;&#x6837;&#x672C;&#xFF0C;&#x5E76;&#x4E14;&#x8BE5;&#x6837;&#x672C;&#x786E;&#x5B9E;&#x662F;&#x6B63;&#x6837;&#x672C;&#xFF0C;&#x56E0;&#x6B64;<script type="math/tex; ">TP=1</script>&#xFF0C;20&#x4E2A;&#x6837;&#x672C;&#x4E2D;&#xFF0C; &#x6240;&#x6709;&#x6B63;&#x4F8B;&#x6570;&#x91CF;&#x4E3A;<script type="math/tex; ">P=10</script>&#xFF0C;&#x6545;<script type="math/tex; ">TPR=\frac{TP}{P}=\frac{1}{10}</script>&#xFF1B;</p>
-<p>&#x8FD9;&#x91CC;&#x6CA1;&#x6709;&#x9884;&#x6D4B;&#x9519;&#x7684;&#x6B63;&#x6837;&#x672C;&#xFF0C; &#x5373;<script type="math/tex; ">FP=0</script>&#xFF0C;&#x8D1F;&#x6837;&#x672C;&#x603B;&#x6570;<script type="math/tex; ">N=10</script>&#xFF0C;&#x6545;<script type="math/tex; ">FPR=\frac{FP}{N}=\frac{0}{10}=0</script>&#xFF0C;&#x5BF9;&#x5E94;ROC&#x66F2;&#x7EBF;&#x4E0A;&#x7684;&#x70B9;<script type="math/tex; ">(0,0.1)</script>&#x3002;</p>
-<p>&#x4F9D;&#x6B21;&#x8C03;&#x6574;&#x622A;&#x65AD;&#x70B9;&#xFF0C;&#x76F4;&#x5230;&#x753B;&#x51FA;&#x5168;&#x90E8;&#x7684;&#x5173;&#x952E;&#x70B9;&#xFF0C;&#x518D;&#x8FDE;&#x63A5;&#x5173;&#x952E;&#x70B9;&#x5373;&#x5F97;&#x5230;&#x6700;&#x7EC8;&#x7684;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;</p>
-<p><a href="res/Machine%20Learning%20Base/1569981579326.png" data-lightbox="3fa55dfe-97dd-42f1-9a2a-187317acf2df" data-title="1569981579326"><img src="res/Machine%20Learning%20Base/1569981579326.png" alt="1569981579326"></a></p>
-<p>&#x5176;&#x5B9E;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x66F4;&#x76F4;&#x89C2;&#x5730;&#x7ED8;&#x5236;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>就本例来说，当截断点选择为正无穷时，模型把全部样本预测为负例，那么<script type="math/tex; ">FP</script>和<script type="math/tex; ">TP</script>必然都为0，<script type="math/tex; ">FPR</script>和<script type="math/tex; ">TPR</script>也都为0，因此曲线的第 一个点的坐标就是<script type="math/tex; ">(0,0)</script>。</p>
+<p>当把截断点调整为0.9时，模型预测1号样本为正样本，并且该样本确实是正样本，因此<script type="math/tex; ">TP=1</script>，20个样本中， 所有正例数量为<script type="math/tex; ">P=10</script>，故<script type="math/tex; ">TPR=\frac{TP}{P}=\frac{1}{10}</script>；</p>
+<p>这里没有预测错的正样本， 即<script type="math/tex; ">FP=0</script>，负样本总数<script type="math/tex; ">N=10</script>，故<script type="math/tex; ">FPR=\frac{FP}{N}=\frac{0}{10}=0</script>，对应ROC曲线上的点<script type="math/tex; ">(0,0.1)</script>。</p>
+<p>依次调整截断点，直到画出全部的关键点，再连接关键点即得到最终的<script type="math/tex; ">ROC</script>曲线，如下图所示。</p>
+<p><a data-lightbox="528792ad-14e5-4afb-a981-2461d3529463" data-title="1569981579326" href="res/Machine%20Learning%20Base/1569981579326.png"><img alt="1569981579326" src="res/Machine%20Learning%20Base/1569981579326.png"/></a></p>
+<p>其实，还有一种更直观地绘制<script type="math/tex; ">ROC</script>曲线的方法。</p>
 <ol>
-<li><p>&#x9996;&#x5148;&#xFF0C;&#x6839;&#x636E;&#x6837;&#x672C; &#x6807;&#x7B7E;&#x7EDF;&#x8BA1;&#x51FA;&#x6B63;&#x8D1F;&#x6837;&#x672C;&#x7684;&#x6570;&#x91CF;&#xFF0C;&#x5047;&#x8BBE;&#x6B63;&#x6837;&#x672C;&#x6570;&#x91CF;&#x4E3A;<script type="math/tex; ">P</script>&#xFF0C;&#x8D1F;&#x6837;&#x672C;&#x6570;&#x91CF;&#x4E3A;<script type="math/tex; ">N</script>&#xFF1B; </p>
+<li><p>首先，根据样本 标签统计出正负样本的数量，假设正样本数量为<script type="math/tex; ">P</script>，负样本数量为<script type="math/tex; ">N</script>； </p>
 </li>
-<li><p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x628A;&#x6A2A;&#x8F74;&#x7684;&#x523B;&#x5EA6;&#x95F4;&#x9694;&#x8BBE;&#x7F6E;&#x4E3A;<script type="math/tex; ">1/N</script>&#xFF0C;&#x7EB5;&#x8F74;&#x7684;&#x523B;&#x5EA6;&#x95F4;&#x9694;&#x8BBE;&#x7F6E;&#x4E3A;<script type="math/tex; ">1/P</script>&#xFF1B; </p>
+<li><p>接下来，把横轴的刻度间隔设置为<script type="math/tex; ">1/N</script>，纵轴的刻度间隔设置为<script type="math/tex; ">1/P</script>； </p>
 </li>
-<li><p>&#x518D;&#x6839;&#x636E;&#x6A21;&#x578B;&#x8F93;&#x51FA;&#x7684;&#x9884;&#x6D4B;&#x6982;&#x7387;&#x5BF9;&#x6837;&#x672C;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#xFF08;&#x4ECE;&#x9AD8;&#x5230;&#x4F4E;&#xFF09;&#xFF1B;</p>
+<li><p>再根据模型输出的预测概率对样本进行排序（从高到低）；</p>
 </li>
-<li><p>&#x4F9D;&#x6B21;&#x904D;&#x5386;&#x6837; &#x672C;&#xFF0C;&#x540C;&#x65F6;&#x4ECE;&#x96F6;&#x70B9;&#x5F00;&#x59CB;&#x7ED8;&#x5236;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#xFF0C;&#x6BCF;&#x9047;&#x5230;&#x4E00;&#x4E2A;&#x6B63;&#x6837;&#x672C;&#x5C31;&#x6CBF;&#x7EB5;&#x8F74;&#x65B9;&#x5411;&#x7ED8;&#x5236;&#x4E00;&#x4E2A;&#x523B;&#x5EA6;&#x95F4;&#x9694;&#x7684;&#x66F2;&#x7EBF;&#xFF0C;&#x6BCF;&#x9047;&#x5230;&#x4E00;&#x4E2A;&#x8D1F;&#x6837;&#x672C;&#x5C31;&#x6CBF;&#x6A2A;&#x8F74;&#x65B9;&#x5411;&#x7ED8;&#x5236;&#x4E00;&#x4E2A;&#x523B;&#x5EA6;&#x95F4;&#x9694;&#x7684;&#x66F2;&#x7EBF;&#xFF0C;&#x76F4;&#x5230;&#x904D;&#x5386;&#x5B8C;&#x6240;&#x6709;&#x6837;&#x672C;&#xFF0C;&#x66F2;&#x7EBF;&#x6700;&#x7EC8;&#x505C;&#x5728;<script type="math/tex; ">(1,1)</script>&#x8FD9;&#x4E2A;&#x70B9;&#xFF0C; &#x6574;&#x4E2A;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x7ED8;&#x5236;&#x5B8C;&#x6210;&#x3002;</p>
+<li><p>依次遍历样 本，同时从零点开始绘制<script type="math/tex; ">ROC</script>曲线，每遇到一个正样本就沿纵轴方向绘制一个刻度间隔的曲线，每遇到一个负样本就沿横轴方向绘制一个刻度间隔的曲线，直到遍历完所有样本，曲线最终停在<script type="math/tex; ">(1,1)</script>这个点， 整个<script type="math/tex; ">ROC</script>曲线绘制完成。</p>
 </li>
 </ol>
 </blockquote>
-<h2 id="roc&#x548C;p-r&#x66F2;&#x7EBF;"><a name="roc&#x548C;p-r&#x66F2;&#x7EBF;" class="anchor-navigation-ex-anchor" href="#roc&#x548C;p-r&#x66F2;&#x7EBF;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="roc&#x548C;p-r&#x66F2;&#x7EBF;" class="plugin-anchor" href="#roc&#x548C;p-r&#x66F2;&#x7EBF;"><i class="fa fa-link" aria-hidden="true"></i></a>ROC&#x548C;P-R&#x66F2;&#x7EBF;</h2>
+<h2 id="roc和p-r曲线">8.3 ROC和P-R曲线</h2>
 <blockquote>
-<p><a href="res/Machine%20Learning%20Base/1569981858984.png" data-lightbox="6f659a98-bee2-4285-9de6-8347b8d2b482" data-title="1569981858984"><img src="res/Machine%20Learning%20Base/1569981858984.png" alt="1569981858984"></a></p>
-<p><a href="res/Machine%20Learning%20Base/1569981873028.png" data-lightbox="2572b77e-ba7c-4b04-b3f7-19dec7a91f4a" data-title="1569981873028"><img src="res/Machine%20Learning%20Base/1569981873028.png" alt="1569981873028"></a></p>
-<p>&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;<script type="math/tex; ">P-R</script>&#x66F2;&#x7EBF;&#x53D1;&#x751F;&#x4E86;&#x660E;&#x663E;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x800C;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x5F62;&#x72B6;&#x57FA;&#x672C;&#x4E0D;&#x53D8;&#x3002;</p>
-<p>&#x8FD9;&#x4E2A;&#x7279;&#x70B9;&#x8BA9;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x80FD;&#x591F;&#x5C3D;&#x91CF;&#x964D;&#x4F4E;&#x4E0D;&#x540C;&#x6D4B;&#x8BD5;&#x96C6;&#x5E26;&#x6765;&#x7684;&#x5E72;&#x6270;&#xFF0C;&#x66F4;&#x52A0;&#x5BA2;&#x89C2;&#x5730;&#x8861;&#x91CF;&#x6A21;&#x578B;&#x672C;&#x8EAB;&#x7684;&#x6027;&#x80FD;&#x3002;</p>
-<p>&#x8FD9;&#x6709;&#x4EC0;&#x4E48;&#x5B9E;&#x9645;&#x610F;&#x4E49;&#x5462;&#xFF1F;&#x5728;&#x5F88;&#x591A;&#x5B9E;&#x9645;&#x95EE;&#x9898;&#x4E2D;&#xFF0C;&#x6B63;&#x8D1F;&#x6837;&#x672C;&#x6570;&#x91CF;&#x5F80;&#x5F80;&#x5F88;&#x4E0D;&#x5747;&#x8861;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x8BA1;&#x7B97;&#x5E7F;&#x544A;&#x9886;&#x57DF;&#x7ECF;&#x5E38;&#x6D89;&#x53CA;&#x8F6C;&#x5316;&#x7387;&#x6A21;&#x578B;&#xFF0C;&#x6B63;&#x6837;&#x672C;&#x7684;&#x6570;&#x91CF;&#x5F80;&#x5F80;&#x662F;&#x8D1F;&#x6837;&#x672C;&#x6570;&#x91CF;&#x7684;1/1000&#x751A;&#x81F3;1/10000&#x3002;</p>
-<p>&#x82E5;&#x9009;&#x62E9;&#x4E0D;&#x540C;&#x7684;&#x6D4B;&#x8BD5;&#x96C6;&#xFF0C;<script type="math/tex; ">P-R</script>&#x66F2;&#x7EBF;&#x7684;&#x53D8;&#x5316;&#x5C31;&#x4F1A;&#x975E;&#x5E38;&#x5927;&#xFF0C;&#x800C;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x5219;&#x80FD;&#x591F;&#x66F4;&#x52A0;&#x7A33;&#x5B9A;&#x5730;&#x53CD;&#x6620;&#x6A21;&#x578B;&#x672C;&#x8EAB;&#x7684;&#x597D;&#x574F;&#x3002;</p>
-<p>&#x6240;&#x4EE5;&#xFF0C;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x7684;&#x9002;&#x7528;&#x573A;&#x666F;&#x66F4;&#x591A;&#xFF0C;&#x88AB;&#x5E7F;&#x6CDB;&#x7528;&#x4E8E;<code>&#x6392;&#x5E8F;&#x3001;&#x63A8;&#x8350;&#x3001;&#x5E7F;&#x544A;</code>&#x7B49;&#x9886;&#x57DF;&#x3002;</p>
-<p>&#x4F46;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x9009;&#x62E9;<script type="math/tex; ">P-R</script>&#x66F2;&#x7EBF;&#x8FD8;&#x662F;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x662F;&#x56E0;&#x5B9E;&#x9645;&#x95EE;&#x9898;&#x800C;&#x5F02;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x7814;&#x7A76;&#x8005;&#x5E0C;&#x671B;&#x66F4;&#x591A;&#x5730;&#x770B;&#x5230;&#x6A21;&#x578B;&#x5728;&#x7279;&#x5B9A;&#x6570;&#x636E;&#x96C6;&#x4E0A;&#x7684;&#x8868;&#x73B0;&#xFF0C;<script type="math/tex; ">P-R</script>&#x66F2;&#x7EBF;&#x5219;&#x80FD;&#x591F;&#x66F4;&#x76F4;&#x89C2;&#x5730;&#x53CD;&#x6620;&#x5176;&#x6027;&#x80FD;&#x3002;</p>
+<p><a data-lightbox="427d862c-77ac-44b4-a4a6-0bf3433fcc50" data-title="1569981858984" href="res/Machine%20Learning%20Base/1569981858984.png"><img alt="1569981858984" src="res/Machine%20Learning%20Base/1569981858984.png"/></a></p>
+<p><a data-lightbox="c00a430c-88c7-4171-b8e6-10061b948021" data-title="1569981873028" href="res/Machine%20Learning%20Base/1569981873028.png"><img alt="1569981873028" src="res/Machine%20Learning%20Base/1569981873028.png"/></a></p>
+<p>可以看出，<script type="math/tex; ">P-R</script>曲线发生了明显的变化，而<script type="math/tex; ">ROC</script>曲线形状基本不变。</p>
+<p>这个特点让<script type="math/tex; ">ROC</script>曲线能够尽量降低不同测试集带来的干扰，更加客观地衡量模型本身的性能。</p>
+<p>这有什么实际意义呢？在很多实际问题中，正负样本数量往往很不均衡。比如，计算广告领域经常涉及转化率模型，正样本的数量往往是负样本数量的1/1000甚至1/10000。</p>
+<p>若选择不同的测试集，<script type="math/tex; ">P-R</script>曲线的变化就会非常大，而<script type="math/tex; ">ROC</script>曲线则能够更加稳定地反映模型本身的好坏。</p>
+<p>所以，<script type="math/tex; ">ROC</script>曲线的适用场景更多，被广泛用于<code>排序、推荐、广告</code>等领域。</p>
+<p>但需要注意的是，选择<script type="math/tex; ">P-R</script>曲线还是<script type="math/tex; ">ROC</script>曲线是因实际问题而异的，如果研究者希望更多地看到模型在特定数据集上的表现，<script type="math/tex; ">P-R</script>曲线则能够更直观地反映其性能。</p>
 </blockquote>
-<h1 id="auc&#x66F2;&#x7EBF;"><a name="auc&#x66F2;&#x7EBF;" class="anchor-navigation-ex-anchor" href="#auc&#x66F2;&#x7EBF;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="auc&#x66F2;&#x7EBF;" class="plugin-anchor" href="#auc&#x66F2;&#x7EBF;"><i class="fa fa-link" aria-hidden="true"></i></a>AUC&#x66F2;&#x7EBF;</h1>
+<h1 id="auc曲线">9 AUC曲线</h1>
 <blockquote>
-<p>&#x987E;&#x540D;&#x601D;&#x4E49;&#xFF0C;<script type="math/tex; ">AUC</script>&#x6307;&#x7684;&#x662F;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x4E0B;&#x7684;&#x9762;&#x79EF;&#x5927;&#x5C0F;&#xFF0C;&#x8BE5;&#x503C;&#x80FD;&#x591F;&#x91CF;&#x5316;&#x5730;&#x53CD;&#x6620;&#x57FA;&#x4E8E;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x8861;&#x91CF;&#x51FA;&#x7684;&#x6A21;&#x578B;&#x6027;&#x80FD;&#x3002;</p>
-<p>&#x8BA1;&#x7B97;<script type="math/tex; ">AUC</script>&#x503C;&#x53EA;&#x9700;&#x8981;&#x6CBF;&#x7740;<script type="math/tex; ">ROC</script>&#x6A2A;&#x8F74;&#x505A;&#x79EF;&#x5206;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
-<p>&#x7531;&#x4E8E;<script type="math/tex; ">ROC</script>&#x66F2;&#x7EBF;&#x4E00;&#x822C;&#x90FD;&#x5904;&#x4E8E;<script type="math/tex; ">y=x</script>&#x8FD9;&#x6761;&#x76F4;&#x7EBF;&#x7684;&#x4E0A;&#x65B9;(&#x5982;&#x679C;&#x4E0D;&#x662F;&#x7684;&#x8BDD;&#xFF0C;&#x53EA;&#x8981;&#x628A;&#x6A21;&#x578B;&#x9884;&#x6D4B;&#x7684;&#x6982;&#x7387;&#x53CD;&#x8F6C;&#x6210;<script type="math/tex; ">1-p</script>&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x66F4;&#x597D;&#x7684;&#x5206;&#x7C7B;&#x5668;)&#xFF0C;&#x6240;&#x4EE5;<script type="math/tex; ">AUC</script>&#x7684;&#x53D6;&#x503C;&#x4E00;&#x822C;&#x5728;<script type="math/tex; ">[0.5,1]</script>&#x4E4B;&#x95F4;&#x3002;</p>
-<p><script type="math/tex; ">AUC</script>&#x8D8A;&#x5927;&#xFF0C;&#x8BF4;&#x660E;&#x5206;&#x7C7B;&#x5668;&#x8D8A;&#x53EF;&#x80FD;&#x628A;&#x771F;&#x6B63;&#x7684;&#x6B63;&#x6837;&#x672C;&#x6392;&#x5728;&#x524D;&#x9762;&#xFF0C;&#x5206;&#x7C7B;&#x6027;&#x80FD;&#x8D8A;&#x597D;&#x3002;</p>
+<p>顾名思义，<script type="math/tex; ">AUC</script>指的是<script type="math/tex; ">ROC</script>曲线下的面积大小，该值能够量化地反映基于<script type="math/tex; ">ROC</script>曲线衡量出的模型性能。</p>
+<p>计算<script type="math/tex; ">AUC</script>值只需要沿着<script type="math/tex; ">ROC</script>横轴做积分就可以了。</p>
+<p>由于<script type="math/tex; ">ROC</script>曲线一般都处于<script type="math/tex; ">y=x</script>这条直线的上方(如果不是的话，只要把模型预测的概率反转成<script type="math/tex; ">1-p</script>就可以得到一个更好的分类器)，所以<script type="math/tex; ">AUC</script>的取值一般在<script type="math/tex; ">[0.5,1]</script>之间。</p>
+<p><script type="math/tex; ">AUC</script>越大，说明分类器越可能把真正的正样本排在前面，分类性能越好。</p>
 </blockquote>
-<h1 id="&#x805A;&#x7C7B;&#x6307;&#x6807;"><a name="&#x805A;&#x7C7B;&#x6307;&#x6807;" class="anchor-navigation-ex-anchor" href="#&#x805A;&#x7C7B;&#x6307;&#x6807;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x805A;&#x7C7B;&#x6307;&#x6807;" class="plugin-anchor" href="#&#x805A;&#x7C7B;&#x6307;&#x6807;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x805A;&#x7C7B;&#x6307;&#x6807;</h1>
+<h1 id="聚类指标">10 聚类指标</h1>
 <blockquote>
-<p>&#x4E00;&#x4E2A;&#x597D;&#x7684;&#x805A;&#x7C7B;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x4EA7;&#x751F;&#x9AD8;&#x54C1;&#x8D28;&#x7C07;&#xFF0C;&#x662F;&#x7684;&#x7C07;&#x5185;&#x76F8;&#x4F3C;&#x5EA6;&#x9AD8;&#xFF0C;&#x7C07;&#x95F4;&#x76F8;&#x4F3C;&#x5EA6;&#x4F4E;&#x3002;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;&#x8BC4;&#x4F30;&#x805A;&#x7C7B;&#x8D28;&#x91CF;&#x6709;&#x4E24;&#x4E2A;&#x6807;&#x51C6;&#xFF0C;&#x5185;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6307;&#x6807;&#x548C;&#x5916;&#x90E8;&#x8BC4;&#x4EF7;&#x6307;&#x6807;&#x3002; </p>
-<h5 id="3191-&#x5185;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;"><a name="3191-&#x5185;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;" class="anchor-navigation-ex-anchor" href="#3191-&#x5185;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="3191-&#x5185;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;" class="plugin-anchor" href="#3191-&#x5185;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;"><i class="fa fa-link" aria-hidden="true"></i></a>3.1.9.1 &#x5185;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;</h5>
-<p>&#x5185;&#x90E8;&#x8BC4;&#x4EF7;&#x6307;&#x6807;&#x662F;&#x5229;&#x7528;&#x6570;&#x636E;&#x96C6;&#x7684;&#x5C5E;&#x6027;&#x7279;&#x5F81;&#x6765;&#x8BC4;&#x4EF7;&#x805A;&#x7C7B;&#x7B97;&#x6CD5;&#x7684;&#x4F18;&#x52A3;&#x3002;&#x901A;&#x8FC7;&#x8BA1;&#x7B97;&#x603B;&#x4F53;&#x7684;&#x76F8;&#x4F3C;&#x5EA6;&#xFF0C;&#x7C07;&#x95F4;&#x5E73;&#x5747;&#x76F8;&#x4F3C;&#x5EA6;&#x6216;&#x7C07;&#x5185;&#x5E73;&#x5747;&#x76F8;&#x4F3C;&#x5EA6;&#x6765;&#x8BC4;&#x4EF7;&#x805A;&#x7C7B;&#x8D28;&#x91CF;&#x3002;&#x8BC4;&#x4EF7;&#x805A;&#x7C7B;&#x6548;&#x679C;&#x7684;&#x9AD8;&#x4F4E;&#x901A;&#x5E38;&#x4F7F;&#x7528;&#x805A;&#x7C7B;&#x7684;&#x6709;&#x6548;&#x6027;&#x6307;&#x6807;&#xFF0C;&#x6240;&#x4EE5;&#x76EE;&#x524D;&#x7684;&#x68C0;&#x9A8C;&#x805A;&#x7C7B;&#x7684;&#x6709;&#x6548;&#x6027;&#x6307;&#x6807;&#x4E3B;&#x8981;&#x662F;&#x901A;&#x8FC7;&#x7C07;&#x95F4;&#x8DDD;&#x79BB;&#x548C;&#x7C07;&#x5185;&#x8DDD;&#x79BB;&#x6765;&#x8861;&#x91CF;&#x3002;&#x8FD9;&#x7C7B;&#x6307;&#x6807;&#x5E38;&#x7528;&#x7684;&#x6709;CH(Calinski-Harabasz)&#x6307;&#x6807;&#x7B49; </p>
-<p><code>CH&#x6307;&#x6807;</code>&#xFF1A;
+<p>一个好的聚类方法可以产生高品质簇，是的簇内相似度高，簇间相似度低。一般来说，评估聚类质量有两个标准，内部质量评价指标和外部评价指标。 </p>
+<h5 id="3191-内部质量评价标准"><a class="anchor-navigation-ex-anchor" href="#3191-内部质量评价标准" name="3191-内部质量评价标准"><i aria-hidden="true" class="fa fa-link"></i></a><a class="plugin-anchor" href="#3191-内部质量评价标准" name="3191-内部质量评价标准"><i aria-hidden="true" class="fa fa-link"></i></a>3.1.9.1 内部质量评价标准</h5>
+<p>内部评价指标是利用数据集的属性特征来评价聚类算法的优劣。通过计算总体的相似度，簇间平均相似度或簇内平均相似度来评价聚类质量。评价聚类效果的高低通常使用聚类的有效性指标，所以目前的检验聚类的有效性指标主要是通过簇间距离和簇内距离来衡量。这类指标常用的有CH(Calinski-Harabasz)指标等 </p>
+<p><code>CH指标</code>：
 <script type="math/tex; mode=display">
 >CH(K)=\frac{tr(B)/(K-1)}{tr(W)/(N-K)} \\
 >tr(B)=\sum_{j=1}^{k}{||z_j-z||^2} \\
 >tr(W)=\sum_{j=1}^{k}{\sum_{x_i \in z_k}{||x_i-z_j||^2}}
 ></script>
-&#x5176;&#x4E2D;<script type="math/tex; ">tr(B)</script>&#x8868;&#x793A;&#x7C7B;&#x95F4;&#x8DDD;&#x79BB;&#x5DEE;&#x77E9;&#x9635;&#x7684;&#x8FF9;&#xFF0C;<script type="math/tex; ">tr(W)</script>&#x8868;&#x793A;&#x7C7B;&#x5185;&#x5DEE;&#x77E9;&#x9635;&#x7684;&#x8FF9;&#xFF0C;<script type="math/tex; ">z</script>&#x662F;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x5747;&#x503C;&#xFF0C;<script type="math/tex; ">z_j</script>&#x662F;&#x7B2C;<script type="math/tex; ">j</script>&#x4E2A;&#x7C07;<script type="math/tex; ">c_j</script>&#x7684;&#x5747;&#x503C;&#xFF0C;<script type="math/tex; ">N</script>&#x4EE3;&#x8868;&#x805A;&#x7C7B;&#x7684;&#x4E2A;&#x6570;&#xFF0C; <script type="math/tex; ">K</script>&#x4EE3;&#x8868;&#x5F53;&#x524D;&#x7684;&#x7C7B;&#x3002;&#x503C;&#x8D8A;&#x5927;&#xFF0C;<script type="math/tex; ">CH(K)</script>&#x805A;&#x7C7B;&#x6548;&#x679C;&#x8D8A;&#x597D;&#xFF0C;<script type="math/tex; ">CH</script>&#x4E3B;&#x8981;&#x8BA1;&#x7B97;&#x7C07;&#x95F4;&#x8DDD;&#x79BB;&#x4E0E;&#x7C07;&#x5185;&#x8DDD;&#x79BB;&#x7684;&#x6BD4;&#x503C;</p>
-<p><code>&#x7C07;&#x7684;&#x51DD;&#x805A;&#x5EA6;</code>&#xFF1A;
+其中<script type="math/tex; ">tr(B)</script>表示类间距离差矩阵的迹，<script type="math/tex; ">tr(W)</script>表示类内差矩阵的迹，<script type="math/tex; ">z</script>是整个数据集的均值，<script type="math/tex; ">z_j</script>是第<script type="math/tex; ">j</script>个簇<script type="math/tex; ">c_j</script>的均值，<script type="math/tex; ">N</script>代表聚类的个数， <script type="math/tex; ">K</script>代表当前的类。值越大，<script type="math/tex; ">CH(K)</script>聚类效果越好，<script type="math/tex; ">CH</script>主要计算簇间距离与簇内距离的比值</p>
+<p><code>簇的凝聚度</code>：
 <script type="math/tex; mode=display">
 >SSE=\sum_{i=1}^{r}{\sum_{j=1}^{n_i}{(X_{ij}-\bar X_i)^2}} \\
 >\bar X_i=\frac{1}{n_i}\sum_{j=1}^{n_i}{X_{ij}},i=1,2,...,r
 ></script>
-&#x7C07;&#x5185;&#x70B9;&#x5BF9;&#x7684;&#x5E73;&#x5747;&#x8DDD;&#x79BB;&#x53CD;&#x6620;&#x4E86;&#x7C07;&#x7684;&#x51DD;&#x805A;&#x5EA6;&#xFF0C;&#x4E00;&#x822C;&#x4F7F;&#x7528;&#x7EC4;&#x5185;&#x8BEF;&#x5DEE;&#x5E73;&#x65B9;(SSE)&#x8868;&#x793A;</p>
-<p><code>&#x7C07;&#x7684;&#x90BB;&#x8FD1;&#x5EA6;</code>&#xFF1A;</p>
-<p>&#x7C07;&#x7684;&#x90BB;&#x8FD1;&#x5EA6;&#x7528;&#x7EC4;&#x95F4;&#x5E73;&#x65B9;&#x548C;(SSB)&#x8868;&#x793A;&#xFF0C;&#x5373;&#x7C07;&#x7684;&#x8D28;&#x5FC3;<script type="math/tex; ">C_i</script>&#x5230;&#x7C07;&#x5185;&#x6240;&#x6709;&#x6570;&#x636E;&#x70B9;&#x7684;&#x603B;&#x5E73;&#x5747;&#x503C;<script type="math/tex; ">c</script>&#x7684;&#x8DDD;&#x79BB;&#x7684;&#x5E73;&#x65B9;&#x548C; </p>
-<h5 id="3192-&#x5916;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;"><a name="3192-&#x5916;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;" class="anchor-navigation-ex-anchor" href="#3192-&#x5916;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="3192-&#x5916;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;" class="plugin-anchor" href="#3192-&#x5916;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;"><i class="fa fa-link" aria-hidden="true"></i></a>3.1.9.2 &#x5916;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;</h5>
-<p>&#x5916;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6307;&#x6807;&#x662F;&#x57FA;&#x4E8E;&#x5DF2;&#x77E5;&#x5206;&#x7C7B;&#x6807;&#x7B7E;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x8BC4;&#x4EF7;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x5C06;&#x539F;&#x6709;&#x6807;&#x7B7E;&#x6570;&#x636E;&#x4E0E;&#x805A;&#x7C7B;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x8FDB;&#x884C;&#x5BF9;&#x6BD4;&#x3002;</p>
-<p>&#x5916;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x6307;&#x6807;&#x7684;&#x7406;&#x60F3;&#x805A;&#x7C7B;&#x7ED3;&#x679C;&#x662F;&#xFF1A;&#x5177;&#x6709;&#x4E0D;&#x540C;&#x7C7B;&#x6807;&#x7B7E;&#x7684;&#x6570;&#x636E;&#x805A;&#x5408;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x7C07;&#x4E2D;&#xFF0C;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7C7B;&#x6807;&#x7B7E;&#x7684;&#x6570;&#x636E;&#x805A;&#x5408;&#x76F8;&#x540C;&#x7684;&#x7C07;&#x4E2D;&#x3002;&#x5916;&#x90E8;&#x8D28;&#x91CF;&#x8BC4;&#x4EF7;&#x51C6;&#x5219;&#x901A;&#x5E38;&#x4F7F;&#x7528;&#x71B5;&#xFF0C;&#x7EAF;&#x5EA6;&#x7B49;&#x6307;&#x6807;&#x8FDB;&#x884C;&#x5EA6;&#x91CF;&#x3002; </p>
-<p><code>&#x71B5;</code>&#xFF1A;</p>
-<p>&#x7C07;&#x5185;&#x5305;&#x542B;&#x5355;&#x4E2A;&#x7C7B;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x79CD;&#x5EA6;&#x91CF;&#x3002;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x4E2A;&#x7C07;&#xFF0C;&#x9996;&#x5148;&#x8BA1;&#x7B97;&#x6570;&#x636E;&#x7684;&#x7C7B;&#x5206;&#x5E03;&#xFF0C;&#x5373;&#x5BF9;&#x4E8E;&#x7C07;<script type="math/tex; ">i</script>&#xFF0C;&#x8BA1;&#x7B97;&#x7C07;<script type="math/tex; ">i</script>&#x7684;&#x6210;&#x5458;&#x5C5E;&#x4E8E;&#x7C7B;<script type="math/tex; ">j</script>&#x7684;&#x6982;&#x7387;
+簇内点对的平均距离反映了簇的凝聚度，一般使用组内误差平方(SSE)表示</p>
+<p><code>簇的邻近度</code>：</p>
+<p>簇的邻近度用组间平方和(SSB)表示，即簇的质心<script type="math/tex; ">C_i</script>到簇内所有数据点的总平均值<script type="math/tex; ">c</script>的距离的平方和 </p>
+<h5 id="3192-外部质量评价标准"><a class="anchor-navigation-ex-anchor" href="#3192-外部质量评价标准" name="3192-外部质量评价标准"><i aria-hidden="true" class="fa fa-link"></i></a><a class="plugin-anchor" href="#3192-外部质量评价标准" name="3192-外部质量评价标准"><i aria-hidden="true" class="fa fa-link"></i></a>3.1.9.2 外部质量评价标准</h5>
+<p>外部质量评价指标是基于已知分类标签数据集进行评价的，这样可以将原有标签数据与聚类输出结果进行对比。</p>
+<p>外部质量评价指标的理想聚类结果是：具有不同类标签的数据聚合到不同的簇中，具有相同类标签的数据聚合相同的簇中。外部质量评价准则通常使用熵，纯度等指标进行度量。 </p>
+<p><code>熵</code>：</p>
+<p>簇内包含单个类对象的一种度量。对于每一个簇，首先计算数据的类分布，即对于簇<script type="math/tex; ">i</script>，计算簇<script type="math/tex; ">i</script>的成员属于类<script type="math/tex; ">j</script>的概率
 <script type="math/tex; mode=display">
 >p_{ij}=\frac{m_{ij}}{m_i}
 ></script>
-&#x5176;&#x4E2D;<script type="math/tex; ">m_i</script>&#x8868;&#x793A;&#x7C07;<script type="math/tex; ">i</script>&#x4E2D;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x800C;<script type="math/tex; ">m_{ij}</script>&#x662F;&#x7C07;<script type="math/tex; ">i</script>&#x4E2D;&#x7C7B;<script type="math/tex; ">j</script>&#x7684;&#x5BF9;&#x8C61;&#x4E2A;&#x6570;&#x3002;&#x4F7F;&#x7528;&#x7C7B;&#x5206;&#x5E03;&#xFF0C;&#x7528;&#x6807;&#x51C6;&#x516C;&#x5F0F;&#xFF1A;
+其中<script type="math/tex; ">m_i</script>表示簇<script type="math/tex; ">i</script>中所有对象的个数，而<script type="math/tex; ">m_{ij}</script>是簇<script type="math/tex; ">i</script>中类<script type="math/tex; ">j</script>的对象个数。使用类分布，用标准公式：
 <script type="math/tex; mode=display">
 >e_i=-\sum_{j=1}^{K}{p_{ij}log_2{p_ij}}
 ></script>
-&#x8BA1;&#x7B97;&#x6BCF;&#x4E2A;&#x7C07;<script type="math/tex; ">i</script>&#x7684;&#x71B5;&#xFF0C;&#x5176;&#x4E2D;<script type="math/tex; ">K</script>&#x662F;&#x7C7B;&#x4E2A;&#x6570;&#x3002;&#x7C07;&#x96C6;&#x5408;&#x7684;&#x603B;&#x71B5;&#x7528;&#x6BCF;&#x4E2A;&#x7C07;&#x7684;&#x71B5;&#x7684;&#x52A0;&#x6743;&#x548C;&#x8BA1;&#x7B97;&#x5373;&#xFF1A;
+计算每个簇<script type="math/tex; ">i</script>的熵，其中<script type="math/tex; ">K</script>是类个数。簇集合的总熵用每个簇的熵的加权和计算即：
 <script type="math/tex; mode=display">
 >e=\sum_{i=1}^{K}{\frac{m_i}{m}e_i}
 ></script>
-&#x5176;&#x4E2D;<script type="math/tex; ">K</script>&#x662F;&#x7C07;&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x800C;<script type="math/tex; ">m</script>&#x662F;&#x7C07;&#x5185;&#x6570;&#x636E;&#x70B9;&#x7684;&#x603B;&#x548C;</p>
-<p><code>&#x7EAF;&#x5EA6;</code>&#xFF1A;</p>
-<p>&#x7C07;&#x5185;&#x5305;&#x542B;&#x5355;&#x4E2A;&#x7C7B;&#x5BF9;&#x8C61;&#x7684;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x5EA6;&#x91CF;&#x3002;&#x7C07;<script type="math/tex; ">i</script>&#x7684;&#x7EAF;&#x5EA6;&#x4E3A;<script type="math/tex; ">p_i=\max_{a}{p_{ij}}</script>&#xFF0C;&#x800C;&#x805A;&#x7C7B;&#x603B;&#x7EAF;&#x5EA6;&#x4E3A;&#xFF1A; 
+其中<script type="math/tex; ">K</script>是簇的个数，而<script type="math/tex; ">m</script>是簇内数据点的总和</p>
+<p><code>纯度</code>：</p>
+<p>簇内包含单个类对象的另外一种度量。簇<script type="math/tex; ">i</script>的纯度为<script type="math/tex; ">p_i=\max_{a}{p_{ij}}</script>，而聚类总纯度为： 
 <script type="math/tex; mode=display">
 >purity=\sum_{i=1}^{K}{\frac{m_i}{m}p_i}
 ></script>
-<a href="https://www.jianshu.com/p/1049db259d38" target="_blank">08 &#x805A;&#x7C7B;&#x7B97;&#x6CD5; - &#x805A;&#x7C7B;&#x7B97;&#x6CD5;&#x7684;&#x8861;&#x91CF;&#x6307;&#x6807;</a></p>
-<p><a href="https://www.jianshu.com/p/2fa67f9bad60" target="_blank">&#x673A;&#x5668;&#x5B66;&#x4E60;&#xFF08;7&#xFF09;&#x2014;&#x2014;&#x805A;&#x7C7B;&#x7B97;&#x6CD5;</a></p>
+<a href="https://www.jianshu.com/p/1049db259d38" target="_blank">08 聚类算法 - 聚类算法的衡量指标</a></p>
+<p><a href="https://www.jianshu.com/p/2fa67f9bad60" target="_blank">机器学习（7）——聚类算法</a></p>
 </blockquote>
-<h1 id="&#x56DE;&#x5F52;&#x6307;&#x6807;"><a name="&#x56DE;&#x5F52;&#x6307;&#x6807;" class="anchor-navigation-ex-anchor" href="#&#x56DE;&#x5F52;&#x6307;&#x6807;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x56DE;&#x5F52;&#x6307;&#x6807;" class="plugin-anchor" href="#&#x56DE;&#x5F52;&#x6307;&#x6807;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x56DE;&#x5F52;&#x6307;&#x6807;</h1>
+<h1 id="回归指标">11 回归指标</h1>
 <blockquote>
-<p>SSE(&#x548C;&#x65B9;&#x5DEE;&#x3001;&#x8BEF;&#x5DEE;&#x5E73;&#x65B9;&#x548C;)&#xFF1A;The sum of squares dueto error
-MSE(&#x5747;&#x65B9;&#x5DEE;&#x3001;&#x65B9;&#x5DEE;)&#xFF1A;Meansquared error
-RMSE(&#x5747;&#x65B9;&#x6839;&#x3001;&#x6807;&#x51C6;&#x5DEE;)&#xFF1A;Root mean squared error
-R-square(&#x786E;&#x5B9A;&#x7CFB;&#x6570;)&#xFF1A;Coefficientof determination
-Adjusted R-square&#xFF1A;Degree-of-freedomadjusted coefficient of determination</p>
-<p><code>SSE</code>&#xFF1A;
+<p>SSE(和方差、误差平方和)：The sum of squares dueto error
+MSE(均方差、方差)：Meansquared error
+RMSE(均方根、标准差)：Root mean squared error
+R-square(确定系数)：Coefficientof determination
+Adjusted R-square：Degree-of-freedomadjusted coefficient of determination</p>
+<p><code>SSE</code>：
 <script type="math/tex; mode=display">
 >SSE = \sum(Y_{actual} - Y_{predict})^2
 ></script>
-<code>R-square</code>&#xFF1A;
+<code>R-square</code>：
 <script type="math/tex; mode=display">
 >R^2 = 1-\frac{\sum(Y_{actual}-Y_{predict})^2}{\sum(Y_{actual}-Y_{mean})^2}=1-\frac{SSE}{SST} \\
 >SST = \sum_{i=1}^{n}w_i(Y_{actual} - Y_{mean})^2
 ></script>
-<code>Adjusted R-square</code>&#xFF1A;
+<code>Adjusted R-square</code>：
 <script type="math/tex; mode=display">
 >R^2 _{adjusted}=1-\frac{(1-R^2)(n-1)}{n-p-1}
 ></script>
-&#x5176;&#x4E2D;<script type="math/tex; ">n</script>&#x662F;&#x6837;&#x672C;&#x6570;&#x91CF;&#xFF1B;<script type="math/tex; ">p</script>&#x662F;&#x7279;&#x5F81;&#x6570;&#x91CF;&#xFF1B;<script type="math/tex; ">R^2</script>&#x662F;&#x51B3;&#x5B9A;&#x7CFB;&#x6570;&#xFF0C;&#x8BE5;&#x6307;&#x6807;&#x6D88;&#x9664;&#x4E86;&#x6837;&#x672C;&#x6570;&#x91CF;&#x548C;&#x7279;&#x5F81;&#x6570;&#x91CF;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x505A;&#x5230;&#x4E86;&#x771F;&#x6B63;&#x7684;0~1&#xFF0C;&#x8D8A;&#x5927;&#x8D8A;&#x597D;&#x3002;</p>
-<p><code>AIC&#x8D64;&#x6C60;&#x4FE1;&#x606F;&#x51C6;&#x5219;</code>&#xFF1A;
+其中<script type="math/tex; ">n</script>是样本数量；<script type="math/tex; ">p</script>是特征数量；<script type="math/tex; ">R^2</script>是决定系数，该指标消除了样本数量和特征数量的影响，做到了真正的0~1，越大越好。</p>
+<p><code>AIC赤池信息准则</code>：
 <script type="math/tex; mode=display">
 >AIC=e^\frac{2k}{T}\frac{\sum_{t=1}^{T}e_t^2}{T} \\
 >e^\frac{2k}{T}:惩罚因子
 ></script>
-&#x4F30;&#x8BA1;&#x6A21;&#x578B;&#x62DF;&#x5408;&#x6570;&#x636E;&#x7684;&#x4F18;&#x826F;&#x6027;&#xFF0C;AIC&#x503C;&#x8D8A;&#x5C0F;&#x8BF4;&#x660E;&#x6A21;&#x578B;&#x62DF;&#x5408;&#x5F97;&#x8D8A;&#x597D;</p>
-<p><a href="AIC&#x548C;BIC&#x51C6;&#x5219;">AIC&#x548C;BIC&#x51C6;&#x5219;</a></p>
-<p><a href="https://www.jianshu.com/p/4c8cf5df2092" target="_blank">&#x6A21;&#x578B;&#x9009;&#x62E9;&#x65B9;&#x6CD5;&#xFF1A;AIC&#x548C;BIC</a></p>
+估计模型拟合数据的优良性，AIC值越小说明模型拟合得越好</p>
+<p><a href="AIC和BIC准则">AIC和BIC准则</a></p>
+<p><a href="https://www.jianshu.com/p/4c8cf5df2092" target="_blank">模型选择方法：AIC和BIC</a></p>
 </blockquote>
-<p></p><footer class="page-footer"><span class="copyright">Copyright &#xA9; narutohyc.com 2020 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-02-07 06:55:58
-</span></footer><hr><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
-
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
+<p></p><footer class="page-footer"><span class="copyright">Copyright © narutohyc.com 2020 all right reserved，powered by Gitbook</span><span class="footer-modification">该文件修订时间：
+2022-02-15 13:30:23
+</span></footer><hr/><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
+</section>
 </div>
-
-                        </div>
-                    </div>
-                
-            </div>
-
-            
-                
-                <a href="模型评估.html" class="navigation navigation-prev " aria-label="Previous page: 模型评估">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="模型评估_AB测试.html" class="navigation navigation-next " aria-label="Next page: 模型评估_AB测试">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
-
-    <script>
+<div class="search-results">
+<div class="has-results">
+<h1 class="search-results-title"><span class="search-results-count"></span> results matching "<span class="search-query"></span>"</h1>
+<ul class="search-results-list"></ul>
+</div>
+<div class="no-results">
+<h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a aria-label="Previous page: 模型评估" class="navigation navigation-prev" href="模型评估.html">
+<i class="fa fa-angle-left"></i>
+</a>
+<a aria-label="Next page: 模型评估_AB测试" class="navigation navigation-next" href="模型评估_AB测试.html">
+<i class="fa fa-angle-right"></i>
+</a>
+</div>
+<script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"模型评估_评估指标","level":"1.4.1","depth":2,"next":{"title":"模型评估_AB测试","level":"1.4.2","depth":2,"path":"chapters/模型评估_AB测试.md","ref":"chapters/模型评估_AB测试.md","articles":[]},"previous":{"title":"模型评估","level":"1.4","depth":1,"path":"chapters/模型评估.md","ref":"chapters/模型评估.md","articles":[{"title":"模型评估_评估指标","level":"1.4.1","depth":2,"path":"chapters/模型评估_评估指标.md","ref":"chapters/模型评估_评估指标.md","articles":[]},{"title":"模型评估_AB测试","level":"1.4.2","depth":2,"path":"chapters/模型评估_AB测试.md","ref":"chapters/模型评估_AB测试.md","articles":[]},{"title":"模型评估_过拟合和欠拟合","level":"1.4.3","depth":2,"path":"chapters/模型评估_过拟合和欠拟合.md","ref":"chapters/模型评估_过拟合和欠拟合.md","articles":[]},{"title":"模型评估_超参数选择","level":"1.4.4","depth":2,"path":"chapters/模型评估_超参数选择.md","ref":"chapters/模型评估_超参数选择.md","articles":[]},{"title":"模型评估_模型评估方法","level":"1.4.5","depth":2,"path":"chapters/模型评估_模型评估方法.md","ref":"chapters/模型评估_模型评估方法.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/模型评估_评估指标.md","mtime":"2022-02-07T06:55:58.086Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-07T06:57:25.147Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"模型评估_评估指标","level":"1.4.1","depth":2,"next":{"title":"模型评估_AB测试","level":"1.4.2","depth":2,"path":"chapters/模型评估_AB测试.md","ref":"chapters/模型评估_AB测试.md","articles":[]},"previous":{"title":"模型评估","level":"1.4","depth":1,"path":"chapters/模型评估.md","ref":"chapters/模型评估.md","articles":[{"title":"模型评估_评估指标","level":"1.4.1","depth":2,"path":"chapters/模型评估_评估指标.md","ref":"chapters/模型评估_评估指标.md","articles":[]},{"title":"模型评估_AB测试","level":"1.4.2","depth":2,"path":"chapters/模型评估_AB测试.md","ref":"chapters/模型评估_AB测试.md","articles":[]},{"title":"模型评估_过拟合和欠拟合","level":"1.4.3","depth":2,"path":"chapters/模型评估_过拟合和欠拟合.md","ref":"chapters/模型评估_过拟合和欠拟合.md","articles":[]},{"title":"模型评估_超参数选择","level":"1.4.4","depth":2,"path":"chapters/模型评估_超参数选择.md","ref":"chapters/模型评估_超参数选择.md","articles":[]},{"title":"模型评估_模型评估方法","level":"1.4.5","depth":2,"path":"chapters/模型评估_模型评估方法.md","ref":"chapters/模型评估_模型评估方法.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/模型评估_评估指标.md","mtime":"2022-02-15T13:30:23.521Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-15T13:32:13.117Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
-
-        
-    
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
-        
-    
-        
-        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lightbox/js/lightbox.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-change_girls/girls.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
-        
-    
-
-    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
-
-    </body>
+<script src="../gitbook/gitbook.js"></script>
+<script src="../gitbook/theme.js"></script>
+<script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+<script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+<script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+<script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+<script src="../gitbook/gitbook-plugin-lightbox/js/lightbox.min.js"></script>
+<script src="../gitbook/gitbook-plugin-change_girls/girls.js"></script>
+<script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+<script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+<script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+</body>
 </html>
-

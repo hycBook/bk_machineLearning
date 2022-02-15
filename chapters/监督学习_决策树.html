@@ -1,1254 +1,801 @@
-
 <!DOCTYPE HTML>
-<html lang="zh-hans" >
-    <head>
-        <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>监督学习_决策树 · 机器学习相关学习记录</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        <meta name="author" content="narutohyc">
-        
-        
-    
-    
-    <link rel="stylesheet" href="../gitbook/style.css">
-
-    
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-lightbox/css/lightbox.min.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-change_girls/girls.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
-                
-            
-        
-
-    
-
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-
-    
-
-        
-    
-    
-    
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="监督学习_K近邻法.html" />
-    
-    
-    <link rel="prev" href="监督学习_朴素贝叶斯分类.html" />
-    
-
-    
-        <link rel="shortcut icon" href="./chapters/res/other/favicon.ico" type="image/x-icon">
-    
-    
-    
-    
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./chapters/res/other/favicon.ico">
-    
-    
-        
-    
-    
-        
-    
-
-    
-        <link rel="shortcut icon" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png' type="image/x-icon">
-    
-    
-        <link rel="bookmark" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png' type="image/x-icon">
-    
-    
-        <link rel="apple-touch-icon" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png'>
-    
-    
-        
-        <link rel="apple-touch-icon" sizes="120x120" href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png">
-        
-        <link rel="apple-touch-icon" sizes="180x180" href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png">
-        
-    
-
-    <style>
+<html lang="zh-hans">
+<head>
+<meta charset="utf-8"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>监督学习_决策树 · 机器学习相关学习记录</title>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="" name="description"/>
+<meta content="GitBook 3.2.3" name="generator"/>
+<meta content="narutohyc" name="author"/>
+<link href="../gitbook/style.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-splitter/splitter.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-anchors/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-donate/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-code/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-search-plus/search.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-lightbox/css/lightbox.min.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-change_girls/girls.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-pageview-count/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-theme-comscore/test.css" rel="stylesheet"/>
+<meta content="true" name="HandheldFriendly"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<link href="../gitbook/images/apple-touch-icon-precomposed-152.png" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="../gitbook/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="监督学习_K近邻法.html" rel="next"/>
+<link href="监督学习_朴素贝叶斯分类.html" rel="prev"/>
+<link href="./chapters/res/other/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="./chapters/res/other/favicon.ico" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="bookmark" type="image/x-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon" sizes="120x120"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon" sizes="180x180"/>
+<style>
     @media only screen and (max-width: 640px) {
         .book-header .hidden-mobile {
             display: none;
         }
     }
     </style>
-    <script>
+<script>
         window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]};
     </script>
-
-    </head>
-    <body>
-        
+</head>
+<body>
 <div class="book">
-    <div class="book-summary">
-        
-            
+<div class="book-summary">
 <div id="book-search-input" role="search">
-    <input type="text" placeholder="输入并搜索" />
+<input placeholder="输入并搜索" type="text"/>
 </div>
-
-            
-                <nav role="navigation">
-                
-
-
+<nav role="navigation">
 <ul class="summary">
-    
-    
-    
-        
-        <li>
-            <a href="https://github.com/narutohyc" target="_blank" class="custom-link">我的狗窝</a>
-        </li>
-    
-    
-
-    
-    <li class="divider"></li>
-    
-
-    
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="../">
-            
-                <a href="../">
-            
-                    
-                        <b>1.1.</b>
+<li>
+<a class="custom-link" href="https://github.com/narutohyc" target="_blank">我的狗窝</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-level="1.1" data-path="../">
+<a href="../">
+<b>1.1.</b>
                     
                     Introduction
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2" data-path="机器学习基础.html">
-            
-                <a href="机器学习基础.html">
-            
-                    
-                        <b>1.2.</b>
+</li>
+<li class="chapter" data-level="1.2" data-path="机器学习基础.html">
+<a href="机器学习基础.html">
+<b>1.2.</b>
                     
                     机器学习基础
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.2.1" data-path="机器学习基础_距离.html">
-            
-                <a href="机器学习基础_距离.html">
-            
-                    
-                        <b>1.2.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.2.1" data-path="机器学习基础_距离.html">
+<a href="机器学习基础_距离.html">
+<b>1.2.1.</b>
                     
                     机器学习基础_距离
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.2" data-path="机器学习基础_概率论基础.html">
-            
-                <a href="机器学习基础_概率论基础.html">
-            
-                    
-                        <b>1.2.2.</b>
+</li>
+<li class="chapter" data-level="1.2.2" data-path="机器学习基础_概率论基础.html">
+<a href="机器学习基础_概率论基础.html">
+<b>1.2.2.</b>
                     
                     机器学习基础_概率论基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.3" data-path="机器学习基础_线性代数基础.html">
-            
-                <a href="机器学习基础_线性代数基础.html">
-            
-                    
-                        <b>1.2.3.</b>
+</li>
+<li class="chapter" data-level="1.2.3" data-path="机器学习基础_线性代数基础.html">
+<a href="机器学习基础_线性代数基础.html">
+<b>1.2.3.</b>
                     
                     机器学习基础_线性代数基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.4" data-path="机器学习基础_微积分基础.html">
-            
-                <a href="机器学习基础_微积分基础.html">
-            
-                    
-                        <b>1.2.4.</b>
+</li>
+<li class="chapter" data-level="1.2.4" data-path="机器学习基础_微积分基础.html">
+<a href="机器学习基础_微积分基础.html">
+<b>1.2.4.</b>
                     
                     机器学习基础_微积分基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.5" data-path="机器学习基础_最优化理论.html">
-            
-                <a href="机器学习基础_最优化理论.html">
-            
-                    
-                        <b>1.2.5.</b>
+</li>
+<li class="chapter" data-level="1.2.5" data-path="机器学习基础_最优化理论.html">
+<a href="机器学习基础_最优化理论.html">
+<b>1.2.5.</b>
                     
                     机器学习基础_最优化理论
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.6" data-path="机器学习基础_损失函数.html">
-            
-                <a href="机器学习基础_损失函数.html">
-            
-                    
-                        <b>1.2.6.</b>
+</li>
+<li class="chapter" data-level="1.2.6" data-path="机器学习基础_损失函数.html">
+<a href="机器学习基础_损失函数.html">
+<b>1.2.6.</b>
                     
                     机器学习基础_损失函数
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3" data-path="特征工程.html">
-            
-                <a href="特征工程.html">
-            
-                    
-                        <b>1.3.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.3" data-path="特征工程.html">
+<a href="特征工程.html">
+<b>1.3.</b>
                     
                     特征工程
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.3.1" data-path="特征工程_归一化.html">
-            
-                <a href="特征工程_归一化.html">
-            
-                    
-                        <b>1.3.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.3.1" data-path="特征工程_归一化.html">
+<a href="特征工程_归一化.html">
+<b>1.3.1.</b>
                     
                     特征工程_归一化
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.2" data-path="特征工程_编码.html">
-            
-                <a href="特征工程_编码.html">
-            
-                    
-                        <b>1.3.2.</b>
+</li>
+<li class="chapter" data-level="1.3.2" data-path="特征工程_编码.html">
+<a href="特征工程_编码.html">
+<b>1.3.2.</b>
                     
                     特征工程_编码
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.3" data-path="特征工程_特征组合.html">
-            
-                <a href="特征工程_特征组合.html">
-            
-                    
-                        <b>1.3.3.</b>
+</li>
+<li class="chapter" data-level="1.3.3" data-path="特征工程_特征组合.html">
+<a href="特征工程_特征组合.html">
+<b>1.3.3.</b>
                     
                     特征工程_特征组合
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.4" data-path="特征工程_特征选择.html">
-            
-                <a href="特征工程_特征选择.html">
-            
-                    
-                        <b>1.3.4.</b>
+</li>
+<li class="chapter" data-level="1.3.4" data-path="特征工程_特征选择.html">
+<a href="特征工程_特征选择.html">
+<b>1.3.4.</b>
                     
                     特征工程_特征选择
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="特征工程_文本表示模型.html">
-            
-                <a href="特征工程_文本表示模型.html">
-            
-                    
-                        <b>1.3.5.</b>
+</li>
+<li class="chapter" data-level="1.3.5" data-path="特征工程_文本表示模型.html">
+<a href="特征工程_文本表示模型.html">
+<b>1.3.5.</b>
                     
                     特征工程_文本表示模型
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.6" data-path="特征工程_图像增强.html">
-            
-                <a href="特征工程_图像增强.html">
-            
-                    
-                        <b>1.3.6.</b>
+</li>
+<li class="chapter" data-level="1.3.6" data-path="特征工程_图像增强.html">
+<a href="特征工程_图像增强.html">
+<b>1.3.6.</b>
                     
                     特征工程_图像增强
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4" data-path="模型评估.html">
-            
-                <a href="模型评估.html">
-            
-                    
-                        <b>1.4.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.4" data-path="模型评估.html">
+<a href="模型评估.html">
+<b>1.4.</b>
                     
                     模型评估
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.1" data-path="模型评估_评估指标.html">
-            
-                <a href="模型评估_评估指标.html">
-            
-                    
-                        <b>1.4.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.4.1" data-path="模型评估_评估指标.html">
+<a href="模型评估_评估指标.html">
+<b>1.4.1.</b>
                     
                     模型评估_评估指标
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="模型评估_AB测试.html">
-            
-                <a href="模型评估_AB测试.html">
-            
-                    
-                        <b>1.4.2.</b>
+</li>
+<li class="chapter" data-level="1.4.2" data-path="模型评估_AB测试.html">
+<a href="模型评估_AB测试.html">
+<b>1.4.2.</b>
                     
                     模型评估_AB测试
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.3" data-path="模型评估_过拟合和欠拟合.html">
-            
-                <a href="模型评估_过拟合和欠拟合.html">
-            
-                    
-                        <b>1.4.3.</b>
+</li>
+<li class="chapter" data-level="1.4.3" data-path="模型评估_过拟合和欠拟合.html">
+<a href="模型评估_过拟合和欠拟合.html">
+<b>1.4.3.</b>
                     
                     模型评估_过拟合和欠拟合
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.4" data-path="模型评估_超参数选择.html">
-            
-                <a href="模型评估_超参数选择.html">
-            
-                    
-                        <b>1.4.4.</b>
+</li>
+<li class="chapter" data-level="1.4.4" data-path="模型评估_超参数选择.html">
+<a href="模型评估_超参数选择.html">
+<b>1.4.4.</b>
                     
                     模型评估_超参数选择
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.5" data-path="模型评估_模型评估方法.html">
-            
-                <a href="模型评估_模型评估方法.html">
-            
-                    
-                        <b>1.4.5.</b>
+</li>
+<li class="chapter" data-level="1.4.5" data-path="模型评估_模型评估方法.html">
+<a href="模型评估_模型评估方法.html">
+<b>1.4.5.</b>
                     
                     模型评估_模型评估方法
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5" data-path="降维.html">
-            
-                <a href="降维.html">
-            
-                    
-                        <b>1.5.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.5" data-path="降维.html">
+<a href="降维.html">
+<b>1.5.</b>
                     
                     降维
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.5.1" data-path="降维_PCA主成分分析.html">
-            
-                <a href="降维_PCA主成分分析.html">
-            
-                    
-                        <b>1.5.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.5.1" data-path="降维_PCA主成分分析.html">
+<a href="降维_PCA主成分分析.html">
+<b>1.5.1.</b>
                     
                     降维_PCA主成分分析
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.2" data-path="降维_LDA线性判别分析.html">
-            
-                <a href="降维_LDA线性判别分析.html">
-            
-                    
-                        <b>1.5.2.</b>
+</li>
+<li class="chapter" data-level="1.5.2" data-path="降维_LDA线性判别分析.html">
+<a href="降维_LDA线性判别分析.html">
+<b>1.5.2.</b>
                     
                     降维_LDA线性判别分析
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6" data-path="监督学习.html">
-            
-                <a href="监督学习.html">
-            
-                    
-                        <b>1.6.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.6" data-path="监督学习.html">
+<a href="监督学习.html">
+<b>1.6.</b>
                     
                     监督学习
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.6.1" data-path="监督学习_朴素贝叶斯分类.html">
-            
-                <a href="监督学习_朴素贝叶斯分类.html">
-            
-                    
-                        <b>1.6.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.6.1" data-path="监督学习_朴素贝叶斯分类.html">
+<a href="监督学习_朴素贝叶斯分类.html">
+<b>1.6.1.</b>
                     
                     监督学习_朴素贝叶斯分类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.6.2" data-path="监督学习_决策树.html">
-            
-                <a href="监督学习_决策树.html">
-            
-                    
-                        <b>1.6.2.</b>
+</li>
+<li class="chapter active" data-level="1.6.2" data-path="监督学习_决策树.html">
+<a href="监督学习_决策树.html">
+<b>1.6.2.</b>
                     
                     监督学习_决策树
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.3" data-path="监督学习_K近邻法.html">
-            
-                <a href="监督学习_K近邻法.html">
-            
-                    
-                        <b>1.6.3.</b>
+</li>
+<li class="chapter" data-level="1.6.3" data-path="监督学习_K近邻法.html">
+<a href="监督学习_K近邻法.html">
+<b>1.6.3.</b>
                     
                     监督学习_K近邻法
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.4" data-path="监督学习_支持向量机.html">
-            
-                <a href="监督学习_支持向量机.html">
-            
-                    
-                        <b>1.6.4.</b>
+</li>
+<li class="chapter" data-level="1.6.4" data-path="监督学习_支持向量机.html">
+<a href="监督学习_支持向量机.html">
+<b>1.6.4.</b>
                     
                     监督学习_支持向量机
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.5" data-path="监督学习_CRF.html">
-            
-                <a href="监督学习_CRF.html">
-            
-                    
-                        <b>1.6.5.</b>
+</li>
+<li class="chapter" data-level="1.6.5" data-path="监督学习_CRF.html">
+<a href="监督学习_CRF.html">
+<b>1.6.5.</b>
                     
                     监督学习_CRF
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7" data-path="非监督学习.html">
-            
-                <a href="非监督学习.html">
-            
-                    
-                        <b>1.7.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.7" data-path="非监督学习.html">
+<a href="非监督学习.html">
+<b>1.7.</b>
                     
                     非监督学习
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.7.1" data-path="非监督学习_K均值.html">
-            
-                <a href="非监督学习_K均值.html">
-            
-                    
-                        <b>1.7.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.7.1" data-path="非监督学习_K均值.html">
+<a href="非监督学习_K均值.html">
+<b>1.7.1.</b>
                     
                     非监督学习_K均值
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.2" data-path="非监督学习_Mean Shift均值漂移聚类.html">
-            
-                <a href="非监督学习_Mean Shift均值漂移聚类.html">
-            
-                    
-                        <b>1.7.2.</b>
+</li>
+<li class="chapter" data-level="1.7.2" data-path="非监督学习_Mean Shift均值漂移聚类.html">
+<a href="非监督学习_Mean Shift均值漂移聚类.html">
+<b>1.7.2.</b>
                     
                     非监督学习_Mean Shift均值漂移聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.3" data-path="非监督学习_DBSCAN基于密度的聚类方法.html">
-            
-                <a href="非监督学习_DBSCAN基于密度的聚类方法.html">
-            
-                    
-                        <b>1.7.3.</b>
+</li>
+<li class="chapter" data-level="1.7.3" data-path="非监督学习_DBSCAN基于密度的聚类方法.html">
+<a href="非监督学习_DBSCAN基于密度的聚类方法.html">
+<b>1.7.3.</b>
                     
                     非监督学习_DBSCAN基于密度的聚类方法
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.4" data-path="非监督学习_Hierarchical Clustering层次聚类.html">
-            
-                <a href="非监督学习_Hierarchical Clustering层次聚类.html">
-            
-                    
-                        <b>1.7.4.</b>
+</li>
+<li class="chapter" data-level="1.7.4" data-path="非监督学习_Hierarchical Clustering层次聚类.html">
+<a href="非监督学习_Hierarchical Clustering层次聚类.html">
+<b>1.7.4.</b>
                     
                     非监督学习_Hierarchical Clustering层次聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.5" data-path="非监督学习_Spectral Clustering谱聚类.html">
-            
-                <a href="非监督学习_Spectral Clustering谱聚类.html">
-            
-                    
-                        <b>1.7.5.</b>
+</li>
+<li class="chapter" data-level="1.7.5" data-path="非监督学习_Spectral Clustering谱聚类.html">
+<a href="非监督学习_Spectral Clustering谱聚类.html">
+<b>1.7.5.</b>
                     
                     非监督学习_Spectral Clustering谱聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.8" data-path="半监督学习.html">
-            
-                <a href="半监督学习.html">
-            
-                    
-                        <b>1.8.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.8" data-path="半监督学习.html">
+<a href="半监督学习.html">
+<b>1.8.</b>
                     
                     半监督学习
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9" data-path="集成学习.html">
-            
-                <a href="集成学习.html">
-            
-                    
-                        <b>1.9.</b>
+</li>
+<li class="chapter" data-level="1.9" data-path="集成学习.html">
+<a href="集成学习.html">
+<b>1.9.</b>
                     
                     集成学习
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.10" data-path="强化学习.html">
-            
-                <a href="强化学习.html">
-            
-                    
-                        <b>1.10.</b>
+</li>
+<li class="chapter" data-level="1.10" data-path="强化学习.html">
+<a href="强化学习.html">
+<b>1.10.</b>
                     
                     强化学习
             
                 </a>
-            
-
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+</li>
+<li class="divider"></li>
+<li>
+<a class="gitbook-link" href="https://www.gitbook.com" target="blank">
             本书使用 GitBook 发布
         </a>
-    </li>
+</li>
 </ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >监督学习_决策树</a>
-    </h1>
+</nav>
 </div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="..">监督学习_决策树</a>
+</h1>
+</div>
+<div class="page-wrapper" role="main" tabindex="-1">
+<div class="page-inner">
 <div class="search-plus" id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x51B3;&#x7B56;&#x6811;decision-tree"><b></b>&#x51B3;&#x7B56;&#x6811;(Decision Tree)</a></li><li><span class="title-icon "></span><a href="#&#x7279;&#x5F81;&#x9009;&#x62E9;"><b></b>&#x7279;&#x5F81;&#x9009;&#x62E9;</a></li><li><span class="title-icon "></span><a href="#id3&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;"><b></b>ID3&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;</a></li><li><span class="title-icon "></span><a href="#c45&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;"><b></b>C4.5&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;</a></li><li><span class="title-icon "></span><a href="#cart&#x2014;&#x6700;&#x5927;&#x57FA;&#x5C3C;&#x6307;&#x6570;gini"><b></b>CART&#x2014;&#x6700;&#x5927;&#x57FA;&#x5C3C;&#x6307;&#x6570;(Gini)</a></li><li><span class="title-icon "></span><a href="#&#x6784;&#x9020;&#x51C6;&#x5219;&#x6BD4;&#x8F83;"><b></b>&#x6784;&#x9020;&#x51C6;&#x5219;&#x6BD4;&#x8F83;</a></li><li><span class="title-icon "></span><a href="#&#x526A;&#x679D;&#x64CD;&#x4F5C;"><b></b>&#x526A;&#x679D;&#x64CD;&#x4F5C;</a></li><ul><li><span class="title-icon "></span><a href="#&#x9884;&#x526A;&#x679D;"><b></b>&#x9884;&#x526A;&#x679D;</a></li><li><span class="title-icon "></span><a href="#&#x540E;&#x526A;&#x679D;"><b></b>&#x540E;&#x526A;&#x679D;</a></li><li><span class="title-icon "></span><a href="#cart&#x526A;&#x679D;"><b></b>CART&#x526A;&#x679D;</a></li></ul></ul></div><a href="#&#x51B3;&#x7B56;&#x6811;decision-tree" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a href="res/other/&#x5F02;&#x4E16;&#x754C;&#x857E;&#x59C6;_1.png" data-lightbox="91b605f2-7da1-4ba5-9723-a9ce59ca07c0" data-title="&#x5F02;&#x4E16;&#x754C;.png"><img src="res/other/&#x5F02;&#x4E16;&#x754C;&#x857E;&#x59C6;_1.png" alt="&#x5F02;&#x4E16;&#x754C;.png"></a></p>
+<div class="search-noresults">
+<section class="normal markdown-section">
+<div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon"></span><a href="#决策树decision-tree">1 决策树(Decision Tree)</a></li><li><span class="title-icon"></span><a href="#特征选择">2 特征选择</a></li><li><span class="title-icon"></span><a href="#id3—最大信息增益">3 ID3—最大信息增益</a></li><li><span class="title-icon"></span><a href="#c45—最大信息增益比">4 C4.5—最大信息增益比</a></li><li><span class="title-icon"></span><a href="#cart—最大基尼指数gini">5 CART—最大基尼指数(Gini)</a></li><li><span class="title-icon"></span><a href="#构造准则比较">6 构造准则比较</a></li><li><span class="title-icon"></span><a href="#剪枝操作">7 剪枝操作</a></li><ul><li><span class="title-icon"></span><a href="#预剪枝">7.1 预剪枝</a></li><li><span class="title-icon"></span><a href="#后剪枝">7.2 后剪枝</a></li><li><span class="title-icon"></span><a href="#cart剪枝">7.3 CART剪枝</a></li></ul></ul></div><a href="#决策树decision-tree" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a data-lightbox="91c8f3a0-9d32-4ae4-af69-082610a686d3" data-title="异世界.png" href="res/other/异世界蕾姆_1.png"><img alt="异世界.png" src="res/other/异世界蕾姆_1.png"/></a></p>
 <p>[TOC]</p>
-<h1 id="&#x51B3;&#x7B56;&#x6811;decision-tree"><a name="&#x51B3;&#x7B56;&#x6811;decision-tree" class="anchor-navigation-ex-anchor" href="#&#x51B3;&#x7B56;&#x6811;decision-tree"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x51B3;&#x7B56;&#x6811;decision-tree" class="plugin-anchor" href="#&#x51B3;&#x7B56;&#x6811;decision-tree"><i class="fa fa-link" aria-hidden="true"></i></a>&#x51B3;&#x7B56;&#x6811;(Decision Tree)</h1>
+<h1 id="决策树decision-tree">1 决策树(Decision Tree)</h1>
 <blockquote>
-<p><code>&#x51B3;&#x7B56;&#x6811;</code>&#x662F;&#x4E00;&#x79CD;&#x81EA;&#x4E0A;&#x800C;&#x4E0B;&#xFF0C;&#x5BF9;&#x6837;&#x672C;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x6811;&#x5F62;&#x5206;&#x7C7B;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x7531;&#x7ED3;&#x70B9;&#x548C;&#x6709;&#x5411;&#x8FB9;&#x7EC4;&#x6210;&#x3002;&#x7ED3;&#x70B9;&#x5206;&#x4E3A;&#x5185;&#x90E8;&#x7ED3;&#x70B9;&#x548C;&#x53F6;&#x7ED3;&#x70B9;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x5185;&#x90E8;&#x7ED3;&#x70B9;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x7279;&#x5F81;&#x6216;&#x5C5E;&#x6027;&#xFF0C;&#x53F6;&#x7ED3;&#x70B9;&#x8868;&#x793A;&#x7C7B;&#x522B;&#x3002;&#x4ECE;&#x9876;&#x90E8;&#x6839;&#x7ED3;&#x70B9;&#x5F00;&#x59CB;&#xFF0C;&#x6240;&#x6709;&#x6837;&#x672C;&#x805A;&#x5728;&#x4E00;&#x8D77;&#x3002;&#x7ECF;&#x8FC7;&#x6839;&#x7ED3;&#x70B9;&#x7684;&#x5212;&#x5206;&#xFF0C;&#x6837;&#x672C;&#x88AB;&#x5206;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x5B50;&#x7ED3;&#x70B9;&#x4E2D;&#x3002;&#x518D;&#x6839;&#x636E;&#x5B50;&#x7ED3;&#x70B9;&#x7684;&#x7279;&#x5F81;&#x8FDB;&#x4E00;&#x6B65;&#x5212;&#x5206;&#xFF0C;&#x76F4;&#x81F3;&#x6240;&#x6709;&#x6837;&#x672C;&#x90FD;&#x88AB;&#x5F52;&#x5230;&#x67D0;&#x4E00;&#x4E2A;&#x7C7B;&#x522B;(&#x5373;&#x53F6;&#x7ED3;&#x70B9;)&#x4E2D;&#x3002;</p>
-<p>&#x51B3;&#x7B56;&#x6811;&#x4F5C;&#x4E3A;&#x6700;&#x57FA;&#x7840;&#x3001;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x6709;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x6A21;&#x578B;&#xFF0C;&#x5E38;&#x88AB;&#x7528;&#x4E8E;&#x5206;&#x7C7B;&#x95EE;&#x9898;&#x548C;&#x56DE;&#x5F52;&#x95EE;&#x9898;&#xFF0C;&#x5728;&#x5E02;&#x573A;&#x8425;&#x9500;&#x548C;&#x751F;&#x7269;&#x533B;&#x836F;&#x7B49;&#x9886;&#x57DF;&#x5C24;&#x5176;&#x53D7;&#x6B22;&#x8FCE;&#xFF0C;&#x4E3B;&#x8981;&#x56E0;&#x4E3A;&#x6811;&#x5F62;&#x7ED3;&#x6784;&#x4E0E;&#x9500;&#x552E;&#x3001;&#x8BCA;&#x65AD;&#x7B49;&#x573A;&#x666F;&#x4E0B;&#x7684;&#x51B3;&#x7B56;&#x8FC7;&#x7A0B;&#x5341;&#x5206;&#x76F8;&#x4F3C;&#x3002;&#x5C06;&#x51B3;&#x7B56;&#x6811;&#x5E94;&#x7528;&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x7684;&#x601D;&#x60F3;&#x53EF;&#x4EE5;&#x5F97;&#x5230;<code>&#x968F;&#x673A;&#x68EE;&#x6797;&#x3001;&#x68AF;&#x5EA6;&#x63D0;&#x5347;&#x51B3;&#x7B56;&#x6811;</code>&#x7B49;&#x6A21;&#x578B;&#x3002;</p>
-<p>&#x51B3;&#x7B56;&#x6811;&#x7684;&#x751F;&#x6210;&#x5305;&#x542B;&#x4E86;<code>&#x7279;&#x5F81;&#x9009;&#x62E9;</code>&#x3001;<code>&#x6811;&#x7684;&#x6784;&#x9020;</code>&#x3001;<code>&#x6811;&#x7684;&#x526A;&#x679D;</code>&#x4E09;&#x4E2A;&#x8FC7;&#x7A0B;</p>
-<p><a href="res/Machine%20Learning%20Base/14638325-7063207f1274c675.webp" data-lightbox="88b1455d-1f2e-4a12-8c6d-dc8a078626e4" data-title="img"><img src="res/Machine%20Learning%20Base/14638325-7063207f1274c675.webp" alt="img"></a></p>
+<p><code>决策树</code>是一种自上而下，对样本数据进行树形分类的过程，由结点和有向边组成。结点分为内部结点和叶结点，其中每个内部结点表示一个特征或属性，叶结点表示类别。从顶部根结点开始，所有样本聚在一起。经过根结点的划分，样本被分到不同的子结点中。再根据子结点的特征进一步划分，直至所有样本都被归到某一个类别(即叶结点)中。</p>
+<p>决策树作为最基础、最常见的有监督学习模型，常被用于分类问题和回归问题，在市场营销和生物医药等领域尤其受欢迎，主要因为树形结构与销售、诊断等场景下的决策过程十分相似。将决策树应用集成学习的思想可以得到<code>随机森林、梯度提升决策树</code>等模型。</p>
+<p>决策树的生成包含了<code>特征选择</code>、<code>树的构造</code>、<code>树的剪枝</code>三个过程</p>
+<p><a data-lightbox="19796e0e-f98a-4c4e-af62-7287b8f1d898" data-title="img" href="res/Machine%20Learning%20Base/14638325-7063207f1274c675.webp"><img alt="img" src="res/Machine%20Learning%20Base/14638325-7063207f1274c675.webp"/></a></p>
 </blockquote>
-<h1 id="&#x7279;&#x5F81;&#x9009;&#x62E9;"><a name="&#x7279;&#x5F81;&#x9009;&#x62E9;" class="anchor-navigation-ex-anchor" href="#&#x7279;&#x5F81;&#x9009;&#x62E9;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7279;&#x5F81;&#x9009;&#x62E9;" class="plugin-anchor" href="#&#x7279;&#x5F81;&#x9009;&#x62E9;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7279;&#x5F81;&#x9009;&#x62E9;</h1>
+<h1 id="特征选择">2 特征选择</h1>
 <blockquote>
 <blockquote>
-<p>&#x7279;&#x5F81;&#x9009;&#x62E9;&#x5728;&#x4E8E;&#x9009;&#x53D6;&#x5BF9;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x5177;&#x6709;&#x5206;&#x7C7B;&#x80FD;&#x529B;&#x7684;&#x7279;&#x5F81;&#x3002;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x63D0;&#x9AD8;&#x51B3;&#x7B56;&#x6811;&#x5B66;&#x4E60;&#x7684;&#x6548;&#x7387;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x5229;&#x7528;&#x4E00;&#x4E2A;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x7684;&#x7ED3;&#x679C;&#x4E0E;&#x968F;&#x673A;&#x5206;&#x7C7B;&#x7684;&#x7ED3;&#x679C;&#x6CA1;&#x6709;&#x5F88;&#x5927;&#x5DEE;&#x522B;&#xFF0C;&#x79F0;&#x8FD9;&#x4E2A;&#x7279;&#x5F81;&#x662F;&#x6CA1;&#x6709;&#x5206;&#x7C7B;&#x80FD;&#x529B;&#x7684;&#x3002;</p>
-<p>&#x7ECF;&#x9A8C;&#x4E0A;&#x6254;&#x6389;&#x8FD9;&#x6837;&#x7684;&#x7279;&#x5F81;&#x5BF9;&#x51B3;&#x7B56;&#x6811;&#x5B66;&#x4E60;&#x7684;&#x7CBE;&#x5EA6;&#x5F71;&#x54CD;&#x4E0D;&#x5927;&#x3002;</p>
-<p>&#x901A;&#x5E38;&#x7279;&#x5F81;&#x9009;&#x62E9;&#x7684;&#x51C6;&#x5219;&#x662F;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6216;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;&#x3002;</p>
-<p><code>&#x4FE1;&#x606F;&#x589E;&#x76CA;</code></p>
-<p>&#x5728;&#x4FE1;&#x606F;&#x8BBA;&#x4E0E;&#x6982;&#x7387;&#x7EDF;&#x8BA1;&#x4E2D;&#xFF0C;<code>&#x71B5;(entropy)</code>&#x662F;&#x8868;&#x793A;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x4E0D;&#x786E;&#x5B9A;&#x6027;&#x7684;&#x5EA6;&#x91CF;&#x3002;&#x8BBE;X&#x662F;&#x4E00;&#x4E2A;&#x53D6;&#x6709;&#x9650;&#x4E2A;&#x503C;&#x7684;&#x79BB;&#x6563;&#x968F;&#x673A;&#x53D8;&#x91CF;&#xFF0C;&#x5176;&#x6982;&#x7387;&#x5206;&#x5E03;&#x4E3A;
+<p>特征选择在于选取对训练数据具有分类能力的特征。这样可以提高决策树学习的效率。</p>
+<p>如果利用一个特征进行分类的结果与随机分类的结果没有很大差别，称这个特征是没有分类能力的。</p>
+<p>经验上扔掉这样的特征对决策树学习的精度影响不大。</p>
+<p>通常特征选择的准则是信息增益或信息增益比。</p>
+<p><code>信息增益</code></p>
+<p>在信息论与概率统计中，<code>熵(entropy)</code>是表示随机变量不确定性的度量。设X是一个取有限个值的离散随机变量，其概率分布为
 <script type="math/tex; mode=display">
 >>P(X=x_i)=p_i,i=1,2,...,n
 >></script>
-&#x5219;&#x968F;&#x673A;&#x53D8;&#x91CF;<code>X</code>&#x7684;&#x71B5;&#x5B9A;&#x4E49;&#x4E3A;
+则随机变量<code>X</code>的熵定义为
 <script type="math/tex; mode=display">
 >>H(X)=-\sum_{i=1}^{n}{p_i \log (p_i)}
 >></script>
-&#x5728;&#x5F0F;&#x4E2D;&#xFF0C;&#x82E5;<script type="math/tex; ">p_i＝0</script>&#xFF0C;&#x5219;&#x5B9A;&#x4E49;<script type="math/tex; ">0log0＝0</script>&#x3002;</p>
-<p>&#x901A;&#x5E38;&#xFF0C;&#x5F0F;&#x4E2D;&#x7684;&#x5BF9;&#x6570;&#x4EE5;2&#x4E3A;&#x5E95;&#x6216;&#x4EE5;e&#x4E3A;&#x5E95;(&#x81EA;&#x7136;&#x5BF9;&#x6570;)&#xFF0C;&#x8FD9;&#x65F6;&#x71B5;&#x7684;&#x5355;&#x4F4D;&#x5206;&#x522B;&#x79F0;&#x4F5C;&#x6BD4;&#x7279;(bit)&#x6216;&#x7EB3;&#x7279;(nat)&#x3002;</p>
-<p>&#x7531;&#x5B9A;&#x4E49;&#x53EF;&#x77E5;&#xFF0C;&#x71B5;&#x53EA;&#x4F9D;&#x8D56;&#x4E8E;<script type="math/tex; ">X</script>&#x7684;&#x5206;&#x5E03;&#xFF0C;&#x800C;&#x4E0E;<script type="math/tex; ">X</script>&#x7684;&#x53D6;&#x503C;&#x65E0;&#x5173;&#xFF0C;&#x6240;&#x4EE5;&#x4E5F;&#x53EF;&#x5C06;<script type="math/tex; ">X</script>&#x7684;&#x71B5;&#x8BB0;&#x4F5C;<script type="math/tex; ">H(p)</script>&#xFF0C;&#x5373;
+在式中，若<script type="math/tex; ">p_i＝0</script>，则定义<script type="math/tex; ">0log0＝0</script>。</p>
+<p>通常，式中的对数以2为底或以e为底(自然对数)，这时熵的单位分别称作比特(bit)或纳特(nat)。</p>
+<p>由定义可知，熵只依赖于<script type="math/tex; ">X</script>的分布，而与<script type="math/tex; ">X</script>的取值无关，所以也可将<script type="math/tex; ">X</script>的熵记作<script type="math/tex; ">H(p)</script>，即
 <script type="math/tex; mode=display">
 >>H(p)=-\sum_{i=1}^{n}{p_i \log {(p_i)}}
 >></script>
-&#x71B5;&#x8D8A;&#x5927;&#xFF0C;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x7684;&#x4E0D;&#x786E;&#x5B9A;&#x6027;&#x5C31;&#x8D8A;&#x5927;&#x3002;&#x4ECE;&#x5B9A;&#x4E49;&#x53EF;&#x9A8C;&#x8BC1;
+熵越大，随机变量的不确定性就越大。从定义可验证
 <script type="math/tex; mode=display">
 >>0 \leq H(p) \leq log(n)
 >></script>
-&#x5F53;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x53EA;&#x53D6;&#x4E24;&#x4E2A;&#x503C;&#xFF0C;&#x4F8B;&#x5982;1&#xFF0C;0&#x65F6;&#xFF0C;&#x5373;X&#x7684;&#x5206;&#x5E03;&#x4E3A;
+当随机变量只取两个值，例如1，0时，即X的分布为
 <script type="math/tex; mode=display">
 >>P(X=1)=p,P(X=0)=1-p,0 \leq p \leq 1
 >></script>
-&#x71B5;&#x4E3A;
+熵为
 <script type="math/tex; mode=display">
 >>H(p)=-p \log_{2}{p}-(1-p) \log_2(1-p)
 >></script>
-&#x8FD9;&#x65F6;&#xFF0C;&#x71B5;<script type="math/tex; ">H(p)</script>&#x968F;&#x6982;&#x7387;<script type="math/tex; ">p</script>&#x53D8;&#x5316;&#x7684;&#x66F2;&#x7EBF;&#x5982;&#x56FE;&#x6240;&#x793A;(&#x5355;&#x4F4D;&#x4E3A;&#x6BD4;&#x7279;)&#x3002;</p>
-<p><a href="res/Machine%20Learning%20Base/1570026923638.png" data-lightbox="b73f8a04-6b5f-4a1a-b6d3-979ff9f197c7" data-title="1570026923638"><img src="res/Machine%20Learning%20Base/1570026923638.png" alt="1570026923638"></a></p>
-<p>&#x5F53;<script type="math/tex; ">p＝0</script>&#x6216;<script type="math/tex; ">p＝1</script>&#x65F6;<script type="math/tex; ">H(p)＝0</script>&#xFF0C;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x5B8C;&#x5168;&#x6CA1;&#x6709;&#x4E0D;&#x786E;&#x5B9A;&#x6027;&#x3002;</p>
-<p>&#x5F53;<script type="math/tex; ">p＝0.5</script>&#x65F6;&#xFF0C;<script type="math/tex; ">H(p)＝1</script>&#xFF0C;&#x71B5;&#x53D6;&#x503C;&#x6700;&#x5927;&#xFF0C;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x4E0D;&#x786E;&#x5B9A;&#x6027;&#x6700;&#x5927;&#x3002;</p>
-<p>&#x8BBE;&#x6709;&#x968F;&#x673A;&#x53D8;&#x91CF;<script type="math/tex; ">(X,Y)</script>&#xFF0C;&#x5176;&#x8054;&#x5408;&#x6982;&#x7387;&#x5206;&#x5E03;&#x4E3A;
+这时，熵<script type="math/tex; ">H(p)</script>随概率<script type="math/tex; ">p</script>变化的曲线如图所示(单位为比特)。</p>
+<p><a data-lightbox="87dd5f93-747f-4463-a06d-8a7363744452" data-title="1570026923638" href="res/Machine%20Learning%20Base/1570026923638.png"><img alt="1570026923638" src="res/Machine%20Learning%20Base/1570026923638.png"/></a></p>
+<p>当<script type="math/tex; ">p＝0</script>或<script type="math/tex; ">p＝1</script>时<script type="math/tex; ">H(p)＝0</script>，随机变量完全没有不确定性。</p>
+<p>当<script type="math/tex; ">p＝0.5</script>时，<script type="math/tex; ">H(p)＝1</script>，熵取值最大，随机变量不确定性最大。</p>
+<p>设有随机变量<script type="math/tex; ">(X,Y)</script>，其联合概率分布为
 <script type="math/tex; mode=display">
 >>P(X=x_i,Y=y_i)=p_{ij},i=1,2,...,n;j=1,2,...,n
 >></script>
-<code>&#x6761;&#x4EF6;&#x71B5;</code><script type="math/tex; ">H(Y|X)</script>&#x8868;&#x793A;&#x5728;&#x5DF2;&#x77E5;&#x968F;&#x673A;&#x53D8;&#x91CF;<script type="math/tex; ">X</script>&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#x968F;&#x673A;&#x53D8;&#x91CF;<script type="math/tex; ">Y</script>&#x7684;&#x4E0D;&#x786E;&#x5B9A;&#x6027;&#x3002;</p>
-<p>&#x968F;&#x673A;&#x53D8;&#x91CF;<script type="math/tex; ">X</script>&#x7ED9;&#x5B9A;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#x968F;&#x673A;&#x53D8;&#x91CF;<script type="math/tex; ">Y</script>&#x7684;&#x6761;&#x4EF6;&#x71B5;(conditional entropy)<script type="math/tex; ">H(Y|X)</script>&#xFF0C;&#x5B9A;&#x4E49;&#x4E3A;<script type="math/tex; ">X</script>&#x7ED9;&#x5B9A;&#x6761;&#x4EF6;&#x4E0B;<script type="math/tex; ">Y</script>&#x7684;&#x6761;&#x4EF6;&#x6982;&#x7387;&#x5206;&#x5E03;&#x7684;&#x71B5;&#x5BF9;<script type="math/tex; ">X</script>&#x7684;&#x6570;&#x5B66;&#x671F;&#x671B;
+<code>条件熵</code><script type="math/tex; ">H(Y|X)</script>表示在已知随机变量<script type="math/tex; ">X</script>的条件下随机变量<script type="math/tex; ">Y</script>的不确定性。</p>
+<p>随机变量<script type="math/tex; ">X</script>给定的条件下随机变量<script type="math/tex; ">Y</script>的条件熵(conditional entropy)<script type="math/tex; ">H(Y|X)</script>，定义为<script type="math/tex; ">X</script>给定条件下<script type="math/tex; ">Y</script>的条件概率分布的熵对<script type="math/tex; ">X</script>的数学期望
 <script type="math/tex; mode=display">
 >>H(Y|X)=\sum_{i=1}^{n}{p_iH(Y|X=x_i)}
 >></script>
-&#x8FD9;&#x91CC;&#xFF0C;<script type="math/tex; ">p_i＝P(X＝x_i),i＝1,2,...,n</script>&#x3002;</p>
-<p>&#x5F53;&#x71B5;&#x548C;&#x6761;&#x4EF6;&#x71B5;&#x4E2D;&#x7684;&#x6982;&#x7387;&#x7531;&#x6570;&#x636E;&#x4F30;&#x8BA1;(&#x7279;&#x522B;&#x662F;&#x6781;&#x5927;&#x4F3C;&#x7136;&#x4F30;&#x8BA1;)&#x5F97;&#x5230;&#x65F6;&#xFF0C;&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x71B5;&#x4E0E;&#x6761;&#x4EF6;&#x71B5;&#x5206;&#x522B;&#x79F0;&#x4E3A;<code>&#x7ECF;&#x9A8C;&#x71B5;</code>(empirical entropy)&#x548C;<code>&#x7ECF;&#x9A8C;&#x6761;&#x4EF6;&#x71B5;</code>(empirical conditional entropy)&#x3002;</p>
-<p>&#x6B64;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x6709;0&#x6982;&#x7387;&#xFF0C;&#x4EE4;<script type="math/tex; ">0log0＝0</script>&#x3002;</p>
-<p><code>&#x4FE1;&#x606F;&#x589E;&#x76CA;</code>(information gain)&#x8868;&#x793A;&#x5F97;&#x77E5;&#x7279;&#x5F81;X&#x7684;&#x4FE1;&#x606F;&#x800C;&#x4F7F;&#x5F97;&#x7C7B;Y&#x7684;&#x4FE1;&#x606F;&#x7684;&#x4E0D;&#x786E;&#x5B9A;&#x6027;&#x51CF;&#x5C11;&#x7684;&#x7A0B;&#x5EA6;&#x3002;</p>
-<p>&#x7279;&#x5F81;<script type="math/tex; ">A</script>&#x5BF9;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;<script type="math/tex; ">D</script>&#x7684;&#x4FE1;&#x606F;&#x589E;&#x76CA;<script type="math/tex; ">g(D,A)</script>&#xFF0C;&#x5B9A;&#x4E49;&#x4E3A;&#x96C6;&#x5408;<script type="math/tex; ">D</script>&#x7684;&#x7ECF;&#x9A8C;&#x71B5;<script type="math/tex; ">H(D)</script>&#x4E0E;&#x7279;&#x5F81;<script type="math/tex; ">A</script>&#x7ED9;&#x5B9A;&#x6761;&#x4EF6;&#x4E0B;<script type="math/tex; ">D</script>&#x7684;&#x7ECF;&#x9A8C;&#x6761;&#x4EF6;&#x71B5;<script type="math/tex; ">H(D|A)</script>&#x4E4B;&#x5DEE;&#xFF0C;&#x5373;
+这里，<script type="math/tex; ">p_i＝P(X＝x_i),i＝1,2,...,n</script>。</p>
+<p>当熵和条件熵中的概率由数据估计(特别是极大似然估计)得到时，所对应的熵与条件熵分别称为<code>经验熵</code>(empirical entropy)和<code>经验条件熵</code>(empirical conditional entropy)。</p>
+<p>此时，如果有0概率，令<script type="math/tex; ">0log0＝0</script>。</p>
+<p><code>信息增益</code>(information gain)表示得知特征X的信息而使得类Y的信息的不确定性减少的程度。</p>
+<p>特征<script type="math/tex; ">A</script>对训练数据集<script type="math/tex; ">D</script>的信息增益<script type="math/tex; ">g(D,A)</script>，定义为集合<script type="math/tex; ">D</script>的经验熵<script type="math/tex; ">H(D)</script>与特征<script type="math/tex; ">A</script>给定条件下<script type="math/tex; ">D</script>的经验条件熵<script type="math/tex; ">H(D|A)</script>之差，即
 <script type="math/tex; mode=display">
 >>g(D,A)=H(D)-H(D|A)
 >></script>
-&#x4E00;&#x822C;&#x5730;&#xFF0C;&#x71B5;<script type="math/tex; ">H(Y)</script>&#x4E0E;&#x6761;&#x4EF6;&#x71B5;<script type="math/tex; ">H(Y|X)</script>&#x4E4B;&#x5DEE;&#x79F0;&#x4E3A;<code>&#x4E92;&#x4FE1;&#x606F;</code>(mutual information)&#x3002;</p>
-<p>&#x51B3;&#x7B56;&#x6811;&#x5B66;&#x4E60;&#x4E2D;&#x7684;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x7B49;&#x4EF7;&#x4E8E;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;&#x4E2D;&#x7C7B;&#x4E0E;&#x7279;&#x5F81;&#x7684;&#x4E92;&#x4FE1;&#x606F;&#x3002;</p>
-<p>&#x5BF9;&#x4E8E;&#x6570;&#x636E;&#x96C6;<script type="math/tex; ">D</script>&#x800C;&#x8A00;&#xFF0C;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x4F9D;&#x8D56;&#x4E8E;&#x7279;&#x5F81;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x7279;&#x5F81;&#x5F80;&#x5F80;&#x5177;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x3002;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x5927;&#x7684;&#x7279;&#x5F81;&#x5177;&#x6709;&#x66F4;&#x5F3A;&#x7684;&#x5206;&#x7C7B;&#x80FD;&#x529B;&#x3002;</p>
-<p>&#x6839;&#x636E;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x51C6;&#x5219;&#x7684;&#x7279;&#x5F81;&#x9009;&#x62E9;&#x65B9;&#x6CD5;&#x662F;&#xFF1A;&#x5BF9;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;(&#x6216;&#x5B50;&#x96C6;)<script type="math/tex; ">D</script>&#xFF0C;&#x8BA1;&#x7B97;&#x5176;&#x6BCF;&#x4E2A;&#x7279;&#x5F81;&#x7684;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#xFF0C;&#x5E76;&#x6BD4;&#x8F83;&#x5B83;&#x4EEC;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x9009;&#x62E9;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6700;&#x5927;&#x7684;&#x7279;&#x5F81;&#x3002;</p>
-<p><code>&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;</code></p>
-<p>&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x503C;&#x7684;&#x5927;&#x5C0F;&#x662F;&#x76F8;&#x5BF9;&#x4E8E;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;&#x800C;&#x8A00;&#x7684;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x7EDD;&#x5BF9;&#x610F;&#x4E49;&#x3002;&#x5728;&#x5206;&#x7C7B;&#x95EE;&#x9898;&#x56F0;&#x96BE;&#x65F6;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x5728;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;&#x7684;&#x7ECF;&#x9A8C;&#x71B5;&#x5927;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x503C;&#x4F1A;&#x504F;&#x5927;&#x3002;&#x53CD;&#x4E4B;&#xFF0C;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x503C;&#x4F1A;&#x504F;&#x5C0F;&#x3002;</p>
-<p>&#x4F7F;&#x7528;<code>&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;</code>(information gain ratio)&#x53EF;&#x4EE5;&#x5BF9;&#x8FD9;&#x4E00;&#x95EE;&#x9898;&#x8FDB;&#x884C;&#x6821;&#x6B63;&#x3002;&#x8FD9;&#x662F;&#x7279;&#x5F81;&#x9009;&#x62E9;&#x7684;&#x53E6;&#x4E00;&#x51C6;&#x5219;&#x3002;</p>
-<p>&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;: &#x7279;&#x5F81;<script type="math/tex; ">A</script>&#x5BF9;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;<script type="math/tex; ">D</script>&#x7684;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;<script type="math/tex; ">g_R(D,A)</script>&#x5B9A;&#x4E49;&#x4E3A;&#x5176;&#x4FE1;&#x606F;&#x589E;&#x76CA;<script type="math/tex; ">g(D,A)</script>&#x4E0E;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;<script type="math/tex; ">D</script>&#x7684;&#x7ECF;&#x9A8C;&#x71B5;<script type="math/tex; ">H(D)</script>&#x4E4B;&#x6BD4;&#xFF1A;
+一般地，熵<script type="math/tex; ">H(Y)</script>与条件熵<script type="math/tex; ">H(Y|X)</script>之差称为<code>互信息</code>(mutual information)。</p>
+<p>决策树学习中的信息增益等价于训练数据集中类与特征的互信息。</p>
+<p>对于数据集<script type="math/tex; ">D</script>而言，信息增益依赖于特征，不同的特征往往具有不同的信息增益。信息增益大的特征具有更强的分类能力。</p>
+<p>根据信息增益准则的特征选择方法是：对训练数据集(或子集)<script type="math/tex; ">D</script>，计算其每个特征的信息增益，并比较它们的大小，选择信息增益最大的特征。</p>
+<p><code>信息增益比</code></p>
+<p>信息增益值的大小是相对于训练数据集而言的，并没有绝对意义。在分类问题困难时，也就是说在训练数据集的经验熵大的时候，信息增益值会偏大。反之，信息增益值会偏小。</p>
+<p>使用<code>信息增益比</code>(information gain ratio)可以对这一问题进行校正。这是特征选择的另一准则。</p>
+<p>信息增益比: 特征<script type="math/tex; ">A</script>对训练数据集<script type="math/tex; ">D</script>的信息增益比<script type="math/tex; ">g_R(D,A)</script>定义为其信息增益<script type="math/tex; ">g(D,A)</script>与训练数据集<script type="math/tex; ">D</script>的经验熵<script type="math/tex; ">H(D)</script>之比：
 <script type="math/tex; mode=display">
 >>g_R(D,A)=\frac{g(D,A)}{H(D)}
 >></script></p>
 </blockquote>
 </blockquote>
-<h1 id="id3&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;"><a name="id3&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;" class="anchor-navigation-ex-anchor" href="#id3&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="id3&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;" class="plugin-anchor" href="#id3&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;"><i class="fa fa-link" aria-hidden="true"></i></a>ID3&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;</h1>
+<h1 id="id3—最大信息增益">3 ID3—最大信息增益</h1>
 <blockquote>
-<p>&#x5BF9;&#x4E8E;&#x6837;&#x672C;&#x96C6;&#x5408;<script type="math/tex; ">D</script>&#xFF0C;&#x7C7B;&#x522B;&#x6570;&#x4E3A;<script type="math/tex; ">K</script>&#xFF0C;&#x6570;&#x636E;&#x96C6;<script type="math/tex; ">D</script>&#x7684;&#x7ECF;&#x9A8C;&#x71B5;&#x8868;&#x793A;&#x4E3A;
+<p>对于样本集合<script type="math/tex; ">D</script>，类别数为<script type="math/tex; ">K</script>，数据集<script type="math/tex; ">D</script>的经验熵表示为
 <script type="math/tex; mode=display">
 >H(D)=-\sum_{k=1}^{K}{\frac{|C_k|}{|D|} log_2{\frac{|C_k|}{|D|}}}
 ></script>
-&#x5176;&#x4E2D;<script type="math/tex; ">C_k</script>&#x662F;&#x6837;&#x672C;&#x96C6;&#x5408;<script type="math/tex; ">D</script>&#x4E2D;&#x5C5E;&#x4E8E;&#x7B2C;<script type="math/tex; ">k</script>&#x7C7B;&#x7684;&#x6837;&#x672C;&#x5B50;&#x96C6;&#xFF0C;<script type="math/tex; ">|C_k|</script>&#x4E3A;&#x8BE5;&#x5B50;&#x96C6;&#x7684;&#x5143;&#x7D20;&#x4E2A;&#x6570;&#xFF0C;<script type="math/tex; ">|D|</script>&#x4E3A;&#x6837;&#x672C;&#x96C6;&#x5408;&#x7684;&#x5143;&#x7D20;&#x4E2A;&#x6570;&#x3002;</p>
-<p>&#x7136;&#x540E;&#x8BA1;&#x7B97;&#x67D0;&#x4E2A;&#x7279;&#x5F81;<script type="math/tex; ">A</script>&#x5BF9;&#x4E8E;&#x6570;&#x636E;&#x96C6;<script type="math/tex; ">D</script>&#x7684;&#x7ECF;&#x9A8C;&#x6761;&#x4EF6;&#x71B5;&#x4E3A;<script type="math/tex; ">H(D|A)</script>
+其中<script type="math/tex; ">C_k</script>是样本集合<script type="math/tex; ">D</script>中属于第<script type="math/tex; ">k</script>类的样本子集，<script type="math/tex; ">|C_k|</script>为该子集的元素个数，<script type="math/tex; ">|D|</script>为样本集合的元素个数。</p>
+<p>然后计算某个特征<script type="math/tex; ">A</script>对于数据集<script type="math/tex; ">D</script>的经验条件熵为<script type="math/tex; ">H(D|A)</script>
 <script type="math/tex; mode=display">
 >H(D|A)=\sum_{i=1}^{n}{\frac{|D_i|}{|D|}H(D_i)}=\sum_{i=1}^{n}{\frac{|D_i|}{|D|}(-\sum_{k=1}^{K}{\frac{|D_{ik}|}{|D_i|}log_2{\frac{|D_{ik}|}{|D_i|}}})}
 ></script>
-&#x5176;&#x4E2D;&#xFF0C;<script type="math/tex; ">D_i</script>&#x8868;&#x793A;<script type="math/tex; ">D</script>&#x4E2D;&#x7279;&#x5F81;<script type="math/tex; ">A</script>&#x53D6;&#x7B2C;<script type="math/tex; ">i</script>&#x4E2A;&#x503C;&#x7684;&#x6837;&#x672C;&#x5B50;&#x96C6;&#xFF0C;<script type="math/tex; ">D_{ik}</script>&#x8868;&#x793A;<script type="math/tex; ">D_i</script>&#x4E2D;&#x5C5E;&#x4E8E;&#x7B2C;<script type="math/tex; ">k</script>&#x7C7B;&#x7684;&#x6837;&#x672C;&#x5B50;&#x96C6;&#x3002;</p>
-<p>&#x4E8E;&#x662F;<code>&#x4FE1;&#x606F;&#x589E;&#x76CA;</code><script type="math/tex; ">g(D,A)</script>&#x53EF;&#x4EE5;&#x8868;&#x793A;&#x4E3A;&#x4E8C;&#x8005;&#x4E4B;&#x5DEE;&#xFF0C;&#x53EF;&#x5F97;
+其中，<script type="math/tex; ">D_i</script>表示<script type="math/tex; ">D</script>中特征<script type="math/tex; ">A</script>取第<script type="math/tex; ">i</script>个值的样本子集，<script type="math/tex; ">D_{ik}</script>表示<script type="math/tex; ">D_i</script>中属于第<script type="math/tex; ">k</script>类的样本子集。</p>
+<p>于是<code>信息增益</code><script type="math/tex; ">g(D,A)</script>可以表示为二者之差，可得
 <script type="math/tex; mode=display">
 >g(D,A)=H(D)-H(D|A)
 ></script></p>
 <table>
 <thead>
 <tr>
-<th>&#x8BA1;&#x6570;</th>
-<th>&#x5E74;&#x9F84;</th>
-<th>&#x6536;&#x5165;</th>
-<th>&#x5B66;&#x751F;</th>
-<th>&#x4FE1;&#x8A89;</th>
-<th>&#x662F;&#x5426;&#x8D2D;&#x4E70;</th>
+<th>计数</th>
+<th>年龄</th>
+<th>收入</th>
+<th>学生</th>
+<th>信誉</th>
+<th>是否购买</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>64</td>
-<td>&#x9752;</td>
-<td>&#x9AD8;</td>
-<td>&#x5426;</td>
-<td>&#x826F;</td>
-<td>&#x4E0D;&#x4E70;</td>
+<td>青</td>
+<td>高</td>
+<td>否</td>
+<td>良</td>
+<td>不买</td>
 </tr>
 <tr>
 <td>64</td>
-<td>&#x9752;</td>
-<td>&#x9AD8;</td>
-<td>&#x5426;</td>
-<td>&#x4F18;</td>
-<td>&#x4E0D;&#x4E70;</td>
+<td>青</td>
+<td>高</td>
+<td>否</td>
+<td>优</td>
+<td>不买</td>
 </tr>
 <tr>
 <td>128</td>
-<td>&#x4E2D;</td>
-<td>&#x9AD8;</td>
-<td>&#x5426;</td>
-<td>&#x826F;</td>
-<td>&#x4E70;</td>
+<td>中</td>
+<td>高</td>
+<td>否</td>
+<td>良</td>
+<td>买</td>
 </tr>
 <tr>
 <td>60</td>
-<td>&#x8001;</td>
-<td>&#x4E2D;</td>
-<td>&#x5426;</td>
-<td>&#x826F;</td>
-<td>&#x4E70;</td>
+<td>老</td>
+<td>中</td>
+<td>否</td>
+<td>良</td>
+<td>买</td>
 </tr>
 <tr>
 <td>64</td>
-<td>&#x8001;</td>
-<td>&#x4F4E;</td>
-<td>&#x662F;</td>
-<td>&#x826F;</td>
-<td>&#x4E70;</td>
+<td>老</td>
+<td>低</td>
+<td>是</td>
+<td>良</td>
+<td>买</td>
 </tr>
 <tr>
 <td>64</td>
-<td>&#x8001;</td>
-<td>&#x4F4E;</td>
-<td>&#x662F;</td>
-<td>&#x4F18;</td>
-<td>&#x4E0D;&#x4E70;</td>
+<td>老</td>
+<td>低</td>
+<td>是</td>
+<td>优</td>
+<td>不买</td>
 </tr>
 <tr>
 <td>64</td>
-<td>&#x4E2D;</td>
-<td>&#x4F4E;</td>
-<td>&#x662F;</td>
-<td>&#x4F18;</td>
-<td>&#x4E70;</td>
+<td>中</td>
+<td>低</td>
+<td>是</td>
+<td>优</td>
+<td>买</td>
 </tr>
 <tr>
 <td>128</td>
-<td>&#x9752;</td>
-<td>&#x4E2D;</td>
-<td>&#x5426;</td>
-<td>&#x826F;</td>
-<td>&#x4E0D;&#x4E70;</td>
+<td>青</td>
+<td>中</td>
+<td>否</td>
+<td>良</td>
+<td>不买</td>
 </tr>
 <tr>
 <td>64</td>
-<td>&#x9752;</td>
-<td>&#x4F4E;</td>
-<td>&#x662F;</td>
-<td>&#x826F;</td>
-<td>&#x4E70;</td>
+<td>青</td>
+<td>低</td>
+<td>是</td>
+<td>良</td>
+<td>买</td>
 </tr>
 <tr>
 <td>132</td>
-<td>&#x8001;</td>
-<td>&#x4E2D;</td>
-<td>&#x662F;</td>
-<td>&#x826F;</td>
-<td>&#x4E70;</td>
+<td>老</td>
+<td>中</td>
+<td>是</td>
+<td>良</td>
+<td>买</td>
 </tr>
 <tr>
 <td>64</td>
-<td>&#x9752;</td>
-<td>&#x4E2D;</td>
-<td>&#x662F;</td>
-<td>&#x4F18;</td>
-<td>&#x4E70;</td>
+<td>青</td>
+<td>中</td>
+<td>是</td>
+<td>优</td>
+<td>买</td>
 </tr>
 <tr>
 <td>32</td>
-<td>&#x4E2D;</td>
-<td>&#x4E2D;</td>
-<td>&#x5426;</td>
-<td>&#x4F18;</td>
-<td>&#x4E70;</td>
+<td>中</td>
+<td>中</td>
+<td>否</td>
+<td>优</td>
+<td>买</td>
 </tr>
 <tr>
 <td>32</td>
-<td>&#x4E2D;</td>
-<td>&#x9AD8;</td>
-<td>&#x662F;</td>
-<td>&#x826F;</td>
-<td>&#x4E70;</td>
+<td>中</td>
+<td>高</td>
+<td>是</td>
+<td>良</td>
+<td>买</td>
 </tr>
 <tr>
 <td>64</td>
-<td>&#x8001;</td>
-<td>&#x4E2D;</td>
-<td>&#x5426;</td>
-<td>&#x4F18;</td>
-<td>&#x4E0D;&#x4E70;</td>
+<td>老</td>
+<td>中</td>
+<td>否</td>
+<td>优</td>
+<td>不买</td>
 </tr>
 </tbody>
 </table>
-<p>&#x6709;&#x4E86;&#x4E0A;&#x9762;&#x7684;&#x8FD9;&#x4E9B;&#x6982;&#x5FF5;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x624B;&#x5DE5;&#x5B9E;&#x73B0;&#x4EE5;&#x4E0B;<script type="math/tex; ">ID3</script>&#x7B97;&#x6CD5;&#x7684;&#x51B3;&#x7B56;&#x6811;&#x751F;&#x6210;&#x8FC7;&#x7A0B;&#x3002;
-(1) &#x8BA1;&#x7B97;&#x5BF9;&#x7ED9;&#x5B9A;&#x6837;&#x672C;&#x5206;&#x7C7B;&#x6240;&#x9700;&#x7684;&#x4FE1;&#x606F;&#x71B5;&#x3002;
-   &#x5982;&#x8868;&#x6240;&#x793A;&#xFF0C;&#x7C7B;&#x522B;&#x6807;&#x7B7E;<script type="math/tex; ">S</script>&#x88AB;&#x5206;&#x4E24;&#x7C7B;&#xFF1A;&#x4E70;&#x6216;&#x4E0D;&#x4E70;&#x3002;&#x5176;&#x4E2D;<script type="math/tex; ">S_1(买)=640</script>&#xFF1B;<script type="math/tex; ">S_2(不买)=384</script>&#x3002;
-   &#x90A3;&#x4E48;&#x603B;<script type="math/tex; ">S=S_1+S_2=1024</script>&#x3002;</p>
-<p>&#x200B;    <script type="math/tex; ">S_1</script>&#x7684;&#x6982;&#x7387;<script type="math/tex; ">p_1=640/1024=0.625</script>&#xFF1B;<script type="math/tex; ">S_2</script>&#x7684;&#x6982;&#x7387;<script type="math/tex; ">P_2=384/1024=0.375</script>&#x3002;</p>
-<p>&#x200B;<br><script type="math/tex; mode=display">
+<p>有了上面的这些概念，我们就可以手工实现以下<script type="math/tex; ">ID3</script>算法的决策树生成过程。
+(1) 计算对给定样本分类所需的信息熵。
+   如表所示，类别标签<script type="math/tex; ">S</script>被分两类：买或不买。其中<script type="math/tex; ">S_1(买)=640</script>；<script type="math/tex; ">S_2(不买)=384</script>。
+   那么总<script type="math/tex; ">S=S_1+S_2=1024</script>。</p>
+<p>​    <script type="math/tex; ">S_1</script>的概率<script type="math/tex; ">p_1=640/1024=0.625</script>；<script type="math/tex; ">S_2</script>的概率<script type="math/tex; ">P_2=384/1024=0.375</script>。</p>
+<p>​<br/><script type="math/tex; mode=display">
 >I(S_1,S_2)=I(640,384)=-p_1log(p_1)-p_2log(p_2)\\
 >=-(p_1log(p_1)+p_2log(p_2))=0.9544
 ></script>
-(2)  &#x8BA1;&#x7B97;&#x6BCF;&#x4E2A;&#x7279;&#x5F81;&#x7684;&#x4FE1;&#x606F;&#x71B5;</p>
-<p>&#x200B;    <code>&#x2460;</code> &#x5148;&#x8BA1;&#x7B97;&#x201C;&#x5E74;&#x9F84;&#x201D;&#x7279;&#x5F81;&#x7684;&#x71B5;&#x3002;</p>
-<p>&#x200B;    &#x5E74;&#x9F84;&#x5171;&#x5206;&#x4E09;&#x7EC4;&#xFF1A;&#x9752;&#x5E74;(0)&#x3001;&#x4E2D;&#x5E74;(1)&#x3001;&#x8001;&#x5E74;(2)&#x3002;</p>
-<p>&#x200B;    &#x5176;&#x4E2D;&#x9752;&#x5E74;&#x5360;&#x603B;&#x6837;&#x672C;&#x7684;&#x6982;&#x7387;&#x4E3A;&#xFF1A;<script type="math/tex; ">p(0)=384/1024=0.375</script>&#xFF1B;</p>
-<p>&#x200B;    &#x9752;&#x5E74;&#x4E2D;&#x4E70;/&#x4E0D;&#x4E70;&#x6BD4;&#x4F8B;&#x4E3A;&#xFF1A;<script type="math/tex; ">128/256</script>&#xFF0C; <script type="math/tex; ">S_1(买)=128</script>&#xFF0C;<script type="math/tex; ">p_1=128/384</script>&#xFF1B;<script type="math/tex; ">S_2(不买)=256</script>&#xFF0C;<script type="math/tex; ">p_2=256/384</script>&#xFF1B;    <script type="math/tex; ">S=S_1+S_2=384</script>&#x3002;
-&#x200B;    &#x6839;&#x636E;&#x516C;&#x5F0F;&#xFF1A;
+(2)  计算每个特征的信息熵</p>
+<p>​    <code>①</code> 先计算“年龄”特征的熵。</p>
+<p>​    年龄共分三组：青年(0)、中年(1)、老年(2)。</p>
+<p>​    其中青年占总样本的概率为：<script type="math/tex; ">p(0)=384/1024=0.375</script>；</p>
+<p>​    青年中买/不买比例为：<script type="math/tex; ">128/256</script>， <script type="math/tex; ">S_1(买)=128</script>，<script type="math/tex; ">p_1=128/384</script>；<script type="math/tex; ">S_2(不买)=256</script>，<script type="math/tex; ">p_2=256/384</script>；    <script type="math/tex; ">S=S_1+S_2=384</script>。
+​    根据公式：
 <script type="math/tex; mode=display">
 >I(S_1,S_2)=I(128,256)=0.9183
 ></script>
-&#x200B;    &#x5176;&#x4E2D;&#x4E2D;&#x5E74;&#x5360;&#x603B;&#x6837;&#x672C;&#x7684;&#x6982;&#x7387;&#x4E3A;&#xFF1A;<script type="math/tex; ">p(1)=256/1024=0.25</script>&#xFF1B;&#x4E2D;&#x5E74;&#x4E70;/&#x4E0D;&#x4E70;&#x6BD4;&#x4F8B;&#x4E3A;&#xFF1A;<script type="math/tex; ">256/0</script>&#xFF0C;<script type="math/tex; ">S_1(买）=256</script>&#xFF0C;    <script type="math/tex; ">p_1=1</script>&#xFF1B;<script type="math/tex; ">S_2(不买)=0</script>&#xFF0C;<script type="math/tex; ">p_2=0</script>&#xFF1B;<script type="math/tex; ">S=S_1+S_2=256</script>&#x3002;
-&#x200B;    &#x6839;&#x636E;&#x516C;&#x5F0F;&#xFF1A;
+​    其中中年占总样本的概率为：<script type="math/tex; ">p(1)=256/1024=0.25</script>；中年买/不买比例为：<script type="math/tex; ">256/0</script>，<script type="math/tex; ">S_1(买）=256</script>，    <script type="math/tex; ">p_1=1</script>；<script type="math/tex; ">S_2(不买)=0</script>，<script type="math/tex; ">p_2=0</script>；<script type="math/tex; ">S=S_1+S_2=256</script>。
+​    根据公式：
 <script type="math/tex; mode=display">
 >I(S_1,S_2)=I(256,0)=0
 ></script>
-&#x200B;    &#x5176;&#x4E2D;&#x8001;&#x5E74;&#x5360;&#x603B;&#x6837;&#x672C;&#x7684;&#x6982;&#x7387;&#x4E3A;&#xFF1A;<script type="math/tex; ">P(2)=384/1024=0.375</script>&#xFF1B;&#x8001;&#x5E74;&#x4E70;/&#x4E0D;&#x4E70;&#x6BD4;&#x4F8B;&#x4E3A;&#xFF1A;<script type="math/tex; ">257/127</script>&#xFF0C;</p>
-<p>&#x200B;    <script type="math/tex; ">S_1(买)=257</script>&#xFF0C;<script type="math/tex; ">p_1=257/384</script>&#xFF1B;<script type="math/tex; ">S_2(不买)=127</script>,<script type="math/tex; ">p_2=127/384</script>&#xFF1B;<script type="math/tex; ">S=S_1+S_2=384</script>&#x3002;
-&#x200B;    &#x6839;&#x636E;&#x516C;&#x5F0F;3.3&#xFF1A;<br><script type="math/tex; mode=display">
+​    其中老年占总样本的概率为：<script type="math/tex; ">P(2)=384/1024=0.375</script>；老年买/不买比例为：<script type="math/tex; ">257/127</script>，</p>
+<p>​    <script type="math/tex; ">S_1(买)=257</script>，<script type="math/tex; ">p_1=257/384</script>；<script type="math/tex; ">S_2(不买)=127</script>,<script type="math/tex; ">p_2=127/384</script>；<script type="math/tex; ">S=S_1+S_2=384</script>。
+​    根据公式3.3：<br/><script type="math/tex; mode=display">
 >I(S_1,S_2)=I(257,127)=0.9157
 ></script>
-&#x200B;    &#x90A3;&#x4E48;&#xFF0C;&#x5E74;&#x9F84;&#x7684;&#x5E73;&#x5747;&#x4FE1;&#x606F;&#x671F;&#x671B;&#xFF1A; 
+​    那么，年龄的平均信息期望： 
 <script type="math/tex; mode=display">
 >E(年龄)=0.375 \times 0.9183+0.25 \times 0+0.375 \times 0.9157=0.6877\\
 >G(年龄)=0.9544-0.6877=0.2667
 ></script>
-&#x200B;    <code>&#x2461;</code> &#x8BA1;&#x7B97;&#x201C;&#x5B66;&#x751F;&#x201D;&#x7279;&#x5F81;&#x7684;&#x71B5;&#x3002;</p>
-<p>&#x200B;    &#x5B66;&#x751F;&#x5171;&#x5206;&#x4E24;&#x7EC4;&#xFF1A;&#x662F;(0)&#x3001;&#x5426;(1)&#x3002;</p>
-<p>&#x200B;    &#x5B66;&#x751F;&#x7684;&#x5E73;&#x5747;&#x4FE1;&#x606F;&#x671F;&#x671B;&#xFF1A;<br><script type="math/tex; mode=display">
+​    <code>②</code> 计算“学生”特征的熵。</p>
+<p>​    学生共分两组：是(0)、否(1)。</p>
+<p>​    学生的平均信息期望：<br/><script type="math/tex; mode=display">
 >E(学生)=0.7811 \\
 >G(学生)=0.9544-0.7811=0
 >1733
 ></script>
- <code>&#x2462;</code> &#x8BA1;&#x7B97;&#x201C;&#x6536;&#x5165;&#x201D;&#x7279;&#x5F81;&#x7684;&#x71B5;&#x3002;</p>
-<p>&#x200B;    &#x6536;&#x5165;&#x5171;&#x5206;&#x4E09;&#x7EC4;&#xFF1A;&#x9AD8;(0)&#x3001;&#x4E2D;(1)&#x3001;&#x4F4E;(2)&#x3002;</p>
-<p>&#x200B;    &#x6536;&#x5165;&#x7684;&#x5E73;&#x5747;&#x4FE1;&#x606F;&#x671F;&#x671B;&#xFF1A;<br><script type="math/tex; mode=display">
+<code>③</code> 计算“收入”特征的熵。</p>
+<p>​    收入共分三组：高(0)、中(1)、低(2)。</p>
+<p>​    收入的平均信息期望：<br/><script type="math/tex; mode=display">
 >E(收入)=0.9361 \\
 >G(收入)=0.9544-0.9361=0.0183
 ></script>
-&#x200B;    <code>&#x2463;</code> &#x8BA1;&#x7B97;&#x201C;&#x4FE1;&#x8A89;&#x201D;&#x7279;&#x5F81;&#x7684;&#x71B5;&#x3002;</p>
-<p>&#x200B;    &#x4FE1;&#x8A89;&#x5171;&#x5206;&#x4E24;&#x7EC4;&#xFF1A;&#x4F18;(0)&#x3001;&#x826F;(1)&#x3002;</p>
-<p>&#x200B;    &#x4FE1;&#x8A89;&#x7684;&#x5E73;&#x5747;&#x4FE1;&#x606F;&#x671F;&#x671B;&#xFF1A; 
+​    <code>④</code> 计算“信誉”特征的熵。</p>
+<p>​    信誉共分两组：优(0)、良(1)。</p>
+<p>​    信誉的平均信息期望： 
 <script type="math/tex; mode=display">
 >E(信誉)=0.9048 \\
 >G(信誉)=0.9544-0.9048=0.0496
 ></script>
-(3) &#x4ECE;&#x6240;&#x6709;&#x7684;&#x7279;&#x5F81;&#x5217;&#x4E2D;&#x9009;&#x51FA;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6700;&#x5927;&#x7684;&#x90A3;&#x4E2A;&#x4F5C;&#x4E3A;&#x6839;&#x8282;&#x70B9;&#x6216;&#x5185;&#x90E8;&#x8282;&#x70B9;&#x2014;&#x5212;&#x5206;&#x8282;&#x70B9;&#xFF0C;&#x5212;&#x5206;&#x6574;&#x5217;&#xFF0C;&#x9996;&#x6B21;&#x9012;&#x5F52;&#x9009;&#x62E9;&#x5E74;&#x9F84;&#x5217;(<script type="math/tex; ">G=0.2667</script>)&#x6765;&#x5212;&#x5206;&#x3002;
-(4) &#x6839;&#x636E;&#x5212;&#x5206;&#x8282;&#x70B9;&#x7684;&#x4E0D;&#x540C;&#x53D6;&#x503C;&#x6765;&#x62C6;&#x5206;&#x6570;&#x636E;&#x96C6;&#x4E3A;&#x82E5;&#x5E72;&#x4E2A;&#x5B50;&#x96C6;&#xFF0C;&#x7136;&#x540E;&#x5220;&#x53BB;&#x5F53;&#x524D;&#x7684;&#x7279;&#x5F81;&#x5217;&#xFF0C; &#x518D;&#x8BA1;&#x7B97;&#x5269;&#x4F59;&#x7279;&#x5F81;&#x5217;&#x7684;&#x4FE1;&#x606F;&#x71B5;&#x3002;&#x5982;&#x679C;&#x6709;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#xFF0C;&#x5C31;&#x91CD;&#x590D;&#x7B2C;&#x4E8C;&#x6B65;&#x76F4;&#x81F3;&#x5212;&#x5206;&#x7ED3;&#x675F;&#x3002;</p>
-<p>&#x9996;&#x6B21;&#x5212;&#x5206; &#x540E;&#xFF0C;&#x9752;&#x5E74;&#x548C;&#x8001;&#x5E74;&#x5185;&#x542B;&#x6709;&#x591A;&#x4E2A;&#x6807;&#x7B7E;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x5212;&#x5206;&#xFF1B;&#x4E2D;&#x5E74;&#x9009;&#x9879;&#x5C31;&#x53EA;&#x5269;&#x4E00;&#x4E2A;&#x6807;&#x7B7E;&#xFF0C;&#x5C31;&#x4F5C;&#x4E3A;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x3002;
-(5) &#x5212;&#x5206;&#x7ED3;&#x675F;&#x7684;&#x6807;&#x5FD7;&#x4E3A;&#xFF1A;&#x5B50;&#x96C6;&#x4E2D;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x7C7B;&#x522B;&#x6807;&#x7B7E;&#xFF0C;&#x505C;&#x6B62;&#x5212;&#x5206;&#x3002;
-   &#x6309;&#x7167;&#x8FD9;&#x6837;&#x7684;&#x903B;&#x8F91;&#x4EA7;&#x751F;&#x7684;&#x51B3;&#x7B56;&#x6811;&#x7ED3;&#x679C;&#x5982;&#x56FE;&#x6240;&#x793A;</p>
-<p>&#x200B;    <a href="res/Machine%20Learning%20Base/1570033634957.png" data-lightbox="888ec609-7899-4fcc-a3ed-3096bef874ef" data-title="1570033634957"><img src="res/Machine%20Learning%20Base/1570033634957.png" alt="1570033634957"></a></p>
-<p>&#x4ECE;&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x4F7F;&#x7528;&#x4FE1;&#x606F;&#x71B5;&#x751F;&#x6210;&#x7684;&#x51B3;&#x7B56;&#x6811;&#x8981;&#x6BD4;&#x81EA;&#x5DF1;&#x8BA1;&#x7B97;&#x7684;&#x51B3;&#x7B56;&#x6811;&#x5C42;&#x6570;&#x5C11;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x6570;&#x636E;&#x96C6;&#x7684;&#x7279;&#x5F81;&#x5F88;&#x591A;&#xFF0C;&#x90A3;&#x4E48;&#x4F7F;&#x7528;&#x4FE1;&#x606F;&#x71B5;&#x521B;&#x5EFA;&#x51B3;&#x7B56;&#x6811;&#x5728;&#x7ED3;&#x6784;&#x4E0A;&#x8981;&#x660E;&#x663E;&#x4F18;&#x4E8E;&#x5176;&#x4ED6;&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x5F62;&#x6210;&#x6700;&#x4F18;&#x7684;&#x51B3;&#x7B56;&#x6811;&#x7ED3;&#x6784;&#x3002;</p>
-<p>&#x200B;    ID3&#x7B97;&#x6CD5;&#x662F;&#x6BD4;&#x8F83;&#x65E9;&#x7684;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#xFF0C;&#x5728;1979&#x5E74;Quinlan&#x5C31;&#x63D0;&#x51FA;&#x4E86;&#x8BE5;&#x7B97;&#x6CD5;&#x7684;&#x601D;&#x60F3;&#x3002;&#x5B83;&#x4EE5;&#x4FE1;&#x606F;&#x71B5;&#x4E3A;&#x5EA6;&#x91CF;&#x6807;&#x51C6;&#xFF0C;&#x5212;&#x5206;&#x51FA;&#x51B3;&#x7B56;&#x6811;&#x7279;&#x5F81;&#x8282;&#x70B9;&#xFF0C;&#x6BCF;&#x6B21;&#x4F18;&#x5148;&#x9009;&#x53D6;&#x4FE1;&#x606F;&#x91CF;&#x6700;&#x591A;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4F7F;&#x4FE1;&#x606F;&#x71B5;&#x53D8;&#x4E3A;&#x6700;&#x5C0F;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x4EE5;&#x6784;&#x9020;&#x4E00;&#x68F5;&#x4FE1;&#x606F;&#x71B5;&#x4E0B;&#x964D;&#x6700;&#x5FEB;&#x7684;&#x51B3;&#x7B56;&#x6811;&#x3002;
-<code>&#x7F3A;&#x70B9;</code></p>
+(3) 从所有的特征列中选出信息增益最大的那个作为根节点或内部节点—划分节点，划分整列，首次递归选择年龄列(<script type="math/tex; ">G=0.2667</script>)来划分。
+(4) 根据划分节点的不同取值来拆分数据集为若干个子集，然后删去当前的特征列， 再计算剩余特征列的信息熵。如果有信息增益，就重复第二步直至划分结束。</p>
+<p>首次划分 后，青年和老年内含有多个标签，所以可以继续划分；中年选项就只剩一个标签，就作为叶子节点。
+(5) 划分结束的标志为：子集中只有一个类别标签，停止划分。
+   按照这样的逻辑产生的决策树结果如图所示</p>
+<p>​    <a data-lightbox="ba08bc86-3b37-4411-9056-636bb8af1810" data-title="1570033634957" href="res/Machine%20Learning%20Base/1570033634957.png"><img alt="1570033634957" src="res/Machine%20Learning%20Base/1570033634957.png"/></a></p>
+<p>从图中可以看到，使用信息熵生成的决策树要比自己计算的决策树层数少。</p>
+<p>如果数据集的特征很多，那么使用信息熵创建决策树在结构上要明显优于其他方法，可形成最优的决策树结构。</p>
+<p>​    ID3算法是比较早的机器学习算法，在1979年Quinlan就提出了该算法的思想。它以信息熵为度量标准，划分出决策树特征节点，每次优先选取信息量最多的属性，也就是使信息熵变为最小的属性，以构造一棵信息熵下降最快的决策树。
+<code>缺点</code></p>
 <ol>
-<li><p>ID3&#x7B97;&#x6CD5;&#x7684;&#x8282;&#x70B9;&#x5212;&#x5206;&#x5EA6;&#x91CF;&#x6807;&#x51C6;&#x91C7;&#x7528;&#x7684;&#x662F;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#xFF0C;<code>&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x504F;&#x5411;&#x4E8E;&#x9009;&#x62E9;&#x7279;&#x5F81;&#x503C;&#x4E2A;&#x6570;&#x8F83;&#x591A;&#x7684;&#x7279;&#x5F81;</code>&#x3002;</p>
-<p>  &#x800C;&#x53D6;&#x503C;&#x4E2A;&#x6570;&#x8F83;&#x591A;&#x7684;&#x7279;&#x5F81;&#x5E76;&#x4E0D;&#x4E00;&#x5B9A;&#x662F;&#x6700;&#x4F18;&#x7684;&#x7279;&#x5F81;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x6539;&#x8FDB;&#x9009;&#x62E9;&#x5C5E;&#x6027;&#x7684;&#x8282;&#x70B9;&#x5212;&#x5206;&#x5EA6;&#x91CF;&#x6807;&#x51C6;&#x3002;</p>
+<li><p>ID3算法的节点划分度量标准采用的是信息增益，<code>信息增益偏向于选择特征值个数较多的特征</code>。</p>
+<p>  而取值个数较多的特征并不一定是最优的特征，所以需要改进选择属性的节点划分度量标准。</p>
 </li>
-<li><p>ID3&#x7B97;&#x6CD5;&#x9012;&#x5F52;&#x8FC7;&#x7A0B;&#x4E2D;&#x9700;&#x8981;&#x4F9D;&#x6B21;&#x8BA1;&#x7B97;&#x6BCF;&#x4E2A;&#x7279;&#x5F81;&#x503C;&#x7684;&#xFF0C;&#x5BF9;&#x4E8E;&#x5927;&#x578B;&#x6570;&#x636E;&#x4F1A;&#x751F;&#x6210;&#x6BD4;&#x8F83;&#x590D;&#x6742;&#x7684;&#x51B3;&#x7B56;&#x6811;&#xFF1A;&#x5C42;&#x6B21;&#x548C;&#x5206;&#x652F;&#x90FD;&#x5F88;&#x591A;&#xFF0C;&#x800C;&#x5176;&#x4E2D;&#x67D0;&#x4E9B;&#x5206;&#x652F;&#x7684;&#x7279;&#x5F81;&#x503C;&#x6982;&#x7387;&#x5F88;&#x5C0F;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x52A0;&#x5FFD;&#x7565;&#x5C31;&#x4F1A;&#x9020;&#x6210;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x95EE;&#x9898;&#x3002;&#x5373;&#x51B3;&#x7B56;&#x6811;&#x5BF9;&#x6837;&#x672C;&#x6570;&#x636E;&#x7684;&#x5206;&#x7C7B;&#x7CBE;&#x5EA6;&#x8F83;&#x9AD8;&#xFF0C;&#x4F46;&#x5728;&#x6D4B;&#x8BD5;&#x96C6;&#x4E0A;&#xFF0C;&#x5206;&#x7C7B;&#x7684;&#x7ED3;&#x679C;&#x53D7;&#x51B3;&#x7B56;&#x6811;&#x5206;&#x652F;&#x7684;&#x5F71;&#x54CD;&#x5F88;&#x5927;&#x3002;</p>
+<li><p>ID3算法递归过程中需要依次计算每个特征值的，对于大型数据会生成比较复杂的决策树：层次和分支都很多，而其中某些分支的特征值概率很小，如果不加忽略就会造成过拟合的问题。即决策树对样本数据的分类精度较高，但在测试集上，分类的结果受决策树分支的影响很大。</p>
 </li>
 </ol>
 </blockquote>
-<h1 id="c45&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;"><a name="c45&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;" class="anchor-navigation-ex-anchor" href="#c45&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="c45&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;" class="plugin-anchor" href="#c45&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;"><i class="fa fa-link" aria-hidden="true"></i></a>C4.5&#x2014;&#x6700;&#x5927;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;</h1>
+<h1 id="c45—最大信息增益比">4 C4.5—最大信息增益比</h1>
 <blockquote>
-<p>&#x7279;&#x5F81;<script type="math/tex; ">A</script>&#x5BF9;&#x4E8E;&#x6570;&#x636E;&#x96C6;<script type="math/tex; ">D</script>&#x7684;<code>&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;</code>&#x5B9A;&#x4E49;&#x4E3A;
+<p>特征<script type="math/tex; ">A</script>对于数据集<script type="math/tex; ">D</script>的<code>信息增益比</code>定义为
 <script type="math/tex; mode=display">
 >g_R(D,A)=\frac{g(D,A)}{H_A(D)}
 ></script>
-&#x5176;&#x4E2D;
+其中
 <script type="math/tex; mode=display">
 >H_A(D)=-\sum_{i=1}^{n}{\frac{|D_i|}{D}log_2{\frac{D_i}{D}}}
 ></script>
-&#x79F0;&#x4E3A;&#x6570;&#x636E;&#x96C6;<script type="math/tex; ">D</script>&#x5173;&#x4E8E;<script type="math/tex; ">A</script>&#x7684;&#x53D6;&#x503C;&#x71B5;&#x3002;</p>
+称为数据集<script type="math/tex; ">D</script>关于<script type="math/tex; ">A</script>的取值熵。</p>
 <table>
 <thead>
 <tr>
 <th></th>
-<th>&#x5E74;&#x9F84;</th>
-<th>&#x957F;&#x76F8;</th>
-<th>&#x5DE5;&#x8D44;</th>
-<th>&#x5199;&#x4EE3;&#x7801;</th>
-<th>&#x7C7B;&#x522B;</th>
+<th>年龄</th>
+<th>长相</th>
+<th>工资</th>
+<th>写代码</th>
+<th>类别</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>&#x5C0F;A</td>
-<td>&#x8001;</td>
-<td>&#x5E05;</td>
-<td>&#x9AD8;</td>
-<td>&#x4E0D;&#x4F1A;</td>
-<td>&#x4E0D;&#x89C1;</td>
+<td>小A</td>
+<td>老</td>
+<td>帅</td>
+<td>高</td>
+<td>不会</td>
+<td>不见</td>
 </tr>
 <tr>
-<td>&#x5C0F;B</td>
-<td>&#x5E74;&#x8F7B;</td>
-<td>&#x4E00;&#x822C;</td>
-<td>&#x4E2D;&#x7B49;</td>
-<td>&#x4F1A;</td>
-<td>&#x89C1;</td>
+<td>小B</td>
+<td>年轻</td>
+<td>一般</td>
+<td>中等</td>
+<td>会</td>
+<td>见</td>
 </tr>
 <tr>
-<td>&#x5C0F;C</td>
-<td>&#x5E74;&#x8F7B;</td>
-<td>&#x4E11;</td>
-<td>&#x9AD8;</td>
-<td>&#x4E0D;&#x4F1A;</td>
-<td>&#x4E0D;&#x89C1;</td>
+<td>小C</td>
+<td>年轻</td>
+<td>丑</td>
+<td>高</td>
+<td>不会</td>
+<td>不见</td>
 </tr>
 <tr>
-<td>&#x5C0F;D</td>
-<td>&#x5E74;&#x8F7B;</td>
-<td>&#x4E00;&#x822C;</td>
-<td>&#x9AD8;</td>
-<td>&#x4F1A;</td>
-<td>&#x89C1;</td>
+<td>小D</td>
+<td>年轻</td>
+<td>一般</td>
+<td>高</td>
+<td>会</td>
+<td>见</td>
 </tr>
 <tr>
-<td>&#x5C0F;E</td>
-<td>&#x5E74;&#x8F7B;</td>
-<td>&#x4E00;&#x822C;</td>
-<td>&#x9AD8;</td>
-<td>&#x4E0D;&#x4F1A;</td>
-<td>&#x4E0D;&#x89C1;</td>
+<td>小E</td>
+<td>年轻</td>
+<td>一般</td>
+<td>高</td>
+<td>不会</td>
+<td>不见</td>
 </tr>
 </tbody>
 </table>
-<p>&#x9488;&#x5BF9;&#x4E0A;&#x8FF0;&#x95EE;&#x9898;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6C42;&#x51FA;&#x6570;&#x636E;&#x96C6;&#x5173;&#x4E8E;&#x6BCF;&#x4E2A;&#x7279;&#x5F81;&#x7684;&#x53D6;&#x503C;&#x71B5;&#x4E3A;
+<p>针对上述问题，我们可以求出数据集关于每个特征的取值熵为
 <script type="math/tex; mode=display">
 >H_{年龄}=-\frac{1}{5}log_2{\frac{1}{5}}-\frac{4}{5}log_2{\frac{4}{5}}=0.722 \\
 >H_{长相}=-\frac{1}{5}log_2{\frac{1}{5}}-\frac{3}{5}log_2{\frac{3}{5}}-\frac{1}{5}log_2{\frac{1}{5}}=1.371 \\
 >H_{工资}=-\frac{3}{5}log_2{\frac{3}{5}}-\frac{1}{5}log_2{\frac{1}{5}}-\frac{1}{5}log_2{\frac{1}{5}}=1.371 \\
 >H_{写代码}=-\frac{3}{5}log_2{\frac{3}{5}}-\frac{2}{5}log_2{\frac{2}{5}}=0.971
 ></script>
-&#x4E8E;&#x662F;&#x53EF;&#x8BA1;&#x7B97;&#x51FA;&#x5404;&#x4E2A;&#x7279;&#x5F81;&#x7684;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;&#x4E3A;
+于是可计算出各个特征的信息增益比为
 <script type="math/tex; mode=display">
 >g_R(D,年龄)=0.236 \\
 >g_R(D,长相)=0.402 \\
 >g_R(D,工资)=0.402 \\
 >g_R(D,写代码)=1
 ></script>
-&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;&#x6700;&#x5927;&#x7684;&#x662F;&#x7279;&#x5F81;&#x201C;&#x5199;&#x4EE3;&#x7801;&#x201D;&#xFF0C;&#x4F46;&#x901A;&#x8FC7;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;&#xFF0C;&#x7279;&#x5F81;&#x201C;&#x5E74;&#x9F84;&#x201D;&#x5BF9;&#x5E94;&#x7684;&#x6307;&#x6807;&#x4E0A;&#x5347;&#x4E86;&#xFF0C;&#x800C;&#x7279;&#x5F81;&#x201C;&#x957F;&#x76F8;&#x201D;&#x548C;&#x7279;&#x5F81;&#x201C;&#x5DE5;&#x8D44;&#x201D;&#x5374;&#x6709;&#x6240;&#x4E0B;&#x964D;&#x3002;</p>
+信息增益比最大的是特征“写代码”，但通过信息增益比，特征“年龄”对应的指标上升了，而特征“长相”和特征“工资”却有所下降。</p>
 <ul>
-<li><strong>&#x7F3A;&#x70B9;</strong>&#xFF1A;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;&#x504F;&#x5411;&#x53D6;&#x503C;&#x8F83;&#x5C11;&#x7684;&#x7279;&#x5F81;</li>
-<li><strong>&#x539F;&#x56E0;</strong>&#xFF1A; &#x5F53;&#x7279;&#x5F81;&#x53D6;&#x503C;&#x8F83;&#x5C11;&#x65F6;HA(D)&#x7684;&#x503C;&#x8F83;&#x5C0F;&#xFF0C;&#x56E0;&#x6B64;&#x5176;&#x5012;&#x6570;&#x8F83;&#x5927;&#xFF0C;&#x56E0;&#x800C;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;&#x8F83;&#x5927;&#x3002;&#x56E0;&#x800C;&#x504F;&#x5411;&#x53D6;&#x503C;&#x8F83;&#x5C11;&#x7684;&#x7279;&#x5F81;&#x3002;</li>
-<li><strong>&#x4F7F;&#x7528;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;</strong>&#xFF1A;&#x57FA;&#x4E8E;&#x4EE5;&#x4E0A;&#x7F3A;&#x70B9;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x76F4;&#x63A5;&#x9009;&#x62E9;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x7387;&#x6700;&#x5927;&#x7684;&#x7279;&#x5F81;&#xFF0C;&#x800C;&#x662F;&#x73B0;&#x5728;&#x5019;&#x9009;&#x7279;&#x5F81;&#x4E2D;&#x627E;&#x51FA;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x9AD8;&#x4E8E;&#x5E73;&#x5747;&#x6C34;&#x5E73;&#x7684;&#x7279;&#x5F81;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x8FD9;&#x4E9B;&#x7279;&#x5F81;&#x4E2D;&#x518D;&#x9009;&#x62E9;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x7387;&#x6700;&#x9AD8;&#x7684;&#x7279;&#x5F81;&#x3002;</li>
+<li><strong>缺点</strong>：信息增益比偏向取值较少的特征</li>
+<li><strong>原因</strong>： 当特征取值较少时HA(D)的值较小，因此其倒数较大，因而信息增益比较大。因而偏向取值较少的特征。</li>
+<li><strong>使用信息增益比</strong>：基于以上缺点，并不是直接选择信息增益率最大的特征，而是现在候选特征中找出信息增益高于平均水平的特征，然后在这些特征中再选择信息增益率最高的特征。</li>
 </ul>
 </blockquote>
-<h1 id="cart&#x2014;&#x6700;&#x5927;&#x57FA;&#x5C3C;&#x6307;&#x6570;gini"><a name="cart&#x2014;&#x6700;&#x5927;&#x57FA;&#x5C3C;&#x6307;&#x6570;gini" class="anchor-navigation-ex-anchor" href="#cart&#x2014;&#x6700;&#x5927;&#x57FA;&#x5C3C;&#x6307;&#x6570;gini"><i class="fa fa-link" aria-hidden="true"></i></a><a name="cart&#x2014;&#x6700;&#x5927;&#x57FA;&#x5C3C;&#x6307;&#x6570;gini" class="plugin-anchor" href="#cart&#x2014;&#x6700;&#x5927;&#x57FA;&#x5C3C;&#x6307;&#x6570;gini"><i class="fa fa-link" aria-hidden="true"></i></a>CART&#x2014;&#x6700;&#x5927;&#x57FA;&#x5C3C;&#x6307;&#x6570;(Gini)</h1>
+<h1 id="cart—最大基尼指数gini">5 CART—最大基尼指数(Gini)</h1>
 <blockquote>
-<p>Gini&#x63CF;&#x8FF0;&#x7684;&#x662F;&#x6570;&#x636E;&#x7684;&#x7EAF;&#x5EA6;&#xFF0C;&#x4E0E;&#x4FE1;&#x606F;&#x71B5;&#x542B;&#x4E49;&#x7C7B;&#x4F3C;&#x3002;
+<p>Gini描述的是数据的纯度，与信息熵含义类似。
 <script type="math/tex; mode=display">
 >Gini(D)=1-\sum_{k=1}^{n}{(\frac{|C_k|}{|D|})^2}
 ></script>
-CART&#x5728;&#x6BCF;&#x4E00;&#x6B21;&#x8FED;&#x4EE3;&#x4E2D;&#x9009;&#x62E9;&#x57FA;&#x5C3C;&#x6307;&#x6570;&#x6700;&#x5C0F;&#x7684;&#x7279;&#x5F81;&#x53CA;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x5207;&#x5206;&#x70B9;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x3002;&#x4F46;&#x4E0E;ID3&#x3001;C4.5&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;CART&#x662F;&#x4E00;&#x9897;&#x4E8C;&#x53C9;&#x6811;&#xFF0C;&#x91C7;&#x7528;&#x4E8C;&#x5143;&#x5207;&#x5272;&#x6CD5;&#xFF0C;&#x6BCF;&#x4E00;&#x6B65;&#x5C06;&#x6570;&#x636E;&#x6309;&#x7279;&#x5F81;<em>A</em>&#x7684;&#x53D6;&#x503C;&#x5207;&#x6210;&#x4E24;&#x4EFD;&#xFF0C;&#x5206;&#x522B;&#x8FDB;&#x5165;&#x5DE6;&#x53F3;&#x5B50;&#x6811;&#x3002;&#x7279;&#x5F81;<em>A</em>&#x7684;Gini&#x6307;&#x6570;&#x5B9A;&#x4E49;&#x4E3A;
+CART在每一次迭代中选择基尼指数最小的特征及其对应的切分点进行分类。但与ID3、C4.5不同的是，CART是一颗二叉树，采用二元切割法，每一步将数据按特征<em>A</em>的取值切成两份，分别进入左右子树。特征<em>A</em>的Gini指数定义为
 <script type="math/tex; mode=display">
 >Gini(D|A)=\sum_{i=1}^{n}{\frac{|D_i|}{|D|}}Gini(D_i)
 ></script>
-&#x8FD8;&#x662F;&#x8003;&#x8651;&#x4E0A;&#x8FF0;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x5E94;&#x7528;CART&#x5206;&#x7C7B;&#x51C6;&#x5219;&#xFF0C;&#x6839;&#x636E;&#x5F0F;&#xFF08;3.24&#xFF09;&#x53EF;&#x8BA1;&#x7B97;&#x51FA;&#x5404;&#x4E2A;&#x7279;&#x5F81;&#x7684;Gini&#x6307;&#x6570;&#x4E3A;
+还是考虑上述的例子，应用CART分类准则，根据式（3.24）可计算出各个特征的Gini指数为
 <script type="math/tex; mode=display">
 >Gini(D|年龄=老)=0.4, Gini(D|年龄=年轻)=0.4, \\
 >Gini(D|长相=帅)=0.4, Gini(D|长相=丑)=0.4, \\
@@ -1256,89 +803,89 @@ CART&#x5728;&#x6BCF;&#x4E00;&#x6B21;&#x8FED;&#x4EE3;&#x4E2D;&#x9009;&#x62E9;&#x5
 >Gini(D|工资=高)=0.47, Gini(D|工资=中等)=0.3, \\
 >Gini(D|工资=低)=0.4
 ></script>
-&#x5728;&#x201C;&#x5E74;&#x9F84;&#x201D;&#x201C;&#x957F;&#x76F8;&#x201D;&#x201C;&#x5DE5;&#x8D44;&#x201D;&#x201C;&#x5199;&#x4EE3;&#x7801;&#x201D;&#x56DB;&#x4E2A;&#x7279;&#x5F81;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F88;&#x5FEB;&#x5730;&#x53D1;&#x73B0;&#x7279;&#x5F81;&#x201C;&#x5199;&#x4EE3;&#x7801;&#x201D;&#x7684;Gini&#x6307;&#x6570;&#x6700;&#x5C0F;&#x4E3A;0&#xFF0C;&#x56E0;&#x6B64;&#x9009;&#x62E9;&#x7279;&#x5F81;&#x201C;&#x5199;&#x4EE3;&#x7801;&#x201D;&#x4F5C;&#x4E3A;&#x6700;&#x4F18;&#x7279;&#x5F81;&#xFF0C;&#x201C;&#x5199;&#x4EE3;&#x7801;=&#x4F1A;&#x201D;&#x4E3A;&#x6700;&#x4F18;&#x5207;&#x5206;&#x70B9;&#x3002;&#x6309;&#x7167;&#x8FD9;&#x79CD;&#x5207;&#x5206;&#xFF0C;&#x4ECE;&#x6839;&#x7ED3;&#x70B9;&#x4F1A;&#x76F4;&#x63A5;&#x4EA7;&#x751F;&#x4E24;&#x4E2A;&#x53F6;&#x7ED3;&#x70B9;&#xFF0C;&#x57FA;&#x5C3C;&#x6307;&#x6570;&#x964D;&#x4E3A;0&#xFF0C;&#x5B8C;&#x6210;&#x51B3;&#x7B56;&#x6811;&#x751F;&#x957F;&#x3002;</p>
+在“年龄”“长相”“工资”“写代码”四个特征中，我们可以很快地发现特征“写代码”的Gini指数最小为0，因此选择特征“写代码”作为最优特征，“写代码=会”为最优切分点。按照这种切分，从根结点会直接产生两个叶结点，基尼指数降为0，完成决策树生长。</p>
 </blockquote>
-<h1 id="&#x6784;&#x9020;&#x51C6;&#x5219;&#x6BD4;&#x8F83;"><a name="&#x6784;&#x9020;&#x51C6;&#x5219;&#x6BD4;&#x8F83;" class="anchor-navigation-ex-anchor" href="#&#x6784;&#x9020;&#x51C6;&#x5219;&#x6BD4;&#x8F83;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6784;&#x9020;&#x51C6;&#x5219;&#x6BD4;&#x8F83;" class="plugin-anchor" href="#&#x6784;&#x9020;&#x51C6;&#x5219;&#x6BD4;&#x8F83;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6784;&#x9020;&#x51C6;&#x5219;&#x6BD4;&#x8F83;</h1>
+<h1 id="构造准则比较">6 构造准则比较</h1>
 <blockquote>
-<p>&#x901A;&#x8FC7;&#x5BF9;&#x6BD4;&#x4E09;&#x79CD;&#x51B3;&#x7B56;&#x6811;&#x7684;&#x6784;&#x9020;&#x51C6;&#x5219;&#xFF0C;&#x4EE5;&#x53CA;&#x5728;&#x540C;&#x4E00;&#x4F8B;&#x5B50;&#x4E0A;&#x7684;&#x4E0D;&#x540C;&#x8868;&#x73B0;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x96BE;&#x603B;&#x7ED3;&#x4E09;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#x3002;</p>
-<p>&#x9996;&#x5148;&#xFF0C;ID3&#x662F;&#x91C7;&#x7528;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x4F5C;&#x4E3A;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;&#xFF0C;&#x9664;&#x4E86;&#x201C;&#x4F1A;&#x5199;&#x4EE3;&#x7801;&#x201D;&#x8FD9;&#x4E00;&#x9006;&#x5929;&#x7279;&#x5F81;&#x5916;&#xFF0C;&#x4F1A;&#x503E;&#x5411;&#x4E8E;&#x53D6;&#x503C;&#x8F83;&#x591A;&#x7684;&#x7279;&#x5F81;&#x3002;&#x56E0;&#x4E3A;&#xFF0C;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x53CD;&#x6620;&#x7684;&#x662F;&#x7ED9;&#x5B9A;&#x6761;&#x4EF6;&#x4EE5;&#x540E;&#x4E0D;&#x786E;&#x5B9A;&#x6027;&#x51CF;&#x5C11;&#x7684;&#x7A0B;&#x5EA6;&#xFF0C;&#x7279;&#x5F81;&#x53D6;&#x503C;&#x8D8A;&#x591A;&#x5C31;&#x610F;&#x5473;&#x7740;&#x786E;&#x5B9A;&#x6027;&#x66F4;&#x9AD8;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6761;&#x4EF6;&#x71B5;&#x8D8A;&#x5C0F;&#xFF0C;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x8D8A;&#x5927;&#x3002;&#x8FD9;&#x5728;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x4E2D;&#x662F;&#x4E00;&#x4E2A;&#x7F3A;&#x9677;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x6211;&#x4EEC;&#x5F15;&#x5165;&#x7279;&#x5F81;&#x201C;DNA&#x201D;&#xFF0C;&#x6BCF;&#x4E2A;&#x4EBA;&#x7684;DNA&#x90FD;&#x4E0D;&#x540C;&#xFF0C;&#x5982;&#x679C;ID3&#x6309;&#x7167;&#x201C;DNA&#x201D;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x5212;&#x5206;&#x4E00;&#x5B9A;&#x662F;&#x6700;&#x4F18;&#x7684;&#xFF08;&#x6761;&#x4EF6;&#x71B5;&#x4E3A;0&#xFF09;&#xFF0C;&#x4F46;&#x8FD9;&#x79CD;&#x5206;&#x7C7B;&#x7684;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#x662F;&#x975E;&#x5E38;&#x5F31;&#x7684;&#x3002;&#x56E0;&#x6B64;&#xFF0C;C4.5&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x5BF9;ID3&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF0C;&#x901A;&#x8FC7;&#x5F15;&#x5165;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;&#xFF0C;&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x4E0A;&#x5BF9;&#x53D6;&#x503C;&#x6BD4;&#x8F83;&#x591A;&#x7684;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x60E9;&#x7F5A;&#xFF0C;&#x907F;&#x514D;ID3&#x51FA;&#x73B0;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x63D0;&#x5347;&#x51B3;&#x7B56;&#x6811;&#x7684;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#x3002;</p>
-<p>&#x5176;&#x6B21;&#xFF0C;&#x4ECE;&#x6837;&#x672C;&#x7C7B;&#x578B;&#x7684;&#x89D2;&#x5EA6;&#xFF0C;ID3&#x53EA;&#x80FD;&#x5904;&#x7406;&#x79BB;&#x6563;&#x578B;&#x53D8;&#x91CF;&#xFF0C;&#x800C;C4.5&#x548C;CART&#x90FD;&#x53EF;&#x4EE5;&#x5904;&#x7406;&#x8FDE;&#x7EED;&#x578B;&#x53D8;&#x91CF;&#x3002;C4.5&#x5904;&#x7406;&#x8FDE;&#x7EED;&#x578B;&#x53D8;&#x91CF;&#x65F6;&#xFF0C;&#x901A;&#x8FC7;&#x5BF9;&#x6570;&#x636E;&#x6392;&#x5E8F;&#x4E4B;&#x540E;&#x627E;&#x5230;&#x7C7B;&#x522B;&#x4E0D;&#x540C;&#x7684;&#x5206;&#x5272;&#x7EBF;&#x4F5C;&#x4E3A;&#x5207;&#x5206;&#x70B9;&#xFF0C;&#x6839;&#x636E;&#x5207;&#x5206;&#x70B9;&#x628A;&#x8FDE;&#x7EED;&#x5C5E;&#x6027;&#x8F6C;&#x6362;&#x4E3A;&#x5E03;&#x5C14;&#x578B;&#xFF0C;&#x4ECE;&#x800C;&#x5C06;&#x8FDE;&#x7EED;&#x578B;&#x53D8;&#x91CF;&#x8F6C;&#x6362;&#x591A;&#x4E2A;&#x53D6;&#x503C;&#x533A;&#x95F4;&#x7684;&#x79BB;&#x6563;&#x578B;&#x53D8;&#x91CF;&#x3002;&#x800C;&#x5BF9;&#x4E8E;CART&#xFF0C;&#x7531;&#x4E8E;&#x5176;&#x6784;&#x5EFA;&#x65F6;&#x6BCF;&#x6B21;&#x90FD;&#x4F1A;&#x5BF9;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x4E8C;&#x503C;&#x5212;&#x5206;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x5F88;&#x597D;&#x5730;&#x9002;&#x7528;&#x4E8E;&#x8FDE;&#x7EED;&#x6027;&#x53D8;&#x91CF;&#x3002;</p>
-<p>&#x4ECE;&#x5E94;&#x7528;&#x89D2;&#x5EA6;&#xFF0C;ID3&#x548C;C4.5&#x53EA;&#x80FD;&#x7528;&#x4E8E;&#x5206;&#x7C7B;&#x4EFB;&#x52A1;&#xFF0C;&#x800C;CART&#xFF08;Classification and Regression Tree&#xFF0C;&#x5206;&#x7C7B;&#x56DE;&#x5F52;&#x6811;&#xFF09;&#x4ECE;&#x540D;&#x5B57;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x5176;&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x5206;&#x7C7B;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5E94;&#x7528;&#x4E8E;&#x56DE;&#x5F52;&#x4EFB;&#x52A1;&#xFF08;&#x56DE;&#x5F52;&#x6811;&#x4F7F;&#x7528;&#x6700;&#x5C0F;&#x5E73;&#x65B9;&#x8BEF;&#x5DEE;&#x51C6;&#x5219;&#xFF09;&#x3002;</p>
-<p>&#x6B64;&#x5916;&#xFF0C;&#x4ECE;&#x5B9E;&#x73B0;&#x7EC6;&#x8282;&#x3001;&#x4F18;&#x5316;&#x8FC7;&#x7A0B;&#x7B49;&#x89D2;&#x5EA6;&#xFF0C;&#x8FD9;&#x4E09;&#x79CD;&#x51B3;&#x7B56;&#x6811;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x4E0D;&#x540C;&#x3002;&#x6BD4;&#x5982;&#xFF0C;ID3&#x5BF9;&#x6837;&#x672C;&#x7279;&#x5F81;&#x7F3A;&#x5931;&#x503C;&#x6BD4;&#x8F83;&#x654F;&#x611F;&#xFF0C;&#x800C;C4.5&#x548C;CART&#x53EF;&#x4EE5;&#x5BF9;&#x7F3A;&#x5931;&#x503C;&#x8FDB;&#x884C;&#x4E0D;&#x540C;&#x65B9;&#x5F0F;&#x7684;&#x5904;&#x7406;&#xFF1B;ID3&#x548C;C4.5&#x53EF;&#x4EE5;&#x5728;&#x6BCF;&#x4E2A;&#x7ED3;&#x70B9;&#x4E0A;&#x4EA7;&#x751F;&#x51FA;&#x591A;&#x53C9;&#x5206;&#x652F;&#xFF0C;&#x4E14;&#x6BCF;&#x4E2A;&#x7279;&#x5F81;&#x5728;&#x5C42;&#x7EA7;&#x4E4B;&#x95F4;&#x4E0D;&#x4F1A;&#x590D;&#x7528;&#xFF0C;&#x800C;CART&#x6BCF;&#x4E2A;&#x7ED3;&#x70B9;&#x53EA;&#x4F1A;&#x4EA7;&#x751F;&#x4E24;&#x4E2A;&#x5206;&#x652F;&#xFF0C;&#x56E0;&#x6B64;&#x6700;&#x540E;&#x4F1A;&#x5F62;&#x6210;&#x4E00;&#x9897;&#x4E8C;&#x53C9;&#x6811;&#xFF0C;&#x4E14;&#x6BCF;&#x4E2A;&#x7279;&#x5F81;&#x53EF;&#x4EE5;&#x88AB;&#x91CD;&#x590D;&#x4F7F;&#x7528;&#xFF1B;ID3&#x548C;C4.5&#x901A;&#x8FC7;&#x526A;&#x679D;&#x6765;&#x6743;&#x8861;&#x6811;&#x7684;&#x51C6;&#x786E;&#x6027;&#x4E0E;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#xFF0C;&#x800C;CART&#x76F4;&#x63A5;&#x5229;&#x7528;&#x5168;&#x90E8;&#x6570;&#x636E;&#x53D1;&#x73B0;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x6811;&#x7ED3;&#x6784;&#x8FDB;&#x884C;&#x5BF9;&#x6BD4;&#x3002;</p>
-<p>&#x81F3;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x4ECE;&#x6784;&#x9020;&#x3001;&#x5E94;&#x7528;&#x3001;&#x5B9E;&#x73B0;&#x7B49;&#x89D2;&#x5EA6;&#x5BF9;&#x6BD4;&#x4E86;ID3&#x3001;C4.5&#x3001;CART&#x8FD9;&#x4E09;&#x79CD;&#x7ECF;&#x5178;&#x7684;&#x51B3;&#x7B56;&#x6811;&#x6A21;&#x578B;&#x3002;&#x8FD9;&#x4E9B;&#x533A;&#x522B;&#x4E0E;&#x8054;&#x7CFB;&#x603B;&#x7ED3;&#x8D77;&#x6765;&#x5BB9;&#x6613;&#xFF0C;&#x4F46;&#x5728;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x4E2D;&#x8FD8;&#x9700;&#x8981;&#x8BFB;&#x8005;&#x6162;&#x6162;&#x4F53;&#x4F1A;&#xFF0C;&#x9488;&#x5BF9;&#x4E0D;&#x540C;&#x573A;&#x666F;&#x7075;&#x6D3B;&#x53D8;&#x901A;&#x3002;</p>
+<p>通过对比三种决策树的构造准则，以及在同一例子上的不同表现，我们不难总结三者之间的差异。</p>
+<p>首先，ID3是采用信息增益作为评价标准，除了“会写代码”这一逆天特征外，会倾向于取值较多的特征。因为，信息增益反映的是给定条件以后不确定性减少的程度，特征取值越多就意味着确定性更高，也就是条件熵越小，信息增益越大。这在实际应用中是一个缺陷。比如，我们引入特征“DNA”，每个人的DNA都不同，如果ID3按照“DNA”特征进行划分一定是最优的（条件熵为0），但这种分类的泛化能力是非常弱的。因此，C4.5实际上是对ID3进行优化，通过引入信息增益比，一定程度上对取值比较多的特征进行惩罚，避免ID3出现过拟合的特性，提升决策树的泛化能力。</p>
+<p>其次，从样本类型的角度，ID3只能处理离散型变量，而C4.5和CART都可以处理连续型变量。C4.5处理连续型变量时，通过对数据排序之后找到类别不同的分割线作为切分点，根据切分点把连续属性转换为布尔型，从而将连续型变量转换多个取值区间的离散型变量。而对于CART，由于其构建时每次都会对特征进行二值划分，因此可以很好地适用于连续性变量。</p>
+<p>从应用角度，ID3和C4.5只能用于分类任务，而CART（Classification and Regression Tree，分类回归树）从名字就可以看出其不仅可以用于分类，也可以应用于回归任务（回归树使用最小平方误差准则）。</p>
+<p>此外，从实现细节、优化过程等角度，这三种决策树还有一些不同。比如，ID3对样本特征缺失值比较敏感，而C4.5和CART可以对缺失值进行不同方式的处理；ID3和C4.5可以在每个结点上产生出多叉分支，且每个特征在层级之间不会复用，而CART每个结点只会产生两个分支，因此最后会形成一颗二叉树，且每个特征可以被重复使用；ID3和C4.5通过剪枝来权衡树的准确性与泛化能力，而CART直接利用全部数据发现所有可能的树结构进行对比。</p>
+<p>至此，我们从构造、应用、实现等角度对比了ID3、C4.5、CART这三种经典的决策树模型。这些区别与联系总结起来容易，但在实际应用中还需要读者慢慢体会，针对不同场景灵活变通。</p>
 </blockquote>
-<h1 id="&#x526A;&#x679D;&#x64CD;&#x4F5C;"><a name="&#x526A;&#x679D;&#x64CD;&#x4F5C;" class="anchor-navigation-ex-anchor" href="#&#x526A;&#x679D;&#x64CD;&#x4F5C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x526A;&#x679D;&#x64CD;&#x4F5C;" class="plugin-anchor" href="#&#x526A;&#x679D;&#x64CD;&#x4F5C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x526A;&#x679D;&#x64CD;&#x4F5C;</h1>
+<h1 id="剪枝操作">7 剪枝操作</h1>
 <blockquote>
-<p>&#x51B3;&#x7B56;&#x6811;&#x751F;&#x6210;&#x7B97;&#x6CD5;&#x9012;&#x5F52;&#x5730;&#x4EA7;&#x751F;&#x51B3;&#x7B56;&#x6811;&#xFF0C;&#x76F4;&#x5230;&#x4E0D;&#x80FD;&#x7EE7;&#x7EED;&#x4E0B;&#x53BB;&#x4E3A;&#x6B62;&#x3002;&#x8FD9;&#x6837;&#x4EA7;&#x751F;&#x7684;&#x6811;&#x5F80;&#x5F80;&#x5BF9;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x7684;&#x5206;&#x7C7B;&#x5F88;&#x51C6;&#x786E;&#xFF0C;&#x4F46;&#x5BF9;&#x672A;&#x77E5;&#x7684;&#x6D4B;&#x8BD5;&#x6570;&#x636E;&#x7684;&#x5206;&#x7C7B;&#x5374;&#x6CA1;&#x6709;&#x90A3;&#x4E48;&#x51C6;&#x786E;&#xFF0C;&#x5373;&#x51FA;&#x73B0;&#x8FC7;&#x62DF;&#x5408;&#x73B0;&#x8C61;&#x3002;</p>
-<p>&#x5728;&#x51B3;&#x7B56;&#x6811;&#x5B66;&#x4E60;&#x4E2D;&#x5C06;&#x5DF2;&#x751F;&#x6210;&#x7684;&#x6811;&#x8FDB;&#x884C;&#x7B80;&#x5316;&#x7684;&#x8FC7;&#x7A0B;&#x79F0;&#x4E3A;&#x526A;&#x679D;&#xFF08;pruning&#xFF09;&#x3002;&#x5177;&#x4F53;&#x5730;&#xFF0C;&#x526A;&#x679D;&#x4ECE;&#x5DF2;&#x751F;&#x6210;&#x7684;&#x6811;&#x4E0A;&#x88C1;&#x6389;&#x4E00;&#x4E9B;&#x5B50;&#x6811;&#x6216;&#x53F6;&#x7ED3;&#x70B9;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x6839;&#x7ED3;&#x70B9;&#x6216;&#x7236;&#x7ED3;&#x70B9;&#x4F5C;&#x4E3A;&#x65B0;&#x7684;&#x53F6;&#x7ED3;&#x70B9;&#xFF0C;&#x4ECE;&#x800C;&#x7B80;&#x5316;&#x5206;&#x7C7B;&#x6811;&#x6A21;&#x578B;&#xFF0C;&#x63D0;&#x5347;&#x6A21;&#x578B;&#x7684;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#x3002;</p>
-<p>&#x51B3;&#x7B56;&#x6811;&#x7684;&#x526A;&#x679D;&#x5F80;&#x5F80;&#x901A;&#x8FC7;&#x6781;&#x5C0F;&#x5316;&#x51B3;&#x7B56;&#x6811;&#x6574;&#x4F53;&#x7684;&#x635F;&#x5931;&#x51FD;&#x6570;(loss function)&#x6216;&#x4EE3;&#x4EF7;&#x51FD;&#x6570;(cost function)&#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
-<p>&#x8BBE;&#x6811;<script type="math/tex; ">T</script>&#x7684;&#x53F6;&#x7ED3;&#x70B9;&#x4E2A;&#x6570;&#x4E3A;<script type="math/tex; ">|T|</script>&#xFF0C;<script type="math/tex; ">t</script>&#x662F;&#x6811;<script type="math/tex; ">T</script>&#x7684;&#x53F6;&#x7ED3;&#x70B9;&#xFF0C;&#x8BE5;&#x53F6;&#x7ED3;&#x70B9;&#x6709;<script type="math/tex; ">N_t</script> &#x4E2A;&#x6837;&#x672C;&#x70B9;&#xFF0C;&#x5176;&#x4E2D;<script type="math/tex; ">k</script>&#x7C7B;&#x7684;&#x6837;&#x672C;&#x70B9;&#x6709;<script type="math/tex; ">N_{tk}</script>&#x4E2A;&#xFF0C;<script type="math/tex; ">k＝1,2,...,K</script>&#xFF0C;<script type="math/tex; ">H_t(T)</script>&#x4E3A;&#x53F6;&#x7ED3;&#x70B9;<script type="math/tex; ">t</script>&#x4E0A;&#x7684;&#x7ECF;&#x9A8C;&#x71B5;&#xFF0C;<script type="math/tex; ">a \geq 0</script>&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x5219;&#x51B3;&#x7B56;&#x6811;&#x5B66;&#x4E60;&#x7684;&#x635F;&#x5931;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4E3A;
+<p>决策树生成算法递归地产生决策树，直到不能继续下去为止。这样产生的树往往对训练数据的分类很准确，但对未知的测试数据的分类却没有那么准确，即出现过拟合现象。</p>
+<p>在决策树学习中将已生成的树进行简化的过程称为剪枝（pruning）。具体地，剪枝从已生成的树上裁掉一些子树或叶结点，并将其根结点或父结点作为新的叶结点，从而简化分类树模型，提升模型的泛化能力。</p>
+<p>决策树的剪枝往往通过极小化决策树整体的损失函数(loss function)或代价函数(cost function)来实现。</p>
+<p>设树<script type="math/tex; ">T</script>的叶结点个数为<script type="math/tex; ">|T|</script>，<script type="math/tex; ">t</script>是树<script type="math/tex; ">T</script>的叶结点，该叶结点有<script type="math/tex; ">N_t</script> 个样本点，其中<script type="math/tex; ">k</script>类的样本点有<script type="math/tex; ">N_{tk}</script>个，<script type="math/tex; ">k＝1,2,...,K</script>，<script type="math/tex; ">H_t(T)</script>为叶结点<script type="math/tex; ">t</script>上的经验熵，<script type="math/tex; ">a \geq 0</script>为参数，则决策树学习的损失函数可以定义为
 <script type="math/tex; mode=display">
 >C_a(T)=\sum_{t=1}^{|T|}{N_tH_t(T)+\alpha|T|}
 ></script>
-&#x5176;&#x4E2D;&#x7ECF;&#x9A8C;&#x71B5;&#x4E3A;
+其中经验熵为
 <script type="math/tex; mode=display">
 >H_t(T)=-\sum_{k}{\frac{N_{tk}}{N_t}log{\frac{N_{tk}}{N_t}}}
 ></script>
-&#x5728;&#x635F;&#x5931;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x5C06;&#x5F0F;&#x53F3;&#x7AEF;&#x7684;&#x7B2C;1&#x9879;&#x8BB0;&#x4F5C;
+在损失函数中，将式右端的第1项记作
 <script type="math/tex; mode=display">
 >C(T)=\sum_{t=1}^{|T|}{N_tH_t(T)}=-\sum_{t=1}^{|T|}{\sum_{k=1}^{K}{ N_{tk}log{\frac{N_{tk}}{N_t}} }}
 ></script>
-&#x8FD9;&#x65F6;&#x6709;
+这时有
 <script type="math/tex; mode=display">
 >C_{\alpha}(T)=C(T)+\alpha|T|
 ></script>
-&#x5F0F;&#x4E2D;&#xFF0C;<script type="math/tex; ">C(T)</script>&#x8868;&#x793A;&#x6A21;&#x578B;&#x5BF9;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x7684;&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;&#xFF0C;&#x5373;&#x6A21;&#x578B;&#x4E0E;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x7684;&#x62DF;&#x5408;&#x7A0B;&#x5EA6;&#xFF0C;<script type="math/tex; ">|T|</script>&#x8868;&#x793A;&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x53C2;&#x6570;<script type="math/tex; "> \alpha \geq 0</script>&#x63A7;&#x5236;&#x4E24;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x5F71;&#x54CD;&#x3002;</p>
-<p>&#x8F83;&#x5927;&#x7684;<script type="math/tex; "> \alpha</script>&#x4FC3;&#x4F7F;&#x9009;&#x62E9;&#x8F83;&#x7B80;&#x5355;&#x7684;&#x6A21;&#x578B;(&#x6811;)&#xFF0C;</p>
-<p>&#x8F83;&#x5C0F;&#x7684;<script type="math/tex; "> \alpha</script>&#x4FC3;&#x4F7F;&#x9009;&#x62E9;&#x8F83;&#x590D;&#x6742;&#x7684;&#x6A21;&#x578B;(&#x6811;)&#x3002;</p>
-<p><script type="math/tex; "> \alpha=0</script>&#x610F;&#x5473;&#x7740;&#x53EA;&#x8003;&#x8651;&#x6A21;&#x578B;&#x4E0E;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x7684;&#x62DF;&#x5408;&#x7A0B;&#x5EA6;&#xFF0C;&#x4E0D;&#x8003;&#x8651;&#x6A21;&#x578B;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x3002;</p>
-<p>&#x526A;&#x679D;&#xFF0C;&#x5C31;&#x662F;&#x5F53;<script type="math/tex; "> \alpha</script>&#x786E;&#x5B9A;&#x65F6;&#xFF0C;&#x9009;&#x62E9;&#x635F;&#x5931;&#x51FD;&#x6570;&#x6700;&#x5C0F;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x5373;&#x635F;&#x5931;&#x51FD;&#x6570;&#x6700;&#x5C0F;&#x7684;&#x5B50;&#x6811;&#x3002;</p>
-<p>&#x5F53;<script type="math/tex; "> \alpha</script>&#x503C;&#x786E;&#x5B9A;&#x65F6;&#xFF0C;&#x5B50;&#x6811;&#x8D8A;&#x5927;&#xFF0C;&#x5F80;&#x5F80;&#x4E0E;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x7684;&#x62DF;&#x5408;&#x8D8A;&#x597D;&#xFF0C;&#x4F46;&#x662F;&#x6A21;&#x578B;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x5C31;&#x8D8A;&#x9AD8;&#xFF1B;&#x76F8;&#x53CD;&#xFF0C;&#x5B50;&#x6811;&#x8D8A;&#x5C0F;&#xFF0C;&#x6A21;&#x578B;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x5C31;&#x8D8A;&#x4F4E;&#xFF0C;&#x4F46;&#x662F;&#x5F80;&#x5F80;&#x4E0E;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x7684;&#x62DF;&#x5408;&#x4E0D;&#x597D;&#x3002;&#x635F;&#x5931;&#x51FD;&#x6570;&#x6B63;&#x597D;&#x8868;&#x793A;&#x4E86;&#x5BF9;&#x4E24;&#x8005;&#x7684;&#x5E73;&#x8861;&#x3002;</p>
-<p>&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x51B3;&#x7B56;&#x6811;&#x751F;&#x6210;&#x53EA;&#x8003;&#x8651;&#x4E86;&#x901A;&#x8FC7;&#x63D0;&#x9AD8;&#x4FE1;&#x606F;&#x589E;&#x76CA;(&#x6216;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;)&#x5BF9;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x66F4;&#x597D;&#x7684;&#x62DF;&#x5408;&#x3002;</p>
-<p>&#x800C;&#x51B3;&#x7B56;&#x6811;&#x526A;&#x679D;&#x901A;&#x8FC7;&#x4F18;&#x5316;&#x635F;&#x5931;&#x51FD;&#x6570;&#x8FD8;&#x8003;&#x8651;&#x4E86;&#x51CF;&#x5C0F;&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;&#x3002;</p>
-<p>&#x51B3;&#x7B56;&#x6811;&#x751F;&#x6210;&#x5B66;&#x4E60;&#x5C40;&#x90E8;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x800C;&#x51B3;&#x7B56;&#x6811;&#x526A;&#x679D;&#x5B66;&#x4E60;&#x6574;&#x4F53;&#x7684;&#x6A21;&#x578B;&#x3002;</p>
-<p>&#x5B9A;&#x4E49;&#x7684;&#x635F;&#x5931;&#x51FD;&#x6570;&#x7684;&#x6781;&#x5C0F;&#x5316;&#x7B49;&#x4EF7;&#x4E8E;&#x6B63;&#x5219;&#x5316;&#x7684;&#x6781;&#x5927;&#x4F3C;&#x7136;&#x4F30;&#x8BA1;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x5229;&#x7528;&#x635F;&#x5931;&#x51FD;&#x6570;&#x6700;&#x5C0F;&#x539F;&#x5219;&#x8FDB;&#x884C;&#x526A;&#x679D;&#x5C31;&#x662F;&#x7528;&#x6B63;&#x5219;&#x5316;&#x7684;&#x6781;&#x5927;&#x4F3C;&#x7136;&#x4F30;&#x8BA1;&#x8FDB;&#x884C;&#x6A21;&#x578B;&#x9009;&#x62E9;</p>
-<p><a href="res/Machine%20Learning%20Base/1570064604418.png" data-lightbox="702fff41-5c13-4767-96fa-d69a0581113f" data-title="1570064604418"><img src="res/Machine%20Learning%20Base/1570064604418.png" alt="1570064604418"></a></p>
-<p>&#x51B3;&#x7B56;&#x6811;&#x7684;&#x526A;&#x679D;&#x901A;&#x5E38;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;<code>&#x9884;&#x526A;&#x679D;</code>(Pre-Pruning)&#x548C;<code>&#x540E;&#x526A;&#x679D;</code>(Post-Pruning)&#x3002;</p>
+式中，<script type="math/tex; ">C(T)</script>表示模型对训练数据的预测误差，即模型与训练数据的拟合程度，<script type="math/tex; ">|T|</script>表示模型复杂度，参数<script type="math/tex; "> \alpha \geq 0</script>控制两者之间的影响。</p>
+<p>较大的<script type="math/tex; "> \alpha</script>促使选择较简单的模型(树)，</p>
+<p>较小的<script type="math/tex; "> \alpha</script>促使选择较复杂的模型(树)。</p>
+<p><script type="math/tex; "> \alpha=0</script>意味着只考虑模型与训练数据的拟合程度，不考虑模型的复杂度。</p>
+<p>剪枝，就是当<script type="math/tex; "> \alpha</script>确定时，选择损失函数最小的模型，即损失函数最小的子树。</p>
+<p>当<script type="math/tex; "> \alpha</script>值确定时，子树越大，往往与训练数据的拟合越好，但是模型的复杂度就越高；相反，子树越小，模型的复杂度就越低，但是往往与训练数据的拟合不好。损失函数正好表示了对两者的平衡。</p>
+<p>可以看出，决策树生成只考虑了通过提高信息增益(或信息增益比)对训练数据进行更好的拟合。</p>
+<p>而决策树剪枝通过优化损失函数还考虑了减小模型复杂度。</p>
+<p>决策树生成学习局部的模型，而决策树剪枝学习整体的模型。</p>
+<p>定义的损失函数的极小化等价于正则化的极大似然估计。所以，利用损失函数最小原则进行剪枝就是用正则化的极大似然估计进行模型选择</p>
+<p><a data-lightbox="a01e7e32-30e8-4b9b-b757-72b8ef752626" data-title="1570064604418" href="res/Machine%20Learning%20Base/1570064604418.png"><img alt="1570064604418" src="res/Machine%20Learning%20Base/1570064604418.png"/></a></p>
+<p>决策树的剪枝通常有两种方法，<code>预剪枝</code>(Pre-Pruning)和<code>后剪枝</code>(Post-Pruning)。</p>
 </blockquote>
-<h2 id="&#x9884;&#x526A;&#x679D;"><a name="&#x9884;&#x526A;&#x679D;" class="anchor-navigation-ex-anchor" href="#&#x9884;&#x526A;&#x679D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x9884;&#x526A;&#x679D;" class="plugin-anchor" href="#&#x9884;&#x526A;&#x679D;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9884;&#x526A;&#x679D;</h2>
+<h2 id="预剪枝">7.1 预剪枝</h2>
 <blockquote>
-<p><code>&#x9884;&#x526A;&#x679D;</code>&#x7684;&#x6838;&#x5FC3;&#x601D;&#x60F3;&#x662F;&#x5728;&#x6811;&#x4E2D;&#x7ED3;&#x70B9;&#x8FDB;&#x884C;&#x6269;&#x5C55;&#x4E4B;&#x524D;&#xFF0C;&#x5148;&#x8BA1;&#x7B97;&#x5F53;&#x524D;&#x7684;&#x5212;&#x5206;&#x662F;&#x5426;&#x80FD;&#x5E26;&#x6765;&#x6A21;&#x578B;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#x7684;&#x63D0;&#x5347;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x80FD;&#xFF0C;&#x5219;&#x4E0D;&#x518D;&#x7EE7;&#x7EED;&#x751F;&#x957F;&#x5B50;&#x6811;&#x3002;&#x6B64;&#x65F6;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x4E0D;&#x540C;&#x7C7B;&#x522B;&#x7684;&#x6837;&#x672C;&#x540C;&#x65F6;&#x5B58;&#x4E8E;&#x7ED3;&#x70B9;&#x4E2D;&#xFF0C;&#x6309;&#x7167;&#x591A;&#x6570;&#x6295;&#x7968;&#x7684;&#x539F;&#x5219;&#x5224;&#x65AD;&#x8BE5;&#x7ED3;&#x70B9;&#x6240;&#x5C5E;&#x7C7B;&#x522B;&#x3002;&#x9884;&#x526A;&#x679D;&#x5BF9;&#x4E8E;&#x4F55;&#x65F6;&#x505C;&#x6B62;&#x51B3;&#x7B56;&#x6811;&#x7684;&#x751F;&#x957F;&#x6709;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x65B9;&#x6CD5;&#x3002;</p>
+<p><code>预剪枝</code>的核心思想是在树中结点进行扩展之前，先计算当前的划分是否能带来模型泛化能力的提升，如果不能，则不再继续生长子树。此时可能存在不同类别的样本同时存于结点中，按照多数投票的原则判断该结点所属类别。预剪枝对于何时停止决策树的生长有以下几种方法。</p>
 <ol>
-<li>&#x5F53;&#x6811;&#x5230;&#x8FBE;&#x4E00;&#x5B9A;&#x6DF1;&#x5EA6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x505C;&#x6B62;&#x6811;&#x7684;&#x751F;&#x957F;&#x3002;</li>
-<li>&#x5F53;&#x5230;&#x8FBE;&#x5F53;&#x524D;&#x7ED3;&#x70B9;&#x7684;&#x6837;&#x672C;&#x6570;&#x91CF;&#x5C0F;&#x4E8E;&#x67D0;&#x4E2A;&#x9608;&#x503C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x505C;&#x6B62;&#x6811;&#x7684;&#x751F;&#x957F;&#x3002;</li>
-<li>&#x8BA1;&#x7B97;&#x6BCF;&#x6B21;&#x5206;&#x88C2;&#x5BF9;&#x6D4B;&#x8BD5;&#x96C6;&#x7684;&#x51C6;&#x786E;&#x5EA6;&#x63D0;&#x5347;&#xFF0C;&#x5F53;&#x5C0F;&#x4E8E;&#x67D0;&#x4E2A;&#x9608;&#x503C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E0D;&#x518D;&#x7EE7;&#x7EED;&#x6269;&#x5C55;&#x3002;</li>
+<li>当树到达一定深度的时候，停止树的生长。</li>
+<li>当到达当前结点的样本数量小于某个阈值的时候，停止树的生长。</li>
+<li>计算每次分裂对测试集的准确度提升，当小于某个阈值的时候，不再继续扩展。</li>
 </ol>
-<p>&#x9884;&#x526A;&#x679D;&#x5177;&#x6709;&#x601D;&#x60F3;&#x76F4;&#x63A5;&#x3001;&#x7B97;&#x6CD5;&#x7B80;&#x5355;&#x3001;&#x6548;&#x7387;&#x9AD8;&#x7B49;&#x7279;&#x70B9;&#xFF0C;&#x9002;&#x5408;&#x89E3;&#x51B3;&#x5927;&#x89C4;&#x6A21;&#x95EE;&#x9898;&#x3002;&#x4F46;&#x5982;&#x4F55;&#x51C6;&#x786E;&#x5730;&#x4F30;&#x8BA1;&#x4F55;&#x65F6;&#x505C;&#x6B62;&#x6811;&#x7684;&#x751F;&#x957F;&#xFF08;&#x5373;&#x4E0A;&#x8FF0;&#x65B9;&#x6CD5;&#x4E2D;&#x7684;&#x6DF1;&#x5EA6;&#x6216;&#x9608;&#x503C;&#xFF09;&#xFF0C;&#x9488;&#x5BF9;&#x4E0D;&#x540C;&#x95EE;&#x9898;&#x4F1A;&#x6709;&#x5F88;&#x5927;&#x5DEE;&#x522B;&#xFF0C;&#x9700;&#x8981;&#x4E00;&#x5B9A;&#x7ECF;&#x9A8C;&#x5224;&#x65AD;&#x3002;</p>
-<p>&#x4E14;&#x9884;&#x526A;&#x679D;&#x5B58;&#x5728;&#x4E00;&#x5B9A;&#x5C40;&#x9650;&#x6027;&#xFF0C;&#x6709;&#x6B20;&#x62DF;&#x5408;&#x7684;&#x98CE;&#x9669;&#xFF0C;&#x867D;&#x7136;&#x5F53;&#x524D;&#x7684;&#x5212;&#x5206;&#x4F1A;&#x5BFC;&#x81F4;&#x6D4B;&#x8BD5;&#x96C6;&#x51C6;&#x786E;&#x7387;&#x964D;&#x4F4E;&#xFF0C;&#x4F46;&#x5728;&#x4E4B;&#x540E;&#x7684;&#x5212;&#x5206;&#x4E2D;&#xFF0C;&#x51C6;&#x786E;&#x7387;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x663E;&#x8457;&#x4E0A;&#x5347;&#x3002;</p>
+<p>预剪枝具有思想直接、算法简单、效率高等特点，适合解决大规模问题。但如何准确地估计何时停止树的生长（即上述方法中的深度或阈值），针对不同问题会有很大差别，需要一定经验判断。</p>
+<p>且预剪枝存在一定局限性，有欠拟合的风险，虽然当前的划分会导致测试集准确率降低，但在之后的划分中，准确率可能会有显著上升。</p>
 </blockquote>
-<h2 id="&#x540E;&#x526A;&#x679D;"><a name="&#x540E;&#x526A;&#x679D;" class="anchor-navigation-ex-anchor" href="#&#x540E;&#x526A;&#x679D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x540E;&#x526A;&#x679D;" class="plugin-anchor" href="#&#x540E;&#x526A;&#x679D;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x540E;&#x526A;&#x679D;</h2>
+<h2 id="后剪枝">7.2 后剪枝</h2>
 <blockquote>
-<p><code>&#x540E;&#x526A;&#x679D;</code>&#x7684;&#x6838;&#x5FC3;&#x601D;&#x60F3;&#x662F;&#x8BA9;&#x7B97;&#x6CD5;&#x751F;&#x6210;&#x4E00;&#x68F5;&#x5B8C;&#x5168;&#x751F;&#x957F;&#x7684;&#x51B3;&#x7B56;&#x6811;&#xFF0C;&#x7136;&#x540E;&#x4ECE;&#x6700;&#x5E95;&#x5C42;&#x5411;&#x4E0A;&#x8BA1;&#x7B97;&#x662F;&#x5426;&#x526A;&#x679D;&#x3002;</p>
-<p>&#x526A;&#x679D;&#x8FC7;&#x7A0B;&#x5C06;&#x5B50;&#x6811;&#x5220;&#x9664;&#xFF0C;&#x7528;&#x4E00;&#x4E2A;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x66FF;&#x4EE3;&#xFF0C;&#x8BE5;&#x7ED3;&#x70B9;&#x7684;&#x7C7B;&#x522B;&#x540C;&#x6837;&#x6309;&#x7167;&#x591A;&#x6570;&#x6295;&#x7968;&#x7684;&#x539F;&#x5219;&#x8FDB;&#x884C;&#x5224;&#x65AD;&#x3002;&#x540C;&#x6837;&#x5730;&#xFF0C;&#x540E;&#x526A;&#x679D;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5728;&#x6D4B;&#x8BD5;&#x96C6;&#x4E0A;&#x7684;&#x51C6;&#x786E;&#x7387;&#x8FDB;&#x884C;&#x5224;&#x65AD;&#xFF0C;&#x5982;&#x679C;&#x526A;&#x679D;&#x8FC7;&#x540E;&#x51C6;&#x786E;&#x7387;&#x6709;&#x6240;&#x63D0;&#x5347;&#xFF0C;&#x5219;&#x8FDB;&#x884C;&#x526A;&#x679D;&#x3002;</p>
-<p>&#x76F8;&#x6BD4;&#x4E8E;&#x9884;&#x526A;&#x679D;&#xFF0C;&#x540E;&#x526A;&#x679D;&#x65B9;&#x6CD5;&#x901A;&#x5E38;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#x66F4;&#x5F3A;&#x7684;&#x51B3;&#x7B56;&#x6811;&#xFF0C;&#x4F46;<code>&#x65F6;&#x95F4;&#x5F00;&#x9500;&#x4F1A;&#x66F4;&#x5927;</code>&#x3002;</p>
-<p>&#x5E38;&#x89C1;&#x7684;&#x540E;&#x526A;&#x679D;&#x65B9;&#x6CD5;&#x5305;&#x62EC;<code>&#x9519;&#x8BEF;&#x7387;&#x964D;&#x4F4E;&#x526A;&#x679D;</code>(Reduced Error Pruning&#xFF0C;REP)&#x3001;<code>&#x60B2;&#x89C2;&#x526A;&#x679D;</code>(Pessimistic Error Pruning&#xFF0C;PEP)&#x3001;<code>&#x4EE3;&#x4EF7;&#x590D;&#x6742;&#x5EA6;&#x526A;&#x679D;</code>(Cost Complexity Pruning&#xFF0C;CCP)&#x3001;<code>&#x6700;&#x5C0F;&#x8BEF;&#x5DEE;&#x526A;&#x679D;</code>(Minimum Error Pruning&#xFF0C;MEP)&#x3001;<code>CVP</code>(Critical Value Pruning)&#x3001;<code>OPP</code>(Optimal Pruning)&#x7B49;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x4E9B;&#x526A;&#x679D;&#x65B9;&#x6CD5;&#x5404;&#x6709;&#x5229;&#x5F0A;&#xFF0C;&#x5173;&#x6CE8;&#x4E0D;&#x540C;&#x7684;&#x4F18;&#x5316;&#x89D2;&#x5EA6;&#x3002;</p>
+<p><code>后剪枝</code>的核心思想是让算法生成一棵完全生长的决策树，然后从最底层向上计算是否剪枝。</p>
+<p>剪枝过程将子树删除，用一个叶子结点替代，该结点的类别同样按照多数投票的原则进行判断。同样地，后剪枝也可以通过在测试集上的准确率进行判断，如果剪枝过后准确率有所提升，则进行剪枝。</p>
+<p>相比于预剪枝，后剪枝方法通常可以得到泛化能力更强的决策树，但<code>时间开销会更大</code>。</p>
+<p>常见的后剪枝方法包括<code>错误率降低剪枝</code>(Reduced Error Pruning，REP)、<code>悲观剪枝</code>(Pessimistic Error Pruning，PEP)、<code>代价复杂度剪枝</code>(Cost Complexity Pruning，CCP)、<code>最小误差剪枝</code>(Minimum Error Pruning，MEP)、<code>CVP</code>(Critical Value Pruning)、<code>OPP</code>(Optimal Pruning)等方法，这些剪枝方法各有利弊，关注不同的优化角度。</p>
 </blockquote>
-<h2 id="cart&#x526A;&#x679D;"><a name="cart&#x526A;&#x679D;" class="anchor-navigation-ex-anchor" href="#cart&#x526A;&#x679D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="cart&#x526A;&#x679D;" class="plugin-anchor" href="#cart&#x526A;&#x679D;"><i class="fa fa-link" aria-hidden="true"></i></a>CART&#x526A;&#x679D;</h2>
+<h2 id="cart剪枝">7.3 CART剪枝</h2>
 <blockquote>
-<p>CART&#x7684;<code>&#x4EE3;&#x4EF7;&#x590D;&#x6742;&#x526A;&#x679D;CCP</code></p>
-<p>&#x4EE3;&#x4EF7;&#x590D;&#x6742;&#x526A;&#x679D;&#x4E3B;&#x8981;&#x5305;&#x542B;&#x4EE5;&#x4E0B;&#x4E24;&#x4E2A;&#x6B65;&#x9AA4;&#x3002;</p>
+<p>CART的<code>代价复杂剪枝CCP</code></p>
+<p>代价复杂剪枝主要包含以下两个步骤。</p>
 <ol>
-<li>&#x4ECE;&#x5B8C;&#x6574;&#x51B3;&#x7B56;&#x6811;<script type="math/tex; ">T_0</script>&#x5F00;&#x59CB;&#xFF0C;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x5B50;&#x6811;&#x5E8F;&#x5217;<script type="math/tex; ">\{T_0,T_1,*,...,T_n\}</script>&#xFF0C;&#x5176;&#x4E2D;<script type="math/tex; ">T_{i+1}</script>&#x7531;<script type="math/tex; ">T_i</script>&#x751F;&#x6210;&#xFF0C;<script type="math/tex; ">T_n</script>&#x4E3A;&#x6839;&#x8282;&#x70B9;&#x3002;</li>
-<li>&#x5728;&#x5B50;&#x6811;&#x5E8F;&#x5217;&#x4E2D;&#xFF0C;&#x6839;&#x636E;&#x771F;&#x5B9E;&#x8BEF;&#x5DEE;&#x9009;&#x62E9;&#x6700;&#x4F73;&#x7684;&#x51B3;&#x7B56;&#x6811;&#x3002;</li>
+<li>从完整决策树<script type="math/tex; ">T_0</script>开始，生成一个子树序列<script type="math/tex; ">\{T_0,T_1,*,...,T_n\}</script>，其中<script type="math/tex; ">T_{i+1}</script>由<script type="math/tex; ">T_i</script>生成，<script type="math/tex; ">T_n</script>为根节点。</li>
+<li>在子树序列中，根据真实误差选择最佳的决策树。</li>
 </ol>
-<p><code>&#x6B65;&#x9AA4;1</code>&#x4ECE;<script type="math/tex; ">T_0</script>&#x5F00;&#x59CB;&#xFF0C;&#x88C1;&#x526A;&#x4E2D;<script type="math/tex; ">T_i</script>&#x5173;&#x4E8E;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;&#x5408;&#x8BEF;&#x5DEE;&#x589E;&#x52A0;&#x6700;&#x5C0F;&#x7684;&#x5206;&#x652F;&#x4EE5;&#x5F97;&#x5230;<script type="math/tex; ">T_{i+1}</script>&#x3002;</p>
-<p>&#x5177;&#x4F53;&#x5730;&#xFF0C;&#x5F53;&#x4E00;&#x68F5;&#x6811;<script type="math/tex; ">T</script>&#x5728;&#x7ED3;&#x70B9;<script type="math/tex; ">t</script>&#x5904;&#x526A;&#x679D;&#x65F6;&#xFF0C;&#x5B83;&#x7684;&#x8BEF;&#x5DEE;&#x589E;&#x52A0;&#x53EF;&#x4EE5;&#x7528;<script type="math/tex; ">R(t)−R(T_t)</script>&#x8868;&#x793A;&#xFF0C;&#x5176;&#x4E2D;<script type="math/tex; ">R(t)</script>&#x8868;&#x793A;&#x8FDB;&#x884C;&#x526A;&#x679D;&#x4E4B;&#x540E;&#x7684;&#x8BE5;&#x7ED3;&#x70B9;&#x8BEF;&#x5DEE;&#xFF0C;<script type="math/tex; ">R(T_t)</script>&#x8868;&#x793A;&#x672A;&#x8FDB;&#x884C;&#x526A;&#x679D;&#x65F6;&#x5B50;&#x6811;<script type="math/tex; ">T_t</script>&#x7684;&#x8BEF;&#x5DEE;&#x3002;</p>
-<p>&#x8003;&#x8651;&#x5230;&#x6811;&#x7684;&#x590D;&#x6742;&#x6027;&#x56E0;&#x7D20;&#xFF0C;&#x6211;&#x4EEC;&#x7528;<script type="math/tex; ">|L(T_t)|</script>&#x8868;&#x793A;&#x5B50;&#x6811;<script type="math/tex; ">T_t</script>&#x7684;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x4E2A;&#x6570;&#xFF0C;&#x5219;&#x6811;&#x5728;&#x7ED3;&#x70B9;<script type="math/tex; ">t</script>&#x5904;&#x526A;&#x679D;&#x540E;&#x7684;&#x8BEF;&#x5DEE;&#x589E;&#x52A0;&#x7387;&#x4E3A;
+<p><code>步骤1</code>从<script type="math/tex; ">T_0</script>开始，裁剪中<script type="math/tex; ">T_i</script>关于训练数据集合误差增加最小的分支以得到<script type="math/tex; ">T_{i+1}</script>。</p>
+<p>具体地，当一棵树<script type="math/tex; ">T</script>在结点<script type="math/tex; ">t</script>处剪枝时，它的误差增加可以用<script type="math/tex; ">R(t)−R(T_t)</script>表示，其中<script type="math/tex; ">R(t)</script>表示进行剪枝之后的该结点误差，<script type="math/tex; ">R(T_t)</script>表示未进行剪枝时子树<script type="math/tex; ">T_t</script>的误差。</p>
+<p>考虑到树的复杂性因素，我们用<script type="math/tex; ">|L(T_t)|</script>表示子树<script type="math/tex; ">T_t</script>的叶子结点个数，则树在结点<script type="math/tex; ">t</script>处剪枝后的误差增加率为
 <script type="math/tex; mode=display">
 >\alpha = \frac{R(t)-R(T_t)}{|L(T_t)|-1}
 ></script>
-&#x5728;&#x5F97;&#x5230;<script type="math/tex; ">T_i</script>&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x6BCF;&#x6B65;&#x9009;&#x62E9;<script type="math/tex; "> \alpha</script>&#x6700;&#x5C0F;&#x7684;&#x7ED3;&#x70B9;&#x8FDB;&#x884C;&#x76F8;&#x5E94;&#x526A;&#x679D;&#x3002;</p>
-<p>&#x7528;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x7B80;&#x5355;&#x5730;&#x4ECB;&#x7ECD;&#x751F;&#x6210;&#x5B50;&#x6811;&#x5E8F;&#x5217;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
-<p>&#x5047;&#x8BBE;&#x628A;&#x573A;&#x666F;&#x4E2D;&#x7684;&#x95EE;&#x9898;&#x8FDB;&#x884C;&#x4E00;&#x5B9A;&#x6269;&#x5C55;&#xFF0C;&#x5973;&#x5B69;&#x9700;&#x8981;&#x5BF9;80&#x4E2A;&#x4EBA;&#x8FDB;&#x884C;&#x89C1;&#x6216;&#x4E0D;&#x89C1;&#x7684;&#x5206;&#x7C7B;&#x3002;</p>
-<p>&#x5047;&#x8BBE;&#x6839;&#x636E;&#x67D0;&#x79CD;&#x89C4;&#x5219;&#xFF0C;&#x5DF2;&#x7ECF;&#x5F97;&#x5230;&#x4E86;&#x4E00;&#x68F5;CART&#x51B3;&#x7B56;&#x6811;<script type="math/tex; ">T_0</script>&#xFF0C;&#x5982;&#x56FE;&#x6240;&#x793A;</p>
-<p><a href="res/Machine%20Learning%20Base/1570066823030.png" data-lightbox="f8268144-9809-4ae7-b9d2-2a6a6adfa6e8" data-title="1570066823030"><img src="res/Machine%20Learning%20Base/1570066823030.png" alt="1570066823030"></a></p>
-<p>&#x6B64;&#x65F6;&#x5171;5&#x4E2A;&#x5185;&#x90E8;&#x7ED3;&#x70B9;&#x53EF;&#x4F9B;&#x8003;&#x8651;&#xFF0C;&#x5176;&#x4E2D;
+在得到<script type="math/tex; ">T_i</script>后，我们每步选择<script type="math/tex; "> \alpha</script>最小的结点进行相应剪枝。</p>
+<p>用一个例子简单地介绍生成子树序列的方法。</p>
+<p>假设把场景中的问题进行一定扩展，女孩需要对80个人进行见或不见的分类。</p>
+<p>假设根据某种规则，已经得到了一棵CART决策树<script type="math/tex; ">T_0</script>，如图所示</p>
+<p><a data-lightbox="7d0d5ec6-ddc8-4617-9e74-6be3821a0efe" data-title="1570066823030" href="res/Machine%20Learning%20Base/1570066823030.png"><img alt="1570066823030" src="res/Machine%20Learning%20Base/1570066823030.png"/></a></p>
+<p>此时共5个内部结点可供考虑，其中
 <script type="math/tex; mode=display">
 >a(t_0)=\frac{25-5}{6-1}=4, \\
 >a(t_1)=\frac{10-(1+2+0+0)}{4-1}=2.33, \\
@@ -1346,148 +893,72 @@ CART&#x5728;&#x6BCF;&#x4E00;&#x6B21;&#x8FED;&#x4EE3;&#x4E2D;&#x9009;&#x62E9;&#x5
 >a(t_3)=\frac{4-(1+2)}{2-1}=1, \\
 >a(t_4)=\frac{4-0}{2-1}=4
 ></script>
-&#x53EF;&#x89C1;<script type="math/tex; ">\alpha (t_3)</script>&#x6700;&#x5C0F;&#xFF0C;&#x56E0;&#x6B64;&#x5BF9;&#x8FDB;<script type="math/tex; ">t_3</script>&#x8FDB;&#x884C;&#x526A;&#x679D;&#xFF0C;&#x5F97;&#x5230;&#x65B0;&#x7684;&#x5B50;&#x6811;<script type="math/tex; ">T_1</script>&#xFF0C;&#x5982;&#x56FE;&#x6240;&#x793A;&#x3002;</p>
-<p><a href="res/Machine%20Learning%20Base/1570067096451.png" data-lightbox="e06549cb-2912-47c8-a064-7eab653f9877" data-title="1570067096451"><img src="res/Machine%20Learning%20Base/1570067096451.png" alt="1570067096451"></a></p>
-<p>&#x800C;&#x540E;&#x7EE7;&#x7EED;&#x8BA1;&#x7B97;&#x6240;&#x6709;&#x7ED3;&#x70B9;&#x5BF9;&#x5E94;&#x7684;&#x8BEF;&#x5DEE;&#x589E;&#x52A0;&#x7387;&#xFF0C;&#x5206;&#x522B;&#x4E3A;<script type="math/tex; ">\alpha(t_1)=3</script>&#xFF0C;<script type="math/tex; ">\alpha(t_2)=3</script>&#xFF0C;<script type="math/tex; ">\alpha(t_4)=4</script>&#x3002;&#x56E0;&#x6B64;&#x5BF9;<script type="math/tex; ">t_1</script>&#x8FDB;&#x884C;&#x526A;&#x679D;&#xFF0C;&#x5F97;&#x5230;<script type="math/tex; ">T_2</script>&#xFF0C;&#x5982;&#x56FE;&#x6240;&#x793A;&#x3002;</p>
-<p><a href="res/Machine%20Learning%20Base/1570067433218.png" data-lightbox="b339c53f-0cd1-41fa-b82d-5313f1afb050" data-title="1570067433218"><img src="res/Machine%20Learning%20Base/1570067433218.png" alt="1570067433218"></a></p>
-<p>&#x6B64;&#x65F6;<script type="math/tex; ">\alpha (t_0)=6.5</script>&#xFF0C;<script type="math/tex; ">\alpha (t_2)=3</script>&#xFF0C;&#x9009;&#x62E9;<script type="math/tex; ">t_2</script>&#x8FDB;&#x884C;&#x526A;&#x679D;&#xFF0C;&#x5F97;&#x5230;<script type="math/tex; ">T_3</script>&#x3002;</p>
-<p>&#x4E8E;&#x662F;&#x53EA;&#x5269;&#x4E0B;&#x4E00;&#x4E2A;&#x5185;&#x90E8;&#x7ED3;&#x70B9;&#xFF0C;&#x5373;&#x6839;&#x7ED3;&#x70B9;&#xFF0C;&#x5F97;&#x5230;<script type="math/tex; ">T_4</script>&#x3002;</p>
-<p>&#x5728;<code>&#x6B65;&#x9AA4;2</code>&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4ECE;&#x5B50;&#x6811;&#x5E8F;&#x5217;&#x4E2D;&#x9009;&#x51FA;&#x771F;&#x5B9E;&#x8BEF;&#x5DEE;&#x6700;&#x5C0F;&#x7684;&#x51B3;&#x7B56;&#x6811;&#x3002;</p>
-<p>CCP&#x7ED9;&#x51FA;&#x4E86;&#x4E24;&#x79CD;&#x5E38;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
+可见<script type="math/tex; ">\alpha (t_3)</script>最小，因此对进<script type="math/tex; ">t_3</script>进行剪枝，得到新的子树<script type="math/tex; ">T_1</script>，如图所示。</p>
+<p><a data-lightbox="c3bcfc7a-182a-463a-ad8d-8810078414f5" data-title="1570067096451" href="res/Machine%20Learning%20Base/1570067096451.png"><img alt="1570067096451" src="res/Machine%20Learning%20Base/1570067096451.png"/></a></p>
+<p>而后继续计算所有结点对应的误差增加率，分别为<script type="math/tex; ">\alpha(t_1)=3</script>，<script type="math/tex; ">\alpha(t_2)=3</script>，<script type="math/tex; ">\alpha(t_4)=4</script>。因此对<script type="math/tex; ">t_1</script>进行剪枝，得到<script type="math/tex; ">T_2</script>，如图所示。</p>
+<p><a data-lightbox="e4232602-9dc4-47cc-ba21-6ca9fd0cf7f2" data-title="1570067433218" href="res/Machine%20Learning%20Base/1570067433218.png"><img alt="1570067433218" src="res/Machine%20Learning%20Base/1570067433218.png"/></a></p>
+<p>此时<script type="math/tex; ">\alpha (t_0)=6.5</script>，<script type="math/tex; ">\alpha (t_2)=3</script>，选择<script type="math/tex; ">t_2</script>进行剪枝，得到<script type="math/tex; ">T_3</script>。</p>
+<p>于是只剩下一个内部结点，即根结点，得到<script type="math/tex; ">T_4</script>。</p>
+<p>在<code>步骤2</code>中，我们需要从子树序列中选出真实误差最小的决策树。</p>
+<p>CCP给出了两种常用的方法：</p>
 <ol>
-<li>&#x4E00;&#x79CD;&#x662F;&#x57FA;&#x4E8E;&#x72EC;&#x7ACB;&#x526A;&#x679D;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x4E0E;REP&#x7C7B;&#x4F3C;&#xFF0C;&#x4F46;&#x7531;&#x4E8E;&#x5176;&#x53EA;&#x80FD;&#x4ECE;&#x5B50;&#x6811;&#x5E8F;&#x5217;<script type="math/tex; ">\{ T_0,T_1,...,T_n \}</script>&#x4E2D;&#x9009;&#x62E9;&#x6700;&#x4F73;&#x51B3;&#x7B56;&#x6811;&#xFF0C;&#x800C;&#x975E;&#x50CF;REP&#x80FD;&#x5728;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x5B50;&#x6811;&#x4E2D;&#x5BFB;&#x627E;&#x6700;&#x4F18;&#x89E3;&#xFF0C;&#x56E0;&#x6B64;&#x6027;&#x80FD;&#x4E0A;&#x4F1A;&#x6709;&#x4E00;&#x5B9A;&#x4E0D;&#x8DB3;&#x3002;</li>
-<li>&#x53E6;&#x4E00;&#x79CD;&#x662F;&#x57FA;&#x4E8E;<script type="math/tex; ">k</script>&#x6298;&#x4EA4;&#x53C9;&#x9A8C;&#x8BC1;&#xFF0C;&#x5C06;&#x6570;&#x636E;&#x96C6;&#x5206;&#x6210;<script type="math/tex; ">k</script>&#x4EFD;&#xFF0C;&#x524D;<script type="math/tex; ">k−1</script>&#x4EFD;&#x7528;&#x4E8E;&#x751F;&#x6210;&#x51B3;&#x7B56;&#x6811;&#xFF0C;&#x6700;&#x540E;&#x4E00;&#x4EFD;&#x7528;&#x4E8E;&#x9009;&#x62E9;&#x6700;&#x4F18;&#x7684;&#x526A;&#x679D;&#x6811;&#x3002;&#x91CD;&#x590D;&#x8FDB;&#x884C;<script type="math/tex; ">N</script>&#x6B21;&#xFF0C;&#x518D;&#x4ECE;&#x8FD9;<script type="math/tex; ">N</script>&#x4E2A;&#x5B50;&#x6811;&#x4E2D;&#x9009;&#x62E9;&#x6700;&#x4F18;&#x7684;&#x5B50;&#x6811;&#x3002;</li>
+<li>一种是基于独立剪枝数据集，该方法与REP类似，但由于其只能从子树序列<script type="math/tex; ">\{ T_0,T_1,...,T_n \}</script>中选择最佳决策树，而非像REP能在所有可能的子树中寻找最优解，因此性能上会有一定不足。</li>
+<li>另一种是基于<script type="math/tex; ">k</script>折交叉验证，将数据集分成<script type="math/tex; ">k</script>份，前<script type="math/tex; ">k−1</script>份用于生成决策树，最后一份用于选择最优的剪枝树。重复进行<script type="math/tex; ">N</script>次，再从这<script type="math/tex; ">N</script>个子树中选择最优的子树。</li>
 </ol>
-<p><code>&#x4EE3;&#x4EF7;&#x590D;&#x6742;&#x5EA6;&#x526A;&#x679D;</code>&#x4F7F;&#x7528;&#x4EA4;&#x53C9;&#x9A8C;&#x8BC1;&#x7B56;&#x7565;&#x65F6;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x6D4B;&#x8BD5;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x7CBE;&#x5EA6;&#x4E0E;REP&#x5DEE;&#x4E0D;&#x591A;&#xFF0C;&#x4F46;&#x5F62;&#x6210;&#x7684;&#x6811;&#x590D;&#x6742;&#x5EA6;&#x5C0F;&#x3002;</p>
-<p>&#x800C;&#x4ECE;&#x7B97;&#x6CD5;&#x590D;&#x6742;&#x5EA6;&#x89D2;&#x5EA6;&#xFF0C;&#x7531;&#x4E8E;&#x751F;&#x6210;&#x5B50;&#x6811;&#x5E8F;&#x5217;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E0E;&#x539F;&#x59CB;&#x51B3;&#x7B56;&#x6811;&#x7684;&#x975E;&#x53F6;&#x7ED3;&#x70B9;&#x4E2A;&#x6570;&#x5448;&#x4E8C;&#x6B21;&#x5173;&#x7CFB;&#xFF0C;&#x5BFC;&#x81F4;&#x7B97;&#x6CD5;&#x76F8;&#x6BD4;REP&#x3001;PEP&#x3001;MEP&#x7B49;&#x7EBF;&#x6027;&#x590D;&#x6742;&#x5EA6;&#x7684;&#x540E;&#x526A;&#x679D;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD0;&#x884C;<code>&#x65F6;&#x95F4;&#x5F00;&#x9500;&#x66F4;&#x5927;</code>&#x3002;</p>
+<p><code>代价复杂度剪枝</code>使用交叉验证策略时，不需要测试数据集，精度与REP差不多，但形成的树复杂度小。</p>
+<p>而从算法复杂度角度，由于生成子树序列的时间复杂度与原始决策树的非叶结点个数呈二次关系，导致算法相比REP、PEP、MEP等线性复杂度的后剪枝方法，运行<code>时间开销更大</code>。</p>
 </blockquote>
-<p></p><footer class="page-footer"><span class="copyright">Copyright &#xA9; narutohyc.com 2020 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-02-07 06:55:58
-</span></footer><hr><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
-
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
+<p></p><footer class="page-footer"><span class="copyright">Copyright © narutohyc.com 2020 all right reserved，powered by Gitbook</span><span class="footer-modification">该文件修订时间：
+2022-02-15 13:30:23
+</span></footer><hr/><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
+</section>
 </div>
-
-                        </div>
-                    </div>
-                
-            </div>
-
-            
-                
-                <a href="监督学习_朴素贝叶斯分类.html" class="navigation navigation-prev " aria-label="Previous page: 监督学习_朴素贝叶斯分类">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="监督学习_K近邻法.html" class="navigation navigation-next " aria-label="Next page: 监督学习_K近邻法">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
-
-    <script>
+<div class="search-results">
+<div class="has-results">
+<h1 class="search-results-title"><span class="search-results-count"></span> results matching "<span class="search-query"></span>"</h1>
+<ul class="search-results-list"></ul>
+</div>
+<div class="no-results">
+<h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a aria-label="Previous page: 监督学习_朴素贝叶斯分类" class="navigation navigation-prev" href="监督学习_朴素贝叶斯分类.html">
+<i class="fa fa-angle-left"></i>
+</a>
+<a aria-label="Next page: 监督学习_K近邻法" class="navigation navigation-next" href="监督学习_K近邻法.html">
+<i class="fa fa-angle-right"></i>
+</a>
+</div>
+<script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"监督学习_决策树","level":"1.6.2","depth":2,"next":{"title":"监督学习_K近邻法","level":"1.6.3","depth":2,"path":"chapters/监督学习_K近邻法.md","ref":"chapters/监督学习_K近邻法.md","articles":[]},"previous":{"title":"监督学习_朴素贝叶斯分类","level":"1.6.1","depth":2,"path":"chapters/监督学习_朴素贝叶斯分类.md","ref":"chapters/监督学习_朴素贝叶斯分类.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/监督学习_决策树.md","mtime":"2022-02-07T06:55:58.086Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-07T06:57:25.147Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"监督学习_决策树","level":"1.6.2","depth":2,"next":{"title":"监督学习_K近邻法","level":"1.6.3","depth":2,"path":"chapters/监督学习_K近邻法.md","ref":"chapters/监督学习_K近邻法.md","articles":[]},"previous":{"title":"监督学习_朴素贝叶斯分类","level":"1.6.1","depth":2,"path":"chapters/监督学习_朴素贝叶斯分类.md","ref":"chapters/监督学习_朴素贝叶斯分类.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/监督学习_决策树.md","mtime":"2022-02-15T13:30:23.521Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-15T13:32:13.117Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
-
-        
-    
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
-        
-    
-        
-        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lightbox/js/lightbox.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-change_girls/girls.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
-        
-    
-
-    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
-
-    </body>
+<script src="../gitbook/gitbook.js"></script>
+<script src="../gitbook/theme.js"></script>
+<script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+<script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+<script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+<script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+<script src="../gitbook/gitbook-plugin-lightbox/js/lightbox.min.js"></script>
+<script src="../gitbook/gitbook-plugin-change_girls/girls.js"></script>
+<script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+<script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+<script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+</body>
 </html>
-

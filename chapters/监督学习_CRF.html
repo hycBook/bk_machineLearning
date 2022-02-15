@@ -1,1110 +1,581 @@
-
 <!DOCTYPE HTML>
-<html lang="zh-hans" >
-    <head>
-        <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>监督学习_CRF · 机器学习相关学习记录</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        <meta name="author" content="narutohyc">
-        
-        
-    
-    
-    <link rel="stylesheet" href="../gitbook/style.css">
-
-    
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-lightbox/css/lightbox.min.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-change_girls/girls.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
-                
-            
-        
-
-    
-
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-
-    
-
-        
-    
-    
-    
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="非监督学习.html" />
-    
-    
-    <link rel="prev" href="监督学习_支持向量机.html" />
-    
-
-    
-        <link rel="shortcut icon" href="./chapters/res/other/favicon.ico" type="image/x-icon">
-    
-    
-    
-    
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./chapters/res/other/favicon.ico">
-    
-    
-        
-    
-    
-        
-    
-
-    
-        <link rel="shortcut icon" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png' type="image/x-icon">
-    
-    
-        <link rel="bookmark" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png' type="image/x-icon">
-    
-    
-        <link rel="apple-touch-icon" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png'>
-    
-    
-        
-        <link rel="apple-touch-icon" sizes="120x120" href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png">
-        
-        <link rel="apple-touch-icon" sizes="180x180" href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png">
-        
-    
-
-    <style>
+<html lang="zh-hans">
+<head>
+<meta charset="utf-8"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>监督学习_CRF · 机器学习相关学习记录</title>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="" name="description"/>
+<meta content="GitBook 3.2.3" name="generator"/>
+<meta content="narutohyc" name="author"/>
+<link href="../gitbook/style.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-splitter/splitter.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-anchors/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-donate/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-code/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-search-plus/search.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-lightbox/css/lightbox.min.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-change_girls/girls.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-pageview-count/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-theme-comscore/test.css" rel="stylesheet"/>
+<meta content="true" name="HandheldFriendly"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<link href="../gitbook/images/apple-touch-icon-precomposed-152.png" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="../gitbook/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="非监督学习.html" rel="next"/>
+<link href="监督学习_支持向量机.html" rel="prev"/>
+<link href="./chapters/res/other/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="./chapters/res/other/favicon.ico" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="bookmark" type="image/x-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon" sizes="120x120"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon" sizes="180x180"/>
+<style>
     @media only screen and (max-width: 640px) {
         .book-header .hidden-mobile {
             display: none;
         }
     }
     </style>
-    <script>
+<script>
         window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]};
     </script>
-
-    </head>
-    <body>
-        
+</head>
+<body>
 <div class="book">
-    <div class="book-summary">
-        
-            
+<div class="book-summary">
 <div id="book-search-input" role="search">
-    <input type="text" placeholder="输入并搜索" />
+<input placeholder="输入并搜索" type="text"/>
 </div>
-
-            
-                <nav role="navigation">
-                
-
-
+<nav role="navigation">
 <ul class="summary">
-    
-    
-    
-        
-        <li>
-            <a href="https://github.com/narutohyc" target="_blank" class="custom-link">我的狗窝</a>
-        </li>
-    
-    
-
-    
-    <li class="divider"></li>
-    
-
-    
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="../">
-            
-                <a href="../">
-            
-                    
-                        <b>1.1.</b>
+<li>
+<a class="custom-link" href="https://github.com/narutohyc" target="_blank">我的狗窝</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-level="1.1" data-path="../">
+<a href="../">
+<b>1.1.</b>
                     
                     Introduction
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2" data-path="机器学习基础.html">
-            
-                <a href="机器学习基础.html">
-            
-                    
-                        <b>1.2.</b>
+</li>
+<li class="chapter" data-level="1.2" data-path="机器学习基础.html">
+<a href="机器学习基础.html">
+<b>1.2.</b>
                     
                     机器学习基础
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.2.1" data-path="机器学习基础_距离.html">
-            
-                <a href="机器学习基础_距离.html">
-            
-                    
-                        <b>1.2.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.2.1" data-path="机器学习基础_距离.html">
+<a href="机器学习基础_距离.html">
+<b>1.2.1.</b>
                     
                     机器学习基础_距离
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.2" data-path="机器学习基础_概率论基础.html">
-            
-                <a href="机器学习基础_概率论基础.html">
-            
-                    
-                        <b>1.2.2.</b>
+</li>
+<li class="chapter" data-level="1.2.2" data-path="机器学习基础_概率论基础.html">
+<a href="机器学习基础_概率论基础.html">
+<b>1.2.2.</b>
                     
                     机器学习基础_概率论基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.3" data-path="机器学习基础_线性代数基础.html">
-            
-                <a href="机器学习基础_线性代数基础.html">
-            
-                    
-                        <b>1.2.3.</b>
+</li>
+<li class="chapter" data-level="1.2.3" data-path="机器学习基础_线性代数基础.html">
+<a href="机器学习基础_线性代数基础.html">
+<b>1.2.3.</b>
                     
                     机器学习基础_线性代数基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.4" data-path="机器学习基础_微积分基础.html">
-            
-                <a href="机器学习基础_微积分基础.html">
-            
-                    
-                        <b>1.2.4.</b>
+</li>
+<li class="chapter" data-level="1.2.4" data-path="机器学习基础_微积分基础.html">
+<a href="机器学习基础_微积分基础.html">
+<b>1.2.4.</b>
                     
                     机器学习基础_微积分基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.5" data-path="机器学习基础_最优化理论.html">
-            
-                <a href="机器学习基础_最优化理论.html">
-            
-                    
-                        <b>1.2.5.</b>
+</li>
+<li class="chapter" data-level="1.2.5" data-path="机器学习基础_最优化理论.html">
+<a href="机器学习基础_最优化理论.html">
+<b>1.2.5.</b>
                     
                     机器学习基础_最优化理论
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.6" data-path="机器学习基础_损失函数.html">
-            
-                <a href="机器学习基础_损失函数.html">
-            
-                    
-                        <b>1.2.6.</b>
+</li>
+<li class="chapter" data-level="1.2.6" data-path="机器学习基础_损失函数.html">
+<a href="机器学习基础_损失函数.html">
+<b>1.2.6.</b>
                     
                     机器学习基础_损失函数
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3" data-path="特征工程.html">
-            
-                <a href="特征工程.html">
-            
-                    
-                        <b>1.3.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.3" data-path="特征工程.html">
+<a href="特征工程.html">
+<b>1.3.</b>
                     
                     特征工程
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.3.1" data-path="特征工程_归一化.html">
-            
-                <a href="特征工程_归一化.html">
-            
-                    
-                        <b>1.3.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.3.1" data-path="特征工程_归一化.html">
+<a href="特征工程_归一化.html">
+<b>1.3.1.</b>
                     
                     特征工程_归一化
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.2" data-path="特征工程_编码.html">
-            
-                <a href="特征工程_编码.html">
-            
-                    
-                        <b>1.3.2.</b>
+</li>
+<li class="chapter" data-level="1.3.2" data-path="特征工程_编码.html">
+<a href="特征工程_编码.html">
+<b>1.3.2.</b>
                     
                     特征工程_编码
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.3" data-path="特征工程_特征组合.html">
-            
-                <a href="特征工程_特征组合.html">
-            
-                    
-                        <b>1.3.3.</b>
+</li>
+<li class="chapter" data-level="1.3.3" data-path="特征工程_特征组合.html">
+<a href="特征工程_特征组合.html">
+<b>1.3.3.</b>
                     
                     特征工程_特征组合
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.4" data-path="特征工程_特征选择.html">
-            
-                <a href="特征工程_特征选择.html">
-            
-                    
-                        <b>1.3.4.</b>
+</li>
+<li class="chapter" data-level="1.3.4" data-path="特征工程_特征选择.html">
+<a href="特征工程_特征选择.html">
+<b>1.3.4.</b>
                     
                     特征工程_特征选择
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="特征工程_文本表示模型.html">
-            
-                <a href="特征工程_文本表示模型.html">
-            
-                    
-                        <b>1.3.5.</b>
+</li>
+<li class="chapter" data-level="1.3.5" data-path="特征工程_文本表示模型.html">
+<a href="特征工程_文本表示模型.html">
+<b>1.3.5.</b>
                     
                     特征工程_文本表示模型
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.6" data-path="特征工程_图像增强.html">
-            
-                <a href="特征工程_图像增强.html">
-            
-                    
-                        <b>1.3.6.</b>
+</li>
+<li class="chapter" data-level="1.3.6" data-path="特征工程_图像增强.html">
+<a href="特征工程_图像增强.html">
+<b>1.3.6.</b>
                     
                     特征工程_图像增强
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4" data-path="模型评估.html">
-            
-                <a href="模型评估.html">
-            
-                    
-                        <b>1.4.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.4" data-path="模型评估.html">
+<a href="模型评估.html">
+<b>1.4.</b>
                     
                     模型评估
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.1" data-path="模型评估_评估指标.html">
-            
-                <a href="模型评估_评估指标.html">
-            
-                    
-                        <b>1.4.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.4.1" data-path="模型评估_评估指标.html">
+<a href="模型评估_评估指标.html">
+<b>1.4.1.</b>
                     
                     模型评估_评估指标
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="模型评估_AB测试.html">
-            
-                <a href="模型评估_AB测试.html">
-            
-                    
-                        <b>1.4.2.</b>
+</li>
+<li class="chapter" data-level="1.4.2" data-path="模型评估_AB测试.html">
+<a href="模型评估_AB测试.html">
+<b>1.4.2.</b>
                     
                     模型评估_AB测试
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.3" data-path="模型评估_过拟合和欠拟合.html">
-            
-                <a href="模型评估_过拟合和欠拟合.html">
-            
-                    
-                        <b>1.4.3.</b>
+</li>
+<li class="chapter" data-level="1.4.3" data-path="模型评估_过拟合和欠拟合.html">
+<a href="模型评估_过拟合和欠拟合.html">
+<b>1.4.3.</b>
                     
                     模型评估_过拟合和欠拟合
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.4" data-path="模型评估_超参数选择.html">
-            
-                <a href="模型评估_超参数选择.html">
-            
-                    
-                        <b>1.4.4.</b>
+</li>
+<li class="chapter" data-level="1.4.4" data-path="模型评估_超参数选择.html">
+<a href="模型评估_超参数选择.html">
+<b>1.4.4.</b>
                     
                     模型评估_超参数选择
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.5" data-path="模型评估_模型评估方法.html">
-            
-                <a href="模型评估_模型评估方法.html">
-            
-                    
-                        <b>1.4.5.</b>
+</li>
+<li class="chapter" data-level="1.4.5" data-path="模型评估_模型评估方法.html">
+<a href="模型评估_模型评估方法.html">
+<b>1.4.5.</b>
                     
                     模型评估_模型评估方法
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5" data-path="降维.html">
-            
-                <a href="降维.html">
-            
-                    
-                        <b>1.5.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.5" data-path="降维.html">
+<a href="降维.html">
+<b>1.5.</b>
                     
                     降维
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.5.1" data-path="降维_PCA主成分分析.html">
-            
-                <a href="降维_PCA主成分分析.html">
-            
-                    
-                        <b>1.5.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.5.1" data-path="降维_PCA主成分分析.html">
+<a href="降维_PCA主成分分析.html">
+<b>1.5.1.</b>
                     
                     降维_PCA主成分分析
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.2" data-path="降维_LDA线性判别分析.html">
-            
-                <a href="降维_LDA线性判别分析.html">
-            
-                    
-                        <b>1.5.2.</b>
+</li>
+<li class="chapter" data-level="1.5.2" data-path="降维_LDA线性判别分析.html">
+<a href="降维_LDA线性判别分析.html">
+<b>1.5.2.</b>
                     
                     降维_LDA线性判别分析
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6" data-path="监督学习.html">
-            
-                <a href="监督学习.html">
-            
-                    
-                        <b>1.6.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.6" data-path="监督学习.html">
+<a href="监督学习.html">
+<b>1.6.</b>
                     
                     监督学习
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.6.1" data-path="监督学习_朴素贝叶斯分类.html">
-            
-                <a href="监督学习_朴素贝叶斯分类.html">
-            
-                    
-                        <b>1.6.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.6.1" data-path="监督学习_朴素贝叶斯分类.html">
+<a href="监督学习_朴素贝叶斯分类.html">
+<b>1.6.1.</b>
                     
                     监督学习_朴素贝叶斯分类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.2" data-path="监督学习_决策树.html">
-            
-                <a href="监督学习_决策树.html">
-            
-                    
-                        <b>1.6.2.</b>
+</li>
+<li class="chapter" data-level="1.6.2" data-path="监督学习_决策树.html">
+<a href="监督学习_决策树.html">
+<b>1.6.2.</b>
                     
                     监督学习_决策树
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.3" data-path="监督学习_K近邻法.html">
-            
-                <a href="监督学习_K近邻法.html">
-            
-                    
-                        <b>1.6.3.</b>
+</li>
+<li class="chapter" data-level="1.6.3" data-path="监督学习_K近邻法.html">
+<a href="监督学习_K近邻法.html">
+<b>1.6.3.</b>
                     
                     监督学习_K近邻法
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.4" data-path="监督学习_支持向量机.html">
-            
-                <a href="监督学习_支持向量机.html">
-            
-                    
-                        <b>1.6.4.</b>
+</li>
+<li class="chapter" data-level="1.6.4" data-path="监督学习_支持向量机.html">
+<a href="监督学习_支持向量机.html">
+<b>1.6.4.</b>
                     
                     监督学习_支持向量机
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.6.5" data-path="监督学习_CRF.html">
-            
-                <a href="监督学习_CRF.html">
-            
-                    
-                        <b>1.6.5.</b>
+</li>
+<li class="chapter active" data-level="1.6.5" data-path="监督学习_CRF.html">
+<a href="监督学习_CRF.html">
+<b>1.6.5.</b>
                     
                     监督学习_CRF
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7" data-path="非监督学习.html">
-            
-                <a href="非监督学习.html">
-            
-                    
-                        <b>1.7.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.7" data-path="非监督学习.html">
+<a href="非监督学习.html">
+<b>1.7.</b>
                     
                     非监督学习
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.7.1" data-path="非监督学习_K均值.html">
-            
-                <a href="非监督学习_K均值.html">
-            
-                    
-                        <b>1.7.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.7.1" data-path="非监督学习_K均值.html">
+<a href="非监督学习_K均值.html">
+<b>1.7.1.</b>
                     
                     非监督学习_K均值
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.2" data-path="非监督学习_Mean Shift均值漂移聚类.html">
-            
-                <a href="非监督学习_Mean Shift均值漂移聚类.html">
-            
-                    
-                        <b>1.7.2.</b>
+</li>
+<li class="chapter" data-level="1.7.2" data-path="非监督学习_Mean Shift均值漂移聚类.html">
+<a href="非监督学习_Mean Shift均值漂移聚类.html">
+<b>1.7.2.</b>
                     
                     非监督学习_Mean Shift均值漂移聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.3" data-path="非监督学习_DBSCAN基于密度的聚类方法.html">
-            
-                <a href="非监督学习_DBSCAN基于密度的聚类方法.html">
-            
-                    
-                        <b>1.7.3.</b>
+</li>
+<li class="chapter" data-level="1.7.3" data-path="非监督学习_DBSCAN基于密度的聚类方法.html">
+<a href="非监督学习_DBSCAN基于密度的聚类方法.html">
+<b>1.7.3.</b>
                     
                     非监督学习_DBSCAN基于密度的聚类方法
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.4" data-path="非监督学习_Hierarchical Clustering层次聚类.html">
-            
-                <a href="非监督学习_Hierarchical Clustering层次聚类.html">
-            
-                    
-                        <b>1.7.4.</b>
+</li>
+<li class="chapter" data-level="1.7.4" data-path="非监督学习_Hierarchical Clustering层次聚类.html">
+<a href="非监督学习_Hierarchical Clustering层次聚类.html">
+<b>1.7.4.</b>
                     
                     非监督学习_Hierarchical Clustering层次聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.5" data-path="非监督学习_Spectral Clustering谱聚类.html">
-            
-                <a href="非监督学习_Spectral Clustering谱聚类.html">
-            
-                    
-                        <b>1.7.5.</b>
+</li>
+<li class="chapter" data-level="1.7.5" data-path="非监督学习_Spectral Clustering谱聚类.html">
+<a href="非监督学习_Spectral Clustering谱聚类.html">
+<b>1.7.5.</b>
                     
                     非监督学习_Spectral Clustering谱聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.8" data-path="半监督学习.html">
-            
-                <a href="半监督学习.html">
-            
-                    
-                        <b>1.8.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.8" data-path="半监督学习.html">
+<a href="半监督学习.html">
+<b>1.8.</b>
                     
                     半监督学习
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9" data-path="集成学习.html">
-            
-                <a href="集成学习.html">
-            
-                    
-                        <b>1.9.</b>
+</li>
+<li class="chapter" data-level="1.9" data-path="集成学习.html">
+<a href="集成学习.html">
+<b>1.9.</b>
                     
                     集成学习
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.10" data-path="强化学习.html">
-            
-                <a href="强化学习.html">
-            
-                    
-                        <b>1.10.</b>
+</li>
+<li class="chapter" data-level="1.10" data-path="强化学习.html">
+<a href="强化学习.html">
+<b>1.10.</b>
                     
                     强化学习
             
                 </a>
-            
-
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+</li>
+<li class="divider"></li>
+<li>
+<a class="gitbook-link" href="https://www.gitbook.com" target="blank">
             本书使用 GitBook 发布
         </a>
-    </li>
+</li>
 </ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >监督学习_CRF</a>
-    </h1>
+</nav>
 </div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="..">监督学习_CRF</a>
+</h1>
+</div>
+<div class="page-wrapper" role="main" tabindex="-1">
+<div class="page-inner">
 <div class="search-plus" id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x80CC;&#x666F;"><b></b>&#x80CC;&#x666F;</a></li><ul><li><span class="title-icon "></span><a href="#&#x7CFB;&#x5217;&#x76F8;&#x5173;"><b></b>&#x7CFB;&#x5217;&#x76F8;&#x5173;</a></li><li><span class="title-icon "></span><a href="#hmm"><b></b>HMM</a></li><li><span class="title-icon "></span><a href="#memm"><b></b>MEMM</a></li></ul><li><span class="title-icon "></span><a href="#crf"><b></b>CRF</a></li><ul><li><span class="title-icon "></span><a href="#&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;"><b></b>&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;</a></li><li><span class="title-icon "></span><a href="#&#x56E2;&#x548C;&#x6700;&#x5927;&#x56E2;"><b></b>&#x56E2;&#x548C;&#x6700;&#x5927;&#x56E2;</a></li></ul></ul></div><a href="#&#x80CC;&#x666F;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a href="res/other/&#x5F02;&#x4E16;&#x754C;&#x857E;&#x59C6;_1.png" data-lightbox="0760f9a6-c822-4823-b746-8e05df077bf8" data-title="&#x5F02;&#x4E16;&#x754C;.png"><img src="res/other/&#x5F02;&#x4E16;&#x754C;&#x857E;&#x59C6;_1.png" alt="&#x5F02;&#x4E16;&#x754C;.png"></a></p>
+<div class="search-noresults">
+<section class="normal markdown-section">
+<div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon"></span><a href="#背景">1 背景</a></li><ul><li><span class="title-icon"></span><a href="#系列相关">1.1 系列相关</a></li><li><span class="title-icon"></span><a href="#hmm">1.2 HMM</a></li><li><span class="title-icon"></span><a href="#memm">1.3 MEMM</a></li></ul><li><span class="title-icon"></span><a href="#crf">2 CRF</a></li><ul><li><span class="title-icon"></span><a href="#马尔科夫性">2.1 马尔科夫性</a></li><li><span class="title-icon"></span><a href="#团和最大团">2.2 团和最大团</a></li></ul></ul></div><a href="#背景" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a data-lightbox="40d8cbfd-66ea-4a3b-806e-cc69b4552830" data-title="异世界.png" href="res/other/异世界蕾姆_1.png"><img alt="异世界.png" src="res/other/异世界蕾姆_1.png"/></a></p>
 <p>[TOC]</p>
 <blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/70067113" target="_blank">&#x4E00;&#x6587;&#x7406;&#x89E3;&#x6761;&#x4EF6;&#x968F;&#x673A;&#x573A;CRF</a></p>
-<p><a href="https://www.zhihu.com/question/35866596" target="_blank">&#x5982;&#x4F55;&#x7528;&#x7B80;&#x5355;&#x6613;&#x61C2;&#x7684;&#x4F8B;&#x5B50;&#x89E3;&#x91CA;&#x6761;&#x4EF6;&#x968F;&#x673A;&#x573A;&#xFF08;CRF&#xFF09;&#x6A21;&#x578B;&#xFF1F;&#x5B83;&#x548C;HMM&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#xFF1F;</a></p>
-<p><a href="https://www.bilibili.com/video/BV19t411R7QU?p=1" target="_blank">&#x673A;&#x5668;&#x5B66;&#x4E60;-&#x767D;&#x677F;&#x63A8;&#x5BFC;&#x7CFB;&#x5217;(&#x5341;&#x4E03;)-&#x6761;&#x4EF6;&#x968F;&#x673A;&#x573A;CRF&#xFF08;Conditional Random Field&#xFF09;</a></p>
-<p><a href="https://www.bilibili.com/video/BV18a4y1e7kt" target="_blank">&#x673A;&#x5668;&#x5B66;&#x4E60;&#x4E4B;CRF&#x6761;&#x4EF6;&#x968F;&#x673A;&#x573A;</a></p>
-<p><a href="https://anxiang1836.github.io/2019/11/05/NLP_From_HMM_to_CRF/" target="_blank">&#x3010;NLP&#x3011;&#x4ECE;&#x9690;&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x5230;&#x6761;&#x4EF6;&#x968F;&#x673A;&#x573A;</a></p>
-<p><a href="https://www.sohu.com/a/248705663_644547" target="_blank">13&#x5F20;&#x52A8;&#x56FE;&#xFF0C;&#x5F7B;&#x5E95;&#x770B;&#x61C2;&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x94FE;&#x3001;PCA&#x548C;&#x6761;&#x4EF6;&#x6982;&#x7387;</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/70067113" target="_blank">一文理解条件随机场CRF</a></p>
+<p><a href="https://www.zhihu.com/question/35866596" target="_blank">如何用简单易懂的例子解释条件随机场（CRF）模型？它和HMM有什么区别？</a></p>
+<p><a href="https://www.bilibili.com/video/BV19t411R7QU?p=1" target="_blank">机器学习-白板推导系列(十七)-条件随机场CRF（Conditional Random Field）</a></p>
+<p><a href="https://www.bilibili.com/video/BV18a4y1e7kt" target="_blank">机器学习之CRF条件随机场</a></p>
+<p><a href="https://anxiang1836.github.io/2019/11/05/NLP_From_HMM_to_CRF/" target="_blank">【NLP】从隐马尔科夫到条件随机场</a></p>
+<p><a href="https://www.sohu.com/a/248705663_644547" target="_blank">13张动图，彻底看懂马尔科夫链、PCA和条件概率</a></p>
 </blockquote>
-<h1 id="&#x80CC;&#x666F;"><a name="&#x80CC;&#x666F;" class="anchor-navigation-ex-anchor" href="#&#x80CC;&#x666F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x80CC;&#x666F;" class="plugin-anchor" href="#&#x80CC;&#x666F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x80CC;&#x666F;</h1>
-<h2 id="&#x7CFB;&#x5217;&#x76F8;&#x5173;"><a name="&#x7CFB;&#x5217;&#x76F8;&#x5173;" class="anchor-navigation-ex-anchor" href="#&#x7CFB;&#x5217;&#x76F8;&#x5173;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7CFB;&#x5217;&#x76F8;&#x5173;" class="plugin-anchor" href="#&#x7CFB;&#x5217;&#x76F8;&#x5173;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7CFB;&#x5217;&#x76F8;&#x5173;</h2>
-<p><a href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621172033178.png" data-lightbox="93a51777-2274-4c53-a197-7c32ad9574f9" data-title="image-20200621172033178"><img src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621172033178.png" alt="image-20200621172033178"></a></p>
+<h1 id="背景">1 背景</h1>
+<h2 id="系列相关">1.1 系列相关</h2>
+<p><a data-lightbox="64d0ddaa-9976-4056-a76c-7f940b892647" data-title="image-20200621172033178" href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621172033178.png"><img alt="image-20200621172033178" src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621172033178.png"/></a></p>
 <blockquote>
-<p>&#x5206;&#x7C7B;&#x95EE;&#x9898;&#x6839;&#x636E;&#x662F;&#x5426;&#x5F15;&#x5165;&#x6982;&#x7387;&#x5206;&#x4E3A;&#x4E86;&#x786C;&#x5206;&#x7C7B;&#x548C;&#x8F6F;&#x5206;&#x7C7B;</p>
+<p>分类问题根据是否引入概率分为了硬分类和软分类</p>
 <ul>
-<li><p>SVM(&#x51E0;&#x4F55;&#x95F4;&#x9694;)&#x3001;PLA(&#x611F;&#x77E5;&#x673A;)&#x3001;LDA(&#x7C7B;&#x95F4;&#x5927;, &#x7C7B;&#x5185;&#x5C0F;)</p>
+<li><p>SVM(几何间隔)、PLA(感知机)、LDA(类间大, 类内小)</p>
 </li>
-<li><p>&#x6982;&#x7387;&#x5224;&#x522B;&#x6A21;&#x578B;</p>
+<li><p>概率判别模型</p>
 <ul>
-<li>Logistic Regression (&#x5BF9;<script type="math/tex; ">p(y|x)</script>&#x5EFA;&#x6A21;&#xFF0C;&#x4E8C;&#x5206;&#x7C7B;)(&#x591A;&#x5206;&#x7C7B;&#x7684;&#x8BDD;&#x5C31;&#x662F;softmax) -&gt; &#x90FD;&#x662F;&#x6700;&#x5927;&#x71B5;&#x6A21;&#x578B;(&#x7ED9;&#x5B9A;&#x5747;&#x503C;&#x548C;&#x65B9;&#x5DEE;&#xFF0C;Gaussian Dist&#x71B5;&#x6700;&#x5927;&#xFF0C;&#x505A;&#x5206;&#x7C7B;&#x65F6;&#x53EF;&#x4EE5;&#x770B;&#x6210;&#x5BF9;&#x6570;&#x7EBF;&#x6027;&#x6A21;&#x578B;)</li>
-<li>MEMM(&#x6253;&#x7834;&#x4E86;HMM&#x7684;&#x89C2;&#x6D4B;&#x72EC;&#x7ACB;&#x5047;&#x8BBE;&#xFF0C;&#x4F46;&#x4F1A;&#x5F15;&#x8D77;Label bias Problem&#xFF0C;&#x539F;&#x56E0;&#x662F;&#x5C40;&#x90E8;&#x5F52;&#x4E00;&#x5316;&#x5F15;&#x8D77;&#x7684;)</li>
-<li>CRF&#x7684;&#x63D0;&#x51FA;&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;MEMM&#x7684;&#x6807;&#x6CE8;&#x504F;&#x5DEE;&#x95EE;&#x9898;(&#x53D8;&#x6210;&#x4E86;&#x65E0;&#x5411;&#x56FE;, &#x4E5F;&#x5C31;&#x662F;&#x5168;&#x5C40;&#x5F52;&#x4E00;&#x5316; )</li>
+<li>Logistic Regression (对<script type="math/tex; ">p(y|x)</script>建模，二分类)(多分类的话就是softmax) -&gt; 都是最大熵模型(给定均值和方差，Gaussian Dist熵最大，做分类时可以看成对数线性模型)</li>
+<li>MEMM(打破了HMM的观测独立假设，但会引起Label bias Problem，原因是局部归一化引起的)</li>
+<li>CRF的提出就是为了解决MEMM的标注偏差问题(变成了无向图, 也就是全局归一化 )</li>
 </ul>
 </li>
-<li><p>&#x6982;&#x7387;&#x751F;&#x6210;&#x6A21;&#x578B;</p>
+<li><p>概率生成模型</p>
 <ul>
-<li><p>Naive Bayesian(&#x6734;&#x7D20;&#x8D1D;&#x53F6;&#x65AF;&#x4E8C;&#x5206;&#x7C7B;&#x8F6C;&#x5E8F;&#x5217;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x662F;HMM&#xFF0C;&#x5BF9;<script type="math/tex; ">p(x,y)</script>&#x5EFA;&#x6A21;)
+<li><p>Naive Bayesian(朴素贝叶斯二分类转序列的时候就是HMM，对<script type="math/tex; ">p(x,y)</script>建模)
 <script type="math/tex; mode=display">
 >     p(x|y=1/0)=\sum_{i=1}^{p}{p(x_i|y=0/1)}
 >     </script></p>
 </li>
-<li><p>Gaussian Mixture Model(&#x52A0;&#x5165;&#x65F6;&#x95F4;&#x7684;&#x8BDD;&#x5C31;&#x662F;HMM)</p>
+<li><p>Gaussian Mixture Model(加入时间的话就是HMM)</p>
 </li>
 <li><p>Hidden Markor Model</p>
-<p>1)&#x9F50;&#x6B21;Markor    2)&#x89C2;&#x6D4B;&#x72EC;&#x7ACB;</p>
+<p>1)齐次Markor    2)观测独立</p>
 </li>
 <li></li>
 </ul>
 </li>
 </ul>
 </blockquote>
-<h2 id="hmm"><a name="hmm" class="anchor-navigation-ex-anchor" href="#hmm"><i class="fa fa-link" aria-hidden="true"></i></a><a name="hmm" class="plugin-anchor" href="#hmm"><i class="fa fa-link" aria-hidden="true"></i></a>HMM</h2>
+<h2 id="hmm">1.2 HMM</h2>
 <blockquote>
 <p><script type="math/tex; ">\lambda = (\pi,A,B)</script></p>
-<p>1)&#x9F50;&#x6B21;Markor(&#x94FE;&#x6761;&#x7684;&#x957F;&#x5EA6;&#x4E3A;1 &#x7ED9;&#x5B9A;3&#x7684;&#x65F6;&#x5019; 4&#x548C;2&#x6761;&#x4EF6;&#x72EC;&#x7ACB;)    </p>
-<p>  &#x9F50;&#x6B21; &#x662F;1-4&#x7684;&#x7684;&#x8F6C;&#x79FB;&#x6982;&#x7387;&#x662F;&#x76F8;&#x540C;&#x7684;
+<p>1)齐次Markor(链条的长度为1 给定3的时候 4和2条件独立)    </p>
+<p>  齐次 是1-4的的转移概率是相同的
 <script type="math/tex; mode=display">
 > p(y_t|y_{1:t-1},x_{1:t-1})=p(y_t|y_{t-1})
 > </script>
-<a href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621192937546.png" data-lightbox="ce34af86-c8be-430f-a6ce-986cec90a102" data-title="image-20200621192937546"><img src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621192937546.png" alt="image-20200621192937546"></a></p>
-<p>2)&#x89C2;&#x6D4B;&#x72EC;&#x7ACB;&#x5047;&#x8BBE;
+<a data-lightbox="f7a26e97-8a73-47f2-992b-867a1d4cfa67" data-title="image-20200621192937546" href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621192937546.png"><img alt="image-20200621192937546" src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621192937546.png"/></a></p>
+<p>2)观测独立假设
 <script type="math/tex; mode=display">
 > p(x_t|y_{1:t},x_{1:t-1})=p(x_t|y_t)
 > </script>
-&#x5EFA;&#x6A21;&#x5BF9;&#x8C61;: <script type="math/tex; ">P(X,Y|\lambda)</script>
+建模对象: <script type="math/tex; ">P(X,Y|\lambda)</script>
 <script type="math/tex; mode=display">
 > P(X,Y|\lambda)=\prod_{t=1}^{T}{P(x_t,y_t|\lambda)}=\prod_{t=1}^{T}{P(y_t|y_{t-1},\lambda)}P(x_t|y_t,\lambda)
 > </script>
-NB-&gt;HMM(&#x89C2;&#x6D4B;&#x72EC;&#x7ACB;&#x5047;&#x8BBE;&#x4E0D;&#x5408;&#x7406;&#xFF0C;&#x4F8B;&#x5B50; &#x5783;&#x573E;&#x90AE;&#x4EF6;&#x5206;&#x7C7B;&#xFF0C;&#x5E94;&#x8BE5;&#x548C;&#x6BCF;&#x4E2A;&#x5355;&#x8BCD;&#x90FD;&#x6709;&#x5173;&#x7CFB;)</p>
-<p><a href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621194925342.png" data-lightbox="27970430-1c19-4ca2-9c7f-eceae948c2cd" data-title="image-20200621194925342"><img src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621194925342.png" alt="image-20200621194925342"></a></p>
+NB-&gt;HMM(观测独立假设不合理，例子 垃圾邮件分类，应该和每个单词都有关系)</p>
+<p><a data-lightbox="17be1d10-9a0b-47c7-a3da-9e187ee9b706" data-title="image-20200621194925342" href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621194925342.png"><img alt="image-20200621194925342" src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621194925342.png"/></a></p>
 </blockquote>
-<h2 id="memm"><a name="memm" class="anchor-navigation-ex-anchor" href="#memm"><i class="fa fa-link" aria-hidden="true"></i></a><a name="memm" class="plugin-anchor" href="#memm"><i class="fa fa-link" aria-hidden="true"></i></a>MEMM</h2>
+<h2 id="memm">1.3 MEMM</h2>
 <blockquote>
-<p>&#x5EFA;&#x6A21;&#x5BF9;&#x8C61;<script type="math/tex; ">P(Y|X,\lambda)</script>
+<p>建模对象<script type="math/tex; ">P(Y|X,\lambda)</script>
 <script type="math/tex; mode=display">
 > P(Y|X,\lambda)=\prod_{t=1}^{T}p(y_t|t_{t-1},x_{1:t},\lambda)
 > </script>
-&#x6253;&#x7834;&#x4E86;&#x89C2;&#x6D4B;&#x72EC;&#x7ACB;&#x5047;&#x8BBE;</p>
+打破了观测独立假设</p>
 </blockquote>
-<hr>
-<h1 id="crf"><a name="crf" class="anchor-navigation-ex-anchor" href="#crf"><i class="fa fa-link" aria-hidden="true"></i></a><a name="crf" class="plugin-anchor" href="#crf"><i class="fa fa-link" aria-hidden="true"></i></a>CRF</h1>
-<h2 id="&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;"><a name="&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;" class="anchor-navigation-ex-anchor" href="#&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;" class="plugin-anchor" href="#&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;</h2>
+<hr/>
+<h1 id="crf">2 CRF</h1>
+<h2 id="马尔科夫性">2.1 马尔科夫性</h2>
 <blockquote>
-<p>&#x65E0;&#x5411;&#x56FE;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x4E4B;&#x95F4;&#x6EE1;&#x8DB3;&#x4E09;&#x79CD;&#x6027;&#x8D28;</p>
+<p>无向图随机变量之间满足三种性质</p>
 <ul>
-<li><p>&#x6210;&#x5BF9;&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;</p>
-<p>&#x8BBE;<script type="math/tex; ">u</script>&#x548C;<script type="math/tex; ">v</script>&#x662F;&#x65E0;&#x5411;&#x56FE;<script type="math/tex; ">G</script>&#x4E2D;&#x4EFB;&#x610F;&#x4E24;&#x4E2A;&#x6CA1;&#x6709;&#x8FB9;&#x8FDE;&#x63A5;&#x7684;&#x8282;&#x70B9;&#xFF0C;&#x8282;&#x70B9;<script type="math/tex; ">u</script>&#x548C;<script type="math/tex; ">v</script>&#x5206;&#x522B;&#x5BF9;&#x5E94;&#x968F;&#x673A;&#x53D8;&#x91CF;<script type="math/tex; ">Y_u</script>&#x548C;<script type="math/tex; ">Y_v</script>&#x3002;&#x5176;&#x4ED6;&#x6240;&#x6709;&#x8282;&#x70B9;&#x4E3A;<script type="math/tex; ">O</script>&#xFF0C;&#x5BF9;&#x5E94;&#x7684;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x662F;<script type="math/tex; ">Y_o</script>&#x3002;&#x6210;&#x5BF9;&#x9A6C;&#x5C14;&#x53EF;&#x592B;&#x6027;&#x662F;&#x6307;&#x7ED9;&#x5B9A;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x7EC4;<script type="math/tex; ">Y_o</script>&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#x968F;&#x673A;&#x53D8;&#x91CF;<script type="math/tex; ">Y_u</script>&#x548C;<script type="math/tex; ">Y_v</script>&#x662F;&#x6761;&#x4EF6;&#x72EC;&#x7ACB;&#x7684;&#xFF0C;&#x5373;
+<li><p>成对马尔科夫性</p>
+<p>设<script type="math/tex; ">u</script>和<script type="math/tex; ">v</script>是无向图<script type="math/tex; ">G</script>中任意两个没有边连接的节点，节点<script type="math/tex; ">u</script>和<script type="math/tex; ">v</script>分别对应随机变量<script type="math/tex; ">Y_u</script>和<script type="math/tex; ">Y_v</script>。其他所有节点为<script type="math/tex; ">O</script>，对应的随机变量是<script type="math/tex; ">Y_o</script>。成对马尔可夫性是指给定随机变量组<script type="math/tex; ">Y_o</script>的条件下随机变量<script type="math/tex; ">Y_u</script>和<script type="math/tex; ">Y_v</script>是条件独立的，即
 <script type="math/tex; mode=display">
 >   P(Y_u,Y_v|Y_o)=P(Y_u|Y_o)P(Y_v|Y_o)
 >   </script>
-<a href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621203809686.png" data-lightbox="1e440293-de2e-4f3a-b505-4324f943e646" data-title="image-20200621203809686"><img src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621203809686.png" alt="image-20200621203809686"></a></p>
+<a data-lightbox="e6727390-693c-4a58-86e5-36caaaf03e0e" data-title="image-20200621203809686" href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621203809686.png"><img alt="image-20200621203809686" src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621203809686.png"/></a></p>
 </li>
-<li><p>&#x5C40;&#x90E8;&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;</p>
-<p>&#x8BBE;<script type="math/tex; ">v \in V</script>&#x662F;&#x65E0;&#x5411;&#x56FE;<script type="math/tex; ">G</script>&#x4E2D;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;<script type="math/tex; ">W</script>&#x662F;&#x4E0E;<script type="math/tex; ">v</script>&#x6709;&#x8FB9;&#x8FDE;&#x63A5;&#x7684;&#x6240;&#x6709;&#x8282;&#x70B9;&#xFF0C;<script type="math/tex; ">O</script>&#x662F;<script type="math/tex; ">v</script>&#x3001;<script type="math/tex; ">W</script>&#x4EE5;&#x5916;&#x7684;&#x5176;&#x4ED6;&#x6240;&#x6709;&#x8282;&#x70B9;&#x3002;<script type="math/tex; ">v</script>&#x8868;&#x793A;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x662F;<script type="math/tex; ">Y_v</script>&#xFF0C;<script type="math/tex; ">W</script>&#x8868;&#x793A;&#x7684;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x7EC4;&#x662F;<script type="math/tex; ">Y_W</script>&#xFF0C;<script type="math/tex; ">O</script>&#x8868;&#x793A;&#x7684;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x7EC4;&#x662F;<script type="math/tex; ">Y_o</script>&#x3002;&#x5C40;&#x90E8;&#x9A6C;&#x5C14;&#x53EF;&#x592B;&#x6027;&#x662F;&#x6307;&#x5728;&#x7ED9;&#x5B9A;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x7EC4;<script type="math/tex; ">Y_W</script>&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#x968F;&#x673A;&#x53D8;&#x91CF;<script type="math/tex; ">Y_v</script>&#x4E0E;&#x968F;&#x673A;&#x53D8;&#x91CF;&#x7EC4;<script type="math/tex; ">Y_o</script>&#x662F;&#x72EC;&#x7ACB;&#x7684;&#xFF0C;&#x5373;
+<li><p>局部马尔科夫性</p>
+<p>设<script type="math/tex; ">v \in V</script>是无向图<script type="math/tex; ">G</script>中任意一个节点，<script type="math/tex; ">W</script>是与<script type="math/tex; ">v</script>有边连接的所有节点，<script type="math/tex; ">O</script>是<script type="math/tex; ">v</script>、<script type="math/tex; ">W</script>以外的其他所有节点。<script type="math/tex; ">v</script>表示随机变量是<script type="math/tex; ">Y_v</script>，<script type="math/tex; ">W</script>表示的随机变量组是<script type="math/tex; ">Y_W</script>，<script type="math/tex; ">O</script>表示的随机变量组是<script type="math/tex; ">Y_o</script>。局部马尔可夫性是指在给定随机变量组<script type="math/tex; ">Y_W</script>的条件下随机变量<script type="math/tex; ">Y_v</script>与随机变量组<script type="math/tex; ">Y_o</script>是独立的，即
 <script type="math/tex; mode=display">
 >   P(Y_v,Y_o|Y_W)=P(Y_v|Y_W)P(Y_o|Y_W)
 >   </script>
-<a href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621204056415.png" data-lightbox="6e3a1820-88fb-4496-a728-67bd28b6992e" data-title="image-20200621204056415"><img src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621204056415.png" alt="image-20200621204056415"></a></p>
+<a data-lightbox="dcbbeb90-bd6a-4479-9d3a-ae898484b9c2" data-title="image-20200621204056415" href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621204056415.png"><img alt="image-20200621204056415" src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621204056415.png"/></a></p>
 </li>
-<li><p>&#x5168;&#x5C40;&#x6210;&#x5BF9;&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;</p>
-<p>&#x8BBE;&#x7ED3;&#x70B9;&#x96C6;<script type="math/tex; ">A</script>&#xFF0C;<script type="math/tex; ">B</script>&#x5728;&#x65E0;&#x5411;&#x56FE;<script type="math/tex; ">G</script>&#x4E2D;&#x88AB;&#x7ED3;&#x70B9;&#x96C6;&#x5408;<script type="math/tex; ">C</script>&#x5206;&#x5F00;&#x7684;&#x4EFB;&#x610F;&#x7ED3;&#x70B9;&#x7684;&#x96C6;&#x5408;&#xFF0C;&#x5177;&#x4F53;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;</p>
-<p><a href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621204627938.png" data-lightbox="061d3486-cdde-4bab-8d0b-19f2413b6804" data-title="image-20200621204627938"><img src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621204627938.png" alt="image-20200621204627938"></a></p>
-<p>&#x5219;&#x5728;&#x7ED9;&#x5B9A;&#x4E86;&#x96C6;&#x5408;C&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#x7ED3;&#x70B9;&#x96C6;&#x5408;A&#x548C;B&#x4E4B;&#x95F4;&#x662F;&#x76F8;&#x4E92;&#x72EC;&#x7ACB;&#x7684;&#xFF0C;&#x5177;&#x4F53;&#x8868;&#x8FBE;&#x5F0F;&#x5982;&#x4E0B;
+<li><p>全局成对马尔科夫性</p>
+<p>设结点集<script type="math/tex; ">A</script>，<script type="math/tex; ">B</script>在无向图<script type="math/tex; ">G</script>中被结点集合<script type="math/tex; ">C</script>分开的任意结点的集合，具体如下图所示</p>
+<p><a data-lightbox="4de71b2a-c46a-4db5-8701-4ef397262672" data-title="image-20200621204627938" href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621204627938.png"><img alt="image-20200621204627938" src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/image-20200621204627938.png"/></a></p>
+<p>则在给定了集合C的条件下结点集合A和B之间是相互独立的，具体表达式如下
 <script type="math/tex; mode=display">
 >   P(Y_A,Y_B|Y_C)=P(Y_A|Y_C)P(Y_B|Y_C)
 >   </script></p>
 </li>
 </ul>
-<p>&#x4ED4;&#x7EC6;&#x89C2;&#x5BDF;&#x53D1;&#x73B0;&#x8FD9;&#x4E09;&#x79CD;&#x6027;&#x8D28;&#x5B9E;&#x8D28;&#x4E0A;&#x662F;&#x7B49;&#x4EF7;&#x7684;&#xFF0C;&#x6210;&#x5BF9;&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;&#x548C;&#x5C40;&#x90E8;&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x4F5C;&#x662F;&#x5168;&#x5C40;&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x6027;&#x7684;&#x7279;&#x6B8A;&#x5F62;&#x5F0F;&#x3002;</p>
-<p>&#x90A3;&#x8FD9;&#x4E09;&#x79CD;&#x6027;&#x8D28;&#x63D0;&#x51FA;&#x6765;&#x6709;&#x4EC0;&#x4E48;&#x7528;&#x5462;&#xFF1F;</p>
-<p>&#x9996;&#x5148;&#x6EE1;&#x8DB3;&#x8FD9;&#x4E09;&#x79CD;&#x6027;&#x8D28;&#x7684;&#x8054;&#x5408;&#x6982;&#x7387;&#x5206;&#x5E03;<script type="math/tex; ">P(Y)</script>&#x53EF;&#x4EE5;&#x79F0;&#x4E3A;&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x968F;&#x673A;&#x573A;&#x6216;&#x8005;&#x6982;&#x7387;&#x65E0;&#x5411;&#x56FE;&#x6A21;&#x578B;&#x3002;</p>
-<p>&#x800C;&#x5BF9;&#x4E8E;&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x968F;&#x673A;&#x573A;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x8054;&#x5408;&#x6982;&#x7387;&#x5206;&#x5E03;<script type="math/tex; ">P(Y)</script>&#x62C6;&#x5206;&#x6210;&#x591A;&#x4E2A;&#x56E0;&#x5B50;&#x7684;&#x4E58;&#x79EF;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x4FBF;&#x4E8E;&#x8BA1;&#x7B97;<script type="math/tex; ">P(Y)</script>&#x3002;</p>
+<p>仔细观察发现这三种性质实质上是等价的，成对马尔科夫性和局部马尔科夫性都可以看作是全局马尔科夫性的特殊形式。</p>
+<p>那这三种性质提出来有什么用呢？</p>
+<p>首先满足这三种性质的联合概率分布<script type="math/tex; ">P(Y)</script>可以称为马尔科夫随机场或者概率无向图模型。</p>
+<p>而对于马尔科夫随机场，可以将联合概率分布<script type="math/tex; ">P(Y)</script>拆分成多个因子的乘积，这样就便于计算<script type="math/tex; ">P(Y)</script>。</p>
 </blockquote>
-<h2 id="&#x56E2;&#x548C;&#x6700;&#x5927;&#x56E2;"><a name="&#x56E2;&#x548C;&#x6700;&#x5927;&#x56E2;" class="anchor-navigation-ex-anchor" href="#&#x56E2;&#x548C;&#x6700;&#x5927;&#x56E2;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x56E2;&#x548C;&#x6700;&#x5927;&#x56E2;" class="plugin-anchor" href="#&#x56E2;&#x548C;&#x6700;&#x5927;&#x56E2;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x56E2;&#x548C;&#x6700;&#x5927;&#x56E2;</h2>
+<h2 id="团和最大团">2.2 团和最大团</h2>
 <blockquote>
-<p><a href="https://www.jianshu.com/p/dabbc78471d7" target="_blank">&#x56E2;&#x3001;&#x6781;&#x5927;&#x56E2;&#x3001;&#x6700;&#x5927;&#x56E2;</a></p>
-<p>&#x56E2;(clique)&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x65E0;&#x5411;&#x56FE;&#x7684;&#x5B8C;&#x5168;&#x5B50;&#x56FE;&#xFF0C;&#x65E2;&#x7136;&#x662F;&#x5B8C;&#x5168;&#x56FE;&#xFF0C;&#x5F53;&#x7136;&#x6BCF;&#x5BF9;&#x9876;&#x70B9;&#x4E4B;&#x95F4;&#x90FD;&#x5FC5;&#x987B;&#x8981;&#x6709;&#x8FB9;&#x76F8;&#x8FDE;&#x3002;</p>
-<p>&#x56E2;&#xFF1A;&#x65E0;&#x5411;&#x56FE;&#x7684;&#x5B8C;&#x5168;&#x5B50;&#x56FE;&#x3002;
-&#x5B8C;&#x5168;&#x56FE;&#xFF1A;&#x5B8C;&#x5168;&#x56FE;&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x65E0;&#x5411;&#x56FE;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x5BF9;&#x4E0D;&#x540C;&#x7684;&#x9876;&#x70B9;&#x4E4B;&#x95F4;&#x90FD;&#x6070;&#x8FDE;&#x6709;&#x4E00;&#x6761;&#x8FB9;&#x76F8;&#x8FDE;&#x3002;</p>
-<p><a href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/18539550-388460bbcfb89a1d.png" data-lightbox="3e08ef2f-17a4-4364-a73e-d11a3d256318" data-title="img"><img src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/18539550-388460bbcfb89a1d.png" alt="img"></a></p>
-<p><a href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/18539550-050150e5742f14f4.png" data-lightbox="a36b5a09-f033-4aab-b77b-0539c22b7565" data-title="img"><img src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/18539550-050150e5742f14f4.png" alt="img"></a></p>
-<p>&#x6BD4;&#x5982;&#x8FD9;&#x91CC;&#x7684;{0&#x3001;5}&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x56E2;&#xFF0C;&#x5B83;&#x5C31;&#x662F;&#x539F;&#x56FE;&#x7684;&#x4E00;&#x4E2A;&#x5B8C;&#x5168;&#x5B50;&#x56FE;&#xFF0C;&#x5E76;&#x4E14;&#x7ED3;&#x70B9;&#x4E4B;&#x95F4;&#x8FDE;&#x63A5;&#xFF0C;&#x5F53;&#x7136;{0&#x3001;4&#x3001;5}&#xFF0C;{1&#x3001;2&#x3001;4}&#x540C;&#x6837;&#x4E5F;&#x662F;&#x56E2;&#xFF0C;&#x56E2;&#x91CC;&#x9762;&#x7684;&#x7ED3;&#x70B9;&#x90FD;&#x5FC5;&#x987B;&#x662F;&#x4E92;&#x76F8;&#x8FDE;&#x63A5;&#x7684;&#x3002;&#x8FD8;&#x6709;&#x8BB8;&#x591A;&#x7684;&#x56E2;&#x5E76;&#x6CA1;&#x6709;&#x5168;&#x90E8;&#x5217;&#x4E3E;&#x51FA;&#x6765;&#xFF0C;&#x6BD4;&#x5982;{0&#x3001;4}&#xFF0C;{1&#x3001;2}&#xFF0C;{4&#x3001;3}&#x7B49;&#x7B49;&#x3002;</p>
-<p>&#x6700;&#x5927;&#x56E2;&#x5C31;&#x662F;&#x5C31;&#x662F;&#x7ED3;&#x70B9;&#x6570;&#x6700;&#x591A;&#x7684;&#x6781;&#x5927;&#x56E2;</p>
-<p><a href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/18539550-a82aa7a59f23dae3.png" data-lightbox="c448e6db-6524-4fee-9faf-f20cdd0b8b38" data-title="img"><img src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/18539550-a82aa7a59f23dae3.png" alt="img"></a></p>
+<p><a href="https://www.jianshu.com/p/dabbc78471d7" target="_blank">团、极大团、最大团</a></p>
+<p>团(clique)就是一个无向图的完全子图，既然是完全图，当然每对顶点之间都必须要有边相连。</p>
+<p>团：无向图的完全子图。
+完全图：完全图是一个简单的无向图，其中每对不同的顶点之间都恰连有一条边相连。</p>
+<p><a data-lightbox="142826c9-6643-445a-9422-8c3867b05750" data-title="img" href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/18539550-388460bbcfb89a1d.png"><img alt="img" src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/18539550-388460bbcfb89a1d.png"/></a></p>
+<p><a data-lightbox="8142f542-c1de-4326-b39f-f257419ecad5" data-title="img" href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/18539550-050150e5742f14f4.png"><img alt="img" src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/18539550-050150e5742f14f4.png"/></a></p>
+<p>比如这里的{0、5}就是一个团，它就是原图的一个完全子图，并且结点之间连接，当然{0、4、5}，{1、2、4}同样也是团，团里面的结点都必须是互相连接的。还有许多的团并没有全部列举出来，比如{0、4}，{1、2}，{4、3}等等。</p>
+<p>最大团就是就是结点数最多的极大团</p>
+<p><a data-lightbox="9d90dc8e-c39b-4999-a8d2-b598eeba9aa0" data-title="img" href="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/18539550-a82aa7a59f23dae3.png"><img alt="img" src="res/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0_CRF/18539550-a82aa7a59f23dae3.png"/></a></p>
 </blockquote>
-<p></p><footer class="page-footer"><span class="copyright">Copyright &#xA9; narutohyc.com 2020 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-02-07 06:55:58
-</span></footer><hr><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
-
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
+<p></p><footer class="page-footer"><span class="copyright">Copyright © narutohyc.com 2020 all right reserved，powered by Gitbook</span><span class="footer-modification">该文件修订时间：
+2022-02-15 13:30:23
+</span></footer><hr/><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
+</section>
 </div>
-
-                        </div>
-                    </div>
-                
-            </div>
-
-            
-                
-                <a href="监督学习_支持向量机.html" class="navigation navigation-prev " aria-label="Previous page: 监督学习_支持向量机">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="非监督学习.html" class="navigation navigation-next " aria-label="Next page: 非监督学习">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
-
-    <script>
+<div class="search-results">
+<div class="has-results">
+<h1 class="search-results-title"><span class="search-results-count"></span> results matching "<span class="search-query"></span>"</h1>
+<ul class="search-results-list"></ul>
+</div>
+<div class="no-results">
+<h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a aria-label="Previous page: 监督学习_支持向量机" class="navigation navigation-prev" href="监督学习_支持向量机.html">
+<i class="fa fa-angle-left"></i>
+</a>
+<a aria-label="Next page: 非监督学习" class="navigation navigation-next" href="非监督学习.html">
+<i class="fa fa-angle-right"></i>
+</a>
+</div>
+<script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"监督学习_CRF","level":"1.6.5","depth":2,"next":{"title":"非监督学习","level":"1.7","depth":1,"path":"chapters/非监督学习.md","ref":"chapters/非监督学习.md","articles":[{"title":"非监督学习_K均值","level":"1.7.1","depth":2,"path":"chapters/非监督学习_K均值.md","ref":"chapters/非监督学习_K均值.md","articles":[]},{"title":"非监督学习_Mean Shift均值漂移聚类","level":"1.7.2","depth":2,"path":"chapters/非监督学习_Mean Shift均值漂移聚类.md","ref":"chapters/非监督学习_Mean Shift均值漂移聚类.md","articles":[]},{"title":"非监督学习_DBSCAN基于密度的聚类方法","level":"1.7.3","depth":2,"path":"chapters/非监督学习_DBSCAN基于密度的聚类方法.md","ref":"chapters/非监督学习_DBSCAN基于密度的聚类方法.md","articles":[]},{"title":"非监督学习_Hierarchical Clustering层次聚类","level":"1.7.4","depth":2,"path":"chapters/非监督学习_Hierarchical Clustering层次聚类.md","ref":"chapters/非监督学习_Hierarchical Clustering层次聚类.md","articles":[]},{"title":"非监督学习_Spectral Clustering谱聚类","level":"1.7.5","depth":2,"path":"chapters/非监督学习_Spectral Clustering谱聚类.md","ref":"chapters/非监督学习_Spectral Clustering谱聚类.md","articles":[]}]},"previous":{"title":"监督学习_支持向量机","level":"1.6.4","depth":2,"path":"chapters/监督学习_支持向量机.md","ref":"chapters/监督学习_支持向量机.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/监督学习_CRF.md","mtime":"2022-02-07T06:55:58.086Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-07T06:57:25.147Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"监督学习_CRF","level":"1.6.5","depth":2,"next":{"title":"非监督学习","level":"1.7","depth":1,"path":"chapters/非监督学习.md","ref":"chapters/非监督学习.md","articles":[{"title":"非监督学习_K均值","level":"1.7.1","depth":2,"path":"chapters/非监督学习_K均值.md","ref":"chapters/非监督学习_K均值.md","articles":[]},{"title":"非监督学习_Mean Shift均值漂移聚类","level":"1.7.2","depth":2,"path":"chapters/非监督学习_Mean Shift均值漂移聚类.md","ref":"chapters/非监督学习_Mean Shift均值漂移聚类.md","articles":[]},{"title":"非监督学习_DBSCAN基于密度的聚类方法","level":"1.7.3","depth":2,"path":"chapters/非监督学习_DBSCAN基于密度的聚类方法.md","ref":"chapters/非监督学习_DBSCAN基于密度的聚类方法.md","articles":[]},{"title":"非监督学习_Hierarchical Clustering层次聚类","level":"1.7.4","depth":2,"path":"chapters/非监督学习_Hierarchical Clustering层次聚类.md","ref":"chapters/非监督学习_Hierarchical Clustering层次聚类.md","articles":[]},{"title":"非监督学习_Spectral Clustering谱聚类","level":"1.7.5","depth":2,"path":"chapters/非监督学习_Spectral Clustering谱聚类.md","ref":"chapters/非监督学习_Spectral Clustering谱聚类.md","articles":[]}]},"previous":{"title":"监督学习_支持向量机","level":"1.6.4","depth":2,"path":"chapters/监督学习_支持向量机.md","ref":"chapters/监督学习_支持向量机.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/监督学习_CRF.md","mtime":"2022-02-15T13:30:23.521Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-15T13:32:13.117Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
-
-        
-    
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
-        
-    
-        
-        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lightbox/js/lightbox.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-change_girls/girls.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
-        
-    
-
-    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
-
-    </body>
+<script src="../gitbook/gitbook.js"></script>
+<script src="../gitbook/theme.js"></script>
+<script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+<script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+<script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+<script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+<script src="../gitbook/gitbook-plugin-lightbox/js/lightbox.min.js"></script>
+<script src="../gitbook/gitbook-plugin-change_girls/girls.js"></script>
+<script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+<script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+<script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+</body>
 </html>
-

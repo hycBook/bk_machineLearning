@@ -1,1041 +1,512 @@
-
 <!DOCTYPE HTML>
-<html lang="zh-hans" >
-    <head>
-        <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>机器学习基础 · 机器学习相关学习记录</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        <meta name="author" content="narutohyc">
-        
-        
-    
-    
-    <link rel="stylesheet" href="../gitbook/style.css">
-
-    
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-lightbox/css/lightbox.min.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-change_girls/girls.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
-                
-            
-        
-
-    
-
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-
-    
-
-        
-    
-    
-    
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="机器学习基础_距离.html" />
-    
-    
-    <link rel="prev" href="../" />
-    
-
-    
-        <link rel="shortcut icon" href="./chapters/res/other/favicon.ico" type="image/x-icon">
-    
-    
-    
-    
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./chapters/res/other/favicon.ico">
-    
-    
-        
-    
-    
-        
-    
-
-    
-        <link rel="shortcut icon" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png' type="image/x-icon">
-    
-    
-        <link rel="bookmark" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png' type="image/x-icon">
-    
-    
-        <link rel="apple-touch-icon" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png'>
-    
-    
-        
-        <link rel="apple-touch-icon" sizes="120x120" href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png">
-        
-        <link rel="apple-touch-icon" sizes="180x180" href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png">
-        
-    
-
-    <style>
+<html lang="zh-hans">
+<head>
+<meta charset="utf-8"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>机器学习基础 · 机器学习相关学习记录</title>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="" name="description"/>
+<meta content="GitBook 3.2.3" name="generator"/>
+<meta content="narutohyc" name="author"/>
+<link href="../gitbook/style.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-splitter/splitter.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-anchors/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-donate/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-code/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-search-plus/search.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-lightbox/css/lightbox.min.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-change_girls/girls.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-pageview-count/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-theme-comscore/test.css" rel="stylesheet"/>
+<meta content="true" name="HandheldFriendly"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<link href="../gitbook/images/apple-touch-icon-precomposed-152.png" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="../gitbook/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="机器学习基础_距离.html" rel="next"/>
+<link href="../" rel="prev"/>
+<link href="./chapters/res/other/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="./chapters/res/other/favicon.ico" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="bookmark" type="image/x-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon" sizes="120x120"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon" sizes="180x180"/>
+<style>
     @media only screen and (max-width: 640px) {
         .book-header .hidden-mobile {
             display: none;
         }
     }
     </style>
-    <script>
+<script>
         window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]};
     </script>
-
-    </head>
-    <body>
-        
+</head>
+<body>
 <div class="book">
-    <div class="book-summary">
-        
-            
+<div class="book-summary">
 <div id="book-search-input" role="search">
-    <input type="text" placeholder="输入并搜索" />
+<input placeholder="输入并搜索" type="text"/>
 </div>
-
-            
-                <nav role="navigation">
-                
-
-
+<nav role="navigation">
 <ul class="summary">
-    
-    
-    
-        
-        <li>
-            <a href="https://github.com/narutohyc" target="_blank" class="custom-link">我的狗窝</a>
-        </li>
-    
-    
-
-    
-    <li class="divider"></li>
-    
-
-    
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="../">
-            
-                <a href="../">
-            
-                    
-                        <b>1.1.</b>
+<li>
+<a class="custom-link" href="https://github.com/narutohyc" target="_blank">我的狗窝</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-level="1.1" data-path="../">
+<a href="../">
+<b>1.1.</b>
                     
                     Introduction
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.2" data-path="机器学习基础.html">
-            
-                <a href="机器学习基础.html">
-            
-                    
-                        <b>1.2.</b>
+</li>
+<li class="chapter active" data-level="1.2" data-path="机器学习基础.html">
+<a href="机器学习基础.html">
+<b>1.2.</b>
                     
                     机器学习基础
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.2.1" data-path="机器学习基础_距离.html">
-            
-                <a href="机器学习基础_距离.html">
-            
-                    
-                        <b>1.2.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.2.1" data-path="机器学习基础_距离.html">
+<a href="机器学习基础_距离.html">
+<b>1.2.1.</b>
                     
                     机器学习基础_距离
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.2" data-path="机器学习基础_概率论基础.html">
-            
-                <a href="机器学习基础_概率论基础.html">
-            
-                    
-                        <b>1.2.2.</b>
+</li>
+<li class="chapter" data-level="1.2.2" data-path="机器学习基础_概率论基础.html">
+<a href="机器学习基础_概率论基础.html">
+<b>1.2.2.</b>
                     
                     机器学习基础_概率论基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.3" data-path="机器学习基础_线性代数基础.html">
-            
-                <a href="机器学习基础_线性代数基础.html">
-            
-                    
-                        <b>1.2.3.</b>
+</li>
+<li class="chapter" data-level="1.2.3" data-path="机器学习基础_线性代数基础.html">
+<a href="机器学习基础_线性代数基础.html">
+<b>1.2.3.</b>
                     
                     机器学习基础_线性代数基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.4" data-path="机器学习基础_微积分基础.html">
-            
-                <a href="机器学习基础_微积分基础.html">
-            
-                    
-                        <b>1.2.4.</b>
+</li>
+<li class="chapter" data-level="1.2.4" data-path="机器学习基础_微积分基础.html">
+<a href="机器学习基础_微积分基础.html">
+<b>1.2.4.</b>
                     
                     机器学习基础_微积分基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.5" data-path="机器学习基础_最优化理论.html">
-            
-                <a href="机器学习基础_最优化理论.html">
-            
-                    
-                        <b>1.2.5.</b>
+</li>
+<li class="chapter" data-level="1.2.5" data-path="机器学习基础_最优化理论.html">
+<a href="机器学习基础_最优化理论.html">
+<b>1.2.5.</b>
                     
                     机器学习基础_最优化理论
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.6" data-path="机器学习基础_损失函数.html">
-            
-                <a href="机器学习基础_损失函数.html">
-            
-                    
-                        <b>1.2.6.</b>
+</li>
+<li class="chapter" data-level="1.2.6" data-path="机器学习基础_损失函数.html">
+<a href="机器学习基础_损失函数.html">
+<b>1.2.6.</b>
                     
                     机器学习基础_损失函数
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3" data-path="特征工程.html">
-            
-                <a href="特征工程.html">
-            
-                    
-                        <b>1.3.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.3" data-path="特征工程.html">
+<a href="特征工程.html">
+<b>1.3.</b>
                     
                     特征工程
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.3.1" data-path="特征工程_归一化.html">
-            
-                <a href="特征工程_归一化.html">
-            
-                    
-                        <b>1.3.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.3.1" data-path="特征工程_归一化.html">
+<a href="特征工程_归一化.html">
+<b>1.3.1.</b>
                     
                     特征工程_归一化
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.2" data-path="特征工程_编码.html">
-            
-                <a href="特征工程_编码.html">
-            
-                    
-                        <b>1.3.2.</b>
+</li>
+<li class="chapter" data-level="1.3.2" data-path="特征工程_编码.html">
+<a href="特征工程_编码.html">
+<b>1.3.2.</b>
                     
                     特征工程_编码
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.3" data-path="特征工程_特征组合.html">
-            
-                <a href="特征工程_特征组合.html">
-            
-                    
-                        <b>1.3.3.</b>
+</li>
+<li class="chapter" data-level="1.3.3" data-path="特征工程_特征组合.html">
+<a href="特征工程_特征组合.html">
+<b>1.3.3.</b>
                     
                     特征工程_特征组合
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.4" data-path="特征工程_特征选择.html">
-            
-                <a href="特征工程_特征选择.html">
-            
-                    
-                        <b>1.3.4.</b>
+</li>
+<li class="chapter" data-level="1.3.4" data-path="特征工程_特征选择.html">
+<a href="特征工程_特征选择.html">
+<b>1.3.4.</b>
                     
                     特征工程_特征选择
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="特征工程_文本表示模型.html">
-            
-                <a href="特征工程_文本表示模型.html">
-            
-                    
-                        <b>1.3.5.</b>
+</li>
+<li class="chapter" data-level="1.3.5" data-path="特征工程_文本表示模型.html">
+<a href="特征工程_文本表示模型.html">
+<b>1.3.5.</b>
                     
                     特征工程_文本表示模型
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.6" data-path="特征工程_图像增强.html">
-            
-                <a href="特征工程_图像增强.html">
-            
-                    
-                        <b>1.3.6.</b>
+</li>
+<li class="chapter" data-level="1.3.6" data-path="特征工程_图像增强.html">
+<a href="特征工程_图像增强.html">
+<b>1.3.6.</b>
                     
                     特征工程_图像增强
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4" data-path="模型评估.html">
-            
-                <a href="模型评估.html">
-            
-                    
-                        <b>1.4.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.4" data-path="模型评估.html">
+<a href="模型评估.html">
+<b>1.4.</b>
                     
                     模型评估
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.1" data-path="模型评估_评估指标.html">
-            
-                <a href="模型评估_评估指标.html">
-            
-                    
-                        <b>1.4.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.4.1" data-path="模型评估_评估指标.html">
+<a href="模型评估_评估指标.html">
+<b>1.4.1.</b>
                     
                     模型评估_评估指标
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="模型评估_AB测试.html">
-            
-                <a href="模型评估_AB测试.html">
-            
-                    
-                        <b>1.4.2.</b>
+</li>
+<li class="chapter" data-level="1.4.2" data-path="模型评估_AB测试.html">
+<a href="模型评估_AB测试.html">
+<b>1.4.2.</b>
                     
                     模型评估_AB测试
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.3" data-path="模型评估_过拟合和欠拟合.html">
-            
-                <a href="模型评估_过拟合和欠拟合.html">
-            
-                    
-                        <b>1.4.3.</b>
+</li>
+<li class="chapter" data-level="1.4.3" data-path="模型评估_过拟合和欠拟合.html">
+<a href="模型评估_过拟合和欠拟合.html">
+<b>1.4.3.</b>
                     
                     模型评估_过拟合和欠拟合
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.4" data-path="模型评估_超参数选择.html">
-            
-                <a href="模型评估_超参数选择.html">
-            
-                    
-                        <b>1.4.4.</b>
+</li>
+<li class="chapter" data-level="1.4.4" data-path="模型评估_超参数选择.html">
+<a href="模型评估_超参数选择.html">
+<b>1.4.4.</b>
                     
                     模型评估_超参数选择
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.5" data-path="模型评估_模型评估方法.html">
-            
-                <a href="模型评估_模型评估方法.html">
-            
-                    
-                        <b>1.4.5.</b>
+</li>
+<li class="chapter" data-level="1.4.5" data-path="模型评估_模型评估方法.html">
+<a href="模型评估_模型评估方法.html">
+<b>1.4.5.</b>
                     
                     模型评估_模型评估方法
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5" data-path="降维.html">
-            
-                <a href="降维.html">
-            
-                    
-                        <b>1.5.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.5" data-path="降维.html">
+<a href="降维.html">
+<b>1.5.</b>
                     
                     降维
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.5.1" data-path="降维_PCA主成分分析.html">
-            
-                <a href="降维_PCA主成分分析.html">
-            
-                    
-                        <b>1.5.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.5.1" data-path="降维_PCA主成分分析.html">
+<a href="降维_PCA主成分分析.html">
+<b>1.5.1.</b>
                     
                     降维_PCA主成分分析
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.2" data-path="降维_LDA线性判别分析.html">
-            
-                <a href="降维_LDA线性判别分析.html">
-            
-                    
-                        <b>1.5.2.</b>
+</li>
+<li class="chapter" data-level="1.5.2" data-path="降维_LDA线性判别分析.html">
+<a href="降维_LDA线性判别分析.html">
+<b>1.5.2.</b>
                     
                     降维_LDA线性判别分析
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6" data-path="监督学习.html">
-            
-                <a href="监督学习.html">
-            
-                    
-                        <b>1.6.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.6" data-path="监督学习.html">
+<a href="监督学习.html">
+<b>1.6.</b>
                     
                     监督学习
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.6.1" data-path="监督学习_朴素贝叶斯分类.html">
-            
-                <a href="监督学习_朴素贝叶斯分类.html">
-            
-                    
-                        <b>1.6.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.6.1" data-path="监督学习_朴素贝叶斯分类.html">
+<a href="监督学习_朴素贝叶斯分类.html">
+<b>1.6.1.</b>
                     
                     监督学习_朴素贝叶斯分类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.2" data-path="监督学习_决策树.html">
-            
-                <a href="监督学习_决策树.html">
-            
-                    
-                        <b>1.6.2.</b>
+</li>
+<li class="chapter" data-level="1.6.2" data-path="监督学习_决策树.html">
+<a href="监督学习_决策树.html">
+<b>1.6.2.</b>
                     
                     监督学习_决策树
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.3" data-path="监督学习_K近邻法.html">
-            
-                <a href="监督学习_K近邻法.html">
-            
-                    
-                        <b>1.6.3.</b>
+</li>
+<li class="chapter" data-level="1.6.3" data-path="监督学习_K近邻法.html">
+<a href="监督学习_K近邻法.html">
+<b>1.6.3.</b>
                     
                     监督学习_K近邻法
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.4" data-path="监督学习_支持向量机.html">
-            
-                <a href="监督学习_支持向量机.html">
-            
-                    
-                        <b>1.6.4.</b>
+</li>
+<li class="chapter" data-level="1.6.4" data-path="监督学习_支持向量机.html">
+<a href="监督学习_支持向量机.html">
+<b>1.6.4.</b>
                     
                     监督学习_支持向量机
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.5" data-path="监督学习_CRF.html">
-            
-                <a href="监督学习_CRF.html">
-            
-                    
-                        <b>1.6.5.</b>
+</li>
+<li class="chapter" data-level="1.6.5" data-path="监督学习_CRF.html">
+<a href="监督学习_CRF.html">
+<b>1.6.5.</b>
                     
                     监督学习_CRF
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7" data-path="非监督学习.html">
-            
-                <a href="非监督学习.html">
-            
-                    
-                        <b>1.7.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.7" data-path="非监督学习.html">
+<a href="非监督学习.html">
+<b>1.7.</b>
                     
                     非监督学习
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.7.1" data-path="非监督学习_K均值.html">
-            
-                <a href="非监督学习_K均值.html">
-            
-                    
-                        <b>1.7.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.7.1" data-path="非监督学习_K均值.html">
+<a href="非监督学习_K均值.html">
+<b>1.7.1.</b>
                     
                     非监督学习_K均值
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.2" data-path="非监督学习_Mean Shift均值漂移聚类.html">
-            
-                <a href="非监督学习_Mean Shift均值漂移聚类.html">
-            
-                    
-                        <b>1.7.2.</b>
+</li>
+<li class="chapter" data-level="1.7.2" data-path="非监督学习_Mean Shift均值漂移聚类.html">
+<a href="非监督学习_Mean Shift均值漂移聚类.html">
+<b>1.7.2.</b>
                     
                     非监督学习_Mean Shift均值漂移聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.3" data-path="非监督学习_DBSCAN基于密度的聚类方法.html">
-            
-                <a href="非监督学习_DBSCAN基于密度的聚类方法.html">
-            
-                    
-                        <b>1.7.3.</b>
+</li>
+<li class="chapter" data-level="1.7.3" data-path="非监督学习_DBSCAN基于密度的聚类方法.html">
+<a href="非监督学习_DBSCAN基于密度的聚类方法.html">
+<b>1.7.3.</b>
                     
                     非监督学习_DBSCAN基于密度的聚类方法
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.4" data-path="非监督学习_Hierarchical Clustering层次聚类.html">
-            
-                <a href="非监督学习_Hierarchical Clustering层次聚类.html">
-            
-                    
-                        <b>1.7.4.</b>
+</li>
+<li class="chapter" data-level="1.7.4" data-path="非监督学习_Hierarchical Clustering层次聚类.html">
+<a href="非监督学习_Hierarchical Clustering层次聚类.html">
+<b>1.7.4.</b>
                     
                     非监督学习_Hierarchical Clustering层次聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.5" data-path="非监督学习_Spectral Clustering谱聚类.html">
-            
-                <a href="非监督学习_Spectral Clustering谱聚类.html">
-            
-                    
-                        <b>1.7.5.</b>
+</li>
+<li class="chapter" data-level="1.7.5" data-path="非监督学习_Spectral Clustering谱聚类.html">
+<a href="非监督学习_Spectral Clustering谱聚类.html">
+<b>1.7.5.</b>
                     
                     非监督学习_Spectral Clustering谱聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.8" data-path="半监督学习.html">
-            
-                <a href="半监督学习.html">
-            
-                    
-                        <b>1.8.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.8" data-path="半监督学习.html">
+<a href="半监督学习.html">
+<b>1.8.</b>
                     
                     半监督学习
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9" data-path="集成学习.html">
-            
-                <a href="集成学习.html">
-            
-                    
-                        <b>1.9.</b>
+</li>
+<li class="chapter" data-level="1.9" data-path="集成学习.html">
+<a href="集成学习.html">
+<b>1.9.</b>
                     
                     集成学习
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.10" data-path="强化学习.html">
-            
-                <a href="强化学习.html">
-            
-                    
-                        <b>1.10.</b>
+</li>
+<li class="chapter" data-level="1.10" data-path="强化学习.html">
+<a href="强化学习.html">
+<b>1.10.</b>
                     
                     强化学习
             
                 </a>
-            
-
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+</li>
+<li class="divider"></li>
+<li>
+<a class="gitbook-link" href="https://www.gitbook.com" target="blank">
             本书使用 GitBook 发布
         </a>
-    </li>
+</li>
 </ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
+</nav>
+</div>
+<div class="book-body">
+<div class="body-inner">
 <div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >机器学习基础</a>
-    </h1>
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="..">机器学习基础</a>
+</h1>
 </div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
+<div class="page-wrapper" role="main" tabindex="-1">
+<div class="page-inner">
 <div class="search-plus" id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x7840;"><b></b>&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x7840;</a></li></ul></div><a href="#&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x7840;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a href="res/other/&#x5F02;&#x4E16;&#x754C;&#x857E;&#x59C6;_1.png" data-lightbox="c3dea529-9538-459b-b3df-8164a307a402" data-title="&#x5F02;&#x4E16;&#x754C;.png"><img src="res/other/&#x5F02;&#x4E16;&#x754C;&#x857E;&#x59C6;_1.png" alt="&#x5F02;&#x4E16;&#x754C;.png"></a></p>
+<div class="search-noresults">
+<section class="normal markdown-section">
+<div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon"></span><a href="#机器学习基础">1 机器学习基础</a></li></ul></div><a href="#机器学习基础" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a data-lightbox="6d3a0e5c-59da-4c22-984f-63a5c2d6a6ea" data-title="异世界.png" href="res/other/异世界蕾姆_1.png"><img alt="异世界.png" src="res/other/异世界蕾姆_1.png"/></a></p>
 <p>[TOC]</p>
-<h1 id="&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x7840;"><a name="&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x7840;" class="anchor-navigation-ex-anchor" href="#&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x7840;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x7840;" class="plugin-anchor" href="#&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x7840;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x673A;&#x5668;&#x5B66;&#x4E60;&#x57FA;&#x7840;</h1>
+<h1 id="机器学习基础">1 机器学习基础</h1>
 <blockquote>
-<p><a href="https://36kr.com/p/5124507" target="_blank">&#x673A;&#x5668;&#x5B66;&#x4E60;&#x5FC5;&#x5907;&#x7684;&#x6570;&#x5B66;&#x57FA;&#x7840;&#x6709;&#x54EA;&#x4E9B;&#xFF1F;</a></p>
-<p><a href="https://www.cnblogs.com/huicpc0212/p/4192214.html" target="_blank">&#x673A;&#x5668;&#x5B66;&#x4E60;&#x51E0;&#x79CD;&#x65B9;&#x5F0F;</a></p>
-<p><a href="https://www.leiphone.com/news/201711/89T9wKWOxwCTCSHZ.html" target="_blank">&#x5927;&#x89C4;&#x6A21;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x6846;&#x67B6;&#x7684;&#x56DB;&#x91CD;&#x5883;&#x754C;</a></p>
-<p><a href="https://blog.csdn.net/u010945683/article/details/78717064" target="_blank">&#x53C2;&#x6570;&#x670D;&#x52A1;&#x5668;&#x2014;&#x2014;&#x5206;&#x5E03;&#x5F0F;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7684;&#x65B0;&#x6740;&#x5668;</a></p>
-<p><a href="https://www.oschina.net/news/109299/angel-3-0-0-released" target="_blank">&#x817E;&#x8BAF;&#x9996;&#x4E2A; AI &#x5F00;&#x6E90;&#x9879;&#x76EE; Angel &#x53D1;&#x5E03; 3.0 &#x7248;&#x672C;&#xFF1A;&#x8FC8;&#x5411;&#x5168;&#x6808;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x5E73;&#x53F0;</a></p>
-<p><a href="https://blog.csdn.net/asd136912/article/details/78318563" target="_blank">Factorization Machines(FM) &#x56E0;&#x5B50;&#x5206;&#x89E3;&#x673A;&#x548C;Field-aware Factorization Machine (FFM) &#x573A;&#x611F;&#x77E5;&#x5206;&#x89E3;&#x673A;</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/37963267" target="_blank">FM&#x7B97;&#x6CD5;&#x89E3;&#x6790;</a></p>
-<p><a href="https://plushunter.github.io/2017/07/13/&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#x7CFB;&#x5217;&#xFF08;26&#xFF09;&#xFF1A;&#x56E0;&#x5B50;&#x5206;&#x89E3;&#x673A;&#xFF08;FM&#xFF09;&#x4E0E;&#x573A;&#x611F;&#x77E5;&#x5206;&#x89E3;&#x673A;&#xFF08;FFM&#xFF09;/" target="_blank">&#x56E0;&#x5B50;&#x5206;&#x89E3;&#x673A;&#xFF08;FM&#xFF09;&#x4E0E;&#x573A;&#x611F;&#x77E5;&#x5206;&#x89E3;&#x673A;&#xFF08;FFM&#xFF09;</a></p>
+<p><a href="https://36kr.com/p/5124507" target="_blank">机器学习必备的数学基础有哪些？</a></p>
+<p><a href="https://www.cnblogs.com/huicpc0212/p/4192214.html" target="_blank">机器学习几种方式</a></p>
+<p><a href="https://www.leiphone.com/news/201711/89T9wKWOxwCTCSHZ.html" target="_blank">大规模机器学习框架的四重境界</a></p>
+<p><a href="https://blog.csdn.net/u010945683/article/details/78717064" target="_blank">参数服务器——分布式机器学习的新杀器</a></p>
+<p><a href="https://www.oschina.net/news/109299/angel-3-0-0-released" target="_blank">腾讯首个 AI 开源项目 Angel 发布 3.0 版本：迈向全栈机器学习平台</a></p>
+<p><a href="https://blog.csdn.net/asd136912/article/details/78318563" target="_blank">Factorization Machines(FM) 因子分解机和Field-aware Factorization Machine (FFM) 场感知分解机</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/37963267" target="_blank">FM算法解析</a></p>
+<p><a href="https://plushunter.github.io/2017/07/13/机器学习算法系列（26）：因子分解机（FM）与场感知分解机（FFM）/" target="_blank">因子分解机（FM）与场感知分解机（FFM）</a></p>
 <p><a href="https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/" target="_blank">https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/</a></p>
-<p><a href="https://www.infoq.cn/article/1oFNtcMgWPGPLi1iA4ma" target="_blank">&#x817E;&#x8BAF;&#x53D1;&#x5E03;&#x5F00;&#x6E90;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x5E73;&#x53F0; Angel 3.0</a></p>
+<p><a href="https://www.infoq.cn/article/1oFNtcMgWPGPLi1iA4ma" target="_blank">腾讯发布开源机器学习平台 Angel 3.0</a></p>
 <ul>
-<li>&#x300A;&#x5206;&#x5E03;&#x5F0F;&#x673A;&#x5668;&#x5B66;&#x4E60;&#xFF1A;&#x7B97;&#x6CD5;&#x3001;&#x7406;&#x8BBA;&#x4E0E;&#x5B9E;&#x8DF5;&#x300B;&#x5218;&#x94C1;&#x5CA9;&#x7B49;&#x8457;</li>
-<li>&#x4ECE;<code>&#x5B66;&#x4E60;&#x76EE;&#x6807;</code>&#x7684;&#x89D2;&#x5EA6;&#xFF0C;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x53EF;&#x4EE5;&#x5927;&#x4F53;&#x5206;&#x6210;&#x56DE;&#x5F52;&#x3001;&#x5206;&#x7C7B;&#x3001;&#x6392;&#x5E8F;&#x3001;&#x6709;&#x7ED3;&#x6784;&#x9884;&#x6D4B;&#x7B49;&#x7C7B;&#x522B;&#x3002;&#x8FD9;&#x4E9B;&#x7C7B;&#x522B;&#x7684;&#x4E3B;&#x8981;&#x5DEE;&#x522B;&#x5728;&#x4E8E;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x6A21;&#x578B;&#x8F93;&#x51FA;&#x7684;&#x683C;&#x5F0F;&#xFF0C;&#x4EE5;&#x53CA;&#x5982;&#x4F55;&#x8861;&#x91CF;&#x8F93;&#x51FA;&#x7684;&#x51C6;&#x786E;&#x7A0B;&#x5EA6;&#x3002;<ul>
-<li>&#x5728;<code>&#x56DE;&#x5F52;</code>&#x95EE;&#x9898;&#x91CC;&#xFF0C;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x51FA;&#x503C;&#x4E00;&#x822C;&#x662F;&#x4E00;&#x4E2A;&#x8FDE;&#x7EED;&#x7684;&#x6807;&#x91CF;&#xFF0C;&#x4EBA;&#x4EEC;&#x901A;&#x5E38;&#x7528;&#x6A21;&#x578B;&#x8F93;&#x51FA;&#x4E0E;&#x771F;&#x503C;&#x4E4B;&#x95F4;&#x7684;&#x6700;&#x5C0F;&#x5E73;&#x65B9;&#x8BEF;&#x5DEE;&#x6765;&#x8861;&#x91CF;&#x6A21;&#x578B;&#x7684;&#x51C6;&#x786E;&#x7A0B;&#x5EA6;&#x3002;</li>
-<li>&#x5728;<code>&#x5206;&#x7C7B;</code>&#x95EE;&#x9898;&#x91CC;&#xFF0C;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x51FA;&#x662F;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x7C7B;&#x522B;&#x6807;&#x7B7E;&#xFF0C;&#x4EBA;&#x4EEC;&#x901A;&#x5E38;&#x4F7F;&#x7528;0-1&#x8BEF;&#x5DEE;&#x53CA;&#x5176;&#x635F;&#x5931;&#x51FD;&#x6570;(&#x5982;&#x4EA4;&#x53C9;&#x5AE1;&#x3001;Hinge&#x51FD;&#x6570;&#x3001;&#x6307;&#x6570;&#x51FD;&#x6570;&#x7B49;)&#x6765;&#x8861;&#x91CF;&#x6A21;&#x578B;&#x7684;&#x51C6;&#x786E;&#x7A0B;&#x5EA6;&#x3002;</li>
-<li>&#x5728;<code>&#x6392;&#x5E8F;</code>&#x95EE;&#x9898;&#x91CC;&#xFF0C;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x51FA;&#x662F;&#x4E00;&#x4E2A;&#x7ECF;&#x8FC7;&#x6392;&#x5E8F;&#x7684;&#x5BF9;&#x8C61;&#x5217;&#x8868;&#xFF0C;&#x4EBA;&#x4EEC;&#x901A;&#x5E38;&#x7528;&#x5E8F;&#x5BF9;&#x7EA7;&#x522B;(pairwise)&#x6216;&#x5217;&#x8868;&#x7EA7;&#x522B;(listwise)&#x7684;&#x635F;&#x5931;&#x51FD;&#x6570;&#x6765;&#x8861;&#x91CF;&#x6A21;&#x578B;&#x7684;&#x51C6;&#x786E;&#x7A0B;&#x5EA6;&#x3002;</li>
+<li>《分布式机器学习：算法、理论与实践》刘铁岩等著</li>
+<li>从<code>学习目标</code>的角度，机器学习可以大体分成回归、分类、排序、有结构预测等类别。这些类别的主要差别在于机器学习模型输出的格式，以及如何衡量输出的准确程度。<ul>
+<li>在<code>回归</code>问题里，模型的输出值一般是一个连续的标量，人们通常用模型输出与真值之间的最小平方误差来衡量模型的准确程度。</li>
+<li>在<code>分类</code>问题里，模型的输出是一个或多个类别标签，人们通常使用0-1误差及其损失函数(如交叉嫡、Hinge函数、指数函数等)来衡量模型的准确程度。</li>
+<li>在<code>排序</code>问题里，模型的输出是一个经过排序的对象列表，人们通常用序对级别(pairwise)或列表级别(listwise)的损失函数来衡量模型的准确程度。</li>
 </ul>
 </li>
-<li>&#x5728;&#x66F4;&#x52A0;&#x901A;&#x7528;&#x7684;&#x6709;<code>&#x7ED3;&#x6784;&#x9884;&#x6D4B;</code>&#x95EE;&#x9898;&#x4E2D;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x5177;&#x4F53;&#x95EE;&#x9898;&#x5177;&#x4F53;&#x5206;&#x6790;&#xFF0C;&#x5229;&#x7528;&#x9886;&#x57DF;&#x77E5;&#x8BC6;&#x5B9A;&#x4E49;&#x5408;&#x9002;&#x7684;&#x8F93;&#x51FA;&#x683C;&#x5F0F;&#x548C;&#x6A21;&#x578B;&#x51C6;&#x786E;&#x7A0B;&#x5EA6;&#x7684;&#x5224;&#x522B;&#x51C6;&#x5219;&#x3002;</li>
-<li>&#x4ECE;&#x8BAD;&#x7EC3;<code>&#x6570;&#x636E;&#x7279;&#x6027;</code>&#x7684;&#x89D2;&#x5EA6;&#xFF0C;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x53EF;&#x4EE5;&#x5927;&#x4F53;&#x5206;&#x4E3A;&#x6709;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x3001;&#x534A;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x3001;&#x65E0;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x3001;&#x5F31;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x7B49;&#x7C7B;&#x522B;&#x3002;</li>
-<li><p><code>&#x6709;&#x76D1;&#x7763;&#x5B66;&#x4E60;</code>&#xFF0C;&#x6307;&#x7684;&#x662F;&#x6BCF;&#x4E2A;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x90FD;&#x62E5;&#x6709;&#x6807;&#x7B7E;&#x3002;&#x8FD9;&#x6837;&#x4E00;&#x6765;&#xFF0C;&#x5728;&#x6BCF;&#x4E2A;&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#x4E0A;&#x90FD;&#x53EF;&#x4EE5;&#x7CBE;&#x51C6;&#x5730;&#x8BA1;&#x7B97;&#x635F;&#x5931;&#xFF0C;&#x5E76;&#x4E14;&#x6839;&#x636E;&#x635F;&#x5931;&#x5BF9;&#x6A21;&#x578B;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#x3002;</p>
+<li>在更加通用的有<code>结构预测</code>问题中，则需要具体问题具体分析，利用领域知识定义合适的输出格式和模型准确程度的判别准则。</li>
+<li>从训练<code>数据特性</code>的角度，机器学习可以大体分为有监督学习、半监督学习、无监督学习、弱监督学习等类别。</li>
+<li><p><code>有监督学习</code>，指的是每个训练数据都拥有标签。这样一来，在每个训练样本上都可以精准地计算损失，并且根据损失对模型进行优化。</p>
 <ul>
-<li><code>&#x534A;&#x76D1;&#x7763;&#x5B66;&#x4E60;</code>&#x6307;&#x7684;&#x662F;&#x8BAD;&#x7EC3;&#x96C6;&#x91CC;&#x540C;&#x65F6;&#x5B58;&#x5728;&#x6709;&#x6807;&#x7B7E;&#x6570;&#x636E;&#x548C;&#x65E0;&#x6807;&#x7B7E;&#x6570;&#x636E;&#x3002;&#x901A;&#x5E38;&#x4EBA;&#x4EEC;&#x9700;&#x8981;&#x5BF9;&#x65E0;&#x6807;&#x7B7E;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x4E00;&#x4E9B;&#x9884;&#x5904;&#x7406;(&#x6BD4;&#x5982;&#x6839;&#x636E;&#x5B83;&#x4EEC;&#x548C;&#x6709;&#x6807;&#x7B7E;&#x6570;&#x636E;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#x6765;&#x9884;&#x6D4B;&#x5176;&#x4F2A;&#x6807;&#x7B7E;&#xFF0C;&#x6216;&#x8005;&#x8BA1;&#x7B97;&#x5B83;&#x4EEC;&#x5F7C;&#x6B64;&#x4E4B;&#x95F4;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#x4EE5;&#x83B7;&#x53D6;&#x5BF9;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x5206;&#x5E03;&#x7684;&#x5148;&#x9A8C;&#x77E5;&#x8BC6;)&#xFF0C;&#x7136;&#x540E;&#x5229;&#x7528;&#x5B83;&#x4EEC;&#x6765;&#x534F;&#x52A9;&#x539F;&#x6709;&#x7684;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;(&#x6BD4;&#x5982;&#x628A;&#x4F2A;&#x6807;&#x7B7E;&#x5F53;&#x4F5C;&#x771F;&#x5B9E;&#x6807;&#x7B7E;&#x4F7F;&#x7528;&#xFF0C;&#x6216;&#x628A;&#x6570;&#x636E;&#x96C6;&#x5206;&#x5E03;&#x4F5C;&#x4E3A;&#x6B63;&#x5219;&#x9879;&#x6765;&#x589E;&#x5F3A;&#x6A21;&#x578B;&#x7684;&#x6CDB;&#x5316;&#x80FD;&#x529B;)&#x3002;</li>
-<li><code>&#x65E0;&#x76D1;&#x7763;&#x5B66;&#x4E60;</code>&#x5904;&#x7406;&#x7684;&#x6570;&#x636E;&#x5168;&#x90FD;&#x662F;&#x65E0;&#x6807;&#x7B7E;&#x7684;&#x3002;&#x5B66;&#x4E60;&#x7684;&#x76EE;&#x7684;&#x662F;&#x4ECE;&#x6570;&#x636E;&#x4E2D;&#x53D1;&#x6398;&#x5173;&#x8054;&#x89C4;&#x5219;&#xFF0C;&#x6216;&#x8005;&#x5229;&#x7528;&#x6570;&#x636E;&#x5728;&#x8F93;&#x5165;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x76F8;&#x4E92;&#x5173;&#x7CFB;(&#x5982;&#x76F8;&#x4F3C;&#x6027;&#x3001;&#x8DDD;&#x79BB;&#x3001;&#x504F;&#x5E8F;&#x5173;&#x7CFB;&#x7B49;)&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x805A;&#x7C7B;&#x548C;&#x5F71;&#x54CD;&#x529B;&#x6392;&#x5E8F;&#x3002;</li>
-<li><code>&#x5F31;&#x76D1;&#x7763;&#x5B66;&#x4E60;</code>&#x4E2D;&#x5B58;&#x5728;&#x67D0;&#x79CD;&#x5F62;&#x5F0F;&#x7684;&#x5956;&#x52B1;&#x4FE1;&#x53F7;&#xFF0C;&#x8BE5;&#x4FE1;&#x53F7;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x6837;&#x672C;&#x6807;&#x7B7E;&#x90A3;&#x4E48;&#x76F4;&#x63A5;&#x3001;&#x5B8C;&#x5168;&#x3001;&#x786E;&#x5207;&#x6216;&#x8005;&#x51C6;&#x786E;&#x3002;&#x5F3A;&#x5316;&#x5B66;&#x4E60;&#x662F;&#x4E00;&#x7C7B;&#x5178;&#x578B;&#x7684;&#x5F31;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x95EE;&#x9898;&#xFF0C;&#x5B83;&#x65E0;&#x987B;&#x4F9D;&#x8D56;&#x9884;&#x5148;&#x7ED9;&#x5B9A;&#x7684;&#x79BB;&#x7EBF;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#xFF0C;&#x800C;&#x662F;&#x901A;&#x8FC7;&#x4E0E;&#x73AF;&#x5883;&#x7684;&#x8BD5;&#x63A2;&#x6027;&#x4EA4;&#x4E92;&#x6765;&#x8FDB;&#x884C;&#x5B66;&#x4E60;&#x3002;&#x5177;&#x4F53;&#x800C;&#x8A00;&#xFF0C;&#x5B66;&#x4E60;&#x673A;&#x5236;&#x901A;&#x8FC7;&#x9009;&#x62E9;&#x5E76;&#x6267;&#x884C;&#x67D0;&#x4E9B;&#x52A8;&#x4F5C;&#xFF0C;&#x5BFC;&#x81F4;&#x73AF;&#x5883;&#x72B6;&#x6001;&#x53D8;&#x5316;&#xFF0C;&#x5E76;&#x5F97;&#x5230;&#x6765;&#x81EA;&#x73AF;&#x5883;&#x7684;&#x5956;&#x52B1;&#x4FE1;&#x53F7;&#x3002;&#x5B66;&#x4E60;&#x7684;&#x76EE;&#x6807;&#x662F;&#x5BFB;&#x627E;&#x4E00;&#x4E2A;&#x5408;&#x9002;&#x7684;&#x52A8;&#x4F5C;&#x9009;&#x62E9;&#x7B56;&#x7565;&#xFF0C;&#x4F7F;&#x4EA7;&#x751F;&#x7684;&#x52A8;&#x4F5C;&#x5E8F;&#x5217;&#x83B7;&#x5F97;&#x6700;&#x4F18;&#x7684;&#x7D2F;&#x8BA1;&#x5956;&#x52B1;&#x3002;</li>
+<li><code>半监督学习</code>指的是训练集里同时存在有标签数据和无标签数据。通常人们需要对无标签数据进行一些预处理(比如根据它们和有标签数据的相似性来预测其伪标签，或者计算它们彼此之间的相似性以获取对整个数据集分布的先验知识)，然后利用它们来协助原有的训练过程(比如把伪标签当作真实标签使用，或把数据集分布作为正则项来增强模型的泛化能力)。</li>
+<li><code>无监督学习</code>处理的数据全都是无标签的。学习的目的是从数据中发掘关联规则，或者利用数据在输入空间中的相互关系(如相似性、距离、偏序关系等)对数据进行聚类和影响力排序。</li>
+<li><code>弱监督学习</code>中存在某种形式的奖励信号，该信号可以用于模型训练，但是没有样本标签那么直接、完全、确切或者准确。强化学习是一类典型的弱监督学习问题，它无须依赖预先给定的离线训练数据，而是通过与环境的试探性交互来进行学习。具体而言，学习机制通过选择并执行某些动作，导致环境状态变化，并得到来自环境的奖励信号。学习的目标是寻找一个合适的动作选择策略，使产生的动作序列获得最优的累计奖励。</li>
 </ul>
 </li>
-<li><p>&#x4ECE;<code>&#x6A21;&#x578B;&#x590D;&#x6742;&#x7A0B;&#x5EA6;</code>&#x7684;&#x89D2;&#x5EA6;&#xFF0C;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x7EBF;&#x6027;&#x6A21;&#x578B;&#x4E0E;&#x975E;&#x7EBF;&#x6027;&#x6A21;&#x578B;(&#x6216;&#x6D45;&#x5C42;&#x6A21;&#x578B;&#x4E0E;&#x6DF1;&#x5C42;&#x6A21;&#x578B;)&#x3002;</p>
+<li><p>从<code>模型复杂程度</code>的角度，机器学习可以分为线性模型与非线性模型(或浅层模型与深层模型)。</p>
 <ul>
-<li><code>&#x7EBF;&#x6027;&#x6A21;&#x578B;</code>&#x5305;&#x62EC;&#x7EBF;&#x6027;&#x56DE;&#x5F52;&#x3001;&#x903B;&#x8F91;&#x56DE;&#x5F52;&#x3001;&#x7EBF;&#x6027;&#x652F;&#x6301;&#x5411;&#x91CF;&#x673A;&#x7B49;&#x3002;&#x8FD9;&#x4E9B;&#x6A21;&#x578B;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6838;&#x5316;&#x8FDB;&#x884C;&#x975E;&#x7EBF;&#x6027;&#x53D8;&#x6362;&#xFF0C;&#x4ECE;&#x800C;&#x83B7;&#x5F97;&#x66F4;&#x52A0;&#x5F3A;&#x5927;&#x7684;&#x8868;&#x8FBE;&#x80FD;&#x529B;&#x3002;</li>
+<li><code>线性模型</code>包括线性回归、逻辑回归、线性支持向量机等。这些模型可以通过核化进行非线性变换，从而获得更加强大的表达能力。</li>
 </ul>
 </li>
-<li><code>&#x975E;&#x7EBF;&#x6027;&#x6A21;&#x578B;</code>&#x5305;&#x62EC;&#x51B3;&#x7B56;&#x6811;&#x3001;&#x6DF1;&#x5C42;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;(&#x5305;&#x62EC;&#x5168;&#x8FDE;&#x63A5;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x3001;&#x5377;&#x79EF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x3001;&#x5FAA;&#x73AF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7B49;)&#x3002;&#x5B83;&#x4EEC;&#x5177;&#x6709;&#x5F88;&#x5F3A;&#x7684;&#x8868;&#x8FBE;&#x80FD;&#x529B;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x597D;&#x5730;&#x62DF;&#x5408;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x3002;</li>
-<li>&#x4ECE;<code>&#x6A21;&#x578B;&#x7684;&#x529F;&#x80FD;</code>&#x89D2;&#x5EA6;&#xFF0C;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x53EF;&#x4EE5;&#x5212;&#x5206;&#x4E3A;&#x751F;&#x6210;&#x6A21;&#x578B;&#x548C;&#x5224;&#x522B;&#x6A21;&#x578B;&#x3002;</li>
-<li><code>&#x751F;&#x6210;&#x6A21;&#x578B;</code>&#x5728;&#x5B66;&#x4E60;&#x8FC7;&#x7A0B;&#x4E2D;&#x901A;&#x5E38;&#x4EE5;&#x6700;&#x5927;&#x5316;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x7684;&#x4F3C;&#x7136;&#x4E3A;&#x76EE;&#x7684;&#xFF0C;&#x5173;&#x6CE8;&#x7684;&#x662F;&#x8F93;&#x5165;&#x6837;&#x672C;&#x548C;&#x6807;&#x7B7E;&#x7684;&#x8054;&#x5408;&#x6982;&#x7387;&#x5206;&#x5E03;&#x3002;&#x751F;&#x6210;&#x6A21;&#x578B;&#x8981;&#x5B66;&#x4E60;&#x7684;&#x6982;&#x7387;&#x5206;&#x5E03;&#x6BD4;&#x8F83;&#x590D;&#x6742;&#xFF0C;&#x4F46;&#x9002;&#x7528;&#x573A;&#x5408;&#x5F88;&#x4E30;&#x5BCC;&#xFF0C;&#x65E2;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x5B8C;&#x6210;&#x5206;&#x7C7B;&#x4EFB;&#x52A1;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x6982;&#x7387;&#x5BC6;&#x5EA6;&#x4F30;&#x8BA1;&#x6216;&#x6837;&#x672C;&#x7684;&#x968F;&#x673A;&#x751F;&#x6210;&#x3002;</li>
-<li><code>&#x5224;&#x522B;&#x6A21;&#x578B;</code>&#x901A;&#x5E38;&#x6700;&#x5927;&#x5316;&#x7684;&#x662F;&#x6761;&#x4EF6;&#x4F3C;&#x7136;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5173;&#x6CE8;&#x5728;&#x7ED9;&#x5B9A;&#x8F93;&#x5165;&#x6837;&#x672C;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#x6807;&#x7B7E;&#x7684;&#x6761;&#x4EF6;&#x6982;&#x7387;&#x3002;&#x5224;&#x522B;&#x6A21;&#x578B;&#x5355;&#x5200;&#x76F4;&#x5165;&#xFF0C;&#x89E3;&#x51B3;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5224;&#x522B;&#x95EE;&#x9898;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5BF9;&#x8054;&#x5408;&#x5206;&#x5E03;&#x505A;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x523B;&#x753B;&#xFF0C;&#x5B66;&#x4E60;&#x6548;&#x7387;&#x6BD4;&#x8F83;&#x9AD8;&#xFF0C;&#x4F46;&#x9002;&#x7528;&#x573A;&#x666F;&#x4E5F;&#x56E0;&#x6B64;&#x53D7;&#x5230;&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x7684;&#x9650;&#x5236;&#x3002;</li>
+<li><code>非线性模型</code>包括决策树、深层神经网络(包括全连接神经网络、卷积神经网络、循环神经网络等)。它们具有很强的表达能力，可以更好地拟合训练数据。</li>
+<li>从<code>模型的功能</code>角度，机器学习可以划分为生成模型和判别模型。</li>
+<li><code>生成模型</code>在学习过程中通常以最大化训练数据的似然为目的，关注的是输入样本和标签的联合概率分布。生成模型要学习的概率分布比较复杂，但适用场合很丰富，既可以用来完成分类任务，也可以实现概率密度估计或样本的随机生成。</li>
+<li><code>判别模型</code>通常最大化的是条件似然，也就是关注在给定输入样本的前提下标签的条件概率。判别模型单刀直入，解决的是一个判别问题，不需要对联合分布做不必要的刻画，学习效率比较高，但适用场景也因此受到一定程度的限制。</li>
 </ul>
-<p><strong>1&#x3001;&#x6709;&#x76D1;&#x7763;&#x5B66;&#x4E60;</strong>&#xFF1A;&#x901A;&#x8FC7;&#x5DF2;&#x6709;&#x7684;&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#x53BB;&#x8BAD;&#x7EC3;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x6700;&#x4F18;&#x6A21;&#x578B;&#xFF0C;&#x518D;&#x5229;&#x7528;&#x8FD9;&#x4E2A;&#x6A21;&#x578B;&#x5C06;&#x6240;&#x6709;&#x7684;&#x8F93;&#x5165;&#x6620;&#x5C04;&#x4E3A;&#x76F8;&#x5E94;&#x7684;&#x8F93;&#x51FA;&#xFF0C;&#x5BF9;&#x8F93;&#x51FA;&#x8FDB;&#x884C;&#x7B80;&#x5355;&#x7684;&#x5224;&#x65AD;&#x4ECE;&#x800C;&#x5B9E;&#x73B0;&#x9884;&#x6D4B;&#x548C;&#x5206;&#x7C7B;&#x7684;&#x76EE;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x5177;&#x6709;&#x4E86;&#x5BF9;&#x672A;&#x77E5;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#x548C;&#x5206;&#x7C7B;&#x7684;&#x80FD;&#x529B;&#x3002;&#x5C31;&#x5982;&#x6709;&#x6807;&#x51C6;&#x7B54;&#x6848;&#x7684;&#x7EC3;&#x4E60;&#x9898;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x53BB;&#x8003;&#x8BD5;&#xFF0C;&#x76F8;&#x6BD4;&#x6CA1;&#x6709;&#x7B54;&#x6848;&#x7684;&#x7EC3;&#x4E60;&#x9898;&#x7136;&#x540E;&#x53BB;&#x8003;&#x8BD5;&#x51C6;&#x786E;&#x7387;&#x66F4;&#x9AD8;&#x3002;&#x53C8;&#x5982;&#x6211;&#x4EEC;&#x5C0F;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x77E5;&#x9053;&#x725B;&#x548C;&#x9E1F;&#x662F;&#x5426;&#x5C5E;&#x4E8E;&#x4E00;&#x7C7B;&#xFF0C;&#x4F46;&#x5F53;&#x6211;&#x4EEC;&#x968F;&#x7740;&#x957F;&#x5927;&#x5404;&#x79CD;&#x77E5;&#x8BC6;&#x4E0D;&#x65AD;&#x8F93;&#x5165;&#xFF0C;&#x6211;&#x4EEC;&#x8111;&#x4E2D;&#x7684;&#x6A21;&#x578B;&#x8D8A;&#x6765;&#x8D8A;&#x51C6;&#x786E;&#xFF0C;&#x5224;&#x65AD;&#x52A8;&#x7269;&#x4E5F;&#x8D8A;&#x6765;&#x8D8A;&#x51C6;&#x786E;&#x3002;</p>
-<p>&#x6709;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x53EF;&#x5206;&#x4E3A;<strong><em>&#x56DE;&#x5F52;&#x548C;&#x5206;&#x7C7B;</em></strong>&#x3002;</p>
-<p><strong>&#x56DE;&#x5F52;&#xFF1A;</strong>&#x5373;&#x7ED9;&#x51FA;&#x4E00;&#x5806;&#x81EA;&#x53D8;&#x91CF;<script type="math/tex; ">X</script>&#x548C;&#x56E0;&#x53D8;&#x91CF;<script type="math/tex; ">Y</script>&#xFF0C;&#x62DF;&#x5408;&#x51FA;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x4E9B;&#x81EA;&#x53D8;&#x91CF;<script type="math/tex; ">X</script>&#x5C31;&#x662F;&#x7279;&#x5F81;&#x5411;&#x91CF;&#xFF0C;&#x56E0;&#x53D8;&#x91CF;<script type="math/tex; ">Y</script>&#x5C31;&#x662F;&#x6807;&#x7B7E;&#x3002; &#x800C;&#x4E14;&#x6807;&#x7B7E;&#x7684;&#x503C;<strong>&#x8FDE;&#x7EED;</strong>&#x7684;&#xFF0C;&#x4F8B;LR&#x3002;</p>
-<p><strong>&#x5206;&#x7C7B;</strong>&#xFF1A;&#x5176;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x7531;&#x7279;&#x5F81;&#x5411;&#x91CF;<script type="math/tex; ">X</script>&#x548C;&#x5B83;&#x4EEC;&#x7684;&#x6807;&#x7B7E;<script type="math/tex; ">Y</script>&#x7EC4;&#x6210;&#xFF0C;&#x5F53;&#x4F60;&#x5229;&#x7528;&#x6570;&#x636E;&#x8BAD;&#x7EC3;&#x51FA;&#x6A21;&#x578B;&#x540E;&#xFF0C;&#x7ED9;&#x4F60;&#x4E00;&#x4E2A;&#x53EA;&#x77E5;&#x9053;&#x7279;&#x5F81;&#x5411;&#x91CF;&#x4E0D;&#x77E5;&#x9053;&#x6807;&#x7B7E;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x8BA9;&#x4F60;&#x6C42;&#x5B83;&#x7684;&#x6807;&#x7B7E;&#x662F;&#x54EA;&#x4E00;&#x4E2A;&#xFF1F;&#x5176;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x662F;<strong>&#x79BB;&#x6563;</strong>&#x7684;&#x3002;&#x4F8B;&#x5982;logistics&#x3001;SVM&#x3001;KNN&#x7B49;&#x3002;</p>
-<p><strong>2&#x3001;&#x65E0;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#xFF1A;</strong>&#x6211;&#x4EEC;&#x4E8B;&#x5148;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#xFF0C;&#x800C;&#x9700;&#x8981;&#x76F4;&#x63A5;&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5EFA;&#x6A21;&#x3002;&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x53BB;&#x53C2;&#x89C2;&#x4E00;&#x4E2A;&#x753B;&#x5C55;&#xFF0C;&#x6211;&#x4EEC;&#x5B8C;&#x5168;&#x5BF9;&#x827A;&#x672F;&#x4E00;&#x65E0;&#x6240;&#x77E5;&#xFF0C;&#x4F46;&#x662F;&#x6B23;&#x8D4F;&#x5B8C;&#x591A;&#x5E45;&#x4F5C;&#x54C1;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x80FD;&#x628A;&#x5B83;&#x4EEC;&#x5206;&#x6210;&#x4E0D;&#x540C;&#x7684;&#x6D3E;&#x522B;&#x3002;&#x65E0;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x4E3B;&#x8981;&#x7B97;&#x6CD5;&#x662F;&#x805A;&#x7C7B;&#xFF0C;&#x805A;&#x7C7B;&#x76EE;&#x7684;&#x5728;&#x4E8E;&#x628A;&#x76F8;&#x4F3C;&#x7684;&#x4E1C;&#x897F;&#x805A;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x4E3B;&#x8981;&#x901A;&#x8FC7;&#x8BA1;&#x7B97;&#x6837;&#x672C;&#x95F4;&#x548C;&#x7FA4;&#x4F53;&#x95F4;&#x8DDD;&#x79BB;&#x5F97;&#x5230;&#xFF0C;&#x4E3B;&#x8981;&#x7B97;&#x6CD5;&#x5305;&#x62EC;Kmeans&#x3001;&#x5C42;&#x6B21;&#x805A;&#x7C7B;&#x3001;EM&#x7B97;&#x6CD5;&#x3002;</p>
+<p><strong>1、有监督学习</strong>：通过已有的训练样本去训练得到一个最优模型，再利用这个模型将所有的输入映射为相应的输出，对输出进行简单的判断从而实现预测和分类的目的，也就具有了对未知数据进行预测和分类的能力。就如有标准答案的练习题，然后再去考试，相比没有答案的练习题然后去考试准确率更高。又如我们小的时候不知道牛和鸟是否属于一类，但当我们随着长大各种知识不断输入，我们脑中的模型越来越准确，判断动物也越来越准确。</p>
+<p>有监督学习可分为<strong><em>回归和分类</em></strong>。</p>
+<p><strong>回归：</strong>即给出一堆自变量<script type="math/tex; ">X</script>和因变量<script type="math/tex; ">Y</script>，拟合出一个函数，这些自变量<script type="math/tex; ">X</script>就是特征向量，因变量<script type="math/tex; ">Y</script>就是标签。 而且标签的值<strong>连续</strong>的，例LR。</p>
+<p><strong>分类</strong>：其数据集，由特征向量<script type="math/tex; ">X</script>和它们的标签<script type="math/tex; ">Y</script>组成，当你利用数据训练出模型后，给你一个只知道特征向量不知道标签的数据，让你求它的标签是哪一个？其输出结果是<strong>离散</strong>的。例如logistics、SVM、KNN等。</p>
+<p><strong>2、无监督学习：</strong>我们事先没有任何训练样本，而需要直接对数据进行建模。比如我们去参观一个画展，我们完全对艺术一无所知，但是欣赏完多幅作品之后，我们也能把它们分成不同的派别。无监督学习主要算法是聚类，聚类目的在于把相似的东西聚在一起，主要通过计算样本间和群体间距离得到，主要算法包括Kmeans、层次聚类、EM算法。</p>
 </blockquote>
-<p></p><footer class="page-footer"><span class="copyright">Copyright &#xA9; narutohyc.com 2020 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-02-07 06:55:58
-</span></footer><hr><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
-
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
+<p></p><footer class="page-footer"><span class="copyright">Copyright © narutohyc.com 2020 all right reserved，powered by Gitbook</span><span class="footer-modification">该文件修订时间：
+2022-02-15 13:30:23
+</span></footer><hr/><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
+</section>
 </div>
-
-                        </div>
-                    </div>
-                
-            </div>
-
-            
-                
-                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="机器学习基础_距离.html" class="navigation navigation-next " aria-label="Next page: 机器学习基础_距离">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
-
-    <script>
+<div class="search-results">
+<div class="has-results">
+<h1 class="search-results-title"><span class="search-results-count"></span> results matching "<span class="search-query"></span>"</h1>
+<ul class="search-results-list"></ul>
+</div>
+<div class="no-results">
+<h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a aria-label="Previous page: Introduction" class="navigation navigation-prev" href="../">
+<i class="fa fa-angle-left"></i>
+</a>
+<a aria-label="Next page: 机器学习基础_距离" class="navigation navigation-next" href="机器学习基础_距离.html">
+<i class="fa fa-angle-right"></i>
+</a>
+</div>
+<script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"机器学习基础","level":"1.2","depth":1,"next":{"title":"机器学习基础_距离","level":"1.2.1","depth":2,"path":"chapters/机器学习基础_距离.md","ref":"chapters/机器学习基础_距离.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/机器学习基础.md","mtime":"2022-02-07T06:55:58.082Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-07T06:57:25.147Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"机器学习基础","level":"1.2","depth":1,"next":{"title":"机器学习基础_距离","level":"1.2.1","depth":2,"path":"chapters/机器学习基础_距离.md","ref":"chapters/机器学习基础_距离.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/机器学习基础.md","mtime":"2022-02-15T13:30:23.521Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-15T13:32:13.117Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
-
-        
-    
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
-        
-    
-        
-        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lightbox/js/lightbox.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-change_girls/girls.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
-        
-    
-
-    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
-
-    </body>
+<script src="../gitbook/gitbook.js"></script>
+<script src="../gitbook/theme.js"></script>
+<script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+<script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+<script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+<script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+<script src="../gitbook/gitbook-plugin-lightbox/js/lightbox.min.js"></script>
+<script src="../gitbook/gitbook-plugin-change_girls/girls.js"></script>
+<script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+<script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+<script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+</body>
 </html>
-

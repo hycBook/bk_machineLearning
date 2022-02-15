@@ -1,1145 +1,616 @@
-
 <!DOCTYPE HTML>
-<html lang="zh-hans" >
-    <head>
-        <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>监督学习_K近邻法 · 机器学习相关学习记录</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        <meta name="author" content="narutohyc">
-        
-        
-    
-    
-    <link rel="stylesheet" href="../gitbook/style.css">
-
-    
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-lightbox/css/lightbox.min.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-change_girls/girls.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
-                
-            
-        
-
-    
-
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-
-    
-
-        
-    
-    
-    
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="监督学习_支持向量机.html" />
-    
-    
-    <link rel="prev" href="监督学习_决策树.html" />
-    
-
-    
-        <link rel="shortcut icon" href="./chapters/res/other/favicon.ico" type="image/x-icon">
-    
-    
-    
-    
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./chapters/res/other/favicon.ico">
-    
-    
-        
-    
-    
-        
-    
-
-    
-        <link rel="shortcut icon" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png' type="image/x-icon">
-    
-    
-        <link rel="bookmark" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png' type="image/x-icon">
-    
-    
-        <link rel="apple-touch-icon" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png'>
-    
-    
-        
-        <link rel="apple-touch-icon" sizes="120x120" href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png">
-        
-        <link rel="apple-touch-icon" sizes="180x180" href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png">
-        
-    
-
-    <style>
+<html lang="zh-hans">
+<head>
+<meta charset="utf-8"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>监督学习_K近邻法 · 机器学习相关学习记录</title>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="" name="description"/>
+<meta content="GitBook 3.2.3" name="generator"/>
+<meta content="narutohyc" name="author"/>
+<link href="../gitbook/style.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-splitter/splitter.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-anchors/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-donate/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-code/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-search-plus/search.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-lightbox/css/lightbox.min.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-change_girls/girls.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-pageview-count/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-theme-comscore/test.css" rel="stylesheet"/>
+<meta content="true" name="HandheldFriendly"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<link href="../gitbook/images/apple-touch-icon-precomposed-152.png" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="../gitbook/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="监督学习_支持向量机.html" rel="next"/>
+<link href="监督学习_决策树.html" rel="prev"/>
+<link href="./chapters/res/other/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="./chapters/res/other/favicon.ico" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="bookmark" type="image/x-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon" sizes="120x120"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon" sizes="180x180"/>
+<style>
     @media only screen and (max-width: 640px) {
         .book-header .hidden-mobile {
             display: none;
         }
     }
     </style>
-    <script>
+<script>
         window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]};
     </script>
-
-    </head>
-    <body>
-        
+</head>
+<body>
 <div class="book">
-    <div class="book-summary">
-        
-            
+<div class="book-summary">
 <div id="book-search-input" role="search">
-    <input type="text" placeholder="输入并搜索" />
+<input placeholder="输入并搜索" type="text"/>
 </div>
-
-            
-                <nav role="navigation">
-                
-
-
+<nav role="navigation">
 <ul class="summary">
-    
-    
-    
-        
-        <li>
-            <a href="https://github.com/narutohyc" target="_blank" class="custom-link">我的狗窝</a>
-        </li>
-    
-    
-
-    
-    <li class="divider"></li>
-    
-
-    
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="../">
-            
-                <a href="../">
-            
-                    
-                        <b>1.1.</b>
+<li>
+<a class="custom-link" href="https://github.com/narutohyc" target="_blank">我的狗窝</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-level="1.1" data-path="../">
+<a href="../">
+<b>1.1.</b>
                     
                     Introduction
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2" data-path="机器学习基础.html">
-            
-                <a href="机器学习基础.html">
-            
-                    
-                        <b>1.2.</b>
+</li>
+<li class="chapter" data-level="1.2" data-path="机器学习基础.html">
+<a href="机器学习基础.html">
+<b>1.2.</b>
                     
                     机器学习基础
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.2.1" data-path="机器学习基础_距离.html">
-            
-                <a href="机器学习基础_距离.html">
-            
-                    
-                        <b>1.2.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.2.1" data-path="机器学习基础_距离.html">
+<a href="机器学习基础_距离.html">
+<b>1.2.1.</b>
                     
                     机器学习基础_距离
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.2" data-path="机器学习基础_概率论基础.html">
-            
-                <a href="机器学习基础_概率论基础.html">
-            
-                    
-                        <b>1.2.2.</b>
+</li>
+<li class="chapter" data-level="1.2.2" data-path="机器学习基础_概率论基础.html">
+<a href="机器学习基础_概率论基础.html">
+<b>1.2.2.</b>
                     
                     机器学习基础_概率论基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.3" data-path="机器学习基础_线性代数基础.html">
-            
-                <a href="机器学习基础_线性代数基础.html">
-            
-                    
-                        <b>1.2.3.</b>
+</li>
+<li class="chapter" data-level="1.2.3" data-path="机器学习基础_线性代数基础.html">
+<a href="机器学习基础_线性代数基础.html">
+<b>1.2.3.</b>
                     
                     机器学习基础_线性代数基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.4" data-path="机器学习基础_微积分基础.html">
-            
-                <a href="机器学习基础_微积分基础.html">
-            
-                    
-                        <b>1.2.4.</b>
+</li>
+<li class="chapter" data-level="1.2.4" data-path="机器学习基础_微积分基础.html">
+<a href="机器学习基础_微积分基础.html">
+<b>1.2.4.</b>
                     
                     机器学习基础_微积分基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.5" data-path="机器学习基础_最优化理论.html">
-            
-                <a href="机器学习基础_最优化理论.html">
-            
-                    
-                        <b>1.2.5.</b>
+</li>
+<li class="chapter" data-level="1.2.5" data-path="机器学习基础_最优化理论.html">
+<a href="机器学习基础_最优化理论.html">
+<b>1.2.5.</b>
                     
                     机器学习基础_最优化理论
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.6" data-path="机器学习基础_损失函数.html">
-            
-                <a href="机器学习基础_损失函数.html">
-            
-                    
-                        <b>1.2.6.</b>
+</li>
+<li class="chapter" data-level="1.2.6" data-path="机器学习基础_损失函数.html">
+<a href="机器学习基础_损失函数.html">
+<b>1.2.6.</b>
                     
                     机器学习基础_损失函数
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3" data-path="特征工程.html">
-            
-                <a href="特征工程.html">
-            
-                    
-                        <b>1.3.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.3" data-path="特征工程.html">
+<a href="特征工程.html">
+<b>1.3.</b>
                     
                     特征工程
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.3.1" data-path="特征工程_归一化.html">
-            
-                <a href="特征工程_归一化.html">
-            
-                    
-                        <b>1.3.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.3.1" data-path="特征工程_归一化.html">
+<a href="特征工程_归一化.html">
+<b>1.3.1.</b>
                     
                     特征工程_归一化
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.2" data-path="特征工程_编码.html">
-            
-                <a href="特征工程_编码.html">
-            
-                    
-                        <b>1.3.2.</b>
+</li>
+<li class="chapter" data-level="1.3.2" data-path="特征工程_编码.html">
+<a href="特征工程_编码.html">
+<b>1.3.2.</b>
                     
                     特征工程_编码
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.3" data-path="特征工程_特征组合.html">
-            
-                <a href="特征工程_特征组合.html">
-            
-                    
-                        <b>1.3.3.</b>
+</li>
+<li class="chapter" data-level="1.3.3" data-path="特征工程_特征组合.html">
+<a href="特征工程_特征组合.html">
+<b>1.3.3.</b>
                     
                     特征工程_特征组合
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.4" data-path="特征工程_特征选择.html">
-            
-                <a href="特征工程_特征选择.html">
-            
-                    
-                        <b>1.3.4.</b>
+</li>
+<li class="chapter" data-level="1.3.4" data-path="特征工程_特征选择.html">
+<a href="特征工程_特征选择.html">
+<b>1.3.4.</b>
                     
                     特征工程_特征选择
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="特征工程_文本表示模型.html">
-            
-                <a href="特征工程_文本表示模型.html">
-            
-                    
-                        <b>1.3.5.</b>
+</li>
+<li class="chapter" data-level="1.3.5" data-path="特征工程_文本表示模型.html">
+<a href="特征工程_文本表示模型.html">
+<b>1.3.5.</b>
                     
                     特征工程_文本表示模型
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.6" data-path="特征工程_图像增强.html">
-            
-                <a href="特征工程_图像增强.html">
-            
-                    
-                        <b>1.3.6.</b>
+</li>
+<li class="chapter" data-level="1.3.6" data-path="特征工程_图像增强.html">
+<a href="特征工程_图像增强.html">
+<b>1.3.6.</b>
                     
                     特征工程_图像增强
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4" data-path="模型评估.html">
-            
-                <a href="模型评估.html">
-            
-                    
-                        <b>1.4.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.4" data-path="模型评估.html">
+<a href="模型评估.html">
+<b>1.4.</b>
                     
                     模型评估
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.1" data-path="模型评估_评估指标.html">
-            
-                <a href="模型评估_评估指标.html">
-            
-                    
-                        <b>1.4.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.4.1" data-path="模型评估_评估指标.html">
+<a href="模型评估_评估指标.html">
+<b>1.4.1.</b>
                     
                     模型评估_评估指标
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="模型评估_AB测试.html">
-            
-                <a href="模型评估_AB测试.html">
-            
-                    
-                        <b>1.4.2.</b>
+</li>
+<li class="chapter" data-level="1.4.2" data-path="模型评估_AB测试.html">
+<a href="模型评估_AB测试.html">
+<b>1.4.2.</b>
                     
                     模型评估_AB测试
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.3" data-path="模型评估_过拟合和欠拟合.html">
-            
-                <a href="模型评估_过拟合和欠拟合.html">
-            
-                    
-                        <b>1.4.3.</b>
+</li>
+<li class="chapter" data-level="1.4.3" data-path="模型评估_过拟合和欠拟合.html">
+<a href="模型评估_过拟合和欠拟合.html">
+<b>1.4.3.</b>
                     
                     模型评估_过拟合和欠拟合
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.4" data-path="模型评估_超参数选择.html">
-            
-                <a href="模型评估_超参数选择.html">
-            
-                    
-                        <b>1.4.4.</b>
+</li>
+<li class="chapter" data-level="1.4.4" data-path="模型评估_超参数选择.html">
+<a href="模型评估_超参数选择.html">
+<b>1.4.4.</b>
                     
                     模型评估_超参数选择
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.5" data-path="模型评估_模型评估方法.html">
-            
-                <a href="模型评估_模型评估方法.html">
-            
-                    
-                        <b>1.4.5.</b>
+</li>
+<li class="chapter" data-level="1.4.5" data-path="模型评估_模型评估方法.html">
+<a href="模型评估_模型评估方法.html">
+<b>1.4.5.</b>
                     
                     模型评估_模型评估方法
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5" data-path="降维.html">
-            
-                <a href="降维.html">
-            
-                    
-                        <b>1.5.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.5" data-path="降维.html">
+<a href="降维.html">
+<b>1.5.</b>
                     
                     降维
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.5.1" data-path="降维_PCA主成分分析.html">
-            
-                <a href="降维_PCA主成分分析.html">
-            
-                    
-                        <b>1.5.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.5.1" data-path="降维_PCA主成分分析.html">
+<a href="降维_PCA主成分分析.html">
+<b>1.5.1.</b>
                     
                     降维_PCA主成分分析
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.2" data-path="降维_LDA线性判别分析.html">
-            
-                <a href="降维_LDA线性判别分析.html">
-            
-                    
-                        <b>1.5.2.</b>
+</li>
+<li class="chapter" data-level="1.5.2" data-path="降维_LDA线性判别分析.html">
+<a href="降维_LDA线性判别分析.html">
+<b>1.5.2.</b>
                     
                     降维_LDA线性判别分析
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6" data-path="监督学习.html">
-            
-                <a href="监督学习.html">
-            
-                    
-                        <b>1.6.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.6" data-path="监督学习.html">
+<a href="监督学习.html">
+<b>1.6.</b>
                     
                     监督学习
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.6.1" data-path="监督学习_朴素贝叶斯分类.html">
-            
-                <a href="监督学习_朴素贝叶斯分类.html">
-            
-                    
-                        <b>1.6.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.6.1" data-path="监督学习_朴素贝叶斯分类.html">
+<a href="监督学习_朴素贝叶斯分类.html">
+<b>1.6.1.</b>
                     
                     监督学习_朴素贝叶斯分类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.2" data-path="监督学习_决策树.html">
-            
-                <a href="监督学习_决策树.html">
-            
-                    
-                        <b>1.6.2.</b>
+</li>
+<li class="chapter" data-level="1.6.2" data-path="监督学习_决策树.html">
+<a href="监督学习_决策树.html">
+<b>1.6.2.</b>
                     
                     监督学习_决策树
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.6.3" data-path="监督学习_K近邻法.html">
-            
-                <a href="监督学习_K近邻法.html">
-            
-                    
-                        <b>1.6.3.</b>
+</li>
+<li class="chapter active" data-level="1.6.3" data-path="监督学习_K近邻法.html">
+<a href="监督学习_K近邻法.html">
+<b>1.6.3.</b>
                     
                     监督学习_K近邻法
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.4" data-path="监督学习_支持向量机.html">
-            
-                <a href="监督学习_支持向量机.html">
-            
-                    
-                        <b>1.6.4.</b>
+</li>
+<li class="chapter" data-level="1.6.4" data-path="监督学习_支持向量机.html">
+<a href="监督学习_支持向量机.html">
+<b>1.6.4.</b>
                     
                     监督学习_支持向量机
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.5" data-path="监督学习_CRF.html">
-            
-                <a href="监督学习_CRF.html">
-            
-                    
-                        <b>1.6.5.</b>
+</li>
+<li class="chapter" data-level="1.6.5" data-path="监督学习_CRF.html">
+<a href="监督学习_CRF.html">
+<b>1.6.5.</b>
                     
                     监督学习_CRF
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7" data-path="非监督学习.html">
-            
-                <a href="非监督学习.html">
-            
-                    
-                        <b>1.7.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.7" data-path="非监督学习.html">
+<a href="非监督学习.html">
+<b>1.7.</b>
                     
                     非监督学习
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.7.1" data-path="非监督学习_K均值.html">
-            
-                <a href="非监督学习_K均值.html">
-            
-                    
-                        <b>1.7.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.7.1" data-path="非监督学习_K均值.html">
+<a href="非监督学习_K均值.html">
+<b>1.7.1.</b>
                     
                     非监督学习_K均值
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.2" data-path="非监督学习_Mean Shift均值漂移聚类.html">
-            
-                <a href="非监督学习_Mean Shift均值漂移聚类.html">
-            
-                    
-                        <b>1.7.2.</b>
+</li>
+<li class="chapter" data-level="1.7.2" data-path="非监督学习_Mean Shift均值漂移聚类.html">
+<a href="非监督学习_Mean Shift均值漂移聚类.html">
+<b>1.7.2.</b>
                     
                     非监督学习_Mean Shift均值漂移聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.3" data-path="非监督学习_DBSCAN基于密度的聚类方法.html">
-            
-                <a href="非监督学习_DBSCAN基于密度的聚类方法.html">
-            
-                    
-                        <b>1.7.3.</b>
+</li>
+<li class="chapter" data-level="1.7.3" data-path="非监督学习_DBSCAN基于密度的聚类方法.html">
+<a href="非监督学习_DBSCAN基于密度的聚类方法.html">
+<b>1.7.3.</b>
                     
                     非监督学习_DBSCAN基于密度的聚类方法
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.4" data-path="非监督学习_Hierarchical Clustering层次聚类.html">
-            
-                <a href="非监督学习_Hierarchical Clustering层次聚类.html">
-            
-                    
-                        <b>1.7.4.</b>
+</li>
+<li class="chapter" data-level="1.7.4" data-path="非监督学习_Hierarchical Clustering层次聚类.html">
+<a href="非监督学习_Hierarchical Clustering层次聚类.html">
+<b>1.7.4.</b>
                     
                     非监督学习_Hierarchical Clustering层次聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.5" data-path="非监督学习_Spectral Clustering谱聚类.html">
-            
-                <a href="非监督学习_Spectral Clustering谱聚类.html">
-            
-                    
-                        <b>1.7.5.</b>
+</li>
+<li class="chapter" data-level="1.7.5" data-path="非监督学习_Spectral Clustering谱聚类.html">
+<a href="非监督学习_Spectral Clustering谱聚类.html">
+<b>1.7.5.</b>
                     
                     非监督学习_Spectral Clustering谱聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.8" data-path="半监督学习.html">
-            
-                <a href="半监督学习.html">
-            
-                    
-                        <b>1.8.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.8" data-path="半监督学习.html">
+<a href="半监督学习.html">
+<b>1.8.</b>
                     
                     半监督学习
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9" data-path="集成学习.html">
-            
-                <a href="集成学习.html">
-            
-                    
-                        <b>1.9.</b>
+</li>
+<li class="chapter" data-level="1.9" data-path="集成学习.html">
+<a href="集成学习.html">
+<b>1.9.</b>
                     
                     集成学习
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.10" data-path="强化学习.html">
-            
-                <a href="强化学习.html">
-            
-                    
-                        <b>1.10.</b>
+</li>
+<li class="chapter" data-level="1.10" data-path="强化学习.html">
+<a href="强化学习.html">
+<b>1.10.</b>
                     
                     强化学习
             
                 </a>
-            
-
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+</li>
+<li class="divider"></li>
+<li>
+<a class="gitbook-link" href="https://www.gitbook.com" target="blank">
             本书使用 GitBook 发布
         </a>
-    </li>
+</li>
 </ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >监督学习_K近邻法</a>
-    </h1>
+</nav>
 </div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="..">监督学习_K近邻法</a>
+</h1>
+</div>
+<div class="page-wrapper" role="main" tabindex="-1">
+<div class="page-inner">
 <div class="search-plus" id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#k&#x8FD1;&#x90BB;&#x6CD5;knn"><b></b>K&#x8FD1;&#x90BB;&#x6CD5;(KNN)</a></li><li><span class="title-icon "></span><a href="#k&#x8FD1;&#x90BB;&#x6A21;&#x578B;"><b></b>k&#x8FD1;&#x90BB;&#x6A21;&#x578B;</a></li><ul><li><span class="title-icon "></span><a href="#&#x6A21;&#x578B;"><b></b>&#x6A21;&#x578B;</a></li><li><span class="title-icon "></span><a href="#&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;"><b></b>&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;</a></li><li><span class="title-icon "></span><a href="#k&#x503C;&#x7684;&#x9009;&#x62E9;"><b></b>k&#x503C;&#x7684;&#x9009;&#x62E9;</a></li><li><span class="title-icon "></span><a href="#&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;"><b></b>&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;</a></li></ul><li><span class="title-icon "></span><a href="#&#x6784;&#x5EFA;kd&#x6811;"><b></b>&#x6784;&#x5EFA;kd&#x6811;</a></li><li><span class="title-icon "></span><a href="#&#x641C;&#x7D22;kd&#x6811;"><b></b>&#x641C;&#x7D22;kd&#x6811;</a></li><li><span class="title-icon "></span><a href="#&#x6982;&#x8981;"><b></b>&#x6982;&#x8981;</a></li></ul></div><a href="#k&#x8FD1;&#x90BB;&#x6CD5;knn" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a href="res/other/&#x5F02;&#x4E16;&#x754C;&#x857E;&#x59C6;_1.png" data-lightbox="149f0e0b-c81c-454b-b6df-a845e6cecde1" data-title="&#x5F02;&#x4E16;&#x754C;.png"><img src="res/other/&#x5F02;&#x4E16;&#x754C;&#x857E;&#x59C6;_1.png" alt="&#x5F02;&#x4E16;&#x754C;.png"></a></p>
+<div class="search-noresults">
+<section class="normal markdown-section">
+<div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon"></span><a href="#k近邻法knn">1 K近邻法(KNN)</a></li><li><span class="title-icon"></span><a href="#k近邻模型">2 k近邻模型</a></li><ul><li><span class="title-icon"></span><a href="#模型">2.1 模型</a></li><li><span class="title-icon"></span><a href="#距离度量">2.2 距离度量</a></li><li><span class="title-icon"></span><a href="#k值的选择">2.3 k值的选择</a></li><li><span class="title-icon"></span><a href="#分类决策规则">2.4 分类决策规则</a></li></ul><li><span class="title-icon"></span><a href="#构建kd树">3 构建kd树</a></li><li><span class="title-icon"></span><a href="#搜索kd树">4 搜索kd树</a></li><li><span class="title-icon"></span><a href="#概要">5 概要</a></li></ul></div><a href="#k近邻法knn" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a data-lightbox="db8855c2-8bc6-4986-bd7b-9d71809cdc80" data-title="异世界.png" href="res/other/异世界蕾姆_1.png"><img alt="异世界.png" src="res/other/异世界蕾姆_1.png"/></a></p>
 <p>[TOC]</p>
-<h1 id="k&#x8FD1;&#x90BB;&#x6CD5;knn"><a name="k&#x8FD1;&#x90BB;&#x6CD5;knn" class="anchor-navigation-ex-anchor" href="#k&#x8FD1;&#x90BB;&#x6CD5;knn"><i class="fa fa-link" aria-hidden="true"></i></a><a name="k&#x8FD1;&#x90BB;&#x6CD5;knn" class="plugin-anchor" href="#k&#x8FD1;&#x90BB;&#x6CD5;knn"><i class="fa fa-link" aria-hidden="true"></i></a>K&#x8FD1;&#x90BB;&#x6CD5;(KNN)</h1>
+<h1 id="k近邻法knn">1 K近邻法(KNN)</h1>
 <blockquote>
-<p><code>k&#x8FD1;&#x90BB;&#x6CD5;</code>(k-nearest neighbor&#xFF0C;k-NN)&#x662F;&#x4E00;&#x79CD;&#x57FA;&#x672C;&#x5206;&#x7C7B;&#x4E0E;&#x56DE;&#x5F52;&#x65B9;&#x6CD5;&#x3002;</p>
-<p>k&#x8FD1;&#x90BB;&#x6CD5;&#x7684;&#x8F93;&#x5165;&#x4E3A;&#x5B9E;&#x4F8B;&#x7684;&#x7279;&#x5F81;&#x5411;&#x91CF;&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x7279;&#x5F81;&#x7A7A;&#x95F4;&#x7684;&#x70B9;&#xFF1B;&#x8F93;&#x51FA;&#x4E3A;&#x5B9E;&#x4F8B;&#x7684;&#x7C7B;&#x522B;&#xFF0C;&#x53EF;&#x4EE5;&#x53D6;&#x591A;&#x7C7B;&#x3002;</p>
-<p>k&#x8FD1;&#x90BB;&#x6CD5;&#x5047;&#x8BBE;&#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x5B9E;&#x4F8B;&#x7C7B;&#x522B;&#x5DF2;&#x5B9A;&#x3002;&#x5206;&#x7C7B;&#x65F6;&#xFF0C;&#x5BF9;&#x65B0;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x6839;&#x636E;&#x5176;k&#x4E2A;&#x6700;&#x8FD1;&#x90BB;&#x7684;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x7684;&#x7C7B;&#x522B;&#xFF0C;&#x901A;&#x8FC7;&#x591A;&#x6570;&#x8868;&#x51B3;&#x7B49;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#x3002;&#x56E0;&#x6B64;&#xFF0C;k&#x8FD1;&#x90BB;&#x6CD5;<code>&#x4E0D;&#x5177;&#x6709;&#x663E;&#x5F0F;&#x7684;&#x5B66;&#x4E60;&#x8FC7;&#x7A0B;</code>&#x3002;</p>
-<p>k&#x8FD1;&#x90BB;&#x6CD5;&#x5B9E;&#x9645;&#x4E0A;&#x5229;&#x7528;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;&#x5BF9;&#x7279;&#x5F81;&#x5411;&#x91CF;&#x7A7A;&#x95F4;&#x8FDB;&#x884C;&#x5212;&#x5206;&#xFF0C;&#x5E76;&#x4F5C;&#x4E3A;&#x5176;&#x5206;&#x7C7B;&#x7684;&#x201C;&#x6A21;&#x578B;&#x201D;&#x3002;</p>
-<p>k&#x503C;&#x7684;&#x9009;&#x62E9;&#x3001;&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;&#x53CA;&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;&#x662F;k&#x8FD1;&#x90BB;&#x6CD5;&#x7684;<code>&#x4E09;&#x4E2A;&#x57FA;&#x672C;&#x8981;&#x7D20;</code>&#x3002;</p>
-<p>k&#x8FD1;&#x90BB;&#x6CD5;1968&#x5E74;&#x7531;Cover&#x548C;Hart&#x63D0;&#x51FA;&#x3002;</p>
-<p>&#x8F93;&#x5165;&#xFF1A;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;
+<p><code>k近邻法</code>(k-nearest neighbor，k-NN)是一种基本分类与回归方法。</p>
+<p>k近邻法的输入为实例的特征向量，对应于特征空间的点；输出为实例的类别，可以取多类。</p>
+<p>k近邻法假设给定一个训练数据集，其中的实例类别已定。分类时，对新的实例，根据其k个最近邻的训练实例的类别，通过多数表决等方式进行预测。因此，k近邻法<code>不具有显式的学习过程</code>。</p>
+<p>k近邻法实际上利用训练数据集对特征向量空间进行划分，并作为其分类的“模型”。</p>
+<p>k值的选择、距离度量及分类决策规则是k近邻法的<code>三个基本要素</code>。</p>
+<p>k近邻法1968年由Cover和Hart提出。</p>
+<p>输入：训练数据集
 <script type="math/tex; mode=display">
 >T=\{ (x_1,y_1),(x_2,y_2),...,(x_N,y_N) \}
 ></script>
-&#x5176;&#x4E2D;&#xFF0C;<script type="math/tex; ">x_i \in x \subseteq R^n</script>&#x4E3A;&#x5B9E;&#x4F8B;&#x7684;&#x7279;&#x5F81;&#x5411;&#x91CF;&#xFF0C;<script type="math/tex; ">y_i \in Y =\{ c_1,c_2,...,c_k \} </script>&#x4E3A;&#x5B9E;&#x4F8B;&#x7684;&#x7C7B;&#x522B;&#xFF0C;<script type="math/tex; ">i＝1,2,...,N</script>&#xFF1B;&#x5B9E;&#x4F8B;&#x7279;&#x5F81;&#x5411;&#x91CF;<script type="math/tex; ">x</script>&#xFF1B;</p>
-<p>&#x8F93;&#x51FA;&#xFF1A;&#x5B9E;&#x4F8B;<script type="math/tex; ">x</script>&#x6240;&#x5C5E;&#x7684;&#x7C7B;<script type="math/tex; ">y</script>&#x3002;</p>
+其中，<script type="math/tex; ">x_i \in x \subseteq R^n</script>为实例的特征向量，<script type="math/tex; ">y_i \in Y =\{ c_1,c_2,...,c_k \} </script>为实例的类别，<script type="math/tex; ">i＝1,2,...,N</script>；实例特征向量<script type="math/tex; ">x</script>；</p>
+<p>输出：实例<script type="math/tex; ">x</script>所属的类<script type="math/tex; ">y</script>。</p>
 <ol>
-<li><p>&#x6839;&#x636E;&#x7ED9;&#x5B9A;&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;&#xFF0C;&#x5728;&#x8BAD;&#x7EC3;&#x96C6;<script type="math/tex; ">T</script>&#x4E2D;&#x627E;&#x51FA;&#x4E0E;<script type="math/tex; ">x</script>&#x6700;&#x90BB;&#x8FD1;&#x7684;<script type="math/tex; ">k</script>&#x4E2A;&#x70B9;&#xFF0C;&#x6DB5;&#x76D6;&#x8FD9;<script type="math/tex; ">k</script>&#x4E2A;&#x70B9;&#x7684;<script type="math/tex; ">x</script>&#x7684;&#x90BB;&#x57DF;&#x8BB0;&#x4F5C;<script type="math/tex; ">N_{k}(x)</script>&#xFF1B;</p>
+<li><p>根据给定距离度量，在训练集<script type="math/tex; ">T</script>中找出与<script type="math/tex; ">x</script>最邻近的<script type="math/tex; ">k</script>个点，涵盖这<script type="math/tex; ">k</script>个点的<script type="math/tex; ">x</script>的邻域记作<script type="math/tex; ">N_{k}(x)</script>；</p>
 </li>
-<li><p>&#x5728;<script type="math/tex; ">N_{k}(x)</script>&#x4E2D;&#x6839;&#x636E;&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;(&#x5982;&#x591A;&#x6570;&#x8868;&#x51B3;)&#x51B3;&#x5B9A;<script type="math/tex; ">x</script>&#x7684;&#x7C7B;&#x522B;<script type="math/tex; ">y</script>&#xFF1A;
+<li><p>在<script type="math/tex; ">N_{k}(x)</script>中根据分类决策规则(如多数表决)决定<script type="math/tex; ">x</script>的类别<script type="math/tex; ">y</script>：
 <script type="math/tex; mode=display">
 >   y=\arg \max_{c_j}\sum_{x_i \in N_k(x)}{I(y_i=c_j)},i=1,2,...,N;j=1,2,...,K
 > </script></p>
 </li>
-<li><p>&#x5F0F;&#xFF08;3.1&#xFF09;&#x4E2D;&#xFF0C;I&#x4E3A;&#x6307;&#x793A;&#x51FD;&#x6570;&#xFF0C;&#x5373;&#x5F53;y i &#xFF1D;c j &#x65F6;I&#x4E3A;1&#xFF0C;&#x5426;&#x5219;I&#x4E3A;0&#x3002;k&#x8FD1;&#x90BB;&#x6CD5;&#x7684;&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#x662F;k&#xFF1D;1&#x7684;&#x60C5;&#x5F62;&#xFF0C;&#x79F0;&#x4E3A;&#x6700;&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x3002;&#x5BF9;&#x4E8E;&#x8F93;&#x5165;&#x7684;&#x5B9E;&#x4F8B;&#x70B9;&#xFF08;&#x7279;&#x5F81;&#x5411;&#x91CF;&#xFF09;x&#xFF0C;&#x6700;&#x8FD1;&#x90BB;&#x6CD5;&#x5C06;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;&#x4E2D;&#x4E0E;x&#x6700;&#x90BB;&#x8FD1;&#x70B9;&#x7684;&#x7C7B;&#x4F5C;&#x4E3A;x&#x7684;&#x7C7B;&#x3002;</p>
+<li><p>式（3.1）中，I为指示函数，即当y i ＝c j 时I为1，否则I为0。k近邻法的特殊情况是k＝1的情形，称为最近邻算法。对于输入的实例点（特征向量）x，最近邻法将训练数据集中与x最邻近点的类作为x的类。</p>
 </li>
 </ol>
 </blockquote>
-<h1 id="k&#x8FD1;&#x90BB;&#x6A21;&#x578B;"><a name="k&#x8FD1;&#x90BB;&#x6A21;&#x578B;" class="anchor-navigation-ex-anchor" href="#k&#x8FD1;&#x90BB;&#x6A21;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="k&#x8FD1;&#x90BB;&#x6A21;&#x578B;" class="plugin-anchor" href="#k&#x8FD1;&#x90BB;&#x6A21;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a>k&#x8FD1;&#x90BB;&#x6A21;&#x578B;</h1>
+<h1 id="k近邻模型">2 k近邻模型</h1>
 <blockquote>
-<p>k&#x8FD1;&#x90BB;&#x6CD5;&#x4F7F;&#x7528;&#x7684;&#x6A21;&#x578B;&#x5B9E;&#x9645;&#x4E0A;&#x5BF9;&#x5E94;&#x4E8E;&#x5BF9;&#x7279;&#x5F81;&#x7A7A;&#x95F4;&#x7684;&#x5212;&#x5206;&#x3002;&#x6A21;&#x578B;&#x7531;&#x4E09;&#x4E2A;&#x57FA;&#x672C;&#x8981;&#x7D20;&#x2014;&#x2014;&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;&#x3001;k&#x503C;&#x7684;&#x9009;&#x62E9;&#x548C;&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;&#x51B3;&#x5B9A;&#x3002;</p>
+<p>k近邻法使用的模型实际上对应于对特征空间的划分。模型由三个基本要素——距离度量、k值的选择和分类决策规则决定。</p>
 </blockquote>
-<h2 id="&#x6A21;&#x578B;"><a name="&#x6A21;&#x578B;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x578B;" class="plugin-anchor" href="#&#x6A21;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x578B;</h2>
+<h2 id="模型">2.1 模型</h2>
 <blockquote>
-<p>k&#x8FD1;&#x90BB;&#x6CD5;&#x4E2D;&#xFF0C;&#x5F53;&#x8BAD;&#x7EC3;&#x96C6;&#x3001;&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;&#xFF08;&#x5982;&#x6B27;&#x6C0F;&#x8DDD;&#x79BB;&#xFF09;&#x3001;k&#x503C;&#x53CA;&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;&#xFF08;&#x5982;&#x591A;&#x6570;&#x8868;&#x51B3;&#xFF09;&#x786E;&#x5B9A;&#x540E;&#xFF0C;&#x5BF9;&#x4E8E;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x8F93;&#x5165;&#x5B9E;&#x4F8B;&#xFF0C;&#x5B83;&#x6240;&#x5C5E;&#x7684;&#x7C7B;&#x552F;&#x4E00;&#x5730;&#x786E;&#x5B9A;&#x3002;</p>
-<p>&#x8FD9;&#x76F8;&#x5F53;&#x4E8E;&#x6839;&#x636E;&#x4E0A;&#x8FF0;&#x8981;&#x7D20;&#x5C06;&#x7279;&#x5F81;&#x7A7A;&#x95F4;&#x5212;&#x5206;&#x4E3A;&#x4E00;&#x4E9B;&#x5B50;&#x7A7A;&#x95F4;&#xFF0C;&#x786E;&#x5B9A;&#x5B50;&#x7A7A;&#x95F4;&#x91CC;&#x7684;&#x6BCF;&#x4E2A;&#x70B9;&#x6240;&#x5C5E;&#x7684;&#x7C7B;&#x3002;&#x8FD9;&#x4E00;&#x4E8B;&#x5B9E;&#x4ECE;&#x6700;&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5F97;&#x5F88;&#x6E05;&#x695A;&#x3002;</p>
-<p>&#x7279;&#x5F81;&#x7A7A;&#x95F4;&#x4E2D;&#xFF0C;&#x5BF9;&#x6BCF;&#x4E2A;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x70B9;<script type="math/tex; ">ix</script>&#xFF0C;&#x8DDD;&#x79BB;&#x8BE5;&#x70B9;&#x6BD4;&#x5176;&#x4ED6;&#x70B9;&#x66F4;&#x8FD1;&#x7684;&#x6240;&#x6709;&#x70B9;&#x7EC4;&#x6210;&#x4E00;&#x4E2A;&#x533A;&#x57DF;&#xFF0C;&#x53EB;&#x4F5C;&#x5355;&#x5143;(cell)&#x3002;</p>
-<p>&#x6BCF;&#x4E2A;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x70B9;&#x62E5;&#x6709;&#x4E00;&#x4E2A;&#x5355;&#x5143;&#xFF0C;&#x6240;&#x6709;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x70B9;&#x7684;&#x5355;&#x5143;&#x6784;&#x6210;&#x5BF9;&#x7279;&#x5F81;&#x7A7A;&#x95F4;&#x7684;&#x4E00;&#x4E2A;&#x5212;&#x5206;&#x3002;</p>
-<p>&#x6700;&#x8FD1;&#x90BB;&#x6CD5;&#x5C06;&#x5B9E;&#x4F8B;<script type="math/tex; ">ix</script>&#x7684;&#x7C7B;<script type="math/tex; ">iy</script>&#x4F5C;&#x4E3A;&#x5176;&#x5355;&#x5143;&#x4E2D;&#x6240;&#x6709;&#x70B9;&#x7684;&#x7C7B;&#x6807;&#x8BB0;(class label)&#x3002;</p>
-<p>&#x8FD9;&#x6837;&#xFF0C;&#x6BCF;&#x4E2A;&#x5355;&#x5143;&#x7684;&#x5B9E;&#x4F8B;&#x70B9;&#x7684;&#x7C7B;&#x522B;&#x662F;&#x786E;&#x5B9A;&#x7684;&#x3002;&#x4E0B;&#x56FE;&#x662F;&#x4E8C;&#x7EF4;&#x7279;&#x5F81;&#x7A7A;&#x95F4;&#x5212;&#x5206;&#x7684;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x3002;</p>
-<p><a href="res/Machine%20Learning%20Base/1570101631106.png" data-lightbox="8d5b94d4-2330-4140-ad99-c25472dce60d" data-title="1570101631106"><img src="res/Machine%20Learning%20Base/1570101631106.png" alt="1570101631106"></a></p>
+<p>k近邻法中，当训练集、距离度量（如欧氏距离）、k值及分类决策规则（如多数表决）确定后，对于任何一个新的输入实例，它所属的类唯一地确定。</p>
+<p>这相当于根据上述要素将特征空间划分为一些子空间，确定子空间里的每个点所属的类。这一事实从最近邻算法中可以看得很清楚。</p>
+<p>特征空间中，对每个训练实例点<script type="math/tex; ">ix</script>，距离该点比其他点更近的所有点组成一个区域，叫作单元(cell)。</p>
+<p>每个训练实例点拥有一个单元，所有训练实例点的单元构成对特征空间的一个划分。</p>
+<p>最近邻法将实例<script type="math/tex; ">ix</script>的类<script type="math/tex; ">iy</script>作为其单元中所有点的类标记(class label)。</p>
+<p>这样，每个单元的实例点的类别是确定的。下图是二维特征空间划分的一个例子。</p>
+<p><a data-lightbox="36b2f3b1-0827-4853-bf1f-2bcc2e616097" data-title="1570101631106" href="res/Machine%20Learning%20Base/1570101631106.png"><img alt="1570101631106" src="res/Machine%20Learning%20Base/1570101631106.png"/></a></p>
 </blockquote>
-<h2 id="&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;"><a name="&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;" class="anchor-navigation-ex-anchor" href="#&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;" class="plugin-anchor" href="#&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;</h2>
+<h2 id="距离度量">2.2 距离度量</h2>
 <blockquote>
-<p>&#x7279;&#x5F81;&#x7A7A;&#x95F4;&#x4E2D;&#x4E24;&#x4E2A;&#x5B9E;&#x4F8B;&#x70B9;&#x7684;&#x8DDD;&#x79BB;&#x662F;&#x4E24;&#x4E2A;&#x5B9E;&#x4F8B;&#x70B9;&#x76F8;&#x4F3C;&#x7A0B;&#x5EA6;&#x7684;&#x53CD;&#x6620;&#x3002;k&#x8FD1;&#x90BB;&#x6A21;&#x578B;&#x7684;&#x7279;&#x5F81;&#x7A7A;&#x95F4;&#x4E00;&#x822C;&#x662F;<script type="math/tex; ">n</script>&#x7EF4;&#x5B9E;&#x6570;&#x5411;&#x91CF;&#x7A7A;&#x95F4;<script type="math/tex; ">R^n</script> &#x3002;</p>
-<p>&#x4F7F;&#x7528;&#x7684;&#x8DDD;&#x79BB;&#x662F;&#x6B27;&#x6C0F;&#x8DDD;&#x79BB;&#xFF0C;&#x4F46;&#x4E5F;&#x53EF;&#x4EE5;&#x662F;&#x5176;&#x4ED6;&#x8DDD;&#x79BB;&#xFF0C;&#x5982;&#x66F4;&#x4E00;&#x822C;&#x7684;<script type="math/tex; ">L_p</script>&#x8DDD;&#x79BB;(<script type="math/tex; ">L_p</script> pdistance)&#x6216;Minkowski&#x8DDD;&#x79BB;(Minkowski distance)&#x3002;</p>
-<p>&#x8BBE;&#x7279;&#x5F81;&#x7A7A;&#x95F4;<script type="math/tex; ">x</script>&#x662F;<script type="math/tex; ">n</script>&#x7EF4;&#x5B9E;&#x6570;&#x5411;&#x91CF;&#x7A7A;&#x95F4;<script type="math/tex; ">R^n</script> &#xFF0C;<script type="math/tex; ">x_i,x_j \in X</script>&#xFF0C;</p>
-<p><script type="math/tex; ">x_i=(x_i^{(1)},x_i^{(2)},...,x_i^{(n)})^T</script>&#xFF0C;</p>
-<p><script type="math/tex; ">x_j=(x_j^{(1)},x_j^{(2)},...,x_j^{(n)})^T</script>&#xFF0C;<script type="math/tex; ">x_i</script>&#xFF0C;<script type="math/tex; ">x_j</script>&#x7684;<script type="math/tex; ">L_p</script>&#x8DDD;&#x79BB;&#x5B9A;&#x4E49;&#x4E3A;
+<p>特征空间中两个实例点的距离是两个实例点相似程度的反映。k近邻模型的特征空间一般是<script type="math/tex; ">n</script>维实数向量空间<script type="math/tex; ">R^n</script> 。</p>
+<p>使用的距离是欧氏距离，但也可以是其他距离，如更一般的<script type="math/tex; ">L_p</script>距离(<script type="math/tex; ">L_p</script> pdistance)或Minkowski距离(Minkowski distance)。</p>
+<p>设特征空间<script type="math/tex; ">x</script>是<script type="math/tex; ">n</script>维实数向量空间<script type="math/tex; ">R^n</script> ，<script type="math/tex; ">x_i,x_j \in X</script>，</p>
+<p><script type="math/tex; ">x_i=(x_i^{(1)},x_i^{(2)},...,x_i^{(n)})^T</script>，</p>
+<p><script type="math/tex; ">x_j=(x_j^{(1)},x_j^{(2)},...,x_j^{(n)})^T</script>，<script type="math/tex; ">x_i</script>，<script type="math/tex; ">x_j</script>的<script type="math/tex; ">L_p</script>距离定义为
 <script type="math/tex; mode=display">
 >L_p(x_i,x_j)=(\sum_{l=1}^{n}{|x_i^{(l)}-x_j^{(l)}|^{p}})^{\frac{1}{p}}
 ></script>
-&#x8FD9;&#x91CC;<script type="math/tex; ">p \geq 1</script>&#x3002;</p>
-<p>&#x5F53;<script type="math/tex; ">p＝2</script>&#x65F6;&#xFF0C;&#x79F0;&#x4E3A;&#x6B27;&#x6C0F;&#x8DDD;&#x79BB;(Euclidean distance)&#xFF0C;&#x5373;
+这里<script type="math/tex; ">p \geq 1</script>。</p>
+<p>当<script type="math/tex; ">p＝2</script>时，称为欧氏距离(Euclidean distance)，即
 <script type="math/tex; mode=display">
 >L_2(x_i,x_j)=(\sum_{l=1}^{n}{|x_i^{(l)}-x_j^{(l)}|^{2}})^{\frac{1}{2}}
 ></script>
-&#x5F53;<script type="math/tex; ">p＝1</script>&#x65F6;&#xFF0C;&#x79F0;&#x4E3A;&#x66FC;&#x54C8;&#x987F;&#x8DDD;&#x79BB;(Manhattan distance)&#xFF0C;&#x5373;
+当<script type="math/tex; ">p＝1</script>时，称为曼哈顿距离(Manhattan distance)，即
 <script type="math/tex; mode=display">
 >L_p(x_i,x_j)=\sum_{l=1}^{n}{|x_i^{(l)}-x_j^{(l)}|}
 ></script>
-&#x5F53;<script type="math/tex; ">p＝\infty</script>&#x65F6;&#xFF0C;&#x5B83;&#x662F;&#x5404;&#x4E2A;&#x5750;&#x6807;&#x8DDD;&#x79BB;&#x7684;&#x6700;&#x5927;&#x503C;&#xFF0C;&#x5373;
+当<script type="math/tex; ">p＝\infty</script>时，它是各个坐标距离的最大值，即
 <script type="math/tex; mode=display">
 >L_{\infty}(x_i,x_j)=\max_{l}{|x_i^{(l)}-x_j^{(l)}|}
 ></script>
-&#x4E0B;&#x56FE;&#x7ED9;&#x51FA;&#x4E86;&#x4E8C;&#x7EF4;&#x7A7A;&#x95F4;&#x4E2D;<script type="math/tex; ">p</script>&#x53D6;&#x4E0D;&#x540C;&#x503C;&#x65F6;&#xFF0C;&#x4E0E;&#x539F;&#x70B9;&#x7684;<script type="math/tex; ">L_p</script>&#x8DDD;&#x79BB;&#x4E3A;1(<script type="math/tex; ">L_p＝1</script>)&#x7684;&#x70B9;&#x7684;&#x56FE;&#x5F62;&#x3002;</p>
-<p><a href="res/Machine%20Learning%20Base/1570102425834.png" data-lightbox="1194595e-3daa-488f-b6bf-d669daefdecf" data-title="1570102425834"><img src="res/Machine%20Learning%20Base/1570102425834.png" alt="1570102425834"></a></p>
+下图给出了二维空间中<script type="math/tex; ">p</script>取不同值时，与原点的<script type="math/tex; ">L_p</script>距离为1(<script type="math/tex; ">L_p＝1</script>)的点的图形。</p>
+<p><a data-lightbox="89bb1c08-4c26-490a-a1e8-3741f707f186" data-title="1570102425834" href="res/Machine%20Learning%20Base/1570102425834.png"><img alt="1570102425834" src="res/Machine%20Learning%20Base/1570102425834.png"/></a></p>
 </blockquote>
-<h2 id="k&#x503C;&#x7684;&#x9009;&#x62E9;"><a name="k&#x503C;&#x7684;&#x9009;&#x62E9;" class="anchor-navigation-ex-anchor" href="#k&#x503C;&#x7684;&#x9009;&#x62E9;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="k&#x503C;&#x7684;&#x9009;&#x62E9;" class="plugin-anchor" href="#k&#x503C;&#x7684;&#x9009;&#x62E9;"><i class="fa fa-link" aria-hidden="true"></i></a>k&#x503C;&#x7684;&#x9009;&#x62E9;</h2>
+<h2 id="k值的选择">2.3 k值的选择</h2>
 <blockquote>
-<p>k&#x503C;&#x7684;&#x9009;&#x62E9;&#x4F1A;&#x5BF9;k&#x8FD1;&#x90BB;&#x6CD5;&#x7684;&#x7ED3;&#x679C;&#x4EA7;&#x751F;&#x91CD;&#x5927;&#x5F71;&#x54CD;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x9009;&#x62E9;&#x8F83;&#x5C0F;&#x7684;k&#x503C;&#xFF0C;&#x5C31;&#x76F8;&#x5F53;&#x4E8E;&#x7528;&#x8F83;&#x5C0F;&#x7684;&#x90BB;&#x57DF;&#x4E2D;&#x7684;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#xFF0C;&#x201C;&#x5B66;&#x4E60;&#x201D;&#x7684;&#x8FD1;&#x4F3C;&#x8BEF;&#x5DEE;(approximation error)&#x4F1A;&#x51CF;&#x5C0F;&#xFF0C;&#x53EA;&#x6709;&#x4E0E;&#x8F93;&#x5165;&#x5B9E;&#x4F8B;&#x8F83;&#x8FD1;&#x7684;(&#x76F8;&#x4F3C;&#x7684;)&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x624D;&#x4F1A;&#x5BF9;&#x9884;&#x6D4B;&#x7ED3;&#x679C;&#x8D77;&#x4F5C;&#x7528;&#x3002;</p>
-<p>&#x4F46;&#x7F3A;&#x70B9;&#x662F;&#x201C;&#x5B66;&#x4E60;&#x201D;&#x7684;&#x4F30;&#x8BA1;&#x8BEF;&#x5DEE;(estimation error)&#x4F1A;&#x589E;&#x5927;&#xFF0C;&#x9884;&#x6D4B;&#x7ED3;&#x679C;&#x4F1A;&#x5BF9;&#x8FD1;&#x90BB;&#x7684;&#x5B9E;&#x4F8B;&#x70B9;&#x975E;&#x5E38;&#x654F;&#x611F;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x90BB;&#x8FD1;&#x7684;&#x5B9E;&#x4F8B;&#x70B9;&#x6070;&#x5DE7;&#x662F;&#x566A;&#x58F0;&#xFF0C;&#x9884;&#x6D4B;&#x5C31;&#x4F1A;&#x51FA;&#x9519;&#x3002;</p>
-<p>&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;k&#x503C;&#x7684;&#x51CF;&#x5C0F;&#x5C31;&#x610F;&#x5473;&#x7740;&#x6574;&#x4F53;&#x6A21;&#x578B;&#x53D8;&#x5F97;&#x590D;&#x6742;&#xFF0C;&#x5BB9;&#x6613;&#x53D1;&#x751F;&#x8FC7;&#x62DF;&#x5408;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x9009;&#x62E9;&#x8F83;&#x5927;&#x7684;k&#x503C;&#xFF0C;&#x5C31;&#x76F8;&#x5F53;&#x4E8E;&#x7528;&#x8F83;&#x5927;&#x90BB;&#x57DF;&#x4E2D;&#x7684;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#x3002;&#x5176;&#x4F18;&#x70B9;&#x662F;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x5B66;&#x4E60;&#x7684;&#x4F30;&#x8BA1;&#x8BEF;&#x5DEE;&#x3002;&#x4F46;&#x7F3A;&#x70B9;&#x662F;&#x5B66;&#x4E60;&#x7684;&#x8FD1;&#x4F3C;&#x8BEF;&#x5DEE;&#x4F1A;&#x589E;&#x5927;&#x3002;&#x8FD9;&#x65F6;&#x4E0E;&#x8F93;&#x5165;&#x5B9E;&#x4F8B;&#x8F83;&#x8FDC;&#x7684;(&#x4E0D;&#x76F8;&#x4F3C;&#x7684;)&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x4E5F;&#x4F1A;&#x5BF9;&#x9884;&#x6D4B;&#x8D77;&#x4F5C;&#x7528;&#xFF0C;&#x4F7F;&#x9884;&#x6D4B;&#x53D1;&#x751F;&#x9519;&#x8BEF;&#x3002;k&#x503C;&#x7684;&#x589E;&#x5927;&#x5C31;&#x610F;&#x5473;&#x7740;&#x6574;&#x4F53;&#x7684;&#x6A21;&#x578B;&#x53D8;&#x5F97;&#x7B80;&#x5355;&#x3002;</p>
-<p>&#x5982;&#x679C;<script type="math/tex; ">k＝N</script>&#xFF0C;&#x90A3;&#x4E48;&#x65E0;&#x8BBA;&#x8F93;&#x5165;&#x5B9E;&#x4F8B;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x90FD;&#x5C06;&#x7B80;&#x5355;&#x5730;&#x9884;&#x6D4B;&#x5B83;&#x5C5E;&#x4E8E;&#x5728;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x4E2D;&#x6700;&#x591A;&#x7684;&#x7C7B;&#x3002;</p>
-<p>&#x8FD9;&#x65F6;&#xFF0C;&#x6A21;&#x578B;&#x8FC7;&#x4E8E;&#x7B80;&#x5355;&#xFF0C;&#x5B8C;&#x5168;&#x5FFD;&#x7565;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x4E2D;&#x7684;&#x5927;&#x91CF;&#x6709;&#x7528;&#x4FE1;&#x606F;&#xFF0C;&#x662F;&#x4E0D;&#x53EF;&#x53D6;&#x7684;&#x3002;</p>
-<p>&#x5728;&#x5E94;&#x7528;&#x4E2D;&#xFF0C;k&#x503C;&#x4E00;&#x822C;&#x53D6;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x5C0F;&#x7684;&#x6570;&#x503C;&#x3002;&#x901A;&#x5E38;&#x91C7;&#x7528;<code>&#x4EA4;&#x53C9;&#x9A8C;&#x8BC1;&#x6CD5;</code>&#x6765;&#x9009;&#x53D6;&#x6700;&#x4F18;&#x7684;k&#x503C;&#x3002;</p>
+<p>k值的选择会对k近邻法的结果产生重大影响。</p>
+<p>如果选择较小的k值，就相当于用较小的邻域中的训练实例进行预测，“学习”的近似误差(approximation error)会减小，只有与输入实例较近的(相似的)训练实例才会对预测结果起作用。</p>
+<p>但缺点是“学习”的估计误差(estimation error)会增大，预测结果会对近邻的实例点非常敏感。</p>
+<p>如果邻近的实例点恰巧是噪声，预测就会出错。</p>
+<p>换句话说，k值的减小就意味着整体模型变得复杂，容易发生过拟合。</p>
+<p>如果选择较大的k值，就相当于用较大邻域中的训练实例进行预测。其优点是可以减少学习的估计误差。但缺点是学习的近似误差会增大。这时与输入实例较远的(不相似的)训练实例也会对预测起作用，使预测发生错误。k值的增大就意味着整体的模型变得简单。</p>
+<p>如果<script type="math/tex; ">k＝N</script>，那么无论输入实例是什么，都将简单地预测它属于在训练实例中最多的类。</p>
+<p>这时，模型过于简单，完全忽略训练实例中的大量有用信息，是不可取的。</p>
+<p>在应用中，k值一般取一个比较小的数值。通常采用<code>交叉验证法</code>来选取最优的k值。</p>
 </blockquote>
-<h2 id="&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;"><a name="&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;" class="anchor-navigation-ex-anchor" href="#&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;" class="plugin-anchor" href="#&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;</h2>
+<h2 id="分类决策规则">2.4 分类决策规则</h2>
 <blockquote>
-<p>k&#x8FD1;&#x90BB;&#x6CD5;&#x4E2D;&#x7684;&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;&#x5F80;&#x5F80;&#x662F;<code>&#x591A;&#x6570;&#x8868;&#x51B3;</code>&#xFF0C;&#x5373;&#x7531;&#x8F93;&#x5165;&#x5B9E;&#x4F8B;&#x7684;k&#x4E2A;&#x90BB;&#x8FD1;&#x7684;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x4E2D;&#x7684;&#x591A;&#x6570;&#x7C7B;&#x51B3;&#x5B9A;&#x8F93;&#x5165;&#x5B9E;&#x4F8B;&#x7684;&#x7C7B;&#x3002;</p>
-<p>&#x591A;&#x6570;&#x8868;&#x51B3;&#x89C4;&#x5219;(majority voting rule)&#x6709;&#x5982;&#x4E0B;&#x89E3;&#x91CA;&#xFF1A;&#x5982;&#x679C;&#x5206;&#x7C7B;&#x7684;&#x635F;&#x5931;&#x51FD;&#x6570;&#x4E3A;0-1&#x635F;&#x5931;&#x51FD;&#x6570;&#xFF0C;&#x5206;&#x7C7B;&#x51FD;&#x6570;&#x4E3A;
+<p>k近邻法中的分类决策规则往往是<code>多数表决</code>，即由输入实例的k个邻近的训练实例中的多数类决定输入实例的类。</p>
+<p>多数表决规则(majority voting rule)有如下解释：如果分类的损失函数为0-1损失函数，分类函数为
 <script type="math/tex; mode=display">
 >f:R^n \to \{ c_1,c_2,...,c_k \}
 ></script>
-&#x90A3;&#x4E48;&#x8BEF;&#x5206;&#x7C7B;&#x7684;&#x6982;&#x7387;&#x662F;
+那么误分类的概率是
 <script type="math/tex; mode=display">
 >P(Y \neq f(X))=1-P(Y=f(X))
 ></script>
-&#x5BF9;&#x7ED9;&#x5B9A;&#x7684;&#x5B9E;&#x4F8B;<script type="math/tex; ">x \in x</script>&#xFF0C;&#x5176;&#x6700;&#x8FD1;&#x90BB;&#x7684;k&#x4E2A;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x70B9;&#x6784;&#x6210;&#x96C6;&#x5408;<script type="math/tex; ">N_k^{(x)}</script>&#x3002;&#x5982;&#x679C;&#x6DB5;&#x76D6;<script type="math/tex; ">N_k{(x)}</script>&#x7684;&#x533A;&#x57DF;&#x7684;&#x7C7B;&#x522B;&#x662F;<script type="math/tex; ">c_j</script> &#xFF0C;&#x90A3;&#x4E48;&#x8BEF;&#x5206;&#x7C7B;&#x7387;&#x662F;
+对给定的实例<script type="math/tex; ">x \in x</script>，其最近邻的k个训练实例点构成集合<script type="math/tex; ">N_k^{(x)}</script>。如果涵盖<script type="math/tex; ">N_k{(x)}</script>的区域的类别是<script type="math/tex; ">c_j</script> ，那么误分类率是
 <script type="math/tex; mode=display">
 >\frac{1}{k}\sum_{x_i \in N_k{(x)}}I(y_i \neq c_j)=1-\frac{1}{k}\sum_{x_i \in N_k{(x)}}{}I(y_i=c_j)
 ></script>
-&#x8981;&#x4F7F;&#x8BEF;&#x5206;&#x7C7B;&#x7387;&#x6700;&#x5C0F;&#x5373;&#x7ECF;&#x9A8C;&#x98CE;&#x9669;&#x6700;&#x5C0F;&#xFF0C;&#x5C31;&#x8981;&#x4F7F;<script type="math/tex; ">\sum_{x_i \in N_k{(x)}}{}I(y_i=c_j)</script>&#x6700;&#x5927;&#xFF0C;&#x6240;&#x4EE5;&#x591A;&#x6570;&#x8868;&#x51B3;&#x89C4;&#x5219;&#x7B49;&#x4EF7;&#x4E8E;<code>&#x7ECF;&#x9A8C;&#x98CE;&#x9669;&#x6700;&#x5C0F;&#x5316;</code>&#x3002;</p>
+要使误分类率最小即经验风险最小，就要使<script type="math/tex; ">\sum_{x_i \in N_k{(x)}}{}I(y_i=c_j)</script>最大，所以多数表决规则等价于<code>经验风险最小化</code>。</p>
 </blockquote>
-<h1 id="&#x6784;&#x5EFA;kd&#x6811;"><a name="&#x6784;&#x5EFA;kd&#x6811;" class="anchor-navigation-ex-anchor" href="#&#x6784;&#x5EFA;kd&#x6811;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6784;&#x5EFA;kd&#x6811;" class="plugin-anchor" href="#&#x6784;&#x5EFA;kd&#x6811;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6784;&#x5EFA;kd&#x6811;</h1>
+<h1 id="构建kd树">3 构建kd树</h1>
 <blockquote>
-<p>&#x5B9E;&#x73B0;k&#x8FD1;&#x90BB;&#x6CD5;&#x65F6;&#xFF0C;&#x4E3B;&#x8981;&#x8003;&#x8651;&#x7684;&#x95EE;&#x9898;&#x662F;&#x5982;&#x4F55;&#x5BF9;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5FEB;&#x901F;k&#x8FD1;&#x90BB;&#x641C;&#x7D22;&#x3002;&#x8FD9;&#x70B9;&#x5728;&#x7279;&#x5F81;&#x7A7A;&#x95F4;&#x7684;&#x7EF4;&#x6570;&#x5927;&#x53CA;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x5BB9;&#x91CF;&#x5927;&#x65F6;&#x5C24;&#x5176;&#x5FC5;&#x8981;&#x3002;</p>
-<p>k&#x8FD1;&#x90BB;&#x6CD5;&#x6700;&#x7B80;&#x5355;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x662F;&#x7EBF;&#x6027;&#x626B;&#x63CF;(linear scan)&#x3002;&#x8FD9;&#x65F6;&#x8981;&#x8BA1;&#x7B97;&#x8F93;&#x5165;&#x5B9E;&#x4F8B;&#x4E0E;&#x6BCF;&#x4E00;&#x4E2A;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x7684;&#x8DDD;&#x79BB;&#x3002;&#x5F53;&#x8BAD;&#x7EC3;&#x96C6;&#x5F88;&#x5927;&#x65F6;&#xFF0C;&#x8BA1;&#x7B97;&#x975E;&#x5E38;&#x8017;&#x65F6;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x662F;&#x4E0D;&#x53EF;&#x884C;&#x7684;&#x3002;</p>
-<p>&#x4E3A;&#x4E86;&#x63D0;&#x9AD8;k&#x8FD1;&#x90BB;&#x641C;&#x7D22;&#x7684;&#x6548;&#x7387;&#xFF0C;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x4F7F;&#x7528;&#x7279;&#x6B8A;&#x7684;&#x7ED3;&#x6784;&#x5B58;&#x50A8;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#xFF0C;&#x4EE5;&#x51CF;&#x5C11;&#x8BA1;&#x7B97;&#x8DDD;&#x79BB;&#x7684;&#x6B21;&#x6570;&#x3002;&#x5177;&#x4F53;&#x65B9;&#x6CD5;&#x5F88;&#x591A;&#xFF0C;&#x4E0B;&#x9762;&#x4ECB;&#x7ECD;&#x5176;&#x4E2D;&#x7684;kd&#x6811;(kd tree)&#x65B9;&#x6CD5;&#x3002;</p>
-<p><code>kd&#x6811;</code>&#x662F;&#x4E00;&#x79CD;&#x5BF9;k&#x7EF4;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x5B9E;&#x4F8B;&#x70B9;&#x8FDB;&#x884C;&#x5B58;&#x50A8;&#x4EE5;&#x4FBF;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x5FEB;&#x901F;&#x68C0;&#x7D22;&#x7684;&#x6811;&#x5F62;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3002;</p>
-<p>kd&#x6811;&#x662F;&#x4E8C;&#x53C9;&#x6811;&#xFF0C;&#x8868;&#x793A;&#x5BF9;k&#x7EF4;&#x7A7A;&#x95F4;&#x7684;&#x4E00;&#x4E2A;&#x5212;&#x5206;(partition)&#x3002;&#x6784;&#x9020;kd&#x6811;&#x76F8;&#x5F53;&#x4E8E;&#x4E0D;&#x65AD;&#x5730;&#x7528;&#x5782;&#x76F4;&#x4E8E;&#x5750;&#x6807;&#x8F74;&#x7684;&#x8D85;&#x5E73;&#x9762;&#x5C06;k&#x7EF4;&#x7A7A;&#x95F4;&#x5207;&#x5206;&#xFF0C;&#x6784;&#x6210;&#x4E00;&#x7CFB;&#x5217;&#x7684;k&#x7EF4;&#x8D85;&#x77E9;&#x5F62;&#x533A;&#x57DF;&#x3002;kd&#x6811;&#x7684;&#x6BCF;&#x4E2A;&#x7ED3;&#x70B9;&#x5BF9;&#x5E94;&#x4E8E;&#x4E00;&#x4E2A;k&#x7EF4;&#x8D85;&#x77E9;&#x5F62;&#x533A;&#x57DF;&#x3002;</p>
-<p><code>&#x6784;&#x9020;kd&#x6811;</code>&#x7684;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>实现k近邻法时，主要考虑的问题是如何对训练数据进行快速k近邻搜索。这点在特征空间的维数大及训练数据容量大时尤其必要。</p>
+<p>k近邻法最简单的实现方法是线性扫描(linear scan)。这时要计算输入实例与每一个训练实例的距离。当训练集很大时，计算非常耗时，这种方法是不可行的。</p>
+<p>为了提高k近邻搜索的效率，可以考虑使用特殊的结构存储训练数据，以减少计算距离的次数。具体方法很多，下面介绍其中的kd树(kd tree)方法。</p>
+<p><code>kd树</code>是一种对k维空间中的实例点进行存储以便对其进行快速检索的树形数据结构。</p>
+<p>kd树是二叉树，表示对k维空间的一个划分(partition)。构造kd树相当于不断地用垂直于坐标轴的超平面将k维空间切分，构成一系列的k维超矩形区域。kd树的每个结点对应于一个k维超矩形区域。</p>
+<p><code>构造kd树</code>的方法如下：</p>
 <ol>
-<li>&#x6784;&#x9020;&#x6839;&#x7ED3;&#x70B9;&#xFF0C;&#x4F7F;&#x6839;&#x7ED3;&#x70B9;&#x5BF9;&#x5E94;&#x4E8E;k&#x7EF4;&#x7A7A;&#x95F4;&#x4E2D;&#x5305;&#x542B;&#x6240;&#x6709;&#x5B9E;&#x4F8B;&#x70B9;&#x7684;&#x8D85;&#x77E9;&#x5F62;&#x533A;&#x57DF;&#xFF1B;</li>
-<li>&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x7684;&#x9012;&#x5F52;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x65AD;&#x5730;&#x5BF9;k&#x7EF4;&#x7A7A;&#x95F4;&#x8FDB;&#x884C;&#x5207;&#x5206;&#xFF0C;&#x751F;&#x6210;&#x5B50;&#x7ED3;&#x70B9;&#x3002;</li>
-<li>&#x5728;&#x8D85;&#x77E9;&#x5F62;&#x533A;&#x57DF;(&#x7ED3;&#x70B9;)&#x4E0A;&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x5750;&#x6807;&#x8F74;&#x548C;&#x5728;&#x6B64;&#x5750;&#x6807;&#x8F74;&#x4E0A;&#x7684;&#x4E00;&#x4E2A;&#x5207;&#x5206;&#x70B9;&#xFF0C;&#x786E;&#x5B9A;&#x4E00;&#x4E2A;&#x8D85;&#x5E73;&#x9762;&#xFF0C;&#x8FD9;&#x4E2A;&#x8D85;&#x5E73;&#x9762;&#x901A;&#x8FC7;&#x9009;&#x5B9A;&#x7684;&#x5207;&#x5206;&#x70B9;&#x5E76;&#x5782;&#x76F4;&#x4E8E;&#x9009;&#x5B9A;&#x7684;&#x5750;&#x6807;&#x8F74;&#xFF0C;&#x5C06;&#x5F53;&#x524D;&#x8D85;&#x77E9;&#x5F62;&#x533A;&#x57DF;&#x5207;&#x5206;&#x4E3A;&#x5DE6;&#x53F3;&#x4E24;&#x4E2A;&#x5B50;&#x533A;&#x57DF;(&#x5B50;&#x7ED3;&#x70B9;)&#xFF1B;&#x8FD9;&#x65F6;&#xFF0C;&#x5B9E;&#x4F8B;&#x88AB;&#x5206;&#x5230;&#x4E24;&#x4E2A;&#x5B50;&#x533A;&#x57DF;&#x3002;</li>
-<li>&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x76F4;&#x5230;&#x5B50;&#x533A;&#x57DF;&#x5185;&#x6CA1;&#x6709;&#x5B9E;&#x4F8B;&#x65F6;&#x7EC8;&#x6B62;(&#x7EC8;&#x6B62;&#x65F6;&#x7684;&#x7ED3;&#x70B9;&#x4E3A;&#x53F6;&#x7ED3;&#x70B9;)&#x3002;</li>
-<li>&#x5728;&#x6B64;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5C06;&#x5B9E;&#x4F8B;&#x4FDD;&#x5B58;&#x5728;&#x76F8;&#x5E94;&#x7684;&#x7ED3;&#x70B9;&#x4E0A;&#x3002;</li>
+<li>构造根结点，使根结点对应于k维空间中包含所有实例点的超矩形区域；</li>
+<li>通过下面的递归方法，不断地对k维空间进行切分，生成子结点。</li>
+<li>在超矩形区域(结点)上选择一个坐标轴和在此坐标轴上的一个切分点，确定一个超平面，这个超平面通过选定的切分点并垂直于选定的坐标轴，将当前超矩形区域切分为左右两个子区域(子结点)；这时，实例被分到两个子区域。</li>
+<li>这个过程直到子区域内没有实例时终止(终止时的结点为叶结点)。</li>
+<li>在此过程中，将实例保存在相应的结点上。</li>
 </ol>
-<p>&#x901A;&#x5E38;&#xFF0C;&#x4F9D;&#x6B21;&#x9009;&#x62E9;&#x5750;&#x6807;&#x8F74;&#x5BF9;&#x7A7A;&#x95F4;&#x5207;&#x5206;&#xFF0C;&#x9009;&#x62E9;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x70B9;&#x5728;&#x9009;&#x5B9A;&#x5750;&#x6807;&#x8F74;&#x4E0A;&#x7684;&#x4E2D;&#x4F4D;&#x6570;(median)&#x4E3A;&#x5207;&#x5206;&#x70B9;&#xFF0C;&#x8FD9;&#x6837;&#x5F97;&#x5230;&#x7684;kd&#x6811;&#x662F;&#x5E73;&#x8861;&#x7684;&#x3002;&#x6CE8;&#x610F;&#x5E73;&#x8861;&#x7684;kd&#x6811;&#x641C;&#x7D22;&#x65F6;&#x7684;&#x6548;&#x7387;&#x672A;&#x5FC5;&#x662F;&#x6700;&#x4F18;&#x7684;&#x3002;</p>
-<p><code>Example1</code>: &#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x4E8C;&#x7EF4;&#x7A7A;&#x95F4;&#x7684;&#x6570;&#x636E;&#x96C6;&#xFF1A;
+<p>通常，依次选择坐标轴对空间切分，选择训练实例点在选定坐标轴上的中位数(median)为切分点，这样得到的kd树是平衡的。注意平衡的kd树搜索时的效率未必是最优的。</p>
+<p><code>Example1</code>: 给定一个二维空间的数据集：
 <script type="math/tex; mode=display">
 >T=\{ (2,3)^T,(5,4)^T,(9,6)^T,(4,7)^T,(8,1)^T,(7,2)^T \}
 ></script>
-&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x5E73;&#x8861;kd&#x6811;</p>
-<p><strong>&#x89E3;</strong> &#x3000;&#x6839;&#x7ED3;&#x70B9;&#x5BF9;&#x5E94;&#x5305;&#x542B;&#x6570;&#x636E;&#x96C6;<script type="math/tex; ">T</script>&#x7684;&#x77E9;&#x5F62;&#xFF0C;&#x9009;&#x62E9;<script type="math/tex; ">x^{(1)}</script>&#x8F74;&#xFF0C;6&#x4E2A;&#x6570;&#x636E;&#x70B9;&#x7684;<script type="math/tex; ">x^{(1)}</script>&#x5750;&#x6807;&#x7684;&#x4E2D;&#x4F4D;&#x6570;&#x662F;7&#xFF0C;&#x4EE5;&#x5E73;&#x9762;<script type="math/tex; ">x^{(1)}=7</script>&#x5C06;&#x7A7A;&#x95F4;&#x5206;&#x4E3A;&#x5DE6;&#x3001;&#x53F3;&#x4E24;&#x4E2A;&#x5B50;&#x77E9;&#x5F62;(&#x5B50;&#x7ED3;&#x70B9;)&#xFF1B;&#x63A5;&#x7740;&#xFF0C;&#x5DE6;&#x77E9;&#x5F62;&#x4EE5;<script type="math/tex; ">x^{(2)}=4</script>&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x5B50;&#x77E9;&#x5F62;&#xFF0C;&#x53F3;&#x77E9;&#x5F62;&#x4EE5;<script type="math/tex; ">x^{(2)}=6</script>&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x5B50;&#x77E9;&#x5F62;&#xFF0C;&#x5982;&#x6B64;&#x9012;&#x5F52;&#xFF0C;&#x6700;&#x540E;&#x5F97;&#x5230;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x7684;&#x7279;&#x5F81;&#x7A7A;&#x95F4;&#x5212;&#x5206;&#x548C;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x7684;kd&#x6811;&#x3002;</p>
-<p><a href="res/Machine%20Learning%20Base/1570104114031.png" data-lightbox="f253b1bc-398e-4fe7-b27c-9654457c8081" data-title="1570104114031"><img src="res/Machine%20Learning%20Base/1570104114031.png" alt="1570104114031"></a></p>
-<p><a href="res/Machine%20Learning%20Base/1570104123858.png" data-lightbox="93a592a9-bf3d-4cd8-b2e7-b55cde6acb0e" data-title="1570104123858"><img src="res/Machine%20Learning%20Base/1570104123858.png" alt="1570104123858"></a></p>
+构造一个平衡kd树</p>
+<p><strong>解</strong> 　根结点对应包含数据集<script type="math/tex; ">T</script>的矩形，选择<script type="math/tex; ">x^{(1)}</script>轴，6个数据点的<script type="math/tex; ">x^{(1)}</script>坐标的中位数是7，以平面<script type="math/tex; ">x^{(1)}=7</script>将空间分为左、右两个子矩形(子结点)；接着，左矩形以<script type="math/tex; ">x^{(2)}=4</script>分为两个子矩形，右矩形以<script type="math/tex; ">x^{(2)}=6</script>分为两个子矩形，如此递归，最后得到下图所示的特征空间划分和下图所示的kd树。</p>
+<p><a data-lightbox="5be92f60-eaa6-41d9-9576-3491fa94a93f" data-title="1570104114031" href="res/Machine%20Learning%20Base/1570104114031.png"><img alt="1570104114031" src="res/Machine%20Learning%20Base/1570104114031.png"/></a></p>
+<p><a data-lightbox="1d17dedf-edc7-4f1c-8855-13edbbbf9b70" data-title="1570104123858" href="res/Machine%20Learning%20Base/1570104123858.png"><img alt="1570104123858" src="res/Machine%20Learning%20Base/1570104123858.png"/></a></p>
 </blockquote>
-<h1 id="&#x641C;&#x7D22;kd&#x6811;"><a name="&#x641C;&#x7D22;kd&#x6811;" class="anchor-navigation-ex-anchor" href="#&#x641C;&#x7D22;kd&#x6811;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x641C;&#x7D22;kd&#x6811;" class="plugin-anchor" href="#&#x641C;&#x7D22;kd&#x6811;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x641C;&#x7D22;kd&#x6811;</h1>
+<h1 id="搜索kd树">4 搜索kd树</h1>
 <blockquote>
-<p>&#x5229;&#x7528;kd&#x6811;&#x53EF;&#x4EE5;&#x7701;&#x53BB;&#x5BF9;&#x5927;&#x90E8;&#x5206;&#x6570;&#x636E;&#x70B9;&#x7684;&#x641C;&#x7D22;&#xFF0C;&#x4ECE;&#x800C;&#x51CF;&#x5C11;&#x641C;&#x7D22;&#x7684;&#x8BA1;&#x7B97;&#x91CF;&#x3002;&#x8FD9;&#x91CC;&#x4EE5;&#x6700;&#x8FD1;&#x90BB;&#x4E3A;&#x4F8B;&#x52A0;&#x4EE5;&#x53D9;&#x8FF0;&#xFF0C;&#x540C;&#x6837;&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x5E94;&#x7528;&#x5230;k&#x8FD1;&#x90BB;&#x3002;</p>
-<p>&#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x76EE;&#x6807;&#x70B9;&#xFF0C;&#x641C;&#x7D22;&#x5176;&#x6700;&#x8FD1;&#x90BB;&#x3002;&#x9996;&#x5148;&#x627E;&#x5230;&#x5305;&#x542B;&#x76EE;&#x6807;&#x70B9;&#x7684;&#x53F6;&#x7ED3;&#x70B9;&#xFF1B;&#x7136;&#x540E;&#x4ECE;&#x8BE5;&#x53F6;&#x7ED3;&#x70B9;&#x51FA;&#x53D1;&#xFF0C;&#x4F9D;&#x6B21;&#x56DE;&#x9000;&#x5230;&#x7236;&#x7ED3;&#x70B9;&#xFF1B;&#x4E0D;&#x65AD;&#x67E5;&#x627E;&#x4E0E;&#x76EE;&#x6807;&#x70B9;&#x6700;&#x90BB;&#x8FD1;&#x7684;&#x7ED3;&#x70B9;&#xFF0C;&#x5F53;&#x786E;&#x5B9A;&#x4E0D;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x66F4;&#x8FD1;&#x7684;&#x7ED3;&#x70B9;&#x65F6;&#x7EC8;&#x6B62;&#x3002;&#x8FD9;&#x6837;&#x641C;&#x7D22;&#x5C31;&#x88AB;&#x9650;&#x5236;&#x5728;&#x7A7A;&#x95F4;&#x7684;&#x5C40;&#x90E8;&#x533A;&#x57DF;&#x4E0A;&#xFF0C;&#x6548;&#x7387;&#x5927;&#x4E3A;&#x63D0;&#x9AD8;&#x3002;</p>
-<p>&#x5305;&#x542B;&#x76EE;&#x6807;&#x70B9;&#x7684;&#x53F6;&#x7ED3;&#x70B9;&#x5BF9;&#x5E94;&#x5305;&#x542B;&#x76EE;&#x6807;&#x70B9;&#x7684;&#x6700;&#x5C0F;&#x8D85;&#x77E9;&#x5F62;&#x533A;&#x57DF;&#x3002;</p>
-<p>&#x4EE5;&#x6B64;&#x53F6;&#x7ED3;&#x70B9;&#x7684;&#x5B9E;&#x4F8B;&#x70B9;&#x4F5C;&#x4E3A;&#x5F53;&#x524D;&#x6700;&#x8FD1;&#x70B9;&#x3002;</p>
-<p>&#x76EE;&#x6807;&#x70B9;&#x7684;&#x6700;&#x8FD1;&#x90BB;&#x4E00;&#x5B9A;&#x5728;&#x4EE5;&#x76EE;&#x6807;&#x70B9;&#x4E3A;&#x4E2D;&#x5FC3;&#x5E76;&#x901A;&#x8FC7;&#x5F53;&#x524D;&#x6700;&#x8FD1;&#x70B9;&#x7684;&#x8D85;&#x7403;&#x4F53;&#x7684;&#x5185;&#x90E8;&#x3002;</p>
-<p>&#x7136;&#x540E;&#x8FD4;&#x56DE;&#x5F53;&#x524D;&#x7ED3;&#x70B9;&#x7684;&#x7236;&#x7ED3;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x7236;&#x7ED3;&#x70B9;&#x7684;&#x53E6;&#x4E00;&#x5B50;&#x7ED3;&#x70B9;&#x7684;&#x8D85;&#x77E9;&#x5F62;&#x533A;&#x57DF;&#x4E0E;&#x8D85;&#x7403;&#x4F53;&#x76F8;&#x4EA4;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x76F8;&#x4EA4;&#x7684;&#x533A;&#x57DF;&#x5185;&#x5BFB;&#x627E;&#x4E0E;&#x76EE;&#x6807;&#x70B9;&#x66F4;&#x8FD1;&#x7684;&#x5B9E;&#x4F8B;&#x70B9;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x5B58;&#x5728;&#x8FD9;&#x6837;&#x7684;&#x70B9;&#xFF0C;&#x5C06;&#x6B64;&#x70B9;&#x4F5C;&#x4E3A;&#x65B0;&#x7684;&#x5F53;&#x524D;&#x6700;&#x8FD1;&#x70B9;&#x3002;</p>
-<p>&#x7B97;&#x6CD5;&#x8F6C;&#x5230;&#x66F4;&#x4E0A;&#x4E00;&#x7EA7;&#x7684;&#x7236;&#x7ED3;&#x70B9;&#xFF0C;&#x7EE7;&#x7EED;&#x4E0A;&#x8FF0;&#x8FC7;&#x7A0B;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x7236;&#x7ED3;&#x70B9;&#x7684;&#x53E6;&#x4E00;&#x5B50;&#x7ED3;&#x70B9;&#x7684;&#x8D85;&#x77E9;&#x5F62;&#x533A;&#x57DF;&#x4E0E;&#x8D85;&#x7403;&#x4F53;&#x4E0D;&#x76F8;&#x4EA4;&#xFF0C;&#x6216;&#x4E0D;&#x5B58;&#x5728;&#x6BD4;&#x5F53;&#x524D;&#x6700;&#x8FD1;&#x70B9;&#x66F4;&#x8FD1;&#x7684;&#x70B9;&#xFF0C;&#x5219;&#x505C;&#x6B62;&#x641C;&#x7D22;&#x3002;</p>
-<p><code>Example1</code>: &#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x5982;&#x56FE;&#x6240;&#x793A;&#x7684;kd&#x6811;&#xFF0C;&#x6839;&#x7ED3;&#x70B9;&#x4E3A;A&#xFF0C;&#x5176;&#x5B50;&#x7ED3;&#x70B9;&#x4E3A;B&#xFF0C;C&#x7B49;&#x3002;</p>
-<p>&#x6811;&#x4E0A;&#x5171;&#x5B58;&#x50A8;7&#x4E2A;&#x5B9E;&#x4F8B;&#x70B9;&#xFF1B;&#x53E6;&#x6709;&#x4E00;&#x4E2A;&#x8F93;&#x5165;&#x76EE;&#x6807;&#x5B9E;&#x4F8B;&#x70B9;S&#xFF0C;&#x6C42;S&#x7684;&#x6700;&#x8FD1;&#x90BB;&#x3002;</p>
-<p><a href="res/Machine%20Learning%20Base/1570104452917.png" data-lightbox="5fcebcfc-1bf5-4854-9941-d4056213a11f" data-title="1570104452917"><img src="res/Machine%20Learning%20Base/1570104452917.png" alt="1570104452917"></a></p>
-<p><strong>&#x89E3;</strong> &#x3000;&#x9996;&#x5148;&#x5728;kd&#x6811;&#x4E2D;&#x627E;&#x5230;&#x5305;&#x542B;&#x70B9;S&#x7684;&#x53F6;&#x7ED3;&#x70B9;D(&#x56FE;&#x4E2D;&#x7684;&#x53F3;&#x4E0B;&#x533A;&#x57DF;)&#xFF0C;&#x4EE5;&#x70B9;D&#x4F5C;&#x4E3A;&#x8FD1;&#x4F3C;&#x6700;&#x8FD1;&#x90BB;&#x3002;</p>
-<p>&#x771F;&#x6B63;&#x6700;&#x8FD1;&#x90BB;&#x4E00;&#x5B9A;&#x5728;&#x4EE5;&#x70B9;S&#x4E3A;&#x4E2D;&#x5FC3;&#x901A;&#x8FC7;&#x70B9;D&#x7684;&#x5706;&#x7684;&#x5185;&#x90E8;&#x3002;</p>
-<p>&#x7136;&#x540E;&#x8FD4;&#x56DE;&#x7ED3;&#x70B9;D&#x7684;&#x7236;&#x7ED3;&#x70B9;B&#xFF0C;&#x5728;&#x7ED3;&#x70B9;B&#x7684;&#x53E6;&#x4E00;&#x5B50;&#x7ED3;&#x70B9;F&#x7684;&#x533A;&#x57DF;&#x5185;&#x641C;&#x7D22;&#x6700;&#x8FD1;&#x90BB;&#x3002;</p>
-<p>&#x7ED3;&#x70B9;F&#x7684;&#x533A;&#x57DF;&#x4E0E;&#x5706;&#x4E0D;&#x76F8;&#x4EA4;&#xFF0C;&#x4E0D;&#x53EF;&#x80FD;&#x6709;&#x6700;&#x8FD1;&#x90BB;&#x70B9;&#x3002;</p>
-<p>&#x7EE7;&#x7EED;&#x8FD4;&#x56DE;&#x4E0A;&#x4E00;&#x7EA7;&#x7236;&#x7ED3;&#x70B9;A&#xFF0C;&#x5728;&#x7ED3;&#x70B9;A&#x7684;&#x53E6;&#x4E00;&#x5B50;&#x7ED3;&#x70B9;C&#x7684;&#x533A;&#x57DF;&#x5185;&#x641C;&#x7D22;&#x6700;&#x8FD1;&#x90BB;&#x3002;</p>
-<p>&#x7ED3;&#x70B9;C&#x7684;&#x533A;&#x57DF;&#x4E0E;&#x5706;&#x76F8;&#x4EA4;&#xFF1B;&#x8BE5;&#x533A;&#x57DF;&#x5728;&#x5706;&#x5185;&#x7684;&#x5B9E;&#x4F8B;&#x70B9;&#x6709;&#x70B9;E&#xFF0C;&#x70B9;E&#x6BD4;&#x70B9;D&#x66F4;&#x8FD1;&#xFF0C;&#x6210;&#x4E3A;&#x65B0;&#x7684;&#x6700;&#x8FD1;&#x90BB;&#x8FD1;&#x4F3C;&#x3002;</p>
-<p>&#x6700;&#x540E;&#x5F97;&#x5230;&#x70B9;E&#x662F;&#x70B9;S&#x7684;&#x6700;&#x8FD1;&#x90BB;&#x3002;</p>
+<p>利用kd树可以省去对大部分数据点的搜索，从而减少搜索的计算量。这里以最近邻为例加以叙述，同样的方法可以应用到k近邻。</p>
+<p>给定一个目标点，搜索其最近邻。首先找到包含目标点的叶结点；然后从该叶结点出发，依次回退到父结点；不断查找与目标点最邻近的结点，当确定不可能存在更近的结点时终止。这样搜索就被限制在空间的局部区域上，效率大为提高。</p>
+<p>包含目标点的叶结点对应包含目标点的最小超矩形区域。</p>
+<p>以此叶结点的实例点作为当前最近点。</p>
+<p>目标点的最近邻一定在以目标点为中心并通过当前最近点的超球体的内部。</p>
+<p>然后返回当前结点的父结点，如果父结点的另一子结点的超矩形区域与超球体相交，那么在相交的区域内寻找与目标点更近的实例点。</p>
+<p>如果存在这样的点，将此点作为新的当前最近点。</p>
+<p>算法转到更上一级的父结点，继续上述过程。</p>
+<p>如果父结点的另一子结点的超矩形区域与超球体不相交，或不存在比当前最近点更近的点，则停止搜索。</p>
+<p><code>Example1</code>: 给定一个如图所示的kd树，根结点为A，其子结点为B，C等。</p>
+<p>树上共存储7个实例点；另有一个输入目标实例点S，求S的最近邻。</p>
+<p><a data-lightbox="1c7440e4-b275-4f0b-ba31-73d780326529" data-title="1570104452917" href="res/Machine%20Learning%20Base/1570104452917.png"><img alt="1570104452917" src="res/Machine%20Learning%20Base/1570104452917.png"/></a></p>
+<p><strong>解</strong> 　首先在kd树中找到包含点S的叶结点D(图中的右下区域)，以点D作为近似最近邻。</p>
+<p>真正最近邻一定在以点S为中心通过点D的圆的内部。</p>
+<p>然后返回结点D的父结点B，在结点B的另一子结点F的区域内搜索最近邻。</p>
+<p>结点F的区域与圆不相交，不可能有最近邻点。</p>
+<p>继续返回上一级父结点A，在结点A的另一子结点C的区域内搜索最近邻。</p>
+<p>结点C的区域与圆相交；该区域在圆内的实例点有点E，点E比点D更近，成为新的最近邻近似。</p>
+<p>最后得到点E是点S的最近邻。</p>
 </blockquote>
-<h1 id="&#x6982;&#x8981;"><a name="&#x6982;&#x8981;" class="anchor-navigation-ex-anchor" href="#&#x6982;&#x8981;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6982;&#x8981;" class="plugin-anchor" href="#&#x6982;&#x8981;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6982;&#x8981;</h1>
+<h1 id="概要">5 概要</h1>
 <blockquote>
-<p>1&#xFF0E;k&#x8FD1;&#x90BB;&#x6CD5;&#x662F;&#x57FA;&#x672C;&#x4E14;&#x7B80;&#x5355;&#x7684;&#x5206;&#x7C7B;&#x4E0E;&#x56DE;&#x5F52;&#x65B9;&#x6CD5;&#x3002;k&#x8FD1;&#x90BB;&#x6CD5;&#x7684;&#x57FA;&#x672C;&#x505A;&#x6CD5;&#x662F;&#xFF1A;&#x5BF9;&#x7ED9;&#x5B9A;&#x7684;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x70B9;&#x548C;&#x8F93;&#x5165;&#x5B9E;&#x4F8B;&#x70B9;&#xFF0C;&#x9996;&#x5148;&#x786E;&#x5B9A;&#x8F93;&#x5165;&#x5B9E;&#x4F8B;&#x70B9;&#x7684;k&#x4E2A;&#x6700;&#x8FD1;&#x90BB;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x70B9;&#xFF0C;&#x7136;&#x540E;&#x5229;&#x7528;&#x8FD9;k&#x4E2A;&#x8BAD;&#x7EC3;&#x5B9E;&#x4F8B;&#x70B9;&#x7684;&#x7C7B;&#x7684;&#x591A;&#x6570;&#x6765;&#x9884;&#x6D4B;&#x8F93;&#x5165;&#x5B9E;&#x4F8B;&#x70B9;&#x7684;&#x7C7B;&#x3002;</p>
-<p>2&#xFF0E;k&#x8FD1;&#x90BB;&#x6A21;&#x578B;&#x5BF9;&#x5E94;&#x4E8E;&#x57FA;&#x4E8E;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;&#x5BF9;&#x7279;&#x5F81;&#x7A7A;&#x95F4;&#x7684;&#x4E00;&#x4E2A;&#x5212;&#x5206;&#x3002;k&#x8FD1;&#x90BB;&#x6CD5;&#x4E2D;&#xFF0C;&#x5F53;&#x8BAD;&#x7EC3;&#x96C6;&#x3001;&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;&#x3001;k&#x503C;&#x53CA;&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;&#x786E;&#x5B9A;&#x540E;&#xFF0C;&#x5176;&#x7ED3;&#x679C;&#x552F;&#x4E00;&#x786E;&#x5B9A;&#x3002;</p>
-<p>3&#xFF0E;k&#x8FD1;&#x90BB;&#x6CD5;&#x4E09;&#x8981;&#x7D20;&#xFF1A;&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;&#x3001;k&#x503C;&#x7684;&#x9009;&#x62E9;&#x548C;&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;&#x3002;&#x5E38;&#x7528;&#x7684;&#x8DDD;&#x79BB;&#x5EA6;&#x91CF;&#x662F;&#x6B27;&#x6C0F;&#x8DDD;&#x79BB;&#x53CA;&#x66F4;&#x4E00;&#x822C;&#x7684;pL&#x8DDD;&#x79BB;&#x3002;k&#x503C;&#x5C0F;&#x65F6;&#xFF0C;k&#x8FD1;&#x90BB;&#x6A21;&#x578B;&#x66F4;&#x590D;&#x6742;&#xFF1B;k&#x503C;&#x5927;&#x65F6;&#xFF0C;k&#x8FD1;&#x90BB;&#x6A21;&#x578B;&#x66F4;&#x7B80;&#x5355;&#x3002;k&#x503C;&#x7684;&#x9009;&#x62E9;&#x53CD;&#x6620;&#x4E86;&#x5BF9;&#x8FD1;&#x4F3C;&#x8BEF;&#x5DEE;&#x4E0E;&#x4F30;&#x8BA1;&#x8BEF;&#x5DEE;&#x4E4B;&#x95F4;&#x7684;&#x6743;&#x8861;&#xFF0C;&#x901A;&#x5E38;&#x7531;&#x4EA4;&#x53C9;&#x9A8C;&#x8BC1;&#x9009;&#x62E9;&#x6700;&#x4F18;&#x7684;k&#x3002;&#x5E38;&#x7528;&#x7684;&#x5206;&#x7C7B;&#x51B3;&#x7B56;&#x89C4;&#x5219;&#x662F;&#x591A;&#x6570;&#x8868;&#x51B3;&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x7ECF;&#x9A8C;&#x98CE;&#x9669;&#x6700;&#x5C0F;&#x5316;&#x3002;</p>
-<p>4&#xFF0E;k&#x8FD1;&#x90BB;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;&#x9700;&#x8981;&#x8003;&#x8651;&#x5982;&#x4F55;&#x5FEB;&#x901F;&#x641C;&#x7D22;k&#x4E2A;&#x6700;&#x8FD1;&#x90BB;&#x70B9;&#x3002;kd&#x6811;&#x662F;&#x4E00;&#x79CD;&#x4FBF;&#x4E8E;&#x5BF9;k&#x7EF4;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5FEB;&#x901F;&#x68C0;&#x7D22;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3002;kd&#x6811;&#x662F;&#x4E8C;&#x53C9;&#x6811;&#xFF0C;&#x8868;&#x793A;&#x5BF9;k&#x7EF4;&#x7A7A;&#x95F4;&#x7684;&#x4E00;&#x4E2A;&#x5212;&#x5206;&#xFF0C;&#x5176;&#x6BCF;&#x4E2A;&#x7ED3;&#x70B9;&#x5BF9;&#x5E94;&#x4E8E;k&#x7EF4;&#x7A7A;&#x95F4;&#x5212;&#x5206;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x8D85;&#x77E9;&#x5F62;&#x533A;&#x57DF;&#x3002;&#x5229;&#x7528;kd&#x6811;&#x53EF;&#x4EE5;&#x7701;&#x53BB;&#x5BF9;&#x5927;&#x90E8;&#x5206;&#x6570;&#x636E;&#x70B9;&#x7684;&#x641C;&#x7D22;&#xFF0C;&#x4ECE;&#x800C;&#x51CF;&#x5C11;&#x641C;&#x7D22;&#x7684;&#x8BA1;&#x7B97;&#x91CF;&#x3002;</p>
+<p>1．k近邻法是基本且简单的分类与回归方法。k近邻法的基本做法是：对给定的训练实例点和输入实例点，首先确定输入实例点的k个最近邻训练实例点，然后利用这k个训练实例点的类的多数来预测输入实例点的类。</p>
+<p>2．k近邻模型对应于基于训练数据集对特征空间的一个划分。k近邻法中，当训练集、距离度量、k值及分类决策规则确定后，其结果唯一确定。</p>
+<p>3．k近邻法三要素：距离度量、k值的选择和分类决策规则。常用的距离度量是欧氏距离及更一般的pL距离。k值小时，k近邻模型更复杂；k值大时，k近邻模型更简单。k值的选择反映了对近似误差与估计误差之间的权衡，通常由交叉验证选择最优的k。常用的分类决策规则是多数表决，对应于经验风险最小化。</p>
+<p>4．k近邻法的实现需要考虑如何快速搜索k个最近邻点。kd树是一种便于对k维空间中的数据进行快速检索的数据结构。kd树是二叉树，表示对k维空间的一个划分，其每个结点对应于k维空间划分中的一个超矩形区域。利用kd树可以省去对大部分数据点的搜索，从而减少搜索的计算量。</p>
 </blockquote>
-<p></p><footer class="page-footer"><span class="copyright">Copyright &#xA9; narutohyc.com 2020 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-02-07 06:55:58
-</span></footer><hr><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
-
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
+<p></p><footer class="page-footer"><span class="copyright">Copyright © narutohyc.com 2020 all right reserved，powered by Gitbook</span><span class="footer-modification">该文件修订时间：
+2022-02-15 13:30:23
+</span></footer><hr/><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
+</section>
 </div>
-
-                        </div>
-                    </div>
-                
-            </div>
-
-            
-                
-                <a href="监督学习_决策树.html" class="navigation navigation-prev " aria-label="Previous page: 监督学习_决策树">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="监督学习_支持向量机.html" class="navigation navigation-next " aria-label="Next page: 监督学习_支持向量机">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
-
-    <script>
+<div class="search-results">
+<div class="has-results">
+<h1 class="search-results-title"><span class="search-results-count"></span> results matching "<span class="search-query"></span>"</h1>
+<ul class="search-results-list"></ul>
+</div>
+<div class="no-results">
+<h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a aria-label="Previous page: 监督学习_决策树" class="navigation navigation-prev" href="监督学习_决策树.html">
+<i class="fa fa-angle-left"></i>
+</a>
+<a aria-label="Next page: 监督学习_支持向量机" class="navigation navigation-next" href="监督学习_支持向量机.html">
+<i class="fa fa-angle-right"></i>
+</a>
+</div>
+<script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"监督学习_K近邻法","level":"1.6.3","depth":2,"next":{"title":"监督学习_支持向量机","level":"1.6.4","depth":2,"path":"chapters/监督学习_支持向量机.md","ref":"chapters/监督学习_支持向量机.md","articles":[]},"previous":{"title":"监督学习_决策树","level":"1.6.2","depth":2,"path":"chapters/监督学习_决策树.md","ref":"chapters/监督学习_决策树.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/监督学习_K近邻法.md","mtime":"2022-02-07T06:55:58.086Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-07T06:57:25.147Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"监督学习_K近邻法","level":"1.6.3","depth":2,"next":{"title":"监督学习_支持向量机","level":"1.6.4","depth":2,"path":"chapters/监督学习_支持向量机.md","ref":"chapters/监督学习_支持向量机.md","articles":[]},"previous":{"title":"监督学习_决策树","level":"1.6.2","depth":2,"path":"chapters/监督学习_决策树.md","ref":"chapters/监督学习_决策树.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/监督学习_K近邻法.md","mtime":"2022-02-15T13:30:23.521Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-15T13:32:13.117Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
-
-        
-    
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
-        
-    
-        
-        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lightbox/js/lightbox.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-change_girls/girls.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
-        
-    
-
-    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
-
-    </body>
+<script src="../gitbook/gitbook.js"></script>
+<script src="../gitbook/theme.js"></script>
+<script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+<script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+<script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+<script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+<script src="../gitbook/gitbook-plugin-lightbox/js/lightbox.min.js"></script>
+<script src="../gitbook/gitbook-plugin-change_girls/girls.js"></script>
+<script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+<script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+<script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+</body>
 </html>
-

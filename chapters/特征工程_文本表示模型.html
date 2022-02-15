@@ -1,969 +1,516 @@
-
 <!DOCTYPE HTML>
-<html lang="zh-hans" >
-    <head>
-        <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>特征工程_文本表示模型 · 机器学习相关学习记录</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        <meta name="author" content="narutohyc">
-        
-        
-    
-    
-    <link rel="stylesheet" href="../gitbook/style.css">
-
-    
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-lightbox/css/lightbox.min.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-change_girls/girls.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
-                
-            
-        
-
-    
-
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-
-    
-
-        
-    
-    
-    
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="特征工程_图像增强.html" />
-    
-    
-    <link rel="prev" href="特征工程_特征选择.html" />
-    
-
-    
-        <link rel="shortcut icon" href="./chapters/res/other/favicon.ico" type="image/x-icon">
-    
-    
-    
-    
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./chapters/res/other/favicon.ico">
-    
-    
-        
-    
-    
-        
-    
-
-    
-        <link rel="shortcut icon" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png' type="image/x-icon">
-    
-    
-        <link rel="bookmark" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png' type="image/x-icon">
-    
-    
-        <link rel="apple-touch-icon" href='../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png'>
-    
-    
-        
-        <link rel="apple-touch-icon" sizes="120x120" href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png">
-        
-        <link rel="apple-touch-icon" sizes="180x180" href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png">
-        
-    
-
-    <style>
+<html lang="zh-hans">
+<head>
+<meta charset="utf-8"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>特征工程_文本表示模型 · 机器学习相关学习记录</title>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="" name="description"/>
+<meta content="GitBook 3.2.3" name="generator"/>
+<meta content="narutohyc" name="author"/>
+<link href="../gitbook/style.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-splitter/splitter.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-anchors/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-donate/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-code/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-search-plus/search.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-lightbox/css/lightbox.min.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-change_girls/girls.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-pageview-count/plugin.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
+<link href="../gitbook/gitbook-plugin-theme-comscore/test.css" rel="stylesheet"/>
+<meta content="true" name="HandheldFriendly"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<link href="../gitbook/images/apple-touch-icon-precomposed-152.png" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="../gitbook/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="特征工程_图像增强.html" rel="next"/>
+<link href="特征工程_特征选择.html" rel="prev"/>
+<link href="./chapters/res/other/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="./chapters/res/other/favicon.ico" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="shortcut icon" type="image/x-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="bookmark" type="image/x-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon" sizes="120x120"/>
+<link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="apple-touch-icon" sizes="180x180"/>
+<style>
     @media only screen and (max-width: 640px) {
         .book-header .hidden-mobile {
             display: none;
         }
     }
     </style>
-    <script>
+<script>
         window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]};
     </script>
-
-    </head>
-    <body>
-        
+</head>
+<body>
 <div class="book">
-    <div class="book-summary">
-        
-            
+<div class="book-summary">
 <div id="book-search-input" role="search">
-    <input type="text" placeholder="输入并搜索" />
+<input placeholder="输入并搜索" type="text"/>
 </div>
-
-            
-                <nav role="navigation">
-                
-
-
+<nav role="navigation">
 <ul class="summary">
-    
-    
-    
-        
-        <li>
-            <a href="https://github.com/narutohyc" target="_blank" class="custom-link">我的狗窝</a>
-        </li>
-    
-    
-
-    
-    <li class="divider"></li>
-    
-
-    
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="../">
-            
-                <a href="../">
-            
-                    
-                        <b>1.1.</b>
+<li>
+<a class="custom-link" href="https://github.com/narutohyc" target="_blank">我的狗窝</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-level="1.1" data-path="../">
+<a href="../">
+<b>1.1.</b>
                     
                     Introduction
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2" data-path="机器学习基础.html">
-            
-                <a href="机器学习基础.html">
-            
-                    
-                        <b>1.2.</b>
+</li>
+<li class="chapter" data-level="1.2" data-path="机器学习基础.html">
+<a href="机器学习基础.html">
+<b>1.2.</b>
                     
                     机器学习基础
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.2.1" data-path="机器学习基础_距离.html">
-            
-                <a href="机器学习基础_距离.html">
-            
-                    
-                        <b>1.2.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.2.1" data-path="机器学习基础_距离.html">
+<a href="机器学习基础_距离.html">
+<b>1.2.1.</b>
                     
                     机器学习基础_距离
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.2" data-path="机器学习基础_概率论基础.html">
-            
-                <a href="机器学习基础_概率论基础.html">
-            
-                    
-                        <b>1.2.2.</b>
+</li>
+<li class="chapter" data-level="1.2.2" data-path="机器学习基础_概率论基础.html">
+<a href="机器学习基础_概率论基础.html">
+<b>1.2.2.</b>
                     
                     机器学习基础_概率论基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.3" data-path="机器学习基础_线性代数基础.html">
-            
-                <a href="机器学习基础_线性代数基础.html">
-            
-                    
-                        <b>1.2.3.</b>
+</li>
+<li class="chapter" data-level="1.2.3" data-path="机器学习基础_线性代数基础.html">
+<a href="机器学习基础_线性代数基础.html">
+<b>1.2.3.</b>
                     
                     机器学习基础_线性代数基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.4" data-path="机器学习基础_微积分基础.html">
-            
-                <a href="机器学习基础_微积分基础.html">
-            
-                    
-                        <b>1.2.4.</b>
+</li>
+<li class="chapter" data-level="1.2.4" data-path="机器学习基础_微积分基础.html">
+<a href="机器学习基础_微积分基础.html">
+<b>1.2.4.</b>
                     
                     机器学习基础_微积分基础
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.5" data-path="机器学习基础_最优化理论.html">
-            
-                <a href="机器学习基础_最优化理论.html">
-            
-                    
-                        <b>1.2.5.</b>
+</li>
+<li class="chapter" data-level="1.2.5" data-path="机器学习基础_最优化理论.html">
+<a href="机器学习基础_最优化理论.html">
+<b>1.2.5.</b>
                     
                     机器学习基础_最优化理论
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.6" data-path="机器学习基础_损失函数.html">
-            
-                <a href="机器学习基础_损失函数.html">
-            
-                    
-                        <b>1.2.6.</b>
+</li>
+<li class="chapter" data-level="1.2.6" data-path="机器学习基础_损失函数.html">
+<a href="机器学习基础_损失函数.html">
+<b>1.2.6.</b>
                     
                     机器学习基础_损失函数
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3" data-path="特征工程.html">
-            
-                <a href="特征工程.html">
-            
-                    
-                        <b>1.3.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.3" data-path="特征工程.html">
+<a href="特征工程.html">
+<b>1.3.</b>
                     
                     特征工程
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.3.1" data-path="特征工程_归一化.html">
-            
-                <a href="特征工程_归一化.html">
-            
-                    
-                        <b>1.3.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.3.1" data-path="特征工程_归一化.html">
+<a href="特征工程_归一化.html">
+<b>1.3.1.</b>
                     
                     特征工程_归一化
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.2" data-path="特征工程_编码.html">
-            
-                <a href="特征工程_编码.html">
-            
-                    
-                        <b>1.3.2.</b>
+</li>
+<li class="chapter" data-level="1.3.2" data-path="特征工程_编码.html">
+<a href="特征工程_编码.html">
+<b>1.3.2.</b>
                     
                     特征工程_编码
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.3" data-path="特征工程_特征组合.html">
-            
-                <a href="特征工程_特征组合.html">
-            
-                    
-                        <b>1.3.3.</b>
+</li>
+<li class="chapter" data-level="1.3.3" data-path="特征工程_特征组合.html">
+<a href="特征工程_特征组合.html">
+<b>1.3.3.</b>
                     
                     特征工程_特征组合
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.4" data-path="特征工程_特征选择.html">
-            
-                <a href="特征工程_特征选择.html">
-            
-                    
-                        <b>1.3.4.</b>
+</li>
+<li class="chapter" data-level="1.3.4" data-path="特征工程_特征选择.html">
+<a href="特征工程_特征选择.html">
+<b>1.3.4.</b>
                     
                     特征工程_特征选择
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.3.5" data-path="特征工程_文本表示模型.html">
-            
-                <a href="特征工程_文本表示模型.html">
-            
-                    
-                        <b>1.3.5.</b>
+</li>
+<li class="chapter active" data-level="1.3.5" data-path="特征工程_文本表示模型.html">
+<a href="特征工程_文本表示模型.html">
+<b>1.3.5.</b>
                     
                     特征工程_文本表示模型
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.6" data-path="特征工程_图像增强.html">
-            
-                <a href="特征工程_图像增强.html">
-            
-                    
-                        <b>1.3.6.</b>
+</li>
+<li class="chapter" data-level="1.3.6" data-path="特征工程_图像增强.html">
+<a href="特征工程_图像增强.html">
+<b>1.3.6.</b>
                     
                     特征工程_图像增强
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4" data-path="模型评估.html">
-            
-                <a href="模型评估.html">
-            
-                    
-                        <b>1.4.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.4" data-path="模型评估.html">
+<a href="模型评估.html">
+<b>1.4.</b>
                     
                     模型评估
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.1" data-path="模型评估_评估指标.html">
-            
-                <a href="模型评估_评估指标.html">
-            
-                    
-                        <b>1.4.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.4.1" data-path="模型评估_评估指标.html">
+<a href="模型评估_评估指标.html">
+<b>1.4.1.</b>
                     
                     模型评估_评估指标
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="模型评估_AB测试.html">
-            
-                <a href="模型评估_AB测试.html">
-            
-                    
-                        <b>1.4.2.</b>
+</li>
+<li class="chapter" data-level="1.4.2" data-path="模型评估_AB测试.html">
+<a href="模型评估_AB测试.html">
+<b>1.4.2.</b>
                     
                     模型评估_AB测试
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.3" data-path="模型评估_过拟合和欠拟合.html">
-            
-                <a href="模型评估_过拟合和欠拟合.html">
-            
-                    
-                        <b>1.4.3.</b>
+</li>
+<li class="chapter" data-level="1.4.3" data-path="模型评估_过拟合和欠拟合.html">
+<a href="模型评估_过拟合和欠拟合.html">
+<b>1.4.3.</b>
                     
                     模型评估_过拟合和欠拟合
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.4" data-path="模型评估_超参数选择.html">
-            
-                <a href="模型评估_超参数选择.html">
-            
-                    
-                        <b>1.4.4.</b>
+</li>
+<li class="chapter" data-level="1.4.4" data-path="模型评估_超参数选择.html">
+<a href="模型评估_超参数选择.html">
+<b>1.4.4.</b>
                     
                     模型评估_超参数选择
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.5" data-path="模型评估_模型评估方法.html">
-            
-                <a href="模型评估_模型评估方法.html">
-            
-                    
-                        <b>1.4.5.</b>
+</li>
+<li class="chapter" data-level="1.4.5" data-path="模型评估_模型评估方法.html">
+<a href="模型评估_模型评估方法.html">
+<b>1.4.5.</b>
                     
                     模型评估_模型评估方法
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5" data-path="降维.html">
-            
-                <a href="降维.html">
-            
-                    
-                        <b>1.5.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.5" data-path="降维.html">
+<a href="降维.html">
+<b>1.5.</b>
                     
                     降维
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.5.1" data-path="降维_PCA主成分分析.html">
-            
-                <a href="降维_PCA主成分分析.html">
-            
-                    
-                        <b>1.5.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.5.1" data-path="降维_PCA主成分分析.html">
+<a href="降维_PCA主成分分析.html">
+<b>1.5.1.</b>
                     
                     降维_PCA主成分分析
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.2" data-path="降维_LDA线性判别分析.html">
-            
-                <a href="降维_LDA线性判别分析.html">
-            
-                    
-                        <b>1.5.2.</b>
+</li>
+<li class="chapter" data-level="1.5.2" data-path="降维_LDA线性判别分析.html">
+<a href="降维_LDA线性判别分析.html">
+<b>1.5.2.</b>
                     
                     降维_LDA线性判别分析
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6" data-path="监督学习.html">
-            
-                <a href="监督学习.html">
-            
-                    
-                        <b>1.6.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.6" data-path="监督学习.html">
+<a href="监督学习.html">
+<b>1.6.</b>
                     
                     监督学习
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.6.1" data-path="监督学习_朴素贝叶斯分类.html">
-            
-                <a href="监督学习_朴素贝叶斯分类.html">
-            
-                    
-                        <b>1.6.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.6.1" data-path="监督学习_朴素贝叶斯分类.html">
+<a href="监督学习_朴素贝叶斯分类.html">
+<b>1.6.1.</b>
                     
                     监督学习_朴素贝叶斯分类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.2" data-path="监督学习_决策树.html">
-            
-                <a href="监督学习_决策树.html">
-            
-                    
-                        <b>1.6.2.</b>
+</li>
+<li class="chapter" data-level="1.6.2" data-path="监督学习_决策树.html">
+<a href="监督学习_决策树.html">
+<b>1.6.2.</b>
                     
                     监督学习_决策树
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.3" data-path="监督学习_K近邻法.html">
-            
-                <a href="监督学习_K近邻法.html">
-            
-                    
-                        <b>1.6.3.</b>
+</li>
+<li class="chapter" data-level="1.6.3" data-path="监督学习_K近邻法.html">
+<a href="监督学习_K近邻法.html">
+<b>1.6.3.</b>
                     
                     监督学习_K近邻法
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.4" data-path="监督学习_支持向量机.html">
-            
-                <a href="监督学习_支持向量机.html">
-            
-                    
-                        <b>1.6.4.</b>
+</li>
+<li class="chapter" data-level="1.6.4" data-path="监督学习_支持向量机.html">
+<a href="监督学习_支持向量机.html">
+<b>1.6.4.</b>
                     
                     监督学习_支持向量机
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.5" data-path="监督学习_CRF.html">
-            
-                <a href="监督学习_CRF.html">
-            
-                    
-                        <b>1.6.5.</b>
+</li>
+<li class="chapter" data-level="1.6.5" data-path="监督学习_CRF.html">
+<a href="监督学习_CRF.html">
+<b>1.6.5.</b>
                     
                     监督学习_CRF
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7" data-path="非监督学习.html">
-            
-                <a href="非监督学习.html">
-            
-                    
-                        <b>1.7.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.7" data-path="非监督学习.html">
+<a href="非监督学习.html">
+<b>1.7.</b>
                     
                     非监督学习
             
                 </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.7.1" data-path="非监督学习_K均值.html">
-            
-                <a href="非监督学习_K均值.html">
-            
-                    
-                        <b>1.7.1.</b>
+<ul class="articles">
+<li class="chapter" data-level="1.7.1" data-path="非监督学习_K均值.html">
+<a href="非监督学习_K均值.html">
+<b>1.7.1.</b>
                     
                     非监督学习_K均值
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.2" data-path="非监督学习_Mean Shift均值漂移聚类.html">
-            
-                <a href="非监督学习_Mean Shift均值漂移聚类.html">
-            
-                    
-                        <b>1.7.2.</b>
+</li>
+<li class="chapter" data-level="1.7.2" data-path="非监督学习_Mean Shift均值漂移聚类.html">
+<a href="非监督学习_Mean Shift均值漂移聚类.html">
+<b>1.7.2.</b>
                     
                     非监督学习_Mean Shift均值漂移聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.3" data-path="非监督学习_DBSCAN基于密度的聚类方法.html">
-            
-                <a href="非监督学习_DBSCAN基于密度的聚类方法.html">
-            
-                    
-                        <b>1.7.3.</b>
+</li>
+<li class="chapter" data-level="1.7.3" data-path="非监督学习_DBSCAN基于密度的聚类方法.html">
+<a href="非监督学习_DBSCAN基于密度的聚类方法.html">
+<b>1.7.3.</b>
                     
                     非监督学习_DBSCAN基于密度的聚类方法
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.4" data-path="非监督学习_Hierarchical Clustering层次聚类.html">
-            
-                <a href="非监督学习_Hierarchical Clustering层次聚类.html">
-            
-                    
-                        <b>1.7.4.</b>
+</li>
+<li class="chapter" data-level="1.7.4" data-path="非监督学习_Hierarchical Clustering层次聚类.html">
+<a href="非监督学习_Hierarchical Clustering层次聚类.html">
+<b>1.7.4.</b>
                     
                     非监督学习_Hierarchical Clustering层次聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.5" data-path="非监督学习_Spectral Clustering谱聚类.html">
-            
-                <a href="非监督学习_Spectral Clustering谱聚类.html">
-            
-                    
-                        <b>1.7.5.</b>
+</li>
+<li class="chapter" data-level="1.7.5" data-path="非监督学习_Spectral Clustering谱聚类.html">
+<a href="非监督学习_Spectral Clustering谱聚类.html">
+<b>1.7.5.</b>
                     
                     非监督学习_Spectral Clustering谱聚类
             
                 </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.8" data-path="半监督学习.html">
-            
-                <a href="半监督学习.html">
-            
-                    
-                        <b>1.8.</b>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="1.8" data-path="半监督学习.html">
+<a href="半监督学习.html">
+<b>1.8.</b>
                     
                     半监督学习
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9" data-path="集成学习.html">
-            
-                <a href="集成学习.html">
-            
-                    
-                        <b>1.9.</b>
+</li>
+<li class="chapter" data-level="1.9" data-path="集成学习.html">
+<a href="集成学习.html">
+<b>1.9.</b>
                     
                     集成学习
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.10" data-path="强化学习.html">
-            
-                <a href="强化学习.html">
-            
-                    
-                        <b>1.10.</b>
+</li>
+<li class="chapter" data-level="1.10" data-path="强化学习.html">
+<a href="强化学习.html">
+<b>1.10.</b>
                     
                     强化学习
             
                 </a>
-            
-
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+</li>
+<li class="divider"></li>
+<li>
+<a class="gitbook-link" href="https://www.gitbook.com" target="blank">
             本书使用 GitBook 发布
         </a>
-    </li>
+</li>
 </ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >特征工程_文本表示模型</a>
-    </h1>
+</nav>
 </div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="..">特征工程_文本表示模型</a>
+</h1>
+</div>
+<div class="page-wrapper" role="main" tabindex="-1">
+<div class="page-inner">
 <div class="search-plus" id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x6587;&#x672C;&#x8868;&#x793A;&#x6A21;&#x578B;"><b></b>&#x6587;&#x672C;&#x8868;&#x793A;&#x6A21;&#x578B;</a></li><ul><li><span class="title-icon "></span><a href="#&#x8BCD;&#x5D4C;&#x5165;"><b></b>&#x8BCD;&#x5D4C;&#x5165;</a></li></ul><li><span class="title-icon "></span><a href="#&#x57FA;&#x4E8E;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#x7684;&#x8BCD;&#x5D4C;&#x5165;"><b></b>&#x57FA;&#x4E8E;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#x7684;&#x8BCD;&#x5D4C;&#x5165;</a></li><ul><li><span class="title-icon "></span><a href="#one-hot-vector"><b></b>one hot vector</a></li><li><span class="title-icon "></span><a href="#bag-of-words"><b></b>Bag of Words</a></li><li><span class="title-icon "></span><a href="#tf-idf&#x5411;&#x91CF;"><b></b>TF-IDF&#x5411;&#x91CF;</a></li><li><span class="title-icon "></span><a href="#&#x5171;&#x73B0;&#x77E9;&#x9635;-cocurrence-matrix"><b></b>&#x5171;&#x73B0;&#x77E9;&#x9635; (Cocurrence matrix)</a></li><li><span class="title-icon "></span><a href="#pmi&#x8BA1;&#x7B97;"><b></b>pmi&#x8BA1;&#x7B97;</a></li></ul><li><span class="title-icon "></span><a href="#&#x8BED;&#x8A00;&#x6A21;&#x578B;"><b></b>&#x8BED;&#x8A00;&#x6A21;&#x578B;</a></li><ul><li><span class="title-icon "></span><a href="#&#x5206;&#x5E03;&#x5F0F;&#x8868;&#x793A;"><b></b>&#x5206;&#x5E03;&#x5F0F;&#x8868;&#x793A;</a></li><li><span class="title-icon "></span><a href="#word2vec"><b></b>word2vec</a></li><li><span class="title-icon "></span><a href="#fasttext"><b></b>fasttext</a></li><li><span class="title-icon "></span><a href="#glove"><b></b>GloVe</a></li><li><span class="title-icon "></span><a href="#elmo"><b></b>ELMO</a></li><ul><li><span class="title-icon "></span><a href="#&#x7F51;&#x7EDC;&#x6A21;&#x578B;"><b></b>&#x7F51;&#x7EDC;&#x6A21;&#x578B;</a></li><li><span class="title-icon "></span><a href="#&#x8FC7;&#x7A0B;"><b></b>&#x8FC7;&#x7A0B;</a></li><li><span class="title-icon "></span><a href="#&#x6548;&#x679C;"><b></b>&#x6548;&#x679C;</a></li></ul></ul></ul></div><a href="#&#x6587;&#x672C;&#x8868;&#x793A;&#x6A21;&#x578B;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a href="res/other/&#x5F02;&#x4E16;&#x754C;&#x857E;&#x59C6;_1.png" data-lightbox="1f4165ec-949a-4f66-87a8-b3eb783d0bca" data-title="&#x5F02;&#x4E16;&#x754C;.png"><img src="res/other/&#x5F02;&#x4E16;&#x754C;&#x857E;&#x59C6;_1.png" alt="&#x5F02;&#x4E16;&#x754C;.png"></a></p>
+<div class="search-noresults">
+<section class="normal markdown-section">
+<div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon"></span><a href="#文本表示模型">1 文本表示模型</a></li><ul><li><span class="title-icon"></span><a href="#词嵌入">1.1 词嵌入</a></li></ul><li><span class="title-icon"></span><a href="#基于统计方法的词嵌入">2 基于统计方法的词嵌入</a></li><ul><li><span class="title-icon"></span><a href="#one-hot-vector">2.1 one hot vector</a></li><li><span class="title-icon"></span><a href="#bag-of-words">2.2 Bag of Words</a></li><li><span class="title-icon"></span><a href="#tf-idf向量">2.3 TF-IDF向量</a></li><li><span class="title-icon"></span><a href="#共现矩阵-cocurrence-matrix">2.4 共现矩阵 (Cocurrence matrix)</a></li><li><span class="title-icon"></span><a href="#pmi计算">2.5 pmi计算</a></li></ul><li><span class="title-icon"></span><a href="#语言模型">3 语言模型</a></li><ul><li><span class="title-icon"></span><a href="#分布式表示">3.1 分布式表示</a></li><li><span class="title-icon"></span><a href="#word2vec">3.2 word2vec</a></li><li><span class="title-icon"></span><a href="#fasttext">3.3 fasttext</a></li><li><span class="title-icon"></span><a href="#glove">3.4 GloVe</a></li><li><span class="title-icon"></span><a href="#elmo">3.5 ELMO</a></li><ul><li><span class="title-icon"></span><a href="#网络模型">3.5.1 网络模型</a></li><li><span class="title-icon"></span><a href="#过程">3.5.2 过程</a></li><li><span class="title-icon"></span><a href="#效果">3.5.3 效果</a></li></ul></ul></ul></div><a href="#文本表示模型" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a data-lightbox="7a5d1608-708a-46c9-a5fb-1feb21214ce3" data-title="异世界.png" href="res/other/异世界蕾姆_1.png"><img alt="异世界.png" src="res/other/异世界蕾姆_1.png"/></a></p>
 <p>[TOC]</p>
-<hr>
+<hr/>
 <blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/55219437" target="_blank">BERT&#x53D1;&#x5C55;&#x53F2;&#xFF08;&#x4E00;&#xFF09;&#x4ECE;&#x8BCD;&#x5D4C;&#x5165;&#x8BB2;&#x8D77;</a></p>
-<p><a href="https://www.zhihu.com/question/44832436?sort=created" target="_blank">word2vec&#x662F;&#x5982;&#x4F55;&#x5F97;&#x5230;&#x8BCD;&#x5411;&#x91CF;&#x7684;&#xFF1F;</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/42310942" target="_blank">NLP&#x4E2D;&#x7684;&#x6587;&#x672C;&#x8868;&#x793A;&#x65B9;&#x6CD5;</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/55219437" target="_blank">BERT发展史（一）从词嵌入讲起</a></p>
+<p><a href="https://www.zhihu.com/question/44832436?sort=created" target="_blank">word2vec是如何得到词向量的？</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/42310942" target="_blank">NLP中的文本表示方法</a></p>
 </blockquote>
-<h1 id="&#x6587;&#x672C;&#x8868;&#x793A;&#x6A21;&#x578B;"><a name="&#x6587;&#x672C;&#x8868;&#x793A;&#x6A21;&#x578B;" class="anchor-navigation-ex-anchor" href="#&#x6587;&#x672C;&#x8868;&#x793A;&#x6A21;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6587;&#x672C;&#x8868;&#x793A;&#x6A21;&#x578B;" class="plugin-anchor" href="#&#x6587;&#x672C;&#x8868;&#x793A;&#x6A21;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6587;&#x672C;&#x8868;&#x793A;&#x6A21;&#x578B;</h1>
+<h1 id="文本表示模型">1 文本表示模型</h1>
 <blockquote>
-<p>&#x673A;&#x5668;&#x5B66;&#x4E60;&#x4E2D;&#xFF0C;&#x6316;&#x6398;&#x5F71;&#x54CD;&#x4E8B;&#x4EF6;&#x7ED3;&#x679C;&#x56E0;&#x7D20;&#x7684;&#x8FC7;&#x7A0B;&#x79F0;&#x4E3A;&#x7279;&#x5F81;&#x5DE5;&#x7A0B;&#xFF0C;&#x8FD9;&#x4E00;&#x6B65;&#x7684;&#x76EE;&#x7684;&#x662F;&#x4F9D;&#x636E;&#x73B0;&#x6709;&#x6570;&#x636E;&#x6316;&#x6398;&#x51FA;&#x5BF9;&#x7ED3;&#x679C;&#x6709;&#x5F71;&#x54CD;&#x7684;&#x56E0;&#x7D20;&#xFF08;&#x4E5F;&#x53EB;&#x7279;&#x5F81;&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x7279;&#x5F81;&#x5BF9;&#x7ED3;&#x679C;&#x8FDB;&#x884C;&#x5EFA;&#x6A21;&#x3002;</p>
-<p>&#x597D;&#x7684;&#x7279;&#x5F81;&#x5BF9;&#x4E8E;&#x5EFA;&#x6A21;&#x7684;&#x91CD;&#x8981;&#x6027;&#x3002;&#x5C31;&#x50CF;&#x6211;&#x4EEC;&#x8FD9;&#x4E16;&#x754C;&#x6709;&#x679C;&#x7686;&#x6709;&#x56E0;&#xFF0C;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#x53D1;&#x751F;&#x7684;&#x80CC;&#x540E;&#xFF0C;&#x5B9A;&#x6709;&#x5404;&#x79CD;&#x56E0;&#x7D20;&#x5728;&#x80CC;&#x540E;&#x652F;&#x6491;&#x3002;&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x8BA1;&#x7B97;&#x673A;&#x80FD;&#x591F;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x5EFA;&#x7ACB;&#x5404;&#x79CD;&#x56E0;&#x7D20;&#x53D6;&#x503C;&#x548C;&#x4E8B;&#x4EF6;&#x7ED3;&#x679C;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#xFF0C;&#x4F46;&#x5728;&#x6B64;&#x4E4B;&#x524D;&#xFF0C;&#x5982;&#x4F55;&#x786E;&#x5B9A;&#x8FD9;&#x4E9B;&#x56E0;&#x7D20;&#x5219;&#x662F;&#x4E2A;&#x8BA9;&#x4EBA;&#x5934;&#x75BC;&#x7684;&#x4E1C;&#x897F;&#x3002;</p>
+<p>机器学习中，挖掘影响事件结果因素的过程称为特征工程，这一步的目的是依据现有数据挖掘出对结果有影响的因素（也叫特征），然后使用这些特征对结果进行建模。</p>
+<p>好的特征对于建模的重要性。就像我们这世界有果皆有因，一件事情发生的背后，定有各种因素在背后支撑。我们希望计算机能够帮助我们建立各种因素取值和事件结果的对应关系，但在此之前，如何确定这些因素则是个让人头疼的东西。</p>
 </blockquote>
-<h2 id="&#x8BCD;&#x5D4C;&#x5165;"><a name="&#x8BCD;&#x5D4C;&#x5165;" class="anchor-navigation-ex-anchor" href="#&#x8BCD;&#x5D4C;&#x5165;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8BCD;&#x5D4C;&#x5165;" class="plugin-anchor" href="#&#x8BCD;&#x5D4C;&#x5165;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BCD;&#x5D4C;&#x5165;</h2>
+<h2 id="词嵌入">1.1 词嵌入</h2>
 <blockquote>
-<p>NLP&#xFF0C;&#x5C31;&#x662F;&#x4F7F;&#x7528;&#x8BA1;&#x7B97;&#x673A;&#x5904;&#x7406;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x7684;&#x8FC7;&#x7A0B;&#x3002;&#x800C;&#x6211;&#x4EEC;&#x90FD;&#x77E5;&#x9053;&#xFF0C;&#x8BA1;&#x7B97;&#x673A;&#x53EA;&#x80FD;&#x5904;&#x7406;&#x6570;&#x503C;&#xFF0C;&#x56E0;&#x6B64;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x9700;&#x8981;&#x4EE5;&#x4E00;&#x5B9A;&#x7684;&#x5F62;&#x5F0F;&#x8F6C;&#x5316;&#x4E3A;&#x6570;&#x503C;&#x3002;&#x8BCD;&#x5D4C;&#x5165;&#x5C31;&#x662F;&#x5C06;&#x8BCD;&#x8BED;&#xFF08;word&#xFF09;&#x6620;&#x5C04;&#x4E3A;&#x6570;&#x5B57;&#x7684;&#x65B9;&#x5F0F;&#x3002;&#x4E00;&#x4E2A;&#x5355;&#x7EAF;&#x7684;&#x5B9E;&#x6570;&#x5305;&#x542B;&#x7684;&#x4FE1;&#x606F;&#x592A;&#x5C11;&#xFF0C;&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x6620;&#x5C04;&#x4E3A;&#x4E00;&#x4E2A;&#x6570;&#x503C;&#x5411;&#x91CF;&#x3002;&#x8FD9;&#x65F6;&#x6211;&#x4EEC;&#x4F1A;&#x53D1;&#x73B0;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x600E;&#x4E48;&#x628A;&#x8BCD;&#x8BED;&#x8F6C;&#x6362;&#x4E3A;&#x6570;&#x503C;&#x5411;&#x91CF;&#xFF1F;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x672C;&#x8EAB;&#x8574;&#x542B;&#x4E86;&#x8BED;&#x4E49;&#x548C;&#x53E5;&#x6CD5;&#x7B49;&#x7279;&#x5F81;&#xFF0C;&#x5982;&#x4F55;&#x5728;&#x8F6C;&#x6362;&#x8FC7;&#x7A0B;&#x4E2D;&#x4FDD;&#x7559;&#x8FD9;&#x4E9B;&#x62BD;&#x8C61;&#x7684;&#x7279;&#x5F81;&#xFF1F;&#x8FD9;&#x70B9;&#x5176;&#x5B9E;&#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x56E0;&#x4E3A;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5C06;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x7684;&#x7279;&#x5F81;&#x5F88;&#x597D;&#x7684;&#x4FDD;&#x7559;&#x4E0B;&#x6765;&#xFF0C;&#x540E;&#x7EED;&#x7684;&#x6240;&#x6709;&#x5DE5;&#x4F5C;&#x5C31;&#x662F;&#x5BF9;&#x4E00;&#x4E9B;&#x65E0;&#x610F;&#x4E49;&#x7684;&#x4FE1;&#x606F;&#x8FDB;&#x884C;&#x5EFA;&#x6A21;&#xFF0C;&#x81EA;&#x7136;&#x5F97;&#x4E0D;&#x5230;&#x597D;&#x7684;&#x7ED3;&#x679C;&#x3002;&#x7EB5;&#x89C2;NLP&#x7684;&#x53D1;&#x5C55;&#x53F2;&#xFF0C;&#x5F88;&#x591A;&#x9769;&#x547D;&#x6027;&#x7684;&#x6210;&#x679C;&#x90FD;&#x662F;&#x8BCD;&#x5D4C;&#x5165;&#x7684;&#x53D1;&#x5C55;&#x6210;&#x679C;&#xFF0C;&#x5982;Word2Vec&#x3001;ELMo&#x548C;BERT&#xFF0C;&#x5176;&#x5B9E;&#x90FD;&#x662F;&#x5F88;&#x597D;&#x5730;&#x5C06;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x7684;&#x7279;&#x5F81;&#x5728;&#x8F6C;&#x6362;&#x8FC7;&#x7A0B;&#x4E2D;&#x8FDB;&#x884C;&#x4E86;&#x4FDD;&#x7559;&#x3002;</p>
+<p>NLP，就是使用计算机处理自然语言的过程。而我们都知道，计算机只能处理数值，因此自然语言需要以一定的形式转化为数值。词嵌入就是将词语（word）映射为数字的方式。一个单纯的实数包含的信息太少，一般我们映射为一个数值向量。这时我们会发现一个问题，怎么把词语转换为数值向量？自然语言本身蕴含了语义和句法等特征，如何在转换过程中保留这些抽象的特征？这点其实很重要，因为如果没有将自然语言的特征很好的保留下来，后续的所有工作就是对一些无意义的信息进行建模，自然得不到好的结果。纵观NLP的发展史，很多革命性的成果都是词嵌入的发展成果，如Word2Vec、ELMo和BERT，其实都是很好地将自然语言的特征在转换过程中进行了保留。</p>
 </blockquote>
-<h1 id="&#x57FA;&#x4E8E;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#x7684;&#x8BCD;&#x5D4C;&#x5165;"><a name="&#x57FA;&#x4E8E;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#x7684;&#x8BCD;&#x5D4C;&#x5165;" class="anchor-navigation-ex-anchor" href="#&#x57FA;&#x4E8E;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#x7684;&#x8BCD;&#x5D4C;&#x5165;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x57FA;&#x4E8E;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#x7684;&#x8BCD;&#x5D4C;&#x5165;" class="plugin-anchor" href="#&#x57FA;&#x4E8E;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#x7684;&#x8BCD;&#x5D4C;&#x5165;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x57FA;&#x4E8E;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#x7684;&#x8BCD;&#x5D4C;&#x5165;</h1>
-<h2 id="one-hot-vector"><a name="one-hot-vector" class="anchor-navigation-ex-anchor" href="#one-hot-vector"><i class="fa fa-link" aria-hidden="true"></i></a><a name="one-hot-vector" class="plugin-anchor" href="#one-hot-vector"><i class="fa fa-link" aria-hidden="true"></i></a>one hot vector</h2>
+<h1 id="基于统计方法的词嵌入">2 基于统计方法的词嵌入</h1>
+<h2 id="one-hot-vector">2.1 one hot vector</h2>
 <blockquote>
-<p>One-hot&#x8868;&#x793A;&#x5F88;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#x3002;&#x5728;&#x4E00;&#x4E2A;&#x8BED;&#x6599;&#x5E93;&#x4E2D;&#xFF0C;&#x7ED9;&#x6BCF;&#x4E2A;&#x5B57;/&#x8BCD;&#x7F16;&#x7801;&#x4E00;&#x4E2A;&#x7D22;&#x5F15;&#xFF0C;&#x6839;&#x636E;&#x7D22;&#x5F15;&#x8FDB;&#x884C;one-hot&#x8868;&#x793A;&#x3002;</p>
+<p>One-hot表示很容易理解。在一个语料库中，给每个字/词编码一个索引，根据索引进行one-hot表示。</p>
 <pre><code class="lang-text">John likes to watch movies. Mary likes too.
 John also likes to watch football games.
 </code></pre>
-<p>&#x5982;&#x679C;&#x53EA;&#x9700;&#x8981;&#x8868;&#x793A;&#x51FA;&#x4E0A;&#x9762;&#x4E24;&#x53E5;&#x8BDD;&#x4E2D;&#x7684;&#x5355;&#x8BCD;&#xFF0C;&#x53EF;&#x4EE5;&#x53EA;&#x5BF9;&#x5176;&#x4E2D;&#x51FA;&#x73B0;&#x8FC7;&#x7684;&#x5355;&#x8BCD;&#x8FDB;&#x884C;&#x7D22;&#x5F15;&#x7F16;&#x7801;&#xFF1A;</p>
-<pre><code class="lang-text">{&quot;John&quot;: 1, &quot;likes&quot;: 2, &quot;to&quot;: 3, &quot;watch&quot;: 4, &quot;movies&quot;: 5, &quot;also&quot;:6, &quot;football&quot;: 7, 
-&quot;games&quot;: 8, &quot;Mary&quot;: 9, &quot;too&quot;: 10}
+<p>如果只需要表示出上面两句话中的单词，可以只对其中出现过的单词进行索引编码：</p>
+<pre><code class="lang-text">{"John": 1, "likes": 2, "to": 3, "watch": 4, "movies": 5, "also":6, "football": 7, 
+"games": 8, "Mary": 9, "too": 10}
 </code></pre>
-<p>&#x5176;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x5355;&#x8BCD;&#x90FD;&#x53EF;&#x4EE5;&#x7528;one-hot&#x65B9;&#x6CD5;&#x8868;&#x793A;&#xFF1A;</p>
+<p>其中的每个单词都可以用one-hot方法表示：</p>
 <pre><code class="lang-text">John: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 likes: [0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 ...
 </code></pre>
-<p>&#x5F53;&#x8BED;&#x6599;&#x5E93;&#x975E;&#x5E38;&#x5927;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x5F88;&#x5927;&#x7684;&#x5B57;&#x5178;&#x5BF9;&#x6240;&#x6709;&#x5355;&#x8BCD;&#x8FDB;&#x884C;&#x7D22;&#x5F15;&#x7F16;&#x7801;&#x3002;&#x6BD4;&#x5982;100W&#x4E2A;&#x5355;&#x8BCD;&#xFF0C;&#x6BCF;&#x4E2A;&#x5355;&#x8BCD;&#x5C31;&#x9700;&#x8981;&#x8868;&#x793A;&#x6210;100W&#x7EF4;&#x7684;&#x5411;&#x91CF;&#xFF0C;&#x800C;&#x4E14;&#x8FD9;&#x4E2A;&#x5411;&#x91CF;&#x662F;&#x5F88;&#x7A00;&#x758F;&#x7684;&#xFF0C;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5730;&#x65B9;&#x4E3A;1&#x5176;&#x4ED6;&#x5168;&#x4E3A;0&#x3002;&#x8FD8;&#x6709;&#x5F88;&#x91CD;&#x8981;&#x7684;&#x4E00;&#x70B9;&#xFF0C;&#x8FD9;&#x79CD;&#x8868;&#x793A;&#x65B9;&#x6CD5;&#x65E0;&#x6CD5;&#x8868;&#x8FBE;&#x5355;&#x8BCD;&#x4E0E;&#x5355;&#x8BCD;&#x4E4B;&#x95F4;&#x7684;&#x76F8;&#x4F3C;&#x7A0B;&#x5EA6;&#xFF0C;&#x5982;<code>beautiful</code>&#x548C;<code>pretty</code>&#x53EF;&#x4EE5;&#x8868;&#x8FBE;&#x76F8;&#x4F3C;&#x7684;&#x610F;&#x601D;&#x4F46;&#x662F;ont-hot&#x6CD5;&#x65E0;&#x6CD5;&#x5C06;&#x4E4B;&#x8868;&#x793A;&#x51FA;&#x6765;&#x3002;</p>
+<p>当语料库非常大时，需要建立一个很大的字典对所有单词进行索引编码。比如100W个单词，每个单词就需要表示成100W维的向量，而且这个向量是很稀疏的，只有一个地方为1其他全为0。还有很重要的一点，这种表示方法无法表达单词与单词之间的相似程度，如<code>beautiful</code>和<code>pretty</code>可以表达相似的意思但是ont-hot法无法将之表示出来。</p>
 </blockquote>
-<h2 id="bag-of-words"><a name="bag-of-words" class="anchor-navigation-ex-anchor" href="#bag-of-words"><i class="fa fa-link" aria-hidden="true"></i></a><a name="bag-of-words" class="plugin-anchor" href="#bag-of-words"><i class="fa fa-link" aria-hidden="true"></i></a>Bag of Words</h2>
+<h2 id="bag-of-words">2.2 Bag of Words</h2>
 <blockquote>
-<p>&#x8BCD;&#x888B;&#x8868;&#x793A;&#xFF0C;&#x4E5F;&#x79F0;&#x4E3A;<strong>&#x8BA1;&#x6570;&#x5411;&#x91CF;&#x8868;&#x793A;</strong>(Count Vectors)&#x3002;&#x6587;&#x6863;&#x7684;&#x5411;&#x91CF;&#x8868;&#x793A;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x7528;&#x5355;&#x8BCD;&#x7684;&#x5411;&#x91CF;&#x8FDB;&#x884C;&#x6C42;&#x548C;&#x5F97;&#x5230;&#x3002;</p>
+<p>词袋表示，也称为<strong>计数向量表示</strong>(Count Vectors)。文档的向量表示可以直接用单词的向量进行求和得到。</p>
 <pre><code class="lang-text">John likes to watch movies. Mary likes too.  --&gt;&gt; [1, 2, 1, 1, 1, 0, 0, 0, 1, 1]
 John also likes to watch football games.     --&gt;&gt; [1, 1, 1, 1, 0, 1, 1, 1, 0, 0]
 </code></pre>
-<p>&#x6A2A;&#x5411;&#x6765;&#x770B;&#x6211;&#x4EEC;&#x628A;&#x6BCF;&#x6761;&#x6587;&#x672C;&#x8868;&#x793A;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#xFF0C;&#x7EB5;&#x5411;&#x6765;&#x770B;&#xFF0C;&#x4E0D;&#x540C;&#x6587;&#x6863;&#x4E2D;&#x5355;&#x8BCD;&#x7684;&#x4E2A;&#x6570;&#x53C8;&#x53EF;&#x4EE5;&#x6784;&#x6210;&#x67D0;&#x4E2A;&#x5355;&#x8BCD;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x3002;&#x5982;&#x4E0A;&#x6587;&#x4E2D;&#x7684;<code>&quot;John&quot;</code>&#x7EB5;&#x5411;&#x8868;&#x793A;&#x6210;<code>[1,1]</code>&#x3002;</p>
-<p>&#x5728;&#x771F;&#x5B9E;&#x4E16;&#x754C;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x8BED;&#x6599;&#x6570;&#x636E;&#x901A;&#x5E38;&#x662F;&#x5305;&#x542B;&#x6570;&#x5341;&#x4E07;&#x5230;&#x4E0A;&#x767E;&#x4E07;&#x7BC7;&#x6587;&#x6863;&#x7684;&#xFF0C;&#x8FD9;&#x4E9B;&#x6587;&#x6863;&#x5305;&#x542B;&#x7684;&#x975E;&#x91CD;&#x590D;&#x8BCD;&#x4F1A;&#x975E;&#x5E38;&#x591A;&#x3002;&#x800C;&#x6BCF;&#x7BC7;&#x6587;&#x6863;&#x5305;&#x542B;&#x7684;&#x8BCD;&#x8BED;&#x6570;&#x91CF;&#x76F8;&#x5BF9;&#x4E8E;&#x8BCD;&#x5178;&#x4E2D;&#x7684;&#x8BCD;&#x8BED;&#x6570;&#x91CF;&#x662F;&#x975E;&#x5E38;&#x5C0F;&#x7684;&#xFF0C;&#x8FD9;&#x4F1A;&#x5BFC;&#x81F4;&#x8BCD;&#x9891;&#x77E9;&#x9635;&#x4E2D;&#x4F1A;&#x51FA;&#x73B0;&#x975E;&#x5E38;&#x591A;&#x7684;0&#x3002;&#x6240;&#x4EE5;&#x7EC4;&#x7EC7;&#x8BCD;&#x5178;&#x7684;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x65B9;&#x5F0F;&#x662F;&#x6309;&#x8BCD;&#x8BED;&#x51FA;&#x73B0;&#x7684;&#x9891;&#x7387;&#x6392;&#x5E8F;&#xFF0C;&#x9009;&#x62E9;&#x9891;&#x7387;&#x6700;&#x9AD8;&#x7684;&#x524D;1000&#x4E2A;&#x8BCD;&#x8BED;&#x7EC4;&#x6210;&#x8BCD;&#x5178;&#x3002;</p>
-<p><code>&#x6269;&#x5C55;</code>&#xFF1A;Bi-gram&#x548C;N-gram</p>
-<p>&#x4E0E;&#x8BCD;&#x888B;&#x6A21;&#x578B;&#x539F;&#x7406;&#x7C7B;&#x4F3C;&#xFF0C;Bi-gram&#x5C06;&#x76F8;&#x90BB;&#x4E24;&#x4E2A;&#x5355;&#x8BCD;&#x7F16;&#x4E0A;&#x7D22;&#x5F15;&#xFF0C;N-gram&#x5C06;&#x76F8;&#x90BB;N&#x4E2A;&#x5355;&#x8BCD;&#x7F16;&#x4E0A;&#x7D22;&#x5F15;&#x3002;</p>
-<p>&#x4E3A; Bi-gram&#x5EFA;&#x7ACB;&#x7D22;&#x5F15;&#xFF1A;</p>
-<pre><code class="lang-text">{&quot;John likes&#x201D;: 1, 
-&quot;likes to&#x201D;: 2, 
-&quot;to watch&#x201D;: 3, 
-&quot;watch movies&#x201D;: 4, 
-&quot;Mary likes&#x201D;: 5, 
-&quot;likes too&#x201D;: 6, 
-&quot;John also&#x201D;: 7, 
-&quot;also likes&#x201D;: 8,
-&quot;watch football&quot;: 9, 
-&quot;football games&quot;: 10}
+<p>横向来看我们把每条文本表示成了一个向量，纵向来看，不同文档中单词的个数又可以构成某个单词的词向量。如上文中的<code>"John"</code>纵向表示成<code>[1,1]</code>。</p>
+<p>在真实世界中，我们的语料数据通常是包含数十万到上百万篇文档的，这些文档包含的非重复词会非常多。而每篇文档包含的词语数量相对于词典中的词语数量是非常小的，这会导致词频矩阵中会出现非常多的0。所以组织词典的另外一个方式是按词语出现的频率排序，选择频率最高的前1000个词语组成词典。</p>
+<p><code>扩展</code>：Bi-gram和N-gram</p>
+<p>与词袋模型原理类似，Bi-gram将相邻两个单词编上索引，N-gram将相邻N个单词编上索引。</p>
+<p>为 Bi-gram建立索引：</p>
+<pre><code class="lang-text">{"John likes”: 1, 
+"likes to”: 2, 
+"to watch”: 3, 
+"watch movies”: 4, 
+"Mary likes”: 5, 
+"likes too”: 6, 
+"John also”: 7, 
+"also likes”: 8,
+"watch football": 9, 
+"football games": 10}
 </code></pre>
-<p>&#x8FD9;&#x6837;&#xFF0C;&#x539F;&#x6765;&#x7684;&#x4E24;&#x53E5;&#x8BDD;&#x5C31;&#x53EF;&#x4EE5;&#x8868;&#x793A;&#x4E3A;&#xFF1A;</p>
+<p>这样，原来的两句话就可以表示为：</p>
 <pre><code class="lang-text">John likes to watch movies. Mary likes too.  --&gt;&gt; [1, 1, 1, 1, 1, 1, 0, 0, 0, 0]
 John also likes to watch football games.     --&gt;&gt; [0, 1, 1, 0, 0, 0, 1, 1, 1, 1]
 </code></pre>
-<p>&#x8FD9;&#x79CD;&#x505A;&#x6CD5;&#x7684;&#x4F18;&#x70B9;&#x662F;&#x8003;&#x8651;&#x4E86;&#x8BCD;&#x7684;&#x987A;&#x5E8F;&#xFF0C;&#x4F46;&#x662F;&#x7F3A;&#x70B9;&#x4E5F;&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x5C31;&#x662F;&#x9020;&#x6210;&#x4E86;&#x8BCD;&#x5411;&#x91CF;&#x7684;&#x6025;&#x5267;&#x81A8;&#x80C0;&#x3002;</p>
-<p><strong>&#x8BCD;&#x888B;&#x6A21;&#x578B;&#x7F16;&#x7801;&#x7279;&#x70B9;&#xFF1A;</strong></p>
+<p>这种做法的优点是考虑了词的顺序，但是缺点也很明显，就是造成了词向量的急剧膨胀。</p>
+<p><strong>词袋模型编码特点：</strong></p>
 <ol>
-<li>&#x8BCD;&#x888B;&#x6A21;&#x578B;&#x662F;&#x5BF9;&#x6587;&#x672C;&#xFF08;&#x800C;&#x4E0D;&#x662F;&#x5B57;&#x6216;&#x8BCD;&#xFF09;&#x8FDB;&#x884C;&#x7F16;&#x7801;&#xFF1B;</li>
-<li>&#x7F16;&#x7801;&#x540E;&#x7684;&#x5411;&#x91CF;&#x957F;&#x5EA6;&#x662F;&#x8BCD;&#x5178;&#x7684;&#x957F;&#x5EA6;&#xFF1B;</li>
-<li>&#x8BE5;&#x7F16;&#x7801;&#x5FFD;&#x7565;&#x8BCD;&#x51FA;&#x73B0;&#x7684;&#x6B21;&#x5E8F;&#xFF1B;</li>
-<li>&#x5728;&#x5411;&#x91CF;&#x4E2D;&#xFF0C;&#x8BE5;&#x5355;&#x8BCD;&#x7684;&#x7D22;&#x5F15;&#x4F4D;&#x7F6E;&#x7684;&#x503C;&#x4E3A;&#x5355;&#x8BCD;&#x5728;&#x6587;&#x672C;&#x4E2D;&#x51FA;&#x73B0;&#x7684;&#x6B21;&#x6570;&#xFF1B;&#x5982;&#x679C;&#x7D22;&#x5F15;&#x4F4D;&#x7F6E;&#x7684;&#x5355;&#x8BCD;&#x6CA1;&#x6709;&#x5728;&#x6587;&#x672C;&#x4E2D;&#x51FA;&#x73B0;&#xFF0C;&#x5219;&#x8BE5;&#x503C;&#x4E3A;  0 &#xFF1B;</li>
+<li>词袋模型是对文本（而不是字或词）进行编码；</li>
+<li>编码后的向量长度是词典的长度；</li>
+<li>该编码忽略词出现的次序；</li>
+<li>在向量中，该单词的索引位置的值为单词在文本中出现的次数；如果索引位置的单词没有在文本中出现，则该值为  0 ；</li>
 </ol>
-<p><strong>&#x7F3A;&#x70B9;</strong></p>
+<p><strong>缺点</strong></p>
 <ol>
-<li>&#x8BE5;&#x7F16;&#x7801;&#x5FFD;&#x7565;&#x8BCD;&#x7684;&#x4F4D;&#x7F6E;&#x4FE1;&#x606F;&#xFF0C;&#x4F4D;&#x7F6E;&#x4FE1;&#x606F;&#x5728;&#x6587;&#x672C;&#x4E2D;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x91CD;&#x8981;&#x4FE1;&#x606F;&#xFF0C;&#x8BCD;&#x7684;&#x4F4D;&#x7F6E;&#x4E0D;&#x4E00;&#x6837;&#x8BED;&#x4E49;&#x4F1A;&#x6709;&#x5F88;&#x5927;&#x7684;&#x5DEE;&#x522B;&#xFF08;&#x5982; &#x201C;&#x732B;&#x7231;&#x5403;&#x8001;&#x9F20;&#x201D; &#x548C; &#x201C;&#x8001;&#x9F20;&#x7231;&#x5403;&#x732B;&#x201D; &#x7684;&#x7F16;&#x7801;&#x4E00;&#x6837;&#xFF09;&#xFF1B;</li>
-<li>&#x8BE5;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#x867D;&#x7136;&#x7EDF;&#x8BA1;&#x4E86;&#x8BCD;&#x5728;&#x6587;&#x672C;&#x4E2D;&#x51FA;&#x73B0;&#x7684;&#x6B21;&#x6570;&#xFF0C;&#x4F46;&#x4EC5;&#x4EC5;&#x901A;&#x8FC7;&#x201C;&#x51FA;&#x73B0;&#x6B21;&#x6570;&#x201D;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x65E0;&#x6CD5;&#x533A;&#x5206;&#x5E38;&#x7528;&#x8BCD;&#xFF08;&#x5982;&#xFF1A;&#x201C;&#x6211;&#x201D;&#x3001;&#x201C;&#x662F;&#x201D;&#x3001;&#x201C;&#x7684;&#x201D;&#x7B49;&#xFF09;&#x548C;&#x5173;&#x952E;&#x8BCD;&#xFF08;&#x5982;&#xFF1A;&#x201C;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x201D;&#x3001;&#x201C;<em>NLP</em> &#x201D;&#x7B49;&#xFF09;&#x5728;&#x6587;&#x672C;&#x4E2D;&#x7684;&#x91CD;&#x8981;&#x7A0B;&#x5EA6;&#xFF1B;</li>
+<li>该编码忽略词的位置信息，位置信息在文本中是一个很重要信息，词的位置不一样语义会有很大的差别（如 “猫爱吃老鼠” 和 “老鼠爱吃猫” 的编码一样）；</li>
+<li>该编码方式虽然统计了词在文本中出现的次数，但仅仅通过“出现次数”这个属性无法区分常用词（如：“我”、“是”、“的”等）和关键词（如：“自然语言处理”、“<em>NLP</em> ”等）在文本中的重要程度；</li>
 </ol>
 </blockquote>
-<h2 id="tf-idf&#x5411;&#x91CF;"><a name="tf-idf&#x5411;&#x91CF;" class="anchor-navigation-ex-anchor" href="#tf-idf&#x5411;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="tf-idf&#x5411;&#x91CF;" class="plugin-anchor" href="#tf-idf&#x5411;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>TF-IDF&#x5411;&#x91CF;</h2>
+<h2 id="tf-idf向量">2.3 TF-IDF向量</h2>
 <blockquote>
-<p>&#x6211;&#x4EEC;&#x6709;&#x4E24;&#x7BC7;&#x6587;&#x6863;D1&#x548C;D2&#xFF0C;&#x6BCF;&#x7BC7;&#x6587;&#x7AE0;&#x4E2D;&#x6240;&#x5305;&#x542B;&#x7684;&#x8BCD;&#x8BED;&#x53CA;&#x5176;&#x8BCD;&#x9891;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
-<p><a href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-b2a39f3a510a3a0f256d21e4bdbbf768_720w.jpg" data-lightbox="9a4ad74a-c116-444e-95d2-343df986dce8" data-title="img"><img src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-b2a39f3a510a3a0f256d21e4bdbbf768_720w.jpg" alt="img"></a></p>
+<p>我们有两篇文档D1和D2，每篇文章中所包含的词语及其词频如下图所示：</p>
+<p><a data-lightbox="2715100e-c99f-43ad-95f5-b05b2c9f3f6e" data-title="img" href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-b2a39f3a510a3a0f256d21e4bdbbf768_720w.jpg"><img alt="img" src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-b2a39f3a510a3a0f256d21e4bdbbf768_720w.jpg"/></a></p>
 <blockquote>
-<p><strong>&#x8BCD;&#x8BED;&#x9891;&#x7387;</strong>&#xFF08;Term Frequency&#xFF09;&#x7684;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<p>TF = (&#x8BCD;&#x8BED;w&#x5728;&#x4E00;&#x7BC7;&#x6587;&#x6863;&#x4E2D;&#x51FA;&#x73B0;&#x7684;&#x6B21;&#x6570;)/&#xFF08;&#x6587;&#x6863;&#x4E2D;&#x7684;&#x8BCD;&#x8BED;&#x603B;&#x6570;&#xFF09;</p>
-<p>&#x6839;&#x636E;&#x8FD9;&#x4E2A;&#x5B9A;&#x4E49;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA1;&#x7B97;TF(&#x5173;&#x4E8E;&#xFF0C;D1) = 1/9&#xFF1B;TF(&#x5B66;&#x4E60;&#xFF0C;D2) = 3/9&#x3002;</p>
-<p>TF&#x8868;&#x793A;&#x7684;&#x662F;&#x8BE5;&#x8BCD;&#x8BED;&#x5BF9;&#x4E8E;&#x8BE5;&#x6587;&#x6863;&#x7684;&#x8D21;&#x732E;&#x7A0B;&#x5EA6;&#xFF0C;&#x6211;&#x4EEC;&#x8BA4;&#x4E3A;&#x4E0E;&#x6587;&#x7AE0;&#x76F8;&#x5173;&#x7684;&#x8BCD;&#x8BED;&#x51FA;&#x73B0;&#x7684;&#x9891;&#x7387;&#x5E94;&#x8BE5;&#x4F1A;&#x6BD4;&#x8F83;&#x9AD8;&#x3002;</p>
-<p><strong>&#x9006;&#x6587;&#x6863;&#x9891;&#x7387;</strong>&#xFF08;Inverse Document Frequency&#xFF09;&#x7684;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<p>IDF = log&#xFF08;&#xFF08;&#x6587;&#x6863;&#x7684;&#x6570;&#x91CF;&#xFF09;/ &#xFF08;&#x5305;&#x542B;&#x8BCD;&#x8BED;w&#x7684;&#x6587;&#x6863;&#x6570;&#x91CF;&#xFF09;&#xFF09;</p>
-<p>&#x6839;&#x636E;&#x8FD9;&#x4E2A;&#x5B9A;&#x4E49;&#xFF0C;&#x5F97;&#x5230;IDF(&#x5173;&#x4E8E;) = log(2/2) = 0&#xFF1B;IDF(&#x6E38;&#x620F;) = log(2/1) = 0.301&#x3002;</p>
-<p>IDF&#x60F3;&#x8868;&#x8FBE;&#x7684;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x8BCD;&#x8BED;&#x5728;&#x5927;&#x90E8;&#x5206;&#x751A;&#x81F3;&#x6240;&#x6709;&#x6587;&#x6863;&#x4E2D;&#x90FD;&#x51FA;&#x73B0;&#xFF08;&#x8BCD;&#x8BED;&#x4E2D;&#x7684;&#x4E2D;&#x592E;&#x7A7A;&#x8C03;&#xFF09;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x8BCD;&#x8BED;&#x5BF9;&#x4E8E;&#x4EFB;&#x610F;&#x4E00;&#x7BC7;&#x6587;&#x6863;&#x90FD;&#x662F;&#x4E0D;&#x91CD;&#x8981;&#x7684;&#x3002;</p>
+<p><strong>词语频率</strong>（Term Frequency）的定义如下：</p>
+<p>TF = (词语w在一篇文档中出现的次数)/（文档中的词语总数）</p>
+<p>根据这个定义，可以计算TF(关于，D1) = 1/9；TF(学习，D2) = 3/9。</p>
+<p>TF表示的是该词语对于该文档的贡献程度，我们认为与文章相关的词语出现的频率应该会比较高。</p>
+<p><strong>逆文档频率</strong>（Inverse Document Frequency）的定义如下：</p>
+<p>IDF = log（（文档的数量）/ （包含词语w的文档数量））</p>
+<p>根据这个定义，得到IDF(关于) = log(2/2) = 0；IDF(游戏) = log(2/1) = 0.301。</p>
+<p>IDF想表达的是，如果一个词语在大部分甚至所有文档中都出现（词语中的中央空调），那么这个词语对于任意一篇文档都是不重要的。</p>
 </blockquote>
-<p>&#x6700;&#x540E;&#xFF0C;TF-IDF&#x7684;&#x8BA1;&#x7B97;&#x65B9;&#x5F0F;&#x5C31;&#x662F;&#x628A;TF&#x548C;IDF&#x76F8;&#x4E58;&#x5373;&#x53EF;&#x3002;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#xFF1A;</p>
-<p>TF-IDF(&#x5173;&#x4E8E;&#xFF0C;D1) = &#xFF08;1/9&#xFF09;* 0 = 0</p>
-<p>TF-IDF(&#x6E38;&#x620F;&#xFF0C;D1) = &#xFF08;3/9&#xFF09; * 0.301 = 0.1003</p>
-<p>TF-IDF(&#x5B66;&#x4E60;&#xFF0C;D2) = &#xFF08;3/9&#xFF09;* 0.301 = 0.1003</p>
-<p>&#x8FD9;&#x4E0B;&#x5C31;&#x6BD4;&#x8F83;&#x7B26;&#x5408;&#x6211;&#x4EEC;&#x7684;&#x76F4;&#x89C9;&#x4E86;&#xFF1A;&#x91CD;&#x8981;&#x7684;&#x8BCD;&#x8BED;&#xFF08;&#x7279;&#x5F81;&#xFF09;&#x5E94;&#x8BE5;&#x5177;&#x6709;&#x66F4;&#x9AD8;&#x7684;&#x6743;&#x91CD;&#x3002;</p>
-<p>&#x5C06;&#x8BCD;&#x9891;&#x77E9;&#x9635;&#x4E2D;&#x7684;&#x8BCD;&#x9891;&#x503C;&#x66FF;&#x6362;&#x4E3A;TF-IDF&#x503C;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x6587;&#x6863;&#x548C;&#x8BCD;&#x8BED;&#x7684;&#x5411;&#x91CF;&#x8868;&#x793A;&#x4E86;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x7531;&#x4E8E;TF-IDF&#x7684;&#x7279;&#x5F81;&#xFF0C;TF-IDF&#x8FD8;&#x7ECF;&#x5E38;&#x88AB;&#x7528;&#x6765;&#x63D0;&#x53D6;&#x6587;&#x7AE0;&#x4E2D;&#x7684;&#x5173;&#x952E;&#x8BCD;&#x3002;</p>
+<p>最后，TF-IDF的计算方式就是把TF和IDF相乘即可。来看一下：</p>
+<p>TF-IDF(关于，D1) = （1/9）* 0 = 0</p>
+<p>TF-IDF(游戏，D1) = （3/9） * 0.301 = 0.1003</p>
+<p>TF-IDF(学习，D2) = （3/9）* 0.301 = 0.1003</p>
+<p>这下就比较符合我们的直觉了：重要的词语（特征）应该具有更高的权重。</p>
+<p>将词频矩阵中的词频值替换为TF-IDF值，我们就可以得到文档和词语的向量表示了。同时，由于TF-IDF的特征，TF-IDF还经常被用来提取文章中的关键词。</p>
 <pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">def_tfidf</span><span class="hljs-params">(cls_info_lst: Dict)</span>:</span>
-   <span class="hljs-string">&quot;&quot;&quot;
-   tf-idf&#x666E;&#x901A;&#x5B9E;&#x73B0;
-   [06_TF-IDF&#x7B97;&#x6CD5;&#x4EE3;&#x7801;&#x793A;&#x4F8B;](https://blog.csdn.net/u012990179/article/details/90338906)
-   :param cls_info_lst: {&quot;A&quot;:{&quot;a&quot;:15,&quot;b&quot;:18,...}, &quot;B&quot;:{&quot;c&quot;:48,...},...}
+   <span class="hljs-string">"""
+   tf-idf普通实现
+   [06_TF-IDF算法代码示例](https://blog.csdn.net/u012990179/article/details/90338906)
+   :param cls_info_lst: {"A":{"a":15,"b":18,...}, "B":{"c":48,...},...}
    :return:
-   &quot;&quot;&quot;</span>
+   """</span>
    tf_dic = {}
    idf_res = defaultdict(int)
    <span class="hljs-keyword">for</span> cls, cls_info <span class="hljs-keyword">in</span> cls_info_lst.items():
@@ -984,51 +531,51 @@ John also likes to watch football games.     --&gt;&gt; [0, 1, 1, 0, 0, 0, 1, 1,
 
    <span class="hljs-keyword">return</span> cls_word_weights
 </code></pre>
-<p><strong>&#x4F18;&#x70B9;</strong></p>
+<p><strong>优点</strong></p>
 <ol>
-<li>&#x5B9E;&#x73B0;&#x7B80;&#x5355;&#xFF0C;&#x7B97;&#x6CD5;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#x4E14;&#x89E3;&#x91CA;&#x6027;&#x8F83;&#x5F3A;&#xFF1B;</li>
-<li>&#x4ECE;<em>IDF</em> &#x7684;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x5E38;&#x7528;&#x8BCD;&#xFF08;&#x5982;&#xFF1A;&#x201C;&#x6211;&#x201D;&#x3001;&#x201C;&#x662F;&#x201D;&#x3001;&#x201C;&#x7684;&#x201D;&#x7B49;&#xFF09;&#x5728;&#x8BED;&#x6599;&#x5E93;&#x4E2D;&#x7684;&#x5F88;&#x591A;&#x6587;&#x7AE0;&#x90FD;&#x4F1A;&#x51FA;&#x73B0;&#xFF0C;&#x6545;IDF&#x7684;&#x503C;&#x4F1A;&#x5F88;&#x5C0F;&#xFF1B;&#x800C;&#x5173;&#x952E;&#x8BCD;&#xFF08;&#x5982;&#xFF1A;&#x201C;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x201D;&#x3001;&#x201C;<em>NLP</em> &#x201D;&#x7B49;&#xFF09;&#x53EA;&#x4F1A;&#x5728;&#x67D0;&#x9886;&#x57DF;&#x7684;&#x6587;&#x7AE0;&#x51FA;&#x73B0;&#xFF0C;<em>IDF</em> &#x7684;&#x503C;&#x4F1A;&#x6BD4;&#x8F83;&#x5927;&#xFF1B;&#x6545;&#xFF1A;<strong><em>TF-IDF</em></strong> <strong>&#x5728;&#x4FDD;&#x7559;&#x6587;&#x7AE0;&#x7684;&#x91CD;&#x8981;&#x8BCD;&#x7684;&#x540C;&#x65F6;&#x53EF;&#x4EE5;&#x8FC7;&#x6EE4;&#x6389;&#x4E00;&#x4E9B;&#x5E38;&#x89C1;&#x7684;&#x3001;&#x65E0;&#x5173;&#x7D27;&#x8981;&#x7684;&#x8BCD;&#xFF1B;</strong></li>
+<li>实现简单，算法容易理解且解释性较强；</li>
+<li>从<em>IDF</em> 的计算方法可以看出常用词（如：“我”、“是”、“的”等）在语料库中的很多文章都会出现，故IDF的值会很小；而关键词（如：“自然语言处理”、“<em>NLP</em> ”等）只会在某领域的文章出现，<em>IDF</em> 的值会比较大；故：<strong><em>TF-IDF</em></strong> <strong>在保留文章的重要词的同时可以过滤掉一些常见的、无关紧要的词；</strong></li>
 </ol>
-<p><strong>&#x7F3A;&#x70B9;</strong></p>
+<p><strong>缺点</strong></p>
 <ol>
-<li>&#x4E0D;&#x80FD;&#x53CD;&#x6620;&#x8BCD;&#x7684;&#x4F4D;&#x7F6E;&#x4FE1;&#x606F;&#xFF0C;&#x5728;&#x5BF9;&#x5173;&#x952E;&#x8BCD;&#x8FDB;&#x884C;&#x63D0;&#x53D6;&#x65F6;&#xFF0C;&#x8BCD;&#x7684;&#x4F4D;&#x7F6E;&#x4FE1;&#x606F;&#xFF08;&#x5982;&#xFF1A;&#x6807;&#x9898;&#x3001;&#x53E5;&#x9996;&#x3001;&#x53E5;&#x5C3E;&#x7684;&#x8BCD;&#x5E94;&#x8BE5;&#x8D4B;&#x4E88;&#x66F4;&#x9AD8;&#x7684;&#x6743;&#x91CD;&#xFF09;&#xFF1B;</li>
-<li><em>IDF</em> &#x662F;&#x4E00;&#x79CD;&#x8BD5;&#x56FE;&#x6291;&#x5236;&#x566A;&#x58F0;&#x7684;&#x52A0;&#x6743;&#xFF0C;&#x672C;&#x8EAB;&#x503E;&#x5411;&#x4E8E;&#x6587;&#x672C;&#x4E2D;&#x9891;&#x7387;&#x6BD4;&#x8F83;&#x5C0F;&#x7684;&#x8BCD;&#xFF0C;&#x8FD9;&#x4F7F;&#x5F97;<em>IDF</em> &#x7684;&#x7CBE;&#x5EA6;&#x4E0D;&#x9AD8;&#xFF1B;</li>
-<li><em>TF-IDF</em> &#x4E25;&#x91CD;&#x4F9D;&#x8D56;&#x4E8E;&#x8BED;&#x6599;&#x5E93;&#xFF08;&#x5C24;&#x5176;&#x5728;&#x8BAD;&#x7EC3;&#x540C;&#x7C7B;&#x8BED;&#x6599;&#x5E93;&#x65F6;&#xFF0C;&#x5F80;&#x5F80;&#x4F1A;&#x63A9;&#x76D6;&#x4E00;&#x4E9B;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x5173;&#x952E;&#x8BCD;&#xFF1B;&#x5982;&#xFF1A;&#x5728;&#x8FDB;&#x884C;<em>TF-IDF</em> &#x8BAD;&#x7EC3;&#x65F6;&#xFF0C;&#x8BED;&#x6599;&#x5E93;&#x4E2D;&#x7684; &#x5A31;&#x4E50; &#x65B0;&#x95FB;&#x8F83;&#x591A;&#xFF0C;&#x5219;&#x4E0E; &#x5A31;&#x4E50; &#x76F8;&#x5173;&#x7684;&#x5173;&#x952E;&#x8BCD;&#x7684;&#x6743;&#x91CD;&#x5C31;&#x4F1A;&#x504F;&#x4F4E; &#xFF09;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x9009;&#x53D6;&#x8D28;&#x91CF;&#x9AD8;&#x7684;&#x8BED;&#x6599;&#x5E93;&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;&#xFF1B;</li>
+<li>不能反映词的位置信息，在对关键词进行提取时，词的位置信息（如：标题、句首、句尾的词应该赋予更高的权重）；</li>
+<li><em>IDF</em> 是一种试图抑制噪声的加权，本身倾向于文本中频率比较小的词，这使得<em>IDF</em> 的精度不高；</li>
+<li><em>TF-IDF</em> 严重依赖于语料库（尤其在训练同类语料库时，往往会掩盖一些同类型的关键词；如：在进行<em>TF-IDF</em> 训练时，语料库中的 娱乐 新闻较多，则与 娱乐 相关的关键词的权重就会偏低 ），因此需要选取质量高的语料库进行训练；</li>
 </ol>
 </blockquote>
-<h2 id="&#x5171;&#x73B0;&#x77E9;&#x9635;-cocurrence-matrix"><a name="&#x5171;&#x73B0;&#x77E9;&#x9635;-cocurrence-matrix" class="anchor-navigation-ex-anchor" href="#&#x5171;&#x73B0;&#x77E9;&#x9635;-cocurrence-matrix"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5171;&#x73B0;&#x77E9;&#x9635;-cocurrence-matrix" class="plugin-anchor" href="#&#x5171;&#x73B0;&#x77E9;&#x9635;-cocurrence-matrix"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5171;&#x73B0;&#x77E9;&#x9635; (Cocurrence matrix)</h2>
+<h2 id="共现矩阵-cocurrence-matrix">2.4 共现矩阵 (Cocurrence matrix)</h2>
 <blockquote>
-<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x51FA;&#x53D1;&#x70B9;&#x662F;&#xFF1A;&#x76F8;&#x4F3C;&#x7684;&#x8BCD;&#x8BED;&#x4F1A;&#x7ECF;&#x5E38;&#x540C;&#x65F6;&#x51FA;&#x73B0;&#xFF0C;&#x5E76;&#x4E14;&#x5177;&#x6709;&#x76F8;&#x4F3C;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x3002;&#x6BD4;&#x5982;&#xFF1A;&#x82F9;&#x679C;&#x662F;&#x6C34;&#x679C;&#x3002;&#x9999;&#x8549;&#x662F;&#x6C34;&#x679C;&#x3002;&#x82F9;&#x679C;&#x548C;&#x9999;&#x8549;&#x5177;&#x6709;&#x76F8;&#x4F3C;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x3002;</p>
-<p>&#x5728;&#x6DF1;&#x5165;&#x8BCD;&#x5171;&#x73B0;&#x77E9;&#x9635;&#x7684;&#x6784;&#x9020;&#x548C;&#x5B9A;&#x4E49;&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x6765;&#x4ECB;&#x7ECD;&#x4E24;&#x4E2A;&#x6982;&#x5FF5;&#xFF1A;&#x5171;&#x73B0;&#x548C;&#x4E0A;&#x4E0B;&#x6587;&#x7A97;&#x53E3;&#x3002;</p>
-<p>&#x5171;&#x73B0; &#x2014; &#x5BF9;&#x4E8E;&#x7ED9;&#x5B9A;&#x7684;&#x8BED;&#x6599;&#xFF0C;&#x5171;&#x73B0;&#x6307;&#x8BCD;&#x8BED;w1&#x548C;&#x8BCD;&#x8BED;w2&#x5728;&#x7ED9;&#x5B9A;&#x4E0A;&#x4E0B;&#x6587;&#x7A97;&#x53E3;&#x4E2D;&#x5171;&#x540C;&#x51FA;&#x73B0;&#x7684;&#x6B21;&#x6570;&#x3002;</p>
-<p>&#x4E0A;&#x4E0B;&#x6587;&#x7A97;&#x53E3; &#x2014; &#x8BA1;&#x7B97;&#x5171;&#x73B0;&#x65F6;&#x6240;&#x6307;&#x5B9A;&#x7684;&#x7A97;&#x53E3;&#x5927;&#x5C0F;&#xFF0C;&#x7531;&#x8DDD;&#x79BB;&#x548C;&#x65B9;&#x5411;&#x6307;&#x5B9A;&#x3002;</p>
-<p>&#x540C;&#x6837;&#x4EE5;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#x660E;&#xFF1A;</p>
+<p>这个方法的出发点是：相似的词语会经常同时出现，并且具有相似的上下文。比如：苹果是水果。香蕉是水果。苹果和香蕉具有相似的上下文。</p>
+<p>在深入词共现矩阵的构造和定义之前，我们先来介绍两个概念：共现和上下文窗口。</p>
+<p>共现 — 对于给定的语料，共现指词语w1和词语w2在给定上下文窗口中共同出现的次数。</p>
+<p>上下文窗口 — 计算共现时所指定的窗口大小，由距离和方向指定。</p>
+<p>同样以一个例子来说明：</p>
 <p>Corpus = He is not lazy. He is intelligent. He is smart.</p>
-<p>&#x7ED9;&#x5B9A;&#x8DDD;&#x79BB;2&#x548C;&#x53CC;&#x5411;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x7A97;&#x53E3;&#xFF0C;&#x8BE5;&#x4F8B;&#x7684;&#x8BCD;&#x5171;&#x73B0;&#x77E9;&#x9635;&#x5982;&#x4E0B;&#xFF1A;</p>
-<p><a href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-291bf9a91b09e07d711bdf338a2a0611_720w.jpg" data-lightbox="95ab214c-b01d-4066-beb5-45bf540fa1f0" data-title="img"><img src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-291bf9a91b09e07d711bdf338a2a0611_720w.jpg" alt="img"></a></p>
-<p>&#x4EE5;&#x56FE;&#x4E2D;&#x7684;&#x7EA2;&#x8272;&#x6846;&#x548C;&#x84DD;&#x8272;&#x6846;&#x4E3A;&#x4F8B;&#x3002;&#x7EA2;&#x8272;&#x6846;&#x8868;&#x793A;&#x201C;He&#x201D;&#x548C;&#x201C;is&#x201D;&#x7684;&#x5171;&#x73B0;&#x6B21;&#x6570;&#x4E3A;4&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
-<p><a href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-46d0907ca3fda5ce8f37ec78ca0a19ed_720w.jpg" data-lightbox="4342164a-ba38-4b8d-9af0-077a6638d3a9" data-title="img"><img src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-46d0907ca3fda5ce8f37ec78ca0a19ed_720w.jpg" alt="img"></a></p>
-<p>&#x800C;&#x84DD;&#x8272;&#x6846;&#x503C;&#x4E3A;0&#xFF0C;&#x4EE3;&#x8868;&#x8BCD;&#x201C;lazy&#x201D;&#x4ECE;&#x672A;&#x51FA;&#x73B0;&#x5728;&#x8BCD;&#x201C;intelligent&#x201D;&#x7684;&#x65B9;&#x5706;&#x4E24;&#x8BCD;&#x4E4B;&#x5185;&#x3002;</p>
-<p>&#x5728;&#x8BCD;&#x5171;&#x73B0;&#x77E9;&#x9635;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x884C;&#x5411;&#x91CF;&#x6216;&#x8005;&#x5217;&#x5411;&#x91CF;&#x6765;&#x8868;&#x793A;&#x8BCD;&#x8BED;&#xFF08;&#x77E9;&#x9635;&#x662F;&#x5BF9;&#x79F0;&#x7684;&#xFF09;&#x3002;&#x4F46;&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;&#x4E0E;&#x8BCD;&#x9891;&#x77E9;&#x9635;&#x76F8;&#x4F3C;&#xFF0C;&#x5411;&#x91CF;&#x7684;&#x7EF4;&#x5EA6;&#x7B49;&#x4E8E;&#x8BCD;&#x5178;&#x7684;&#x5927;&#x5C0F;V&#xFF0C;&#x8FD9;&#x5C06;&#x5BFC;&#x81F4;&#x5411;&#x91CF;&#x662F;&#x7A00;&#x758F;&#x4E14;&#x9AD8;&#x7EF4;&#x7684;&#xFF0C;&#x4E0D;&#x5229;&#x4E8E;&#x8BA1;&#x7B97;&#x3002;&#x5728;&#x5B9E;&#x9645;&#x4F7F;&#x7528;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x4F7F;&#x7528;PCA&#x6216;SVD&#x7B49;&#x6280;&#x672F;&#xFF0C;&#x5C06;&#x8BCD;&#x5171;&#x73B0;&#x77E9;&#x9635;&#x964D;&#x7EF4;&#x4E3A;V&#xD7;k&#xFF08;k&lt;&lt;V&#xFF09;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x8FD9;&#x6837;&#xFF0C;&#x6BCF;&#x4E2A;&#x8BCD;&#x8BED;&#x5C06;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;k&#x7EF4;&#x5927;&#x5C0F;&#x7684;&#x5411;&#x91CF;&#x6765;&#x8868;&#x793A;&#x3002;</p>
-<p><strong>&#x4F18;&#x70B9;</strong></p>
+<p>给定距离2和双向的上下文窗口，该例的词共现矩阵如下：</p>
+<p><a data-lightbox="9ea54a99-cb48-4788-9f2f-25a1ea65f30e" data-title="img" href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-291bf9a91b09e07d711bdf338a2a0611_720w.jpg"><img alt="img" src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-291bf9a91b09e07d711bdf338a2a0611_720w.jpg"/></a></p>
+<p>以图中的红色框和蓝色框为例。红色框表示“He”和“is”的共现次数为4，如下图所示：</p>
+<p><a data-lightbox="c86e33d0-8ed6-416a-96bc-4d1872367bcd" data-title="img" href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-46d0907ca3fda5ce8f37ec78ca0a19ed_720w.jpg"><img alt="img" src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-46d0907ca3fda5ce8f37ec78ca0a19ed_720w.jpg"/></a></p>
+<p>而蓝色框值为0，代表词“lazy”从未出现在词“intelligent”的方圆两词之内。</p>
+<p>在词共现矩阵中，我们可以使用行向量或者列向量来表示词语（矩阵是对称的）。但存在的问题与词频矩阵相似，向量的维度等于词典的大小V，这将导致向量是稀疏且高维的，不利于计算。在实际使用中，通常是使用PCA或SVD等技术，将词共现矩阵降维为V×k（k&lt;&lt;V）的大小，这样，每个词语将使用一个k维大小的向量来表示。</p>
+<p><strong>优点</strong></p>
 <ol>
-<li>&#x8003;&#x8651;&#x4E86;&#x53E5;&#x5B50;&#x4E2D;&#x8BCD;&#x7684;&#x987A;&#x5E8F;&#xFF1B;</li>
+<li>考虑了句子中词的顺序；</li>
 </ol>
-<p><strong>&#x7F3A;&#x70B9;</strong></p>
+<p><strong>缺点</strong></p>
 <ol>
-<li>&#x8BCD;&#x8868;&#x7684;&#x957F;&#x5EA6;&#x5F88;&#x5927;&#xFF0C;&#x5BFC;&#x81F4;&#x8BCD;&#x7684;&#x5411;&#x91CF;&#x957F;&#x5EA6;&#x4E5F;&#x5F88;&#x5927;&#xFF1B;</li>
-<li>&#x5171;&#x73B0;&#x77E9;&#x9635;&#x4E5F;&#x662F;&#x7A00;&#x758F;&#x77E9;&#x9635;&#xFF08;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <em>SVD</em>&#x3001;<em>PCA</em> &#x7B49;&#x7B97;&#x6CD5;&#x8FDB;&#x884C;&#x964D;&#x7EF4;&#xFF0C;&#x4F46;&#x662F;&#x8BA1;&#x7B97;&#x91CF;&#x5F88;&#x5927;&#xFF09;&#xFF1B;</li>
+<li>词表的长度很大，导致词的向量长度也很大；</li>
+<li>共现矩阵也是稀疏矩阵（可以使用 <em>SVD</em>、<em>PCA</em> 等算法进行降维，但是计算量很大）；</li>
 </ol>
 </blockquote>
-<h2 id="pmi&#x8BA1;&#x7B97;"><a name="pmi&#x8BA1;&#x7B97;" class="anchor-navigation-ex-anchor" href="#pmi&#x8BA1;&#x7B97;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="pmi&#x8BA1;&#x7B97;" class="plugin-anchor" href="#pmi&#x8BA1;&#x7B97;"><i class="fa fa-link" aria-hidden="true"></i></a>pmi&#x8BA1;&#x7B97;</h2>
+<h2 id="pmi计算">2.5 pmi计算</h2>
 <pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cal_two_words_pmi</span><span class="hljs-params">(chars: Dict, pairs: Dict, min_pmi: float = <span class="hljs-number">1e-7</span>, pass_similar: bool = False)</span>:</span>
-    <span class="hljs-string">&quot;&quot;&quot;
-    &#x8BA1;&#x7B97;pmi, pairs&#x91CC;&#x7684;key &#x4F1A;&#x5C1D;&#x8BD5;&#x6240;&#x6709;&#x5207;&#x5206;&#x7EC4;&#x5408;&#xFF0C;&#x627E;&#x5230;&#x6700;&#x5C0F;&#x7684;pmi&#x5207;&#x5206;
-    :param chars: {&quot;&#x5E74;&#x540E;&quot;:15, &quot;&#x4ECA;&#x5E74;&quot;:36, ...}
-    :param pairs: {&quot;&#x4ECA;&#x5E74;&#x5E74;&#x540E;&quot;:9, ...}
-    :param min_pmi: &#x6700;&#x5C0F;pmi&#x9608;&#x503C;
+    <span class="hljs-string">"""
+    计算pmi, pairs里的key 会尝试所有切分组合，找到最小的pmi切分
+    :param chars: {"年后":15, "今年":36, ...}
+    :param pairs: {"今年年后":9, ...}
+    :param min_pmi: 最小pmi阈值
     :return:
-    &quot;&quot;&quot;</span>
+    """</span>
     filter_ori_pairs = copy.deepcopy(pairs)
     log_total_chars = log(sum(chars.values()))
     log_total_pairs = log(sum(pairs.values()))
@@ -1038,7 +585,7 @@ John also likes to watch football games.     --&gt;&gt; [0, 1, 1, 0, 0, 0, 1, 1,
     n_pairs, filter_pairs = {}, {}
     <span class="hljs-keyword">for</span> word, value <span class="hljs-keyword">in</span> pairs.items():
         pair_mpi = <span class="hljs-number">1e9</span>
-        <span class="hljs-comment"># &#x67E5;&#x627E;&#x4F7F;pmi&#x6700;&#x5C0F;&#x7684;&#x5355;&#x8BCD; &#x7EC4;&#x5408;</span>
+        <span class="hljs-comment"># 查找使pmi最小的单词 组合</span>
         cut_word_idx = <span class="hljs-number">0</span>
         <span class="hljs-keyword">for</span> idx <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(word)):
             <span class="hljs-keyword">if</span> word[:idx] <span class="hljs-keyword">in</span> chars <span class="hljs-keyword">and</span> word[idx:] <span class="hljs-keyword">in</span> chars:
@@ -1050,83 +597,81 @@ John also likes to watch football games.     --&gt;&gt; [0, 1, 1, 0, 0, 0, 1, 1,
                     (pass_similar <span class="hljs-keyword">and</span> word[:cut_word_idx] <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> word[cut_word_idx:] \
                      <span class="hljs-keyword">and</span> word[cut_word_idx:] <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> word[:cut_word_idx] <span class="hljs-keyword">and</span> \
                      <span class="hljs-keyword">not</span> cal_occr(word[:cut_word_idx], word[cut_word_idx:])):
-                n_pairs[f<span class="hljs-string">&quot;{word[:cut_word_idx]}#{word[cut_word_idx:]}&quot;</span>] = pair_mpi
-                filter_pairs[f<span class="hljs-string">&quot;{word[:cut_word_idx]}#{word[cut_word_idx:]}&quot;</span>] = filter_ori_pairs[word]
+                n_pairs[f<span class="hljs-string">"{word[:cut_word_idx]}#{word[cut_word_idx:]}"</span>] = pair_mpi
+                filter_pairs[f<span class="hljs-string">"{word[:cut_word_idx]}#{word[cut_word_idx:]}"</span>] = filter_ori_pairs[word]
                 <span class="hljs-comment"># filter_pairs[word] = filter_ori_pairs[word]</span>
     <span class="hljs-keyword">return</span> n_pairs, filter_pairs
 </code></pre>
-<h1 id="&#x8BED;&#x8A00;&#x6A21;&#x578B;"><a name="&#x8BED;&#x8A00;&#x6A21;&#x578B;" class="anchor-navigation-ex-anchor" href="#&#x8BED;&#x8A00;&#x6A21;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8BED;&#x8A00;&#x6A21;&#x578B;" class="plugin-anchor" href="#&#x8BED;&#x8A00;&#x6A21;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BED;&#x8A00;&#x6A21;&#x578B;</h1>
-<h2 id="&#x5206;&#x5E03;&#x5F0F;&#x8868;&#x793A;"><a name="&#x5206;&#x5E03;&#x5F0F;&#x8868;&#x793A;" class="anchor-navigation-ex-anchor" href="#&#x5206;&#x5E03;&#x5F0F;&#x8868;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5206;&#x5E03;&#x5F0F;&#x8868;&#x793A;" class="plugin-anchor" href="#&#x5206;&#x5E03;&#x5F0F;&#x8868;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5206;&#x5E03;&#x5F0F;&#x8868;&#x793A;</h2>
+<h1 id="语言模型">3 语言模型</h1>
+<h2 id="分布式表示">3.1 分布式表示</h2>
 <blockquote>
-<p>&#x57FA;&#x4E8E;&#x7EDF;&#x8BA1;&#x65B9;&#x6CD5;&#x7684;&#x8BCD;&#x5D4C;&#x5165;&#xFF0C;&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x90FD;&#x662F;&#x4F7F;&#x7528;&#x5F88;&#x957F;&#x7684;&#x5411;&#x91CF;&#x6765;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x8BCD;&#x8BED;&#xFF0C;&#x4E14;&#x8BCD;&#x8BED;&#x7684;&#x201C;&#x542B;&#x4E49;&#x201D;&#x5206;&#x5E03;&#x5728;&#x9AD8;&#x7EF4;&#x5EA6;&#x5411;&#x91CF;&#x7684;&#x4E00;&#x4E2A;&#x6216;&#x5C11;&#x6570;&#x51E0;&#x4E2A;&#x5206;&#x91CF;&#x4E0A;&#xFF08;&#x7A00;&#x758F;&#xFF09;&#x3002;&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x7684;&#x4E3B;&#x8981;&#x95EE;&#x9898;&#x5728;&#x4E8E;&#x7528;&#x4E8E;&#x8868;&#x793A;&#x8BCD;&#x8BED;&#x7684;&#x5411;&#x91CF;&#x7EF4;&#x5EA6;&#x8FC7;&#x9AD8;&#x4E14;&#x975E;&#x5E38;&#x7A00;&#x758F;&#xFF0C;&#x5E76;&#x4E14;&#x65E0;&#x6CD5;&#x5F88;&#x597D;&#x7684;&#x8868;&#x5F81;&#x8BCD;&#x8BED;&#x7684;&#x542B;&#x4E49;&#x3002;&#x90A3;&#x4E48;&#x4E00;&#x4E2A;&#x7406;&#x60F3;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x5E94;&#x8BE5;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x5462;&#xFF1F;</p>
-<p>&#x60F3;&#x8C61;&#x4E00;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x8EAB;&#x5904;&#x4E8E;&#x4E00;&#x4E2A;&#x5145;&#x6EE1;&#x8BCD;&#x8BED;&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x8FD9;&#x4E2A;&#x7A7A;&#x95F4;&#x4E2D;&#xFF0C;&#x76F8;&#x4F3C;&#x7684;&#x8BCD;&#x8BED;&#x4EEC;&#x7EC4;&#x6210;&#x4E00;&#x4E2A;&#x201C;&#x5BB6;&#x65CF;&#x201D;&#x62B1;&#x56E2;&#x53D6;&#x6696;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x8DDD;&#x79BB;&#x6BD4;&#x8F83;&#x8FD1;&#xFF1B;&#x4E0D;&#x76F8;&#x4F3C;&#x7684;&#x8BCD;&#x8BED;&#x8EAB;&#x5904;&#x4E0D;&#x540C;&#x7684;&#x201C;&#x5BB6;&#x65CF;&#x201D;&#xFF0C;&#x8DDD;&#x79BB;&#x8F83;&#x8FDC;&#x3002;&#x5982;&#x201C;&#x6211;&#x201D;&#x201C;&#x4F60;&#x201D;&#x201C;&#x4ED6;&#x201D;&#x201C;&#x5434;&#x5F66;&#x7956;&#x201D;&#x8FD9;&#x4E9B;&#x8BCD;&#x7684;&#x5728;&#x8BCD;&#x7A7A;&#x95F4;&#x7684;&#x8DDD;&#x79BB;&#x6BD4;&#x8F83;&#x8FD1;&#xFF0C;&#x201C;&#x9999;&#x8549;&#x201D;&#x548C;&#x201C;&#x7535;&#x8111;&#x201D;&#x5728;&#x8BCD;&#x7A7A;&#x95F4;&#x7684;&#x8DDD;&#x79BB;&#x6BD4;&#x8F83;&#x8FDC;&#x3002;&#x90A3;&#x4E48;&#x8BCD;&#x5D4C;&#x5165;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x67D0;&#x79CD;&#x5C06;&#x8BCD;&#x7A7A;&#x95F4;&#x6620;&#x5C04;&#x5230;&#x5411;&#x91CF;&#x7A7A;&#x95F4;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
-<p>&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x8FD9;&#x4E9B;&#x8BCD;&#x8BED;&#x6620;&#x5C04;&#x5230;&#x4E00;&#x4E2A;&#x56FA;&#x5B9A;&#x957F;&#x5EA6;&#x7684;&#x7A20;&#x5BC6;&#x4F4E;&#x7EF4;&#x5EA6;&#xFF08;&#x76F8;&#x5BF9;&#x4E8E;&#x8BCD;&#x8868;&#x5927;&#x5C0F;&#x800C;&#x8A00;&#xFF09;&#x5411;&#x91CF;&#xFF0C;&#x4E14;&#x4F9D;&#x7136;&#x4FDD;&#x6301;&#x4EE5;&#x4E0A;&#x7279;&#x6027;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5411;&#x91CF;&#x4E4B;&#x95F4;&#x7684;&#x8DDD;&#x79BB;&#x6765;&#x5EA6;&#x91CF;&#x8BCD;&#x8BED;&#x4E4B;&#x95F4;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;<code>Distributed Representation</code>&#x3002;</p>
-<p>&#x57FA;&#x4E8E;&#x7EDF;&#x8BA1;&#x7684;&#x8BCD;&#x5D4C;&#x5165;&#x65B9;&#x6CD5;&#x4EA7;&#x751F;&#x7684;&#x5411;&#x91CF;&#x975E;&#x5E38;&#x7A00;&#x758F;&#xFF0C;&#x8BCD;&#x8BED;&#x7684;&#x542B;&#x4E49;&#x96C6;&#x4E2D;&#x5206;&#x5E03;&#x5728;&#x5411;&#x91CF;&#x7684;&#x4E00;&#x4E2A;&#x6216;&#x5C11;&#x6570;&#x51E0;&#x4E2A;&#x975E;&#x96F6;&#x5206;&#x91CF;&#x4E0A;&#x3002;&#x800C;&#x201C;Distributed&#x201D;&#x5176;&#x4E2D;&#x6587;&#x610F;&#x601D;&#x662F;&#x201C;<code>&#x5206;&#x5E03;&#x5F0F;</code>&#x201D;&#xFF0C;&#x610F;&#x601D;&#x662F;&#x6307;&#x5C06;&#x8BCD;&#x8BED;&#x7684;&#x8BED;&#x4E49;&#x5747;&#x5300;&#x5206;&#x5E03;&#x5230;&#x5411;&#x91CF;&#x7684;&#x5404;&#x4E2A;&#x5206;&#x91CF;&#x4E0A;&#xFF0C; &#x6BCF;&#x4E2A;&#x975E;&#x96F6;&#x5206;&#x91CF;&#x90FD;<code>&#x627F;&#x62C5;</code>&#x5176;&#x4E00;&#x90E8;&#x5206;&#x542B;&#x4E49;&#x3002;</p>
-<p>&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x5C31;&#x662F;&#x7528;&#x6765;&#x8BA1;&#x7B97;&#x4E00;&#x4E2A;&#x53E5;&#x5B50;&#x7684;&#x6982;&#x7387;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5224;&#x65AD;&#x4E00;&#x53E5;&#x8BDD;&#x662F;&#x5426;&#x662F;&#x4EBA;&#x8BDD;&#x7684;&#x6982;&#x7387;</p>
-<p>&#x53EF;&#x4EE5;&#x5C06;&#x53E5;&#x5B50;&#x770B;&#x505A;&#x5355;&#x8BCD;&#x5E8F;&#x5217;<script type="math/tex; ">\omega_{1}、\omega_{2}...\omega_{n}</script>&#xFF0C;&#x90A3;&#x4E48;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x7684;&#x76EE;&#x6807;&#x5C31;&#x662F;&#x8BA1;&#x7B97;
+<p>基于统计方法的词嵌入，这些方法都是使用很长的向量来表示一个词语，且词语的“含义”分布在高维度向量的一个或少数几个分量上（稀疏）。这些方法的主要问题在于用于表示词语的向量维度过高且非常稀疏，并且无法很好的表征词语的含义。那么一个理想的词向量应该是什么样呢？</p>
+<p>想象一下，我们身处于一个充满词语的空间，这个空间中，相似的词语们组成一个“家族”抱团取暖，它们的距离比较近；不相似的词语身处不同的“家族”，距离较远。如“我”“你”“他”“吴彦祖”这些词的在词空间的距离比较近，“香蕉”和“电脑”在词空间的距离比较远。那么词嵌入其实就是某种将词空间映射到向量空间的方法。</p>
+<p>我们希望这些词语映射到一个固定长度的稠密低维度（相对于词表大小而言）向量，且依然保持以上特性，可以使用向量之间的距离来度量词语之间的相似性，这就是<code>Distributed Representation</code>。</p>
+<p>基于统计的词嵌入方法产生的向量非常稀疏，词语的含义集中分布在向量的一个或少数几个非零分量上。而“Distributed”其中文意思是“<code>分布式</code>”，意思是指将词语的语义均匀分布到向量的各个分量上， 每个非零分量都<code>承担</code>其一部分含义。</p>
+<p>语言模型就是用来计算一个句子的概率的模型，也就是判断一句话是否是人话的概率</p>
+<p>可以将句子看做单词序列<script type="math/tex; ">\omega_{1}、\omega_{2}...\omega_{n}</script>，那么语言模型的目标就是计算
 <script type="math/tex; mode=display">
 > P(\omega_{1},\omega_{2}...\omega_{n})=P(\omega_{1})P(\omega_{2}|\omega_{1})...P(\omega_{n}|\omega_{1},\omega_{2}...\omega_{n-1})
 > </script>
-&#x53EF;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x65B9;&#x6CD5;&#x5B58;&#x5728;&#x4E24;&#x4E2A;&#x81F4;&#x547D;&#x7684;&#x7F3A;&#x9677;&#xFF1A;</p>
+可是这样的方法存在两个致命的缺陷：</p>
 <ol>
-<li>&#x53C2;&#x6570;&#x7A7A;&#x95F4;&#x8FC7;&#x5927;&#xFF1A;&#x6761;&#x4EF6;&#x6982;&#x7387;P(wn|w1,w2,..,wn-1)&#x7684;&#x53EF;&#x80FD;&#x6027;&#x592A;&#x591A;&#xFF0C;&#x65E0;&#x6CD5;&#x4F30;&#x7B97;&#xFF0C;&#x4E0D;&#x53EF;&#x80FD;&#x6709;&#x7528;&#xFF1B;</li>
-<li>&#x6570;&#x636E;&#x7A00;&#x758F;&#x4E25;&#x91CD;&#xFF1A;&#x5BF9;&#x4E8E;&#x975E;&#x5E38;&#x591A;&#x8BCD;&#x5BF9;&#x7684;&#x7EC4;&#x5408;&#xFF0C;&#x5728;&#x8BED;&#x6599;&#x5E93;&#x4E2D;&#x6CA1;&#x6709;&#x51FA;&#x73B0;&#xFF0C;&#x4F9D;&#x636E;&#x6700;&#x5927;&#x4F3C;&#x7136;&#x4F30;&#x8BA1;&#x5F97;&#x5230;&#x7684;&#x6982;&#x7387;&#x4F1A;&#x662F;0&#x3002;</li>
+<li>参数空间过大：条件概率P(wn|w1,w2,..,wn-1)的可能性太多，无法估算，不可能有用；</li>
+<li>数据稀疏严重：对于非常多词对的组合，在语料库中没有出现，依据最大似然估计得到的概率会是0。</li>
 </ol>
 <blockquote>
-<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E00;&#xFF1A;</p>
-<p><code>&#x9A6C;&#x5C14;&#x79D1;&#x592B;&#x5047;&#x8BBE;</code>&#xFF1A;<strong>&#x968F;&#x610F;&#x4E00;&#x4E2A;&#x8BCD;&#x51FA;&#x73B0;&#x7684;&#x6982;&#x7387;&#x53EA;&#x4E0E;&#x5B83;&#x524D;&#x9762;&#x51FA;&#x73B0;&#x7684;&#x6709;&#x9650;&#x7684;&#x4E00;&#x4E2A;&#x6216;&#x8005;&#x51E0;&#x4E2A;&#x8BCD;&#x6709;&#x5173;&#x3002;</strong></p>
-<p>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x8BCD;&#x7684;&#x51FA;&#x73B0;&#x4EC5;&#x4F9D;&#x8D56;&#x4E8E;&#x5B83;&#x524D;&#x9762;&#x51FA;&#x73B0;&#x7684;&#x4E00;&#x4E2A;&#x8BCD;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x79F0;&#x4E4B;&#x4E3A;bigram</p>
-<p>&#x5047;&#x8BBE;&#x4E00;&#x4E2A;&#x8BCD;&#x7684;&#x51FA;&#x73B0;&#x4EC5;&#x4F9D;&#x8D56;&#x4E8E;&#x5B83;&#x524D;&#x9762;&#x51FA;&#x73B0;&#x7684;&#x4E24;&#x4E2A;&#x8BCD;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x79F0;&#x4E4B;&#x4E3A;trigram</p>
-<p>&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;N&#x5143;&#x6A21;&#x578B;&#x5C31;&#x662F;&#x5047;&#x8BBE;&#x5F53;&#x524D;&#x8BCD;&#x7684;&#x51FA;&#x73B0;&#x6982;&#x7387;&#x53EA;&#x4E0E;&#x5B83;&#x524D;&#x9762;&#x7684;N-1&#x4E2A;&#x8BCD;&#x6709;&#x5173;&#x3002;&#x800C;&#x8FD9;&#x4E9B;&#x6982;&#x7387;&#x53C2;&#x6570;&#x90FD;&#x662F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5927;&#x89C4;&#x6A21;&#x8BED;&#x6599;&#x5E93;&#x6765;&#x8BA1;&#x7B97;</p>
-<p>&#x5B9E;&#x8DF5;&#x4E2D;&#x7528;&#x7684;&#x6700;&#x591A;&#x7684;&#x5C31;&#x662F;bigram&#x548C;trigram&#x4E86;&#xFF0C;&#x9AD8;&#x4E8E;&#x56DB;&#x5143;&#x7684;&#x7528;&#x7684;&#x975E;&#x5E38;&#x5C11;&#xFF0C;&#x7531;&#x4E8E;&#x8BAD;&#x7EC3;&#x5B83;&#x987B;&#x8981;&#x66F4;&#x5E9E;&#x5927;&#x7684;&#x8BED;&#x6599;&#xFF0C;&#x5E76;&#x4E14;&#x6570;&#x636E;&#x7A00;&#x758F;&#x4E25;&#x91CD;&#xFF0C;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x9AD8;&#xFF0C;&#x7CBE;&#x5EA6;&#x5374;&#x63D0;&#x9AD8;&#x7684;&#x4E0D;&#x591A;</p>
-<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E8C;&#xFF1A;&#x5F15;&#x5165;&#x5E73;&#x6ED1;&#x6280;&#x672F;&#x3002;&#x5E73;&#x6ED1;&#x6280;&#x672F;&#x7684;&#x601D;&#x60F3;&#x548C;&#x76EE;&#x7684;&#x662F;&#x5C06;&#x6570;&#x636E;&#x96C6;&#x4E2D;&#x770B;&#x5230;&#x7684;&#x6982;&#x7387;&#x5206;&#x914D;&#x4E00;&#x70B9;&#x7ED9;&#x672A;&#x51FA;&#x73B0;&#x7684;&#x6570;&#x636E;&#xFF08;&#x907F;&#x514D;&#x6982;&#x7387;&#x4E3A;0&#xFF09;&#xFF0C;&#x5E76;&#x4E14;&#x4FDD;&#x6301;&#x603B;&#x7684;&#x6982;&#x7387;&#x548C;&#x4E3A;1&#x3002;&#x7C7B;&#x4F3C;&#x4E8E;&#x5F15;&#x5165;&#x4E86;&#x6B63;&#x5219;&#x5316;&#xFF0C;&#x5BF9;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x4E86;&#x7EA6;&#x675F;&#x3002;&#x8FD9;&#x4E9B;&#x90FD;&#x662F;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x4E2D;&#x89E3;&#x51B3;&#x6A21;&#x578B;&#x8FC7;&#x62DF;&#x5408;&#xFF0C;&#x63D0;&#x9AD8;&#x6A21;&#x578B;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>解决方案一：</p>
+<p><code>马尔科夫假设</code>：<strong>随意一个词出现的概率只与它前面出现的有限的一个或者几个词有关。</strong></p>
+<p>如果一个词的出现仅依赖于它前面出现的一个词，那么我们就称之为bigram</p>
+<p>假设一个词的出现仅依赖于它前面出现的两个词，那么我们就称之为trigram</p>
+<p>一般来说，N元模型就是假设当前词的出现概率只与它前面的N-1个词有关。而这些概率参数都是可以通过大规模语料库来计算</p>
+<p>实践中用的最多的就是bigram和trigram了，高于四元的用的非常少，由于训练它须要更庞大的语料，并且数据稀疏严重，时间复杂度高，精度却提高的不多</p>
+<p>解决方案二：引入平滑技术。平滑技术的思想和目的是将数据集中看到的概率分配一点给未出现的数据（避免概率为0），并且保持总的概率和为1。类似于引入了正则化，对参数进行了约束。这些都是机器学习中解决模型过拟合，提高模型泛化能力的方法。</p>
 </blockquote>
-<p>&#x601D;&#x8003;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;</p>
-<p>&#x53E5;&#x5B50;1&#xFF1A;&#x201C;A dog is running in the room&#x201D;</p>
-<p>&#x53E5;&#x5B50;2&#xFF1A;&quot;A cat is running in the room&quot;</p>
-<p>&#x4E24;&#x4E2A;&#x53E5;&#x5B50;&#x54EA;&#x4E2A;&#x6982;&#x7387;&#x5927;&#x4E00;&#x4E9B;&#xFF1F;&#x76F4;&#x89C9;&#x4E0A;&#x6765;&#x8BF4;&#x5E94;&#x8BE5;&#x662F;&#x76F8;&#x4F3C;&#x7684;&#xFF0C;&#x4F46;&#x7EDF;&#x8BA1;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x975E;&#x5E38;&#x53D7;&#x6570;&#x636E;&#x96C6;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x65E0;&#x6CD5;&#x8003;&#x8651;&#x8BCD;&#x8BED;&#x4E0E;&#x8BCD;&#x8BED;&#x7684;&#x76F8;&#x4F3C;&#x5EA6;&#xFF0C;&#x6240;&#x4EE5;&#x4EE5;&#x4E0A;&#x4E24;&#x4E2A;&#x53E5;&#x5B50;&#x7684;&#x6982;&#x7387;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;&#x53EF;&#x80FD;&#x662F;&#x76F8;&#x5DEE;&#x5F88;&#x5927;&#x7684;&#x3002;&#x6BD4;&#x5982;&#x6570;&#x636E;&#x96C6;&#x4E2D;&#x53E5;&#x5B50;1&#x51FA;&#x73B0;&#x4E86;100&#x6B21;&#xFF0C;&#x53E5;&#x5B50;2&#x53EA;&#x51FA;&#x73B0;&#x4E86;1&#x6B21;&#xFF0C;&#x90A3;&#x6700;&#x540E;&#x7684;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;P(&#x53E5;&#x5B50;1)&#x5C06;&#x8FDC;&#x5927;&#x4E8E;P(&#x53E5;&#x5B50;2)&#x3002;&#x4E0B;&#x9762;&#x4ECB;&#x7ECD;&#x7684;&#x524D;&#x5411;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x80FD;&#x6BD4;&#x8F83;&#x597D;&#x5730;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;</p>
+<p>思考一个问题：</p>
+<p>句子1：“A dog is running in the room”</p>
+<p>句子2："A cat is running in the room"</p>
+<p>两个句子哪个概率大一些？直觉上来说应该是相似的，但统计语言模型非常受数据集的影响，无法考虑词语与词语的相似度，所以以上两个句子的概率计算结果可能是相差很大的。比如数据集中句子1出现了100次，句子2只出现了1次，那最后的计算结果P(句子1)将远大于P(句子2)。下面介绍的前向神经网络语言模型能比较好地解决这个问题。</p>
 </blockquote>
-<h2 id="word2vec"><a name="word2vec" class="anchor-navigation-ex-anchor" href="#word2vec"><i class="fa fa-link" aria-hidden="true"></i></a><a name="word2vec" class="plugin-anchor" href="#word2vec"><i class="fa fa-link" aria-hidden="true"></i></a>word2vec</h2>
+<h2 id="word2vec">3.2 word2vec</h2>
 <blockquote>
-<p><a href="https://www.zhihu.com/question/44832436?sort=created" target="_blank">word2vec&#x662F;&#x5982;&#x4F55;&#x5F97;&#x5230;&#x8BCD;&#x5411;&#x91CF;&#x7684;&#xFF1F;</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/57713023" target="_blank">BERT&#x53D1;&#x5C55;&#x53F2;&#xFF08;&#x4E09;&#xFF09;&#x5168;&#x65B9;&#x4F4D;&#x591A;&#x89D2;&#x5EA6;&#x7406;&#x89E3;Word2Vec</a></p>
-<p><a href="https://www.cnblogs.com/songxinyu/p/9404032.html" target="_blank">&#x6587;&#x672C;&#x8868;&#x793A; - &#x6CF0;&#x52D2;&#x4E0D;&#x4F1A;&#x5C55;&#x5F00; - &#x535A;&#x5BA2;&#x56ED;</a></p>
-<p>one-hot&#x5411;&#x91CF;&#x4F5C;&#x4E3A;word2vec&#x7684;&#x8F93;&#x5165;&#xFF0C;&#x901A;&#x8FC7;word2vec&#x8BAD;&#x7EC3;&#x4F4E;&#x7EF4;&#x8BCD;&#x5411;&#x91CF;&#xFF08;word embedding&#xFF09;</p>
-<p>&#x76EE;&#x524D;&#x6709;&#x4E24;&#x79CD;&#x8BAD;&#x7EC3;&#x6A21;&#x578B;&#xFF08;CBOW&#x548C;Skip-gram&#xFF09;&#xFF0C;&#x4E24;&#x79CD;&#x52A0;&#x901F;&#x7B97;&#x6CD5;&#xFF08;Negative Sample&#x4E0E;Hierarchical Softmax&#xFF09;</p>
-<p>Word2Vec&#x5305;&#x542B;&#x4E86;&#x4E24;&#x79CD;&#x8BCD;&#x8BAD;&#x7EC3;&#x6A21;&#x578B;&#xFF1A;CBOW&#x6A21;&#x578B;&#x548C;Skip-gram&#x6A21;&#x578B;&#x3002;</p>
+<p><a href="https://www.zhihu.com/question/44832436?sort=created" target="_blank">word2vec是如何得到词向量的？</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/57713023" target="_blank">BERT发展史（三）全方位多角度理解Word2Vec</a></p>
+<p><a href="https://www.cnblogs.com/songxinyu/p/9404032.html" target="_blank">文本表示 - 泰勒不会展开 - 博客园</a></p>
+<p>one-hot向量作为word2vec的输入，通过word2vec训练低维词向量（word embedding）</p>
+<p>目前有两种训练模型（CBOW和Skip-gram），两种加速算法（Negative Sample与Hierarchical Softmax）</p>
+<p>Word2Vec包含了两种词训练模型：CBOW模型和Skip-gram模型。</p>
 <blockquote>
 <ul>
-<li>CBOW&#xFF1A;&#x5229;&#x7528;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x8BCD;&#x9884;&#x6D4B;&#x4E2D;&#x5FC3;&#x8BCD;&#xFF1B;</li>
+<li>CBOW：利用上下文的词预测中心词；</li>
 </ul>
-<p><a href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/CBOW&#x5229;&#x7528;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x8BCD;&#x9884;&#x6D4B;&#x4E2D;&#x5FC3;&#x8BCD;.png" data-lightbox="f0f4622f-89ed-480c-8127-9d857fb676d5" data-title="img"><img src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/CBOW&#x5229;&#x7528;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x8BCD;&#x9884;&#x6D4B;&#x4E2D;&#x5FC3;&#x8BCD;.png" alt="img"></a></p>
+<p><a data-lightbox="7bcf58e7-777c-4520-a0c7-457fa718dce3" data-title="img" href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/CBOW利用上下文的词预测中心词.png"><img alt="img" src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/CBOW利用上下文的词预测中心词.png"/></a></p>
 <ul>
-<li>SKIP-GRAM&#xFF1A;&#x5229;&#x7528;&#x4E2D;&#x5FC3;&#x8BCD;&#x9884;&#x6D4B;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x8BCD;&#xFF1B;</li>
+<li>SKIP-GRAM：利用中心词预测上下文的词；</li>
 </ul>
-<p><a href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/SKIP-GRAM&#x5229;&#x7528;&#x4E2D;&#x5FC3;&#x8BCD;&#x9884;&#x6D4B;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x8BCD;.png" data-lightbox="38d4cd8a-f58f-4ec8-9da7-d80aa80c63ba" data-title="img"><img src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/SKIP-GRAM&#x5229;&#x7528;&#x4E2D;&#x5FC3;&#x8BCD;&#x9884;&#x6D4B;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x8BCD;.png" alt="img"></a></p>
+<p><a data-lightbox="8707ff80-b3f5-4f54-903d-25a78bc339da" data-title="img" href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/SKIP-GRAM利用中心词预测上下文的词.png"><img alt="img" src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/SKIP-GRAM利用中心词预测上下文的词.png"/></a></p>
 </blockquote>
-<p>&#x5B83;&#x4EEC;&#x7684;&#x7ED3;&#x6784;&#x4EC5;&#x4EC5;&#x662F;&#x8F93;&#x5165;&#x5C42;&#x548C;&#x8F93;&#x51FA;&#x5C42;&#x4E0D;&#x540C;</p>
-<p><a href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-eadc8776d24d3050468907b35c79f274_720w.jpg" data-lightbox="728bea08-45a0-42d8-8a6b-b7d8065c9a25" data-title="img"><img src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-eadc8776d24d3050468907b35c79f274_720w.jpg" alt="img"></a></p>
-<center>CBOW&#x6A21;&#x578B;&#x548C;Skip-gram&#x6A21;&#x578B;</center>
-
-
-<p>&#x5148;&#x6765;&#x770B;&#x7740;&#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#x56FE;&#xFF0C;&#x7528;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x63CF;&#x8FF0;&#x4E00;&#x4E0B;CBOW&#x6A21;&#x578B;&#x7684;&#x6D41;&#x7A0B;&#xFF1A;</p>
-<p><a href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-0f439e1bb44c71c8e694cc65cb509263_720w.jpg" data-lightbox="3ba2d6e5-5a50-4518-ab2d-d722cf840d8a" data-title="img"><img src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-0f439e1bb44c71c8e694cc65cb509263_720w.jpg" alt="img"></a></p>
-<center>CBOW&#x6A21;&#x578B;&#x7ED3;&#x6784;&#x56FE;</center>
-&gt;NOTE&#xFF1A;&#x82B1;&#x62EC;&#x53F7;&#x5185;{}&#x4E3A;&#x89E3;&#x91CA;&#x5185;&#x5BB9;.
+<p>它们的结构仅仅是输入层和输出层不同</p>
+<p><a data-lightbox="95b5e79b-9744-404e-91f8-d657b3002d69" data-title="img" href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-eadc8776d24d3050468907b35c79f274_720w.jpg"><img alt="img" src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-eadc8776d24d3050468907b35c79f274_720w.jpg"/></a></p>
+<center>CBOW模型和Skip-gram模型</center>
+<p>先来看着这个结构图，用自然语言描述一下CBOW模型的流程：</p>
+<p><a data-lightbox="a8d62991-4c36-423e-a3cc-3dcc1c45f709" data-title="img" href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-0f439e1bb44c71c8e694cc65cb509263_720w.jpg"><img alt="img" src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-0f439e1bb44c71c8e694cc65cb509263_720w.jpg"/></a></p>
+<center>CBOW模型结构图</center>
+&gt;NOTE：花括号内{}为解释内容.
 &gt;
-&gt;1. &#x8F93;&#x5165;&#x5C42;&#xFF1A;&#x4E0A;&#x4E0B;&#x6587;&#x5355;&#x8BCD;&#x7684;onehot.  {&#x5047;&#x8BBE;&#x5355;&#x8BCD;&#x5411;&#x91CF;&#x7A7A;&#x95F4;dim&#x4E3A;V&#xFF0C;&#x4E0A;&#x4E0B;&#x6587;&#x5355;&#x8BCD;&#x4E2A;&#x6570;&#x4E3A;C}
-&gt;2. &#x6240;&#x6709;onehot&#x5206;&#x522B;&#x4E58;&#x4EE5;&#x5171;&#x4EAB;&#x7684;&#x8F93;&#x5165;&#x6743;&#x91CD;&#x77E9;&#x9635;W. {V*N&#x77E9;&#x9635;&#xFF0C;N&#x4E3A;&#x81EA;&#x5DF1;&#x8BBE;&#x5B9A;&#x7684;&#x6570;&#xFF0C;&#x521D;&#x59CB;&#x5316;&#x6743;&#x91CD;&#x77E9;&#x9635;W}
-&gt;3. &#x6240;&#x5F97;&#x7684;&#x5411;&#x91CF; {&#x56E0;&#x4E3A;&#x662F;onehot&#x6240;&#x4EE5;&#x4E3A;&#x5411;&#x91CF;} &#x76F8;&#x52A0;&#x6C42;&#x5E73;&#x5747;&#x4F5C;&#x4E3A;&#x9690;&#x5C42;&#x5411;&#x91CF;, size&#x4E3A;1*N.
-&gt;4. &#x4E58;&#x4EE5;&#x8F93;&#x51FA;&#x6743;&#x91CD;&#x77E9;&#x9635;W&apos; {N*V}
-&gt;5. &#x5F97;&#x5230;&#x5411;&#x91CF; {1*V} &#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#x5904;&#x7406;&#x5F97;&#x5230;V-dim&#x6982;&#x7387;&#x5206;&#x5E03;  {PS: &#x56E0;&#x4E3A;&#x662F;onehot&#x561B;&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x7EF4;&#x6597;&#x4EE3;&#x8868;&#x7740;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;}&#xFF0C;&#x6982;&#x7387;&#x6700;&#x5927;&#x7684;index&#x6240;&#x6307;&#x793A;&#x7684;&#x5355;&#x8BCD;&#x4E3A;&#x9884;&#x6D4B;&#x51FA;&#x7684;&#x4E2D;&#x95F4;&#x8BCD;&#xFF08;target word&#xFF09;
-&gt;6. &#x4E0E;true label&#x7684;onehot&#x505A;&#x6BD4;&#x8F83;&#xFF0C;&#x8BEF;&#x5DEE;&#x8D8A;&#x5C0F;&#x8D8A;&#x597D;
+&gt;1. 输入层：上下文单词的onehot.  {假设单词向量空间dim为V，上下文单词个数为C}
+&gt;2. 所有onehot分别乘以共享的输入权重矩阵W. {V*N矩阵，N为自己设定的数，初始化权重矩阵W}
+&gt;3. 所得的向量 {因为是onehot所以为向量} 相加求平均作为隐层向量, size为1*N.
+&gt;4. 乘以输出权重矩阵W' {N*V}
+&gt;5. 得到向量 {1*V} 激活函数处理得到V-dim概率分布  {PS: 因为是onehot嘛，其中的每一维斗代表着一个单词}，概率最大的index所指示的单词为预测出的中间词（target word）
+&gt;6. 与true label的onehot做比较，误差越小越好
 
 
 
-&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x7684;Corpus&#x662F;&#x8FD9;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x53EA;&#x6709;&#x56DB;&#x4E2A;&#x5355;&#x8BCD;&#x7684;document&#xFF1A;
+假设我们现在的Corpus是这一个简单的只有四个单词的document：
 {I drink coffee everyday}
-&#x6211;&#x4EEC;&#x9009;coffee&#x4F5C;&#x4E3A;&#x4E2D;&#x5FC3;&#x8BCD;&#xFF0C;window size&#x8BBE;&#x4E3A;2
-&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x6839;&#x636E;&#x5355;&#x8BCD;&quot;I&quot;,&quot;drink&quot;&#x548C;&quot;everyday&quot;&#x6765;&#x9884;&#x6D4B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#xFF0C;&#x5E76;&#x4E14;&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x8FD9;&#x4E2A;&#x5355;&#x8BCD;&#x662F;coffee&#x3002;
+我们选coffee作为中心词，window size设为2
+也就是说，我们要根据单词"I","drink"和"everyday"来预测一个单词，并且我们希望这个单词是coffee。
 
 ![img](res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-3e75211b3b675f17a232f29fae0982bc_720w.jpg)
 
@@ -1138,197 +683,119 @@ John also likes to watch football games.     --&gt;&gt; [0, 1, 1, 0, 0, 0, 1, 1,
 
 ![img](res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/v2-1713450fa2a0f37c8cbcce4ffef04baa_720w.jpg)
 
-&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x6B64;&#x65F6;&#x5F97;&#x5230;&#x7684;&#x6982;&#x7387;&#x5206;&#x5E03;&#x5DF2;&#x7ECF;&#x8FBE;&#x5230;&#x4E86;&#x8BBE;&#x5B9A;&#x7684;&#x8FED;&#x4EE3;&#x6B21;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x8BAD;&#x7EC3;&#x51FA;&#x6765;&#x7684;look up table&#x5E94;&#x8BE5;&#x4E3A;&#x77E9;&#x9635;W&#x3002;&#x5373;&#xFF0C;**&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x7684;one-hot&#x8868;&#x793A;&#x4E58;&#x4EE5;&#x8FD9;&#x4E2A;&#x77E9;&#x9635;&#x90FD;&#x5C06;&#x5F97;&#x5230;&#x81EA;&#x5DF1;&#x7684;word embedding&#x3002;**
+假设我们此时得到的概率分布已经达到了设定的迭代次数，那么现在我们训练出来的look up table应该为矩阵W。即，**任何一个单词的one-hot表示乘以这个矩阵都将得到自己的word embedding。**
 
-**&#x4F18;&#x70B9;**
+**优点**
 
-1. &#x8003;&#x8651;&#x5230;&#x8BCD;&#x8BED;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x5B66;&#x4E60;&#x5230;&#x4E86;&#x8BED;&#x4E49;&#x548C;&#x8BED;&#x6CD5;&#x7684;&#x4FE1;&#x606F;&#xFF1B;
-2. &#x5F97;&#x5230;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x7EF4;&#x5EA6;&#x5C0F;&#xFF0C;&#x8282;&#x7701;&#x5B58;&#x50A8;&#x548C;&#x8BA1;&#x7B97;&#x8D44;&#x6E90;&#xFF1B;
-3. &#x901A;&#x7528;&#x6027;&#x5F3A;&#xFF0C;&#x53EF;&#x4EE5;&#x5E94;&#x7528;&#x5230;&#x5404;&#x79CD;*NLP* &#x4EFB;&#x52A1;&#x4E2D;&#xFF1B;
+1. 考虑到词语的上下文，学习到了语义和语法的信息；
+2. 得到的词向量维度小，节省存储和计算资源；
+3. 通用性强，可以应用到各种*NLP* 任务中；
 
-**&#x7F3A;&#x70B9;**
+**缺点**
 
-1. &#x8BCD;&#x548C;&#x5411;&#x91CF;&#x662F;&#x4E00;&#x5BF9;&#x4E00;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x65E0;&#x6CD5;&#x89E3;&#x51B3;&#x591A;&#x4E49;&#x8BCD;&#x7684;&#x95EE;&#x9898;&#xFF1B;
-2. word2vec&#x662F;&#x4E00;&#x79CD;&#x9759;&#x6001;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x867D;&#x7136;&#x901A;&#x7528;&#x6027;&#x5F3A;&#xFF0C;&#x4F46;&#x65E0;&#x6CD5;&#x771F;&#x7684;&#x7279;&#x5B9A;&#x7684;&#x4EFB;&#x52A1;&#x505A;&#x52A8;&#x6001;&#x4F18;&#x5316;&#xFF1B;
+1. 词和向量是一对一的关系，无法解决多义词的问题；
+2. word2vec是一种静态的模型，虽然通用性强，但无法真的特定的任务做动态优化；
 
 ![img](res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/1877b44017ec4d18b8010e68ad67a239_th.png)
 
-<center>Word2Vec&#x6548;&#x679C;&#x56FE;&#x5C55;&#x793A;</center>
-
-
+<center>Word2Vec效果图展示</center>
 </blockquote>
-<h2 id="fasttext"><a name="fasttext" class="anchor-navigation-ex-anchor" href="#fasttext"><i class="fa fa-link" aria-hidden="true"></i></a><a name="fasttext" class="plugin-anchor" href="#fasttext"><i class="fa fa-link" aria-hidden="true"></i></a>fasttext</h2>
+<h2 id="fasttext">3.3 fasttext</h2>
 <blockquote>
-<p><a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1607.01759.pdf" target="_blank">fasttext</a>&#x7684;&#x6A21;&#x578B;&#x4E0E;CBOW&#x7C7B;&#x4F3C;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;fasttext&#x7684;&#x786E;&#x662F;&#x7531;CBOW&#x6F14;&#x53D8;&#x800C;&#x6765;&#x7684;&#x3002;CBOW&#x9884;&#x6D4B;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x4E2D;&#x95F4;&#x8BCD;&#xFF0C;fasttext&#x9884;&#x6D4B;&#x6587;&#x672C;&#x6807;&#x7B7E;&#x3002;&#x4E0E;word2vec&#x7B97;&#x6CD5;&#x7684;&#x884D;&#x751F;&#x7269;&#x76F8;&#x540C;&#xFF0C;&#x7A20;&#x5BC6;&#x8BCD;&#x5411;&#x91CF;&#x4E5F;&#x662F;&#x5728;&#x8BAD;&#x7EC3;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x5F97;&#x5230;&#x7684;&#x3002;</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1607.01759.pdf" target="_blank">fasttext</a>的模型与CBOW类似，实际上，fasttext的确是由CBOW演变而来的。CBOW预测上下文的中间词，fasttext预测文本标签。与word2vec算法的衍生物相同，稠密词向量也是在训练神经网络的过程中得到的。</p>
 </blockquote>
-<h2 id="glove"><a name="glove" class="anchor-navigation-ex-anchor" href="#glove"><i class="fa fa-link" aria-hidden="true"></i></a><a name="glove" class="plugin-anchor" href="#glove"><i class="fa fa-link" aria-hidden="true"></i></a>GloVe</h2>
+<h2 id="glove">3.4 GloVe</h2>
 <blockquote>
-<p><em>GloVe</em> &#x662F;&#x65AF;&#x5766;&#x798F;&#x5927;&#x5B66;<em>Jeffrey&#x3001;Richard</em> &#x7B49;&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x79CD;&#x8BCD;&#x5411;&#x91CF;&#x8868;&#x793A;&#x7B97;&#x6CD5;&#xFF0C;<em>GloVe</em> &#x7684;&#x5168;&#x79F0;&#x662F;<em>Global Vectors for Word Representation</em>&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E;&#x5168;&#x5C40;&#x8BCD;&#x9891;&#x7EDF;&#x8BA1;&#xFF08;<em>count-based &amp; overall staticstics</em>&#xFF09;&#x7684;&#x8BCD;&#x8868;&#x5F81;&#xFF08;<em>word representation</em>&#xFF09;&#x7B97;&#x6CD5;&#x3002;&#x8BE5;&#x7B97;&#x6CD5;&#x7EFC;&#x5408;&#x4E86;global matrix factorization&#xFF08;&#x5168;&#x5C40;&#x77E9;&#x9635;&#x5206;&#x89E3;&#xFF09; &#x548C; local context window&#xFF08;&#x5C40;&#x90E8;&#x4E0A;&#x4E0B;&#x6587;&#x7A97;&#x53E3;&#xFF09; &#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x7684;&#x4F18;&#x70B9;&#x3002;</p>
-<p><a href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/GloVe&#x6548;&#x679C;&#x56FE;.jpeg" data-lightbox="6cfdce8c-a8db-46ce-95f6-ada80105aa96" data-title="img"><img src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/GloVe&#x6548;&#x679C;&#x56FE;.jpeg" alt="img"></a></p>
-<p><strong>&#x4F18;&#x70B9;</strong></p>
+<p><em>GloVe</em> 是斯坦福大学<em>Jeffrey、Richard</em> 等提供的一种词向量表示算法，<em>GloVe</em> 的全称是<em>Global Vectors for Word Representation</em>，是一个基于全局词频统计（<em>count-based &amp; overall staticstics</em>）的词表征（<em>word representation</em>）算法。该算法综合了global matrix factorization（全局矩阵分解） 和 local context window（局部上下文窗口） 两种方法的优点。</p>
+<p><a data-lightbox="68c08c84-4b3d-40a4-8417-add21958ffbb" data-title="img" href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/GloVe效果图.jpeg"><img alt="img" src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/GloVe效果图.jpeg"/></a></p>
+<p><strong>优点</strong></p>
 <ol>
-<li>&#x8003;&#x8651;&#x5230;&#x8BCD;&#x8BED;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x3001;&#x548C;&#x5168;&#x5C40;&#x8BED;&#x6599;&#x5E93;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5B66;&#x4E60;&#x5230;&#x4E86;&#x8BED;&#x4E49;&#x548C;&#x8BED;&#x6CD5;&#x7684;&#x4FE1;&#x606F;&#xFF1B;</li>
-<li>&#x5F97;&#x5230;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x7EF4;&#x5EA6;&#x5C0F;&#xFF0C;&#x8282;&#x7701;&#x5B58;&#x50A8;&#x548C;&#x8BA1;&#x7B97;&#x8D44;&#x6E90;&#xFF1B;</li>
-<li>&#x901A;&#x7528;&#x6027;&#x5F3A;&#xFF0C;&#x53EF;&#x4EE5;&#x5E94;&#x7528;&#x5230;&#x5404;&#x79CD;<em>NLP</em> &#x4EFB;&#x52A1;&#x4E2D;&#xFF1B;</li>
+<li>考虑到词语的上下文、和全局语料库的信息，学习到了语义和语法的信息；</li>
+<li>得到的词向量维度小，节省存储和计算资源；</li>
+<li>通用性强，可以应用到各种<em>NLP</em> 任务中；</li>
 </ol>
-<p><strong>&#x7F3A;&#x70B9;</strong></p>
+<p><strong>缺点</strong></p>
 <ol>
-<li>&#x8BCD;&#x548C;&#x5411;&#x91CF;&#x662F;&#x4E00;&#x5BF9;&#x4E00;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x65E0;&#x6CD5;&#x89E3;&#x51B3;&#x591A;&#x4E49;&#x8BCD;&#x7684;&#x95EE;&#x9898;&#xFF1B;</li>
-<li>glove&#x4E5F;&#x662F;&#x4E00;&#x79CD;&#x9759;&#x6001;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x867D;&#x7136;&#x901A;&#x7528;&#x6027;&#x5F3A;&#xFF0C;&#x4F46;&#x65E0;&#x6CD5;&#x771F;&#x7684;&#x7279;&#x5B9A;&#x7684;&#x4EFB;&#x52A1;&#x505A;&#x52A8;&#x6001;&#x4F18;&#x5316;&#xFF1B;</li>
+<li>词和向量是一对一的关系，无法解决多义词的问题；</li>
+<li>glove也是一种静态的模型，虽然通用性强，但无法真的特定的任务做动态优化；</li>
 </ol>
 </blockquote>
-<h2 id="elmo"><a name="elmo" class="anchor-navigation-ex-anchor" href="#elmo"><i class="fa fa-link" aria-hidden="true"></i></a><a name="elmo" class="plugin-anchor" href="#elmo"><i class="fa fa-link" aria-hidden="true"></i></a>ELMO</h2>
+<h2 id="elmo">3.5 ELMO</h2>
 <blockquote>
-<p>word2vec &#x548C; glove &#x7B97;&#x6CD5;&#x5F97;&#x5230;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x90FD;&#x662F;&#x9759;&#x6001;&#x8BCD;&#x5411;&#x91CF;&#xFF08;&#x9759;&#x6001;&#x8BCD;&#x5411;&#x91CF;&#x4F1A;&#x628A;&#x591A;&#x4E49;&#x8BCD;&#x7684;&#x8BED;&#x4E49;&#x8FDB;&#x884C;&#x878D;&#x5408;&#xFF0C;&#x8BAD;&#x7EC3;&#x7ED3;&#x675F;&#x4E4B;&#x540E;&#x4E0D;&#x4F1A;&#x6839;&#x636E;&#x4E0A;&#x4E0B;&#x6587;&#x8FDB;&#x884C;&#x6539;&#x53D8;&#xFF09;&#xFF0C;&#x9759;&#x6001;&#x8BCD;&#x5411;&#x91CF;&#x65E0;&#x6CD5;&#x89E3;&#x51B3;&#x591A;&#x4E49;&#x8BCD;&#x7684;&#x95EE;&#x9898;&#xFF08;&#x5982;&#xFF1A;&#x201C;&#x6211;&#x4ECA;&#x5929;&#x4E70;&#x4E86;7&#x65A4;<strong>&#x82F9;&#x679C;</strong>&#x201D; &#x548C; &#x201C;&#x6211;&#x4ECA;&#x5929;&#x4E70;&#x4E86;<strong>&#x82F9;&#x679C;</strong>7&#x201D; &#x4E2D;&#x7684; <strong>&#x82F9;&#x679C;</strong> &#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x591A;&#x4E49;&#x8BCD;&#xFF09;&#x3002;&#x800C;ELMO&#x6A21;&#x578B;&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x591A;&#x4E49;&#x8BCD;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
-<p><em>ELMO</em> &#x7684;&#x5168;&#x79F0;&#x662F;&#x201C; <em>Embedding from Language Models</em> &#x201D;&#xFF0C;&#x8FD9;&#x4E2A;&#x540D;&#x5B57;&#x4E0D;&#x80FD;&#x5F88;&#x597D;&#x7684;&#x53CD;&#x6620;&#x51FA;&#x8BE5;&#x6A21;&#x578B;&#x7684;&#x7279;&#x70B9;&#xFF0C;&#x63D0;&#x51FA;<em>ELMO</em> &#x7684;&#x8BBA;&#x6587;&#x9898;&#x76EE;&#x53EF;&#x4EE5;&#x66F4;&#x51C6;&#x786E;&#x7684;&#x8868;&#x8FBE;&#x51FA;&#x8BE5;&#x7B97;&#x6CD5;&#x7684;&#x7279;&#x70B9;&#x201C; <em>Deep contextualized word representation</em> &#x201D;&#x3002;</p>
-<p>&#x8BE5;&#x7B97;&#x6CD5;&#x7684;&#x7CBE;&#x9AD3;&#x662F;&#xFF1A;&#x7528;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#xFF0C;&#x5728;&#x4F7F;&#x7528;<em>word embedding</em> &#x65F6;&#xFF0C;&#x5355;&#x8BCD;&#x5DF2;&#x7ECF;&#x5177;&#x5907;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x5BF9;<em>word embedding</em> &#x8FDB;&#x884C;&#x8C03;&#x6574;&#xFF0C;&#x8FD9;&#x6837;&#x7ECF;&#x8FC7;&#x8C03;&#x6574;&#x4E4B;&#x540E;&#x7684;<em>word embedding</em> &#x66F4;&#x80FD;&#x8868;&#x8FBE;&#x5728;&#x8FD9;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x7684;&#x5177;&#x4F53;&#x542B;&#x4E49;&#xFF0C;&#x8FD9;&#x5C31;&#x89E3;&#x51B3;&#x4E86;&#x9759;&#x6001;&#x8BCD;&#x5411;&#x91CF;&#x65E0;&#x6CD5;&#x8868;&#x793A;&#x591A;&#x4E49;&#x8BCD;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
-<h3 id="&#x7F51;&#x7EDC;&#x6A21;&#x578B;"><a name="&#x7F51;&#x7EDC;&#x6A21;&#x578B;" class="anchor-navigation-ex-anchor" href="#&#x7F51;&#x7EDC;&#x6A21;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7F51;&#x7EDC;&#x6A21;&#x578B;" class="plugin-anchor" href="#&#x7F51;&#x7EDC;&#x6A21;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a><strong>&#x7F51;&#x7EDC;&#x6A21;&#x578B;</strong></h3>
-<p><a href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/ELMO&#x7F51;&#x7EDC;&#x6A21;&#x578B;.jpeg" data-lightbox="343fba65-6eff-4cff-9fd4-33769f3977b2" data-title="img"><img src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/ELMO&#x7F51;&#x7EDC;&#x6A21;&#x578B;.jpeg" alt="img"></a></p>
-<h3 id="&#x8FC7;&#x7A0B;"><a name="&#x8FC7;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#&#x8FC7;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8FC7;&#x7A0B;" class="plugin-anchor" href="#&#x8FC7;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a><strong>&#x8FC7;&#x7A0B;</strong></h3>
+<p>word2vec 和 glove 算法得到的词向量都是静态词向量（静态词向量会把多义词的语义进行融合，训练结束之后不会根据上下文进行改变），静态词向量无法解决多义词的问题（如：“我今天买了7斤<strong>苹果</strong>” 和 “我今天买了<strong>苹果</strong>7” 中的 <strong>苹果</strong> 就是一个多义词）。而ELMO模型进行训练的词向量可以解决多义词的问题。</p>
+<p><em>ELMO</em> 的全称是“ <em>Embedding from Language Models</em> ”，这个名字不能很好的反映出该模型的特点，提出<em>ELMO</em> 的论文题目可以更准确的表达出该算法的特点“ <em>Deep contextualized word representation</em> ”。</p>
+<p>该算法的精髓是：用语言模型训练神经网络，在使用<em>word embedding</em> 时，单词已经具备上下文信息，这个时候神经网络可以根据上下文信息对<em>word embedding</em> 进行调整，这样经过调整之后的<em>word embedding</em> 更能表达在这个上下文中的具体含义，这就解决了静态词向量无法表示多义词的问题。</p>
+<h3 id="网络模型">3.5.1 网络模型</h3>
+<p><a data-lightbox="56854d31-0fa2-4388-98e7-0ffc675f0631" data-title="img" href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/ELMO网络模型.jpeg"><img alt="img" src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/ELMO网络模型.jpeg"/></a></p>
+<h3 id="过程">3.5.2 过程</h3>
 <ol>
-<li>&#x4E0A;&#x56FE;&#x4E2D;&#x7684;&#x7ED3;&#x6784;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x7EA7;&#x5377;&#x79EF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#xFF08;<em>convolutional neural network, CNN</em>&#xFF09;&#x6765;&#x5C06;&#x6587;&#x672C;&#x4E2D;&#x7684;&#x8BCD;&#x8F6C;&#x6362;&#x6210;&#x539F;&#x59CB;&#x8BCD;&#x5411;&#x91CF;&#xFF08;<em>raw word vector</em>&#xFF09; &#xFF1B;</li>
-<li>&#x5C06;&#x539F;&#x59CB;&#x8BCD;&#x5411;&#x91CF;&#x8F93;&#x5165;&#x53CC;&#x5411;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x4E2D;&#x7B2C;&#x4E00;&#x5C42; &#xFF1B;</li>
-<li>&#x524D;&#x5411;&#x8FED;&#x4EE3;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x8BE5;&#x8BCD;&#x4EE5;&#x53CA;&#x8BE5;&#x8BCD;&#x4E4B;&#x524D;&#x7684;&#x4E00;&#x4E9B;&#x8BCD;&#x6C47;&#x6216;&#x8BED;&#x5883;&#x7684;&#x4FE1;&#x606F;&#xFF08;&#x5373;&#x4E0A;&#x6587;&#xFF09;&#xFF1B;</li>
-<li>&#x540E;&#x5411;&#x8FED;&#x4EE3;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x8BE5;&#x8BCD;&#x4EE5;&#x53CA;&#x8BE5;&#x8BCD;&#x4E4B;&#x540E;&#x7684;&#x4E00;&#x4E9B;&#x8BCD;&#x6C47;&#x6216;&#x8BED;&#x5883;&#x7684;&#x4FE1;&#x606F;&#xFF08;&#x5373;&#x4E0B;&#x6587;&#xFF09; &#xFF1B;</li>
-<li>&#x8FD9;&#x4E24;&#x79CD;&#x8FED;&#x4EE3;&#x7684;&#x4FE1;&#x606F;&#x7EC4;&#x6210;&#x4E86;&#x4E2D;&#x95F4;&#x8BCD;&#x5411;&#x91CF;&#xFF08;<em>intermediate word vector</em>&#xFF09;&#xFF1B;</li>
-<li>&#x4E2D;&#x95F4;&#x8BCD;&#x5411;&#x91CF;&#x88AB;&#x8F93;&#x5165;&#x5230;&#x6A21;&#x578B;&#x7684;&#x4E0B;&#x4E00;&#x5C42; &#xFF1B;</li>
-<li>&#x6700;&#x7EC8;&#x5411;&#x91CF;&#x5C31;&#x662F;&#x539F;&#x59CB;&#x8BCD;&#x5411;&#x91CF;&#x548C;&#x4E24;&#x4E2A;&#x4E2D;&#x95F4;&#x8BCD;&#x5411;&#x91CF;&#x7684;&#x52A0;&#x6743;&#x548C;&#xFF1B;</li>
+<li>上图中的结构使用字符级卷积神经网络（<em>convolutional neural network, CNN</em>）来将文本中的词转换成原始词向量（<em>raw word vector</em>） ；</li>
+<li>将原始词向量输入双向语言模型中第一层 ；</li>
+<li>前向迭代中包含了该词以及该词之前的一些词汇或语境的信息（即上文）；</li>
+<li>后向迭代中包含了该词以及该词之后的一些词汇或语境的信息（即下文） ；</li>
+<li>这两种迭代的信息组成了中间词向量（<em>intermediate word vector</em>）；</li>
+<li>中间词向量被输入到模型的下一层 ；</li>
+<li>最终向量就是原始词向量和两个中间词向量的加权和；</li>
 </ol>
-<h3 id="&#x6548;&#x679C;"><a name="&#x6548;&#x679C;" class="anchor-navigation-ex-anchor" href="#&#x6548;&#x679C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6548;&#x679C;" class="plugin-anchor" href="#&#x6548;&#x679C;"><i class="fa fa-link" aria-hidden="true"></i></a><strong>&#x6548;&#x679C;</strong></h3>
-<p><a href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/ELMO&#x6548;&#x679C;.png" data-lightbox="15f19270-1be6-4deb-a742-d7e83a1744ea" data-title="img"><img src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/ELMO&#x6548;&#x679C;.png" alt="img"></a></p>
-<p>&#x5982;&#x4E0A;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<h3 id="效果">3.5.3 效果</h3>
+<p><a data-lightbox="55567127-ccec-48a7-9c9e-81706f2e78d6" data-title="img" href="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/ELMO效果.png"><img alt="img" src="res/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B_%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9E%8B/ELMO效果.png"/></a></p>
+<p>如上图所示：</p>
 <ul>
-<li>&#x4F7F;&#x7528;glove&#x8BAD;&#x7EC3;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x4E2D;&#xFF0C;&#x4E0E; play &#x76F8;&#x8FD1;&#x7684;&#x8BCD;&#x5927;&#x591A;&#x4E0E;&#x4F53;&#x80B2;&#x76F8;&#x5173;&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x8BED;&#x6599;&#x4E2D;&#x4E0E;play&#x76F8;&#x5173;&#x7684;&#x8BED;&#x6599;&#x591A;&#x65F6;&#x4F53;&#x80B2;&#x9886;&#x57DF;&#x7684;&#x6709;&#x5173;&#xFF1B;</li>
-<li>&#x5728;&#x4F7F;&#x7528;elmo&#x8BAD;&#x7EC3;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x4E2D;&#xFF0C;&#x5F53; play &#x53D6; &#x6F14;&#x51FA; &#x7684;&#x610F;&#x601D;&#x65F6;&#xFF0C;&#x4E0E;&#x5176;&#x76F8;&#x8FD1;&#x7684;&#x4E5F;&#x662F; &#x6F14;&#x51FA; &#x76F8;&#x8FD1;&#x7684;&#x53E5;&#x5B50;&#xFF1B;</li>
+<li>使用glove训练的词向量中，与 play 相近的词大多与体育相关，这是因为语料中与play相关的语料多时体育领域的有关；</li>
+<li>在使用elmo训练的词向量中，当 play 取 演出 的意思时，与其相近的也是 演出 相近的句子；</li>
 </ul>
 </blockquote>
-<p></p><footer class="page-footer"><span class="copyright">Copyright &#xA9; narutohyc.com 2020 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2022-02-07 06:55:58
-</span></footer><hr><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
-
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
+<p></p><footer class="page-footer"><span class="copyright">Copyright © narutohyc.com 2020 all right reserved，powered by Gitbook</span><span class="footer-modification">该文件修订时间：
+2022-02-15 13:30:23
+</span></footer><hr/><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
+</section>
 </div>
-
-                        </div>
-                    </div>
-                
-            </div>
-
-            
-                
-                <a href="特征工程_特征选择.html" class="navigation navigation-prev " aria-label="Previous page: 特征工程_特征选择">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="特征工程_图像增强.html" class="navigation navigation-next " aria-label="Next page: 特征工程_图像增强">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
-
-    <script>
+<div class="search-results">
+<div class="has-results">
+<h1 class="search-results-title"><span class="search-results-count"></span> results matching "<span class="search-query"></span>"</h1>
+<ul class="search-results-list"></ul>
+</div>
+<div class="no-results">
+<h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a aria-label="Previous page: 特征工程_特征选择" class="navigation navigation-prev" href="特征工程_特征选择.html">
+<i class="fa fa-angle-left"></i>
+</a>
+<a aria-label="Next page: 特征工程_图像增强" class="navigation navigation-next" href="特征工程_图像增强.html">
+<i class="fa fa-angle-right"></i>
+</a>
+</div>
+<script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"特征工程_文本表示模型","level":"1.3.5","depth":2,"next":{"title":"特征工程_图像增强","level":"1.3.6","depth":2,"path":"chapters/特征工程_图像增强.md","ref":"chapters/特征工程_图像增强.md","articles":[]},"previous":{"title":"特征工程_特征选择","level":"1.3.4","depth":2,"path":"chapters/特征工程_特征选择.md","ref":"chapters/特征工程_特征选择.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/特征工程_文本表示模型.md","mtime":"2022-02-07T06:55:58.086Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-07T06:57:25.147Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"特征工程_文本表示模型","level":"1.3.5","depth":2,"next":{"title":"特征工程_图像增强","level":"1.3.6","depth":2,"path":"chapters/特征工程_图像增强.md","ref":"chapters/特征工程_图像增强.md","articles":[]},"previous":{"title":"特征工程_特征选择","level":"1.3.4","depth":2,"path":"chapters/特征工程_特征选择.md","ref":"chapters/特征工程_特征选择.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/特征工程_文本表示模型.md","mtime":"2022-02-15T13:30:23.521Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-15T13:32:13.117Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
-
-        
-    
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
-        
-    
-        
-        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lightbox/js/lightbox.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-change_girls/girls.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
-        
-    
-
-    <script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
-
-    </body>
+<script src="../gitbook/gitbook.js"></script>
+<script src="../gitbook/theme.js"></script>
+<script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+<script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+<script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+<script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+<script src="../gitbook/gitbook-plugin-lightbox/js/lightbox.min.js"></script>
+<script src="../gitbook/gitbook-plugin-change_girls/girls.js"></script>
+<script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+<script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+<script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+<script src="../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+</body>
 </html>
-
