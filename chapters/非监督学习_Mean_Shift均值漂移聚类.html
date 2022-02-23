@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-<title>监督学习_支持向量机 · 机器学习相关学习记录</title>
+<title>非监督学习_Mean_Shift均值漂移聚类 · 机器学习相关学习记录</title>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="" name="description"/>
 <meta content="GitBook 3.2.3" name="generator"/>
@@ -30,8 +30,8 @@
 <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
 <link href="../gitbook/images/apple-touch-icon-precomposed-152.png" rel="apple-touch-icon-precomposed" sizes="152x152"/>
 <link href="../gitbook/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-<link href="监督学习_CRF.html" rel="next"/>
-<link href="监督学习_K近邻法.html" rel="prev"/>
+<link href="非监督学习_DBSCAN基于密度的聚类方法.html" rel="next"/>
+<link href="非监督学习_K均值.html" rel="prev"/>
 <link href="./chapters/res/other/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 <link href="./chapters/res/other/favicon.ico" rel="apple-touch-icon-precomposed" sizes="152x152"/>
 <link href="../https:/upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png" rel="shortcut icon" type="image/x-icon"/>
@@ -294,7 +294,7 @@
             
                 </a>
 </li>
-<li class="chapter active" data-level="1.6.4" data-path="监督学习_支持向量机.html">
+<li class="chapter" data-level="1.6.4" data-path="监督学习_支持向量机.html">
 <a href="监督学习_支持向量机.html">
 <b>1.6.4.</b>
                     
@@ -328,7 +328,7 @@
             
                 </a>
 </li>
-<li class="chapter" data-level="1.7.2" data-path="非监督学习_Mean_Shift均值漂移聚类.html">
+<li class="chapter active" data-level="1.7.2" data-path="非监督学习_Mean_Shift均值漂移聚类.html">
 <a href="非监督学习_Mean_Shift均值漂移聚类.html">
 <b>1.7.2.</b>
                     
@@ -401,7 +401,7 @@
 <!-- Title -->
 <h1>
 <i class="fa fa-circle-o-notch fa-spin"></i>
-<a href="..">监督学习_支持向量机</a>
+<a href="..">非监督学习_Mean_Shift均值漂移聚类</a>
 </h1>
 </div>
 <div class="page-wrapper" role="main" tabindex="-1">
@@ -409,79 +409,12 @@
 <div class="search-plus" id="book-search-results">
 <div class="search-noresults">
 <section class="normal markdown-section">
-<div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon"></span><a href="#支持向量机svm">1 支持向量机(SVM)</a></li><li><span class="title-icon"></span><a href="#精简版核方法">2 精简版(核方法)</a></li></ul></div><a href="#支持向量机svm" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a data-lightbox="f01e4c48-1847-481f-b05e-a01c6359deab" data-title="异世界.png" href="res/other/异世界蕾姆_1.png"><img alt="异世界.png" src="res/other/异世界蕾姆_1.png"/></a></p>
-<p><li><span class="title-icon"></span><a href="#支持向量机svm">1 支持向量机(SVM)</a></li><li><span class="title-icon"></span><a href="#精简版核方法">2 精简版(核方法)</a></li></p>
-<h1 id="支持向量机svm">1 支持向量机(SVM)</h1>
-<h1 id="精简版核方法">2 精简版(核方法)</h1>
-<blockquote>
-<p><code>核方法</code>的基本思想是通过一个非线性变换，把输入数据映射到高维的希尔伯特空间中，在这个高维空间里，那些在原始输入空间中线性不可分的问题变得更加容易解决，甚至线性可分。支持向量机(Support Vector Machine，SVM)是一类最典型的核方法，下面将以支持向量机为例，对核方法进行简单的介绍。
-   支持向量机的基本思想是通过核函数将原始输入空间变换成一个高维(甚至是无穷维)的空间，在这个空间里寻找一个超平面，它可以把训练集里的正例和负例尽最大可能地分开(用更加学术的语言描述，就是正负例之间的间隔最大化)。那么如何才能通过核函数实现空间的非线性映射呢？让我们从头谈起。
-   假设存在一个非线性映射函数<script type="math/tex; ">\phi</script>，可以帮我们把原始输入空间变换成高维非线性空间。我们的目的是在变换后的空间里，寻找一个线性超平面<script type="math/tex; ">w^T\phi(x)=0</script>，它能够把所有正例和负例分开，并且距离该超平面最近的正例和负例之间的间隔最大。这个诉求可以用数学语言表述如下：
-<script type="math/tex; mode=display">
->max\frac{2}{||w||} \\
->w^T\phi(x_i) \geq+1,如果y_i=+1 \\
->w^T\phi(x_i) \leq-1,如果y_i=-1 \\
->i=1,...,n
-></script>
-其中<script type="math/tex; ">\frac{2}{||w||}</script>是离超平面最近的正例和负例之间的间隔(如图2.6所示)。</p>
-<p><a data-lightbox="506dae17-4a34-4744-a5bf-1ec3ba68ad2e" data-title="1571568105084" href="res/Machine%20Learning%20Base/1571568105084.png"><img alt="1571568105084" src="res/Machine%20Learning%20Base/1571568105084.png"/></a></p>
-<p>​    以上的数学描述等价于如下的优化问题：
-<script type="math/tex; mode=display">
->min \frac{1}{2}||w||^2 \\
->y_i(w^T \phi(x_i)) \geq 1,i=1,...,n
-></script>
-上式中的约束条件要求所有的正例和负例分别位于超平面<script type="math/tex; ">w^T \phi(x)=0</script>的两侧。某些情况下，这种约束可能过强，因为我们所拥有的训练集有时是不可分的。这时候，就需要引入松弛变量<script type="math/tex; ">\xi</script>，把上述优化问题改写为：
-<script type="math/tex; mode=display">
->min \frac{1}{2}||w||^2+C \sum_i{\xi_i} \\
->y_i(w^T \phi(x_i)) \geq 1- \xi \\
->\xi \geq 0
->i=1,...,n
-></script>
-其实这种新的表述等价于最小化一个加了正则项<script type="math/tex; ">\frac{1}{2}||w||^2</script>l的Hinge损失函数。这是因为当<script type="math/tex; ">1-y_i(w^T \phi(x_i))</script>小于0的时候，样本<script type="math/tex; ">x_i</script>被超平面正确地分到相应的类别里，<script type="math/tex; ">\xi_i =0</script>；反之，<script type="math/tex; ">\xi_i</script>将大于0，且是<script type="math/tex; ">1-y_i(w^T \xi (x_i)）</script>的上界：最小化<script type="math/tex; ">\xi_i </script>就相应地最小化了<script type="math/tex; ">y_i(w^T \phi(x_i)) \geq 1</script>。基于以上讨论，其实支持向量机在最小化如下的目标函数：
-<script type="math/tex; mode=display">
->\hat l_n{(w)}=\frac{1}{2}||w||^2+\sum_{i=1}^{n}{max\{0,1-y_i(w^T \phi(x_i))\}}
-></script>
-其中，<script type="math/tex; ">\frac{1}{2}||w||^2</script>是正则项，对它的最小化可以限制模型的空间，有效提高模型的泛化能力(也就是使模型在训练集和测试集上的性能更加接近)。
-为了求解上述有约束的优化问题，一种常用的技巧是使用拉格朗日乘数法将其转换成对偶问题进行求解。具体来讲，支持向量机对应的对偶问题如下：
-<script type="math/tex; mode=display">
->\max_{\alpha}{\sum_{i=1}^{n}{\alpha_i}}-\frac{1}{2}\sum_{i=1}^{n}{\sum_{j=1}^{n}{\alpha_i \alpha_j y_i y_j \phi(x_i)^T \phi(x_j)}} \\
->s.t. \sum_{i=1}^{n}{\alpha_i y_i}=0,\alpha_i \geq 0
-></script>
-在对偶空间里，该优化问题的描述只与<script type="math/tex; ">\phi(x_i)</script>和<script type="math/tex; ">\phi(x_j)</script>的内积有关，而与映射函数<script type="math/tex; ">\phi</script>本身的具体形式无关。因此，我们只需定义两个样本<script type="math/tex; ">x_i</script>和<script type="math/tex; ">x_j</script>之间的核函数<script type="math/tex; ">k(x_i,x_j)</script>，用以表征其映射到高维空间之后的内积即可：
-<script type="math/tex; mode=display">
->k(x_i,x_j)=\phi(x_i)^T\phi(x_j)
-></script>
-至此，我们弄清楚了核函数是如何和空间变换发生联系的。核函数可以有很多不同的选择，以下列出了几种常用的核函数。</p>
-<table>
-<thead>
-<tr>
-<th>核函数</th>
-<th>数学形式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>多项式和</td>
-<td><script type="math/tex; ">k(x_i,x_j)=(x_i^Tx_j)^p,p \geq1</script></td>
-</tr>
-<tr>
-<td>高斯核</td>
-<td><script type="math/tex; ">k(x_i,x_j)=exp(-\frac{||x_i-x_j||^2}{2{\sigma}^2})</script></td>
-</tr>
-<tr>
-<td>拉普拉斯核</td>
-<td><script type="math/tex; ">k(x_i,x_j)=exp(-\frac{||x_i-x_j||}{\sigma}),\sigma >0</script></td>
-</tr>
-<tr>
-<td>Sigmoid核</td>
-<td><script type="math/tex; ">k(x_i,x_j)=tanh(\beta x_i^T x_j+\theta),\beta>0, \theta<0</script></td>
-</tr>
-</tbody>
-</table>
-<p>事实上，只要一个对称函数所对应的核矩阵满足半正定的条件，它就能作为核函数使用，并总能找到一个与之对应的空间映射。换言之，任何一个核函数都隐式地定义了一个<code>再生核希尔伯特空间</code>(Reproducing Kernel Hilbert Space，RKHS)。在这个空间里，两个向量的内积等于对应核函数的值。</p>
-</blockquote>
-<h1 id=""><a class="plugin-anchor" href="#" name=""><i aria-hidden="true" class="fa fa-link"></i></a> </h1>
-<p>&gt;</p>
+<div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon"></span><a href="#均值漂移聚类mean-shift">1 均值漂移聚类(Mean Shift)</a></li></ul></div><a href="#均值漂移聚类mean-shift" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a data-lightbox="1d52238f-f7fc-4be5-aa2f-c42da1bc5111" data-title="异世界.png" href="res/other/异世界蕾姆_1.png"><img alt="异世界.png" src="res/other/异世界蕾姆_1.png"/></a></p>
+<p><li><span class="title-icon"></span><a href="#均值漂移聚类mean-shift">1 均值漂移聚类(Mean Shift)</a></li></p>
+<h1 id="均值漂移聚类mean-shift">1 均值漂移聚类(Mean Shift)</h1>
+<p>&gt;
+&gt;
+&gt;</p>
 <p></p><footer class="page-footer"><span class="copyright">Copyright © narutohyc.com 2020 all right reserved，powered by Gitbook</span><span class="footer-modification">该文件修订时间：
 2022-02-23 09:21:39
 </span></footer><hr/><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
@@ -500,17 +433,17 @@
 </div>
 </div>
 </div>
-<a aria-label="Previous page: 监督学习_K近邻法" class="navigation navigation-prev" href="监督学习_K近邻法.html">
+<a aria-label="Previous page: 非监督学习_K均值" class="navigation navigation-prev" href="非监督学习_K均值.html">
 <i class="fa fa-angle-left"></i>
 </a>
-<a aria-label="Next page: 监督学习_CRF" class="navigation navigation-next" href="监督学习_CRF.html">
+<a aria-label="Next page: 非监督学习_DBSCAN基于密度的聚类方法" class="navigation navigation-next" href="非监督学习_DBSCAN基于密度的聚类方法.html">
 <i class="fa fa-angle-right"></i>
 </a>
 </div>
 <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"监督学习_支持向量机","level":"1.6.4","depth":2,"next":{"title":"监督学习_CRF","level":"1.6.5","depth":2,"path":"chapters/监督学习_CRF.md","ref":"chapters/监督学习_CRF.md","articles":[]},"previous":{"title":"监督学习_K近邻法","level":"1.6.3","depth":2,"path":"chapters/监督学习_K近邻法.md","ref":"chapters/监督学习_K近邻法.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/监督学习_支持向量机.md","mtime":"2022-02-23T09:21:39.193Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-23T09:23:17.288Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"非监督学习_Mean_Shift均值漂移聚类","level":"1.7.2","depth":2,"next":{"title":"非监督学习_DBSCAN基于密度的聚类方法","level":"1.7.3","depth":2,"path":"chapters/非监督学习_DBSCAN基于密度的聚类方法.md","ref":"chapters/非监督学习_DBSCAN基于密度的聚类方法.md","articles":[]},"previous":{"title":"非监督学习_K均值","level":"1.7.1","depth":2,"path":"chapters/非监督学习_K均值.md","ref":"chapters/非监督学习_K均值.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/非监督学习_Mean_Shift均值漂移聚类.md","mtime":"2022-02-23T09:21:39.193Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-23T09:23:17.288Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
