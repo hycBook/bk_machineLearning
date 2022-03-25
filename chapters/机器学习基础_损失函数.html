@@ -51,6 +51,74 @@
     </script>
 </head>
 <body>
+          <div class="mountain_a"></div>
+          <div class="mountain_b"></div>
+          <div class="house right">
+            <div class="fence"></div>
+            <div class="wall"></div>
+            <div class="roof left"></div>
+            <div class="roof right"></div>
+            <div class="door"></div>
+          </div>
+          <div class="house left">
+            <div class="fence"></div>
+            <div class="wall"></div>
+            <div class="roof left"></div>
+            <div class="roof right"></div>
+            <div class="door"></div>
+          </div>
+          <div class="tree_back"></div>
+          <div class="tree"></div>
+          <div class="postbox_a">
+            <div class="hole"></div>
+          </div>
+          <div class="postbox_b">
+            <div class="hole"></div>
+          </div>
+          <div class="windmill">
+            <div class="tower"></div>
+            <div class="t1"></div>
+            <div class="t2"></div>
+            <div class="blade">
+              <div class="windblade"></div>
+              <div class="windblade windblade2"></div>
+              <div class="windblade windblade3"></div>
+              <div class="windblade windblade4"></div>
+            </div>
+          </div>
+          <div class="allsnows">
+            <div class="snow1"></div>
+            <div class="snow2"></div>
+            <div class="snow3"></div>
+            <div class="snow4"></div>
+            <div class="snow5"></div>
+            <div class="snow6"></div>
+            <div class="snow7"></div>
+            <div class="snow8"></div>
+            <div class="snow9"></div>
+            <div class="snow10"></div>
+            <div class="snow11"></div>
+            <div class="snow12"></div>
+            <div class="snow13"></div>
+            <div class="snow14"></div>
+            <div class="snow15"></div>
+            <div class="snow16"></div>
+            <div class="snow17"></div>
+            <div class="snow18"></div>
+            <div class="snow19"></div>
+            <div class="snow20"></div>
+          </div>
+          <div class="ground">
+            <div class="g1"></div>
+            <div class="g2"></div>
+            <div class="g3"></div>
+            <div class="ice">
+              <div class="glare"></div>
+              <div class="ice_shadow"></div>
+            </div>
+
+          </div>
+    
 <div class="book">
 <div class="book-summary">
 <div id="book-search-input" role="search">
@@ -409,7 +477,7 @@
 <div class="search-plus" id="book-search-results">
 <div class="search-noresults">
 <section class="normal markdown-section">
-<div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon"></span><a href="#损失函数">1 损失函数</a></li><li><span class="title-icon"></span><a href="#经验误差风险">2 经验误差风险</a></li><li><span class="title-icon"></span><a href="#损失函数定义">3 损失函数定义</a></li><li><span class="title-icon"></span><a href="#模型泛化误差">4 模型泛化误差</a></li></ul></div><a href="#损失函数" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a data-lightbox="dc7dddd5-8144-46c5-af80-4ae1035414e5" data-title="异世界.png" href="res/other/异世界蕾姆_1.png"><img alt="异世界.png" src="res/other/异世界蕾姆_1.png"/></a></p>
+<div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon"></span><a href="#损失函数">1 损失函数</a></li><li><span class="title-icon"></span><a href="#经验误差风险">2 经验误差风险</a></li><li><span class="title-icon"></span><a href="#损失函数定义">3 损失函数定义</a></li><li><span class="title-icon"></span><a href="#模型泛化误差">4 模型泛化误差</a></li></ul></div><a href="#损失函数" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a data-lightbox="a315d13d-628a-4f74-be9b-3631debf3280" data-title="异世界.png" href="res/other/异世界蕾姆_1.png"><img alt="异世界.png" src="res/other/异世界蕾姆_1.png"/></a></p>
 <h1 id="损失函数">1 损失函数</h1>
 <h1 id="经验误差风险">2 经验误差风险</h1>
 <blockquote>
@@ -429,7 +497,7 @@
 <p>​    为了解决这个问题，人们提出了<code>损失函数</code>的概念。所谓的损失函数就是和误差函数有一定的关系(例如是误差函数的上界)但具有更好的数学性质(比如连续、可导、凸性等)，比较容易进行优化。通过对经验损失风险的最小化，我们可以间接地实现对经验误差风险<script type="math/tex; ">\hat{\epsilon}(w)</script>的最小化。为了便于引用，我们用<script type="math/tex; ">\hat{l}(w)</script>来表示经验损失风险。
 ​    因为损失函数满足了连续可导的条件，所以在优化过程中选择面就比较宽了，有很多方法可供使用。我们既可以选择确定性的优化算法(包含以梯度下降法、坐标下降法为代表的一阶算法，以及以牛顿法、拟牛顿法为代表的二阶算法)，也可以选择随机性的优化算法(包括随机梯度下降法、随机坐标下降法、随机拟牛顿法等)。</p>
 <p>​    当优化算法收敛以后，我们就得到了一个不错的模型。当然，这个“不错”的模型到底能有多好还要看损失函数的复杂程度。如果损失函数是个凸函数，则很容易通过上述方法找到全局最优模型；否则，多数情况下我们得到的只是局部最优模型。无论是哪种情况，未来我们将会使用这个学到的模型对未知的新样本进行分类。</p>
-<p><a data-lightbox="1e1b4cc8-8ade-48b2-904d-9440956f8ba9" data-title="1571560658397" href="res/Machine%20Learning%20Base/1571560658397.png"><img alt="1571560658397" src="res/Machine%20Learning%20Base/1571560658397.png"/></a></p>
+<p><a data-lightbox="5218b546-56ad-402c-b35a-e28bfb33ed55" data-title="1571560658397" href="res/Machine%20Learning%20Base/1571560658397.png"><img alt="1571560658397" src="res/Machine%20Learning%20Base/1571560658397.png"/></a></p>
 </blockquote>
 <h1 id="损失函数定义">3 损失函数定义</h1>
 <blockquote>
@@ -440,7 +508,7 @@
 >l(w;x,y)=max\{0,1-yg(x;w)\}
 ></script>
 ​    从以上数学定义可以看出：当<script type="math/tex; ">g(x;w)</script>和<script type="math/tex; ">y</script>符号相同且乘积数值超过1时，损失函数取值为0；否则，将有一个线性的损失(二者符号不同时，乘积的绝对值越大，损失越大)。Hinge损失函数是一个连续凸函数，但是它在0点不可导，人们通常会选择次导数集合中的任意一个数值参与优化过程。我们从图2.3可以清晰地看出，Hinge损失是<script type="math/tex; ">0-1</script>误差的上界，因此通过最小化Hinge损失，可以有效地减小<script type="math/tex; ">0-1</script>误差，从而提高分类性能。</p>
-<p><a data-lightbox="3388fe55-33ec-4b47-85d8-502f2f835e79" data-title="1571560745676" href="res/Machine%20Learning%20Base/1571560745676.png"><img alt="1571560745676" src="res/Machine%20Learning%20Base/1571560745676.png"/></a><code>指数损失函数</code>指数损失函数也是<script type="math/tex; ">0-1</script>误差的上界，它的具体形式如下（参见图2.4）：
+<p><a data-lightbox="f06398ca-14ea-429a-afa0-93577da5b941" data-title="1571560745676" href="res/Machine%20Learning%20Base/1571560745676.png"><img alt="1571560745676" src="res/Machine%20Learning%20Base/1571560745676.png"/></a><code>指数损失函数</code>指数损失函数也是<script type="math/tex; ">0-1</script>误差的上界，它的具体形式如下（参见图2.4）：
 <script type="math/tex; mode=display">
 >l(x;x,y)=exp(-yg(x:w))
 ></script>
@@ -454,7 +522,7 @@
 >l(w;x,y)-\sum_z \in \{-1,1 \}{I_{|y=z|}}{}{logP(Y=z|x;w)}
 ></script>
 可见，最小化交叉熵损失函数等价于最大化预测函数g所对应的条件似然函数。</p>
-<p><a data-lightbox="e9d626fb-82c1-4a2c-b8a4-157ae215198b" data-title="1571566807764" href="res/Machine%20Learning%20Base/1571566807764.png"><img alt="1571566807764" src="res/Machine%20Learning%20Base/1571566807764.png"/></a></p>
+<p><a data-lightbox="bcafaf45-f174-44c3-80b9-468997f7196e" data-title="1571566807764" href="res/Machine%20Learning%20Base/1571566807764.png"><img alt="1571566807764" src="res/Machine%20Learning%20Base/1571566807764.png"/></a></p>
 <p>从以上定义可以看出，对于正类的样本而言，当12预测模型的输出接近于1时，损失很小；而当预测模型的输出接近于0时，则产生一个很大的损失。相反，对于负类的样本而言，当预测模型的输出接近于1时，会产生很大的损失；而当预测模型的输出接近于0时，则损失很小。交叉熵损失函数也是一个全程连续可导的凸函数，并且是<script type="math/tex; ">0-1</script>误差的上界。图2.5交叉熵损失函数以上介绍了一些常用的损失函数。虽然它们和<script type="math/tex; ">0-1</script>误差在形式上有所差别，但是从统计意义上讲，它们存在着很强的关联关系。可以证明，在一定假设下，以上损失函数对于<script type="math/tex; ">0-1</script>误差而言都具有统计一致性，也就是说，当样本趋近于无穷多的时候，按照最小化损失函数找到的最优模型也是在<script type="math/tex; ">0-1</script>误差意义下的最优模型。这就给使用这些损失函数奠定了理论基础。</p>
 </blockquote>
 <h1 id="模型泛化误差">4 模型泛化误差</h1>
@@ -472,7 +540,7 @@
 优化算法对(正则化)经验风险最小化问题进行求解，并在算法结束的第<script type="math/tex; ">T</script>次迭代中输出模型<script type="math/tex; ">\hat g_r</script>。我们希望所学习到的模型<script type="math/tex; ">\hat g_r</script>的期望风险<script type="math/tex; ">L(\hat g_r)</script>尽可能小，并将其定义为机器学习算法的泛化误差。</p>
 </blockquote>
 <p></p><footer class="page-footer"><span class="copyright">Copyright © narutohyc.com 2020 all right reserved，powered by Gitbook</span><span class="footer-modification">该文件修订时间：
-2022-02-24 00:43:44
+2022-03-25 15:05:16
 </span></footer><hr/><div id="vcomments"></div><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script>new Valine({el: "#vcomments",appId: 'jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz',appKey: 'FOXMptWOHC7cU1FxXt0LJj4o',placeholder: 'Just go go',avatar: '',meta: undefined,pageSize: 10,lang: 'zh-CN',recordIP: false})</script><p></p>
 </section>
 </div>
@@ -495,14 +563,14 @@
 <a aria-label="Next page: 特征工程" class="navigation navigation-next" href="特征工程.html">
 <i class="fa fa-angle-right"></i>
 </a>
-</div>
+<script src="https://cdn.jsdelivr.net/gh/zztongtong/CDN/js/live2d.min.js"></script><div style="position:absolute; bottom:0; left:0; width:200;"><canvas height="350" id="model_1" width="200"></canvas></div></div>
 <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"机器学习基础_损失函数","level":"1.2.6","depth":2,"next":{"title":"特征工程","level":"1.3","depth":1,"path":"chapters/特征工程.md","ref":"chapters/特征工程.md","articles":[{"title":"特征工程_归一化","level":"1.3.1","depth":2,"path":"chapters/特征工程_归一化.md","ref":"chapters/特征工程_归一化.md","articles":[]},{"title":"特征工程_编码","level":"1.3.2","depth":2,"path":"chapters/特征工程_编码.md","ref":"chapters/特征工程_编码.md","articles":[]},{"title":"特征工程_特征组合","level":"1.3.3","depth":2,"path":"chapters/特征工程_特征组合.md","ref":"chapters/特征工程_特征组合.md","articles":[]},{"title":"特征工程_特征选择","level":"1.3.4","depth":2,"path":"chapters/特征工程_特征选择.md","ref":"chapters/特征工程_特征选择.md","articles":[]},{"title":"特征工程_文本表示模型","level":"1.3.5","depth":2,"path":"chapters/特征工程_文本表示模型.md","ref":"chapters/特征工程_文本表示模型.md","articles":[]},{"title":"特征工程_图像增强","level":"1.3.6","depth":2,"path":"chapters/特征工程_图像增强.md","ref":"chapters/特征工程_图像增强.md","articles":[]}]},"previous":{"title":"机器学习基础_最优化理论","level":"1.2.5","depth":2,"path":"chapters/机器学习基础_最优化理论.md","ref":"chapters/机器学习基础_最优化理论.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/机器学习基础_损失函数.md","mtime":"2022-02-24T00:43:44.929Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-24T00:45:09.299Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"机器学习基础_损失函数","level":"1.2.6","depth":2,"next":{"title":"特征工程","level":"1.3","depth":1,"path":"chapters/特征工程.md","ref":"chapters/特征工程.md","articles":[{"title":"特征工程_归一化","level":"1.3.1","depth":2,"path":"chapters/特征工程_归一化.md","ref":"chapters/特征工程_归一化.md","articles":[]},{"title":"特征工程_编码","level":"1.3.2","depth":2,"path":"chapters/特征工程_编码.md","ref":"chapters/特征工程_编码.md","articles":[]},{"title":"特征工程_特征组合","level":"1.3.3","depth":2,"path":"chapters/特征工程_特征组合.md","ref":"chapters/特征工程_特征组合.md","articles":[]},{"title":"特征工程_特征选择","level":"1.3.4","depth":2,"path":"chapters/特征工程_特征选择.md","ref":"chapters/特征工程_特征选择.md","articles":[]},{"title":"特征工程_文本表示模型","level":"1.3.5","depth":2,"path":"chapters/特征工程_文本表示模型.md","ref":"chapters/特征工程_文本表示模型.md","articles":[]},{"title":"特征工程_图像增强","level":"1.3.6","depth":2,"path":"chapters/特征工程_图像增强.md","ref":"chapters/特征工程_图像增强.md","articles":[]}]},"previous":{"title":"机器学习基础_最优化理论","level":"1.2.5","depth":2,"path":"chapters/机器学习基础_最优化理论.md","ref":"chapters/机器学习基础_最优化理论.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","mathjax","mermaid-gb3","tbfed-pagefooter","code","favicon","search-plus","-lunr","-search","lightbox","change_girls","theme-comscore","valine","pageview-count","favicon-absolute"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © narutohyc.com 2020","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/narutohyc"},"splitter":{},"change_girls":{"time":10,"urls":["https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg","https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"]},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"code":{"copyButtons":true},"donate":{"alipay":"https://i.loli.net/2021/01/12/Cdunm9AoBcHF5MI.png","alipayText":"alipay打赏","button":"欢迎打赏","title":"","wechat":"https://i.loli.net/2021/01/12/gmzASfCciIFXTyr.png","wechatText":"wechat打赏"},"favicon-absolute":{"appleTouchIconMore":{},"appleTouchIconPrecomposed152":"./chapters/res/other/favicon.ico","appleTouchIconPrecomposedMore":{},"favicon":"./chapters/res/other/favicon.ico"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","bookmark":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouch":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","appleTouchMore":{"120x120":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png","180x180":"https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"}},"lightbox":{"jquery":true,"sameUuid":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"narutohyc","repo":"bk_machineLearning","type":"star","size":"small","count":true}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"qq":true,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":true,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"valine":{"avatar":"","lang":"zh-CN","pageSize":10,"placeholder":"Just go go","recordIP":false,"appId":"jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz","appKey":"FOXMptWOHC7cU1FxXt0LJj4o"},"search-plus":{}},"theme":"default","author":"narutohyc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"机器学习相关学习记录","language":"zh-hans","links":{"sidebar":{"我的狗窝":"https://github.com/narutohyc"}},"gitbook":"*","description":"记录 机器学习 的学习和一些技巧的使用"},"file":{"path":"chapters/机器学习基础_损失函数.md","mtime":"2022-03-25T15:05:16.766Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-25T15:07:02.032Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
-</div>
+<canvas class="fireworks"></canvas><script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script></div>
 <script src="../gitbook/gitbook.js"></script>
 <script src="../gitbook/theme.js"></script>
 <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
