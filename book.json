@@ -97,13 +97,6 @@
                 "180x180": "https://upload-images.jianshu.io/upload_images/15675864-5e5ba668035853d8.png"
             }
         },
-        "change_girls" : {
-            "time" : 10,
-            "urls" : [
-                "https://plc.jj20.com/up/allimg/1115/012122143136/220121143136-2.jpg", 
-                "https://plc.jj20.com/up/allimg/1115/111R1094405/21111P94405-1.jpg"
-            ]
-        },
         "valine": {
             "appId": "jQTfSSGRF0zp8yqaaa6bjeVQ-gzGzoHsz",
             "appKey": "FOXMptWOHC7cU1FxXt0LJj4o"
